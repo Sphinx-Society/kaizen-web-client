@@ -9,6 +9,8 @@ assignees: ''
 
 <!-- Thanks so much for your PR, your contribution is appreciated! -->
 
+## Checklist ✅
+
 - [ ] I have followed the [contributor guideline](https://github.com/Sphinx-Society/kaizen-web-client/blob/master/CONTRIBUTING.md)
 - [ ] Tests are included
 - [ ] Documentation is changed or added
