@@ -1,12 +1,3 @@
----
-name: "Kaizen Pull Request"
-about: PR template related to issue
-title: SSKW-
-labels: ''
-assignees: ''
-
----
-
 <!-- Thanks so much for your PR, your contribution is appreciated! -->
 
 - [ ] I have followed the [contributor guideline](https://github.com/Sphinx-Society/kaizen-web-client/blob/master/CONTRIBUTING.md)
