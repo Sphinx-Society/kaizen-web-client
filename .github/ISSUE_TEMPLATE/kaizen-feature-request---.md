@@ -9,6 +9,8 @@ assignees: ''
 
 <!-- Provide a general summary of the feature in the Title above -->
 
+## Checklist ✅
+
 <!--
   Thank you very much for contributing to Kaizen by creating an issue!
   To avoid duplicate issues we ask you to check off the following list.
@@ -30,7 +32,3 @@ assignees: ''
 ## Motivation 🔦
 
 <!-- What are you trying to accomplish? How has the lack of this feature affected you? -->
-
-
-
-
