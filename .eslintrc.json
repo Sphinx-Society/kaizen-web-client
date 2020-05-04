@@ -5,7 +5,9 @@
     "node": true
   },
   "extends": [
-    "airbnb"
+    "airbnb",
+    "plugin:cypress/recommended",
+    "plugin:chai-friendly/recommended"
   ],
   "globals": {
     "document": false,
