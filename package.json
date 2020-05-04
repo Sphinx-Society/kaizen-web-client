@@ -1,0 +1,36 @@
+{
+  "name": "kaizen-web-client",
+  "version": "0.1.0",
+  "description": "Web client of Kaizen, an open source alternative for a medical tests management system.",
+  "main": "index.js",
+  "scripts": {
+    "start": "echo \"Start: no start script specified\" && exit 1",
+    "dev": "echo \"Dev: no dev script specified\" && exit 1",
+    "build": "echo \"Build: no build specified\" && exit 1",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sphinx-Society/kaizen-web-client.git"
+  },
+  "keywords": ["health", "javascript", "react"],
+  "contributors": [
+    {
+      "name": "Jorge Nemoga",
+      "email": "jhnemogap@gmail.com"
+    },
+    {
+      "name": "Andres Santana",
+      "email": "drew.lizcano@gmail.com"
+    },
+    {
+      "name": "Omar Flores Grimontt",
+      "email": "dev@omarefg.com"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Sphinx-Society/kaizen-web-client/issues"
+  },
+  "homepage": "https://github.com/Sphinx-Society/kaizen-web-client#readme"
+}
