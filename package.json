@@ -4,7 +4,11 @@
   "description": "[front end] Open source web application for managing clinical laboratory tests",
   "main": "src/client/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server --open --mode development",
+    "lint": "eslint src/ --fix",
+    "cypress:open": "npx cypress open",
+    "test": "run-p --race start cypress:open"
   },
   "repository": {
     "type": "git",
