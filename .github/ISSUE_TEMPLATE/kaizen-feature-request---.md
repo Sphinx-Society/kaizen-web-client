@@ -17,7 +17,7 @@ assignees: ''
 <!-- Checked checkbox should look like this: [x] -->
 
 - [ ] The issue is present in the latest release.
-- [ ] I have searched the [issues](https://github.com/Sphinx-Society/kaizen-backend) of this repository and believe that this is not a duplicate.
+- [ ] I have searched the [issues](https://github.com/Sphinx-Society/kaizen-web-client/issues) of this repository and believe that this is not a duplicate.
 
 ## Summary 💡
 
