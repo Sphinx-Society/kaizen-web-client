@@ -2,7 +2,7 @@
   "name": "kaizen-web-client",
   "version": "0.0.1",
   "description": "[front end] Open source web application for managing clinical laboratory tests",
-  "main": "./src/client/index.js",
+  "main": "src/client/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,15 +11,30 @@
     "url": "git+https://github.com/Sphinx-Society/kaizen-web-client.git"
   },
   "keywords": [
-    "Platzi",
-    "Master",
-    "program",
+    "Platzi Master",
     "react.js",
     "router.js",
     "redux.js",
     "node.js"
   ],
-  "author": "omarefg, rulo-code, jhnemogap",
+  "author": "Sphinx-Society",
+  "contributors": [
+    {
+      "name": "Omar Flores",
+      "github": "https://github.com/omarefg",
+      "linkedin": "https://www.linkedin.com/in/omarefg/"
+    },
+    {
+      "name": "Andrés Santana",
+      "github": "https://github.com/rulo-code",
+      "linkedin": ""
+    },
+    {
+      "name": "Jorge Humbert Nemogá Pinzón",
+      "github": "https://github.com/jhnemogap",
+      "linkedin": "https://www.linkedin.com/in/jhnemogap/"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Sphinx-Society/kaizen-web-client/issues"
