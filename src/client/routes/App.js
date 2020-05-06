@@ -1,7 +1,7 @@
-import React from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import NotFound from '../pages/NotFound'
+import NotFound from '../pages/NotFound';
 
 const App = () => (
   <BrowserRouter>
@@ -9,6 +9,6 @@ const App = () => (
       <Route component={NotFound} />
     </Switch>
   </BrowserRouter>
-)
+);
 
-export default App
+export default App;
