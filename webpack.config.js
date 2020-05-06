@@ -1,33 +1,31 @@
-const path = require('path');
-const HtmlWebPackPlugin = require('html-webpack-plugin');
+const { resolve } = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const TerserWebpackPlugin = require('terser-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
-  entry: './src/client/index.js',
+  entry: {
+    app: resolve(__dirname, 'src/client/index.js'),
+  },
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
-    publicPath: '/',
+    path: resolve(__dirname, 'dist'),
+    filename: 'js/[name].[hash].js',
+    publicPath: 'http://localhost:8080/',
+    chunkFilename: 'js/[id].[chunkhash].js',
   },
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx'],
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
+        use: 'babel-loader',
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader"
-        }
-      },
-      {
-        test: /\.html$/,
-        use: [
-          {
-            loader: 'html-loader'
-          }
-        ]
       },
       {
         test: /\.(s*)css$/,
@@ -36,32 +34,48 @@ module.exports = {
             loader: MiniCssExtractPlugin.loader,
           },
           'css-loader',
-          'sass-loader'
-        ]
+          'sass-loader',
+        ],
       },
       {
-        test: /\.(png|gif|jpg)$/,
+        test: /\.(png|gif|jpg|jpeg|webp|ttf|eot|woff|woff2|svg)$/,
         use: [
           {
-            'loader': 'file-loader',
+            loader: 'url-loader',
             options: {
-              name: 'assets/[hash].[ext]'
-            }
-          }
-        ]
-      }
-    ]
+              limit: 1000,
+              name: '[hash].[ext]',
+              outputPath: 'assets',
+            },
+          },
+        ],
+      },
+    ],
   },
-  devServer: {
-    historyApiFallback: true,
+  optimization: {
+    minimizer: [
+      new TerserWebpackPlugin(),
+      new OptimizeCssAssetsPlugin(),
+    ],
   },
   plugins: [
-    new HtmlWebPackPlugin({
-      template: './public/index.html',
-      filename: './index.html'
-    }),
     new MiniCssExtractPlugin({
-      filename: 'assets/[name].css'
+      filename: 'css/[name].[hash].css',
+      chunkFilename: 'css/[id].[hash].css',
     }),
-  ]
+    new HtmlWebpackPlugin({
+      template: resolve(__dirname, 'public/index.html'),
+    }),
+    new webpack.DllReferencePlugin({
+      manifest: require('./modules-manifest.json'),
+    }),
+    new AddAssetHtmlWebpackPlugin({
+      filepath: resolve(__dirname, 'dist/js/*.dll.js'),
+      outputPath: 'js',
+      publicPath: 'http://localhost:8080/js/',
+    }),
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: ['**/app.*'],
+    }),
+  ],
 };
