@@ -1,0 +1,30 @@
+@import './font-families/roboto.scss';
+
+$sskFontLight: 100;
+$sskFontRegular: 300;
+$sskFontMedium: 400;
+$sskFontBold: 700;
+$sskFontFamily: 'Roboto', sans-serif;
+$sskNormalFontSize: 13px;
+$sskSmallFontSize: 10px;
+
+body {
+	font-size: $sskNormalFontSize;
+	font-family: $sskFontFamily;
+	font-weight: $sskFontRegular;
+}
+
+h1 {
+	font-size: 50px;
+	font-weight: $sskFontMedium;
+}
+
+h2 {
+	font-size: 25px;
+	font-weight: $sskFontMedium;
+}
+
+h3 {
+	font-size: 20px;
+	font-weight: $sskFontMedium;
+}
