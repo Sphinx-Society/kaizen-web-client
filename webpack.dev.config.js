@@ -32,7 +32,14 @@ module.exports = {
         use: [
           'style-loader',
           'css-loader',
-          'sass-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              prependData: `
+                    @import "${resolve(__dirname, 'src/client/styles/index.scss')}";
+                `,
+            },
+          },
           'postcss-loader',
         ],
       },
