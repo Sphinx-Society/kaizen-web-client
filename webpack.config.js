@@ -34,7 +34,14 @@ module.exports = {
             loader: MiniCssExtractPlugin.loader,
           },
           'css-loader',
-          'sass-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              prependData: `
+                    @import "${resolve(__dirname, 'src/client/styles/index.scss')}";
+                `,
+            },
+          },
         ],
       },
       {
