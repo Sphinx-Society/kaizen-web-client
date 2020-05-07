@@ -1,0 +1,49 @@
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import Surface from '../../../components/atoms/Surface/Surface';
+import './Surface.story.scss';
+
+<Meta
+  title='Surface'
+  component={Surface}
+/>
+
+# Surface
+
+This atom will let the developer add easily a card. By itself it only represent the surface where the other atoms will be putted in.
+
+## You can pass it text
+<Preview>
+  <Story name='withText' height='100px'>
+    <Surface>Hello Surface</Surface>
+  </Story>
+</Preview>
+
+## You can pass it a component
+
+<Preview>
+  <Story name='withComponent' height='100px'>
+    <Surface>
+      <label htmlFor='name'>Name</label>
+      <input id='name' />
+      <label htmlFor='lastName'>Last Name</label>
+      <input id='lastName' />
+    </Surface>
+  </Story>
+</Preview>
+
+## You can overwrite it styles passing a className prop
+
+<Preview>
+  <Story name='withClassNameProp' height='400px'>
+    <Surface className='surface__container--story'>
+      <label htmlFor='address'>Address</label>
+      <input id='address' />
+      <label htmlFor='city'>City</label>
+      <input id='city' />
+    </Surface>
+  </Story>
+</Preview>
+
+## Props
+
+<Props of={Surface} />
