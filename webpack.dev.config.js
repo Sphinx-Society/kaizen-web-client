@@ -40,6 +40,7 @@ module.exports = {
                 `,
             },
           },
+          'resolve-url-loader',
           'postcss-loader',
         ],
       },
