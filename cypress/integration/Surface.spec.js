@@ -1,24 +1,60 @@
 /// <reference types="Cypress" />
 
-// Tests built around our Storybook
-describe('Storybook', () => {
-  beforeEach(() => {
-    cy.visit('http://localhost:6006');
-  });
+describe('Atom type component test in Storybook: "Surface"', () => {
 
-  context('Component:Surface', () => {
-    beforeEach(() => {
-      cy.get('#explorersurface');
+  context('Should visit "surface--with-text"', () => {
+    before(() => {
+      cy.goToStoryComponent('surface--with-text');
     });
 
-    it('should visit Surface with text', () => {
-      cy.get('#surface--with-text').click();
+    it('Contains some text:', () => {
+      cy.getComponentOfStoryIframe('.surface__container')
+        .should('have.text', 'Hello Surface');
+    });
+  });
 
-      // Now get the iframe for the components and make assertions on that.
-      cy.get('#storybook-preview-iframe').then(($iframe) => {
-        const doc = $iframe.contents();
-        cy.wrap(doc.find('.surface__container')).should('have.text', 'Hello Surface');
-      });
+  context('Should visit "surface--with-component"', () => {
+    before(() => {
+      cy.goToStoryComponent('surface--with-component');
+    });
+
+    beforeEach(() => {
+      cy.getComponentOfStoryIframe('.surface__container').as('component');
+    });
+
+    it('Has n children: 4', () => {
+      cy.get('@component').children().should('have.length', 4);
+    });
+
+    it('Has 2 children of type: "label"', () => {
+      cy.get('@component').children('label').should('have.length', 2);
+    });
+
+    it('Has 2 children of type: "input"', () => {
+      cy.get('@component').children('input').should('have.length', 2);
+    });
+  });
+
+  context('Should visit "surface--with-class-name-prop"', () => {
+    before(() => {
+      cy.goToStoryComponent('surface--with-class-name-prop');
+    });
+
+    beforeEach(() => {
+      cy.getComponentOfStoryIframe('.surface__container').as('component');
+    });
+
+    it('Has n children: 4', () => {
+      cy.getComponentOfStoryIframe('.surface__container')
+        .children().should('have.length', 4);
+    });
+
+    it('Has 1 child with id: "address"', () => {
+      cy.get('@component').children('#address').should('have.length', 1);
+    });
+
+    it('Has 1 child with id: "city"', () => {
+      cy.get('@component').children('#city').type('Bogotá D.C.').should('contain.value', 'Bogotá D.C.');
     });
   });
 });

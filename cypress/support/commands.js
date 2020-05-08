@@ -1,3 +1,4 @@
+/// <reference types="Cypress" />
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -23,3 +24,15 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('goToStoryComponent', (nameComponent) => {
+  cy.visit(nameComponent).get(`#${nameComponent}`).click();
+});
+
+Cypress.Commands.add('getComponentOfStoryIframe', (querySelector) => {
+  // Now get the iframe for the components and make assertions on that.
+  cy.get('#storybook-preview-iframe').then(($iframe) => {
+    const element = cy.wrap($iframe.contents().find(querySelector));
+    return element;
+  });
+});
