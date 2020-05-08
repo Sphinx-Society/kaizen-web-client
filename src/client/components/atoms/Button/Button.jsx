@@ -18,7 +18,7 @@ const Button = (props) => {
   } = props;
 
   const btnStyles = clsx({
-    'btn--principal': true,
+    'btn': true,
     'btn--primary': primary,
     'btn--secondary': secondary,
     [className]: className,
