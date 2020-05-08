@@ -1,0 +1,57 @@
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import Button from '../Button';
+import './Button.stories.scss';
+
+<Meta
+  title='Button'
+  component={Button}
+/>
+
+# Button
+
+This atom will let the developer add easily a card. By itself it only represent the surface where the other atoms will be putted in.
+
+## You can use a primary button
+
+<Preview>
+  <Story name='withPrimaryVariant' height='100px'>
+    <Button>Hello Button</Button>
+  </Story>
+</Preview>
+
+## You can use a secondary button
+
+<Preview>
+  <Story name='withSecondaryVariant' height='100px'>
+    <Button secondary>Hello Button</Button>
+  </Story>
+</Preview>
+
+## You can disable the button
+
+<Preview>
+  <Story name='withDisabledPropActivated' height='100px'>
+    <Button disabled>Hello Button</Button>
+  </Story>
+</Preview>
+
+## You can add another component or element inside
+
+<Preview>
+  <Story name='withEmoji' height='100px'>
+    <Button>Hello Button <span style={{padding: 0, margin: 0}}>😀</span></Button>
+  </Story>
+</Preview>
+
+## You can overwrite the styles by adding a class
+
+<Preview>
+  <Story name='withCustomStyles' height='100px'>
+    <Button className="btn--custom">Hello Button <span style={{padding: 0, margin: 0}}>😀</span></Button>
+  </Story>
+</Preview>
+
+
+## Props
+
+<Props of={Button} />

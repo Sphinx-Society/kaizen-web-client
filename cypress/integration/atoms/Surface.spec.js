@@ -1,11 +1,9 @@
 /// <reference types="Cypress" />
 
-describe('Atom type component test in Storybook: "Surface"', () => {
+describe('Surface component', () => {
 
-  context('Should visit "surface--with-text"', () => {
-    before(() => {
-      cy.goToStoryComponent('surface--with-text');
-    });
+  context('With text', () => {
+    before(() => cy.goToStoryComponent('surface--with-text'));
 
     it('Contains some text:', () => {
       cy.getComponentOfStoryIframe('.surface__container')
@@ -13,7 +11,7 @@ describe('Atom type component test in Storybook: "Surface"', () => {
     });
   });
 
-  context('Should visit "surface--with-component"', () => {
+  context('With component', () => {
     before(() => {
       cy.goToStoryComponent('surface--with-component');
     });
@@ -35,7 +33,7 @@ describe('Atom type component test in Storybook: "Surface"', () => {
     });
   });
 
-  context('Should visit "surface--with-class-name-prop"', () => {
+  context('With custom styles', () => {
     before(() => {
       cy.goToStoryComponent('surface--with-class-name-prop');
     });

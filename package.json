@@ -49,10 +49,10 @@
   },
   "homepage": "https://github.com/Sphinx-Society/kaizen-web-client#readme",
   "dependencies": {
+    "clsx": "1.1.0",
     "prop-types": "15.7.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-hot-loader": "4.12.21",
     "react-icons": "3.10.0",
     "react-redux": "7.2.0",
     "react-router": "5.1.2",
