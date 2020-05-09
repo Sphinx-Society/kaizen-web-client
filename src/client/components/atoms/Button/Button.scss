@@ -1,31 +1,31 @@
 .btn {
-    border: none;
-    display: inline-block;
-    width: auto;
-    font-weight: $sskFontBold;
-    background: transparent;
-    outline: none;
-    cursor: pointer;
-    border-radius: $sskSpacingUnit * 3;
-    &:disabled {
-        background-color: $sskDisabledBackground;
-        color: $sskDisabledColor;
-        cursor: not-allowed;
-    }
+	border: none;
+	display: inline-block;
+	width: auto;
+	font-weight: $sskFontBold;
+	background: transparent;
+	outline: none;
+	cursor: pointer;
+	border-radius: $sskSpacingUnit * 3;
+	&:disabled {
+		background-color: $sskDisabledBackground;
+		color: $sskDisabledColor;
+		cursor: not-allowed;
+	}
 }
 
 .btn--primary {
-    background-color: $sskPrimaryMain;
-    color: $sskBackgroundMain;
-    &:focus {
-        box-shadow: inset 0px 0px 0px 1px $sskPrimaryDark;
-    }
+	background-color: $sskPrimaryMain;
+	color: $sskBackgroundMain;
+	&:focus {
+		box-shadow: inset 0px 0px 0px 1px $sskPrimaryDark;
+	}
 }
 
 .btn--secondary {
-    background-color: $sskSecondaryMain;
-    color: $sskBackgroundDark;
-    &:focus {
-        box-shadow: inset 0px 0px 0px 1px $sskSecondaryDark;
-    }
+	background-color: $sskSecondaryMain;
+	color: $sskBackgroundDark;
+	&:focus {
+		box-shadow: inset 0px 0px 0px 1px $sskSecondaryDark;
+	}
 }
