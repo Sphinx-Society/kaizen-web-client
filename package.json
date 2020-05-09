@@ -9,10 +9,9 @@
     "start": "node server",
     "lint": "eslint src/ --fix",
     "storybook": "start-storybook -p 6006",
-    "cy:open": "cypress open",
-    "wait:storybook": "wait-on http://localhost:6006",
-    "wait:stb:cy": "run-s wait:storybook cy:open",
-    "test:stb": "run-p --race storybook wait:stb:cy"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
@@ -72,11 +71,10 @@
     "babel-loader": "8.1.0",
     "clean-webpack-plugin": "3.0.0",
     "css-loader": "3.5.3",
-    "cypress": "4.5.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "6.8.0",
     "eslint-config-airbnb": "18.1.0",
-    "eslint-plugin-chai-friendly": "0.6.0",
-    "eslint-plugin-cypress": "2.10.3",
     "eslint-plugin-import": "2.20.2",
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-react": "7.19.0",
@@ -84,10 +82,12 @@
     "file-loader": "6.0.0",
     "html-loader": "1.1.0",
     "html-webpack-plugin": "4.3.0",
+    "jest": "^26.0.1",
     "mini-css-extract-plugin": "0.9.0",
     "npm-run-all": "4.1.5",
     "optimize-css-assets-webpack-plugin": "5.0.3",
     "postcss-loader": "3.0.0",
+    "react-test-renderer": "^16.13.1",
     "sass": "1.26.5",
     "sass-loader": "8.0.2",
     "style-loader": "1.2.1",
@@ -97,5 +97,11 @@
     "webpack": "4.43.0",
     "webpack-cli": "3.3.11",
     "webpack-dev-server": "3.10.3"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif)$": "<rootDir>/src/client/__mocks__/fileMock.js",
+      "\\.(scss|sass)$": "<rootDir>/src/client/__mocks__/styleMock.js"
+    }
   }
 }
