@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import './Surface.scss';
 
 const Surface = (props) => {
@@ -8,8 +9,14 @@ const Surface = (props) => {
     className,
   } = props;
 
+  const surfaceStyles = clsx({
+    'ssk--spacing': true,
+    'surface__container': true,
+    [className]: className,
+  });
+
   return (
-    <div className={`surface__container ${className}`}>
+    <div className={surfaceStyles}>
       {children}
     </div>
   );
