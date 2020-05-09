@@ -18,6 +18,7 @@ const Button = (props) => {
   } = props;
 
   const btnStyles = clsx({
+    'ssk--spacing': true,
     'btn': true,
     'btn--primary': primary,
     'btn--secondary': secondary,
