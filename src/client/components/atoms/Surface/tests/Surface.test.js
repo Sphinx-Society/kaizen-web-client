@@ -7,11 +7,6 @@ import Surface from '../Surface';
 configure({ adapter: new Adapter() });
 
 describe('Surface', () => {
-  test('Match Snapshot', () => {
-    const surface = create(<Surface>Snapshot</Surface>);
-    expect(surface.toJSON()).toMatchSnapshot();
-  });
-
   test('Surface have class .surface__container', () => {
     const surface = shallow(<Surface>Surface</Surface>);
     expect(surface.hasClass('surface__container')).toBe(true);

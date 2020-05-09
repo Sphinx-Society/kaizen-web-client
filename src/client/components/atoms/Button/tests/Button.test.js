@@ -1,5 +1,4 @@
 import React from 'react';
-import { create } from 'react-test-renderer';
 import { mount, shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import Button from '../Button';
@@ -7,11 +6,6 @@ import Button from '../Button';
 configure({ adapter: new Adapter() });
 
 describe('Button', () => {
-  test('Match Snapshot', () => {
-    const button = create(<Button onClick={() => null}>Snapshot</Button>);
-    expect(button.toJSON()).toMatchSnapshot();
-  });
-
   test('Button have class .btn', () => {
     const button = shallow(<Button onClick={() => null}>Btn</Button>);
     expect(button.hasClass('btn')).toBe(true);
