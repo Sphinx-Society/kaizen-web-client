@@ -2,7 +2,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-
 import './Button.scss';
 
 const Button = (props) => {
@@ -16,18 +15,38 @@ const Button = (props) => {
     color,
   } = props;
 
+  const typeButtons = {
+    button: 'button',
+    submit: 'submit',
+    reset: 'reset',
+    icon: 'button',
+  };
+
+  function colorExists(key, value) {
+    const colors = ['primary', 'secondary', 'warning', 'light'];
+    return colors[key] === value;
+  }
+  function typeIsIcon() {
+    return type === 'icon';
+  }
+
   const btnStyles = clsx({
-    'btn': true,
-    'btn--primary': color === 'primary',
-    'btn--secondary': color === 'secondary',
-    'btn--warning': color === 'warning',
-    'ssk--spacing': true,
+    'ssk--spacing': !typeIsIcon(),
+    'btn': !typeIsIcon(),
+    'btn--primary': colorExists(0, color) && !typeIsIcon(),
+    'btn--secondary': colorExists(1, color) && !typeIsIcon(),
+    'btn--warning': colorExists(2, color) && !typeIsIcon(),
+    'btn-icon': typeIsIcon(),
+    'btn-icon--primary': colorExists(0, color) && typeIsIcon(),
+    'btn-icon--secondary': colorExists(1, color) && typeIsIcon(),
+    'btn-icon--warning': colorExists(2, color) && typeIsIcon(),
+    'btn-icon--light': colorExists(3, color) && typeIsIcon(),
     [className]: className,
   });
 
   return (
     <button
-      type={type}
+      type={typeButtons[type]}
       onClick={onClick}
       className={btnStyles}
       disabled={disabled}
@@ -63,10 +82,10 @@ Button.propTypes = {
 
 Button.defaultProps = {
   type: 'button',
-  className: '',
+  className: undefined,
   disabled: false,
-  form: '',
-  color: null,
+  form: undefined,
+  color: 'default',
 };
 
 export default Button;

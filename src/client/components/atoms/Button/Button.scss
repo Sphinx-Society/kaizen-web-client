@@ -12,33 +12,67 @@
 }
 
 .btn {
-	border: none;
 	display: inline-block;
+	border: none;
 	width: auto;
-	font-weight: $sskFontBold;
+	font-size: 1rem;
+	font-weight: $sskFontWeightBold;
 	background: transparent;
 	outline: none;
 	cursor: pointer;
 	border-radius: $sskSpacingUnit * 3;
-	@include btnActive($sskSuccess, $sskFontDark);
+	@include btnActive($sskColorSuccess, $sskColorFontDark);
+	@include btnHover($sskColorPrimaryMain, transparent);
 
 	&--primary {
-		@include colorFontAndBg($sskFontGrayLight, $sskPrimaryMain);
+		@include colorFontAndBg($sskFontLight, $sskColorPrimaryMain);
 		@include btnHover($sskFontDark, $sskSecondaryMain);
 	}
 
 	&--secondary {
-		@include colorFontAndBg($sskFontDark, $sskSecondaryMain);
-		@include btnHover($sskFontGrayLight, $sskPrimaryMain);
+		@include colorFontAndBg($sskFontDark, $sskColorSecondaryMain);
+		@include btnHover($sskFontLight, $sskPrimaryMain);
 	}
 
 	&--warning {
-		@include colorFontAndBg($sskFontGrayLight, $sskWarningRed);
-		@include btnHover($sskFontDark, $sskWarning);
+		@include colorFontAndBg($sskColorFontLight, $sskColorWarningPrimary);
+		@include btnHover($sskColorFontDark, $sskColorWarningSecondary);
 	}
 
 	&:disabled {
-		@include colorFontAndBg($sskDisabledColor, $sskDisabledBackground);
+		@include colorFontAndBg($sskColorFontDisabled, $sskColorBgDisabled);
+		cursor: not-allowed;
+	}
+}
+
+.btn-icon {
+	@extend .btn;
+	line-height: 0;
+	border-radius: $sskSpacingUnit * 0.5;
+	@include btnActive(initial, initial);
+
+	&--primary {
+		@include colorFontAndBg($sskColorPrimaryMain, transparent);
+		@include btnHover($sskColorSecondaryMain, transparent);
+	}
+
+	&--secondary {
+		@include colorFontAndBg($sskColorSecondaryMain, transparent);
+		@include btnHover($sskColorPrimaryMain, transparent);
+	}
+
+	&--warning {
+		@include colorFontAndBg($sskColorWarningPrimary, transparent);
+		@include btnHover($sskColorWarningSecondary, transparent);
+	}
+
+	&--light {
+		@include colorFontAndBg($sskColorFontLight, transparent);
+		@include btnHover($sskColorPrimaryMain, transparent);
+	}
+
+	&:disabled {
+		@include colorFontAndBg($sskColorFontDisabled, $sskColorBgDisabled);
 		cursor: not-allowed;
 	}
 }

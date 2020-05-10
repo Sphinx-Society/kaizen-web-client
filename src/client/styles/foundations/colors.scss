@@ -1,17 +1,35 @@
+/* Old */
 $sskPrimaryDark: #003572;
-$sskPrimaryMain: #0066ff;
+$sskPrimaryMain: #0077ff;
 $sskSecondaryDark: #72b2d4;
 $sskSecondaryMain: #b5e2fa;
 $sskBackgroundDark: #383a40;
 $sskBackgroundMain: #fefefe;
-$sskError: #D23737;
-$sskSuccess: #388e3c;
+$sskError: #c04145;
+$sskSuccess: #58d30c;
 $sskWarning: #ffc914;
-$sskWarningRed: $sskError;
 $sskLightBackgroundShadow: #a8a8a8;
-$sskFontDark: #303030;
 $sskFontMain: #4c4e5a;
-$sskFontDarkGray: #9d9eab;
-$sskFontGrayLight: #fafafa;
+$sskFontDark: #ffffff;
+$sskDarkGray: #9d9eab;
 $sskDisabledBackground: #aeaeae;
 $sskDisabledColor: #777777;
+
+/* New */
+$sskColorPrimaryDark: #003572;
+$sskColorPrimaryMain: #0066ff;
+$sskColorSecondaryDark: #72b2d4;
+$sskColorSecondaryMain: #b5e2fa;
+$sskColorFontDark: #303030;
+$sskColorFontMain: #4c4e5a;
+$sskColorFontDarkGray: #9d9eab;
+$sskColorFontLight: #fafafa;
+$sskColorFontDisabled: #777777;
+$sskColorBgDark: #383a40;
+$sskColorBgMain: #fefefe;
+$sskColorBgDisabled: #aeaeae;
+$sskColorBoxShadowLight: #a8a8a8;
+$sskColorError: #D23737;
+$sskColorSuccess: #388e3c;
+$sskColorWarningPrimary: $sskColorError;
+$sskColorWarningSecondary: #ffc914;
