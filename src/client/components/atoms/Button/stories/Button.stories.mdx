@@ -12,16 +12,32 @@ import './Button.stories.scss'
 ## Kaizen have two types of button, you can add them text and other components
 
 <Preview>
-  <Button>Primary</Button>
-  <Button secondary>Secondary</Button>
-  <Button disabled>Disabled</Button>
-  <Button>With emoji <span style={{padding: 0, margin: 0}}>😀</span></Button>
+  <Button color='primary'>width: auto</Button>
+</Preview>
+
+<Preview>
+  <div className="preview-grid">
+    <Button>Default color</Button>
+    <Button color='primary'>Primary</Button>
+    <Button color='secondary'>Secondary</Button>
+    <Button color='warning'>Warning</Button>
+    <Button disabled>Disabled</Button>
+    <Button color='primary'>
+      With emoji
+      <span style={{padding: 0, margin: 0}}>😀</span>
+    </Button>
+  </div>
 </Preview>
 
 ## You can also overwrite it styles by adding a class
 
 <Preview>
-  <Button className="btn--custom">With custom styles <span style={{padding: 0, margin: 0}}>😀</span></Button>
+  <Button className="btn--custom">
+    With custom styles
+    <span style={{padding: 0, margin: 0}}>
+      😀
+    </span>
+  </Button>
 </Preview>
 
 

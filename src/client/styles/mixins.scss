@@ -1,0 +1,13 @@
+@mixin colorFontAndBg($color: #000, $bgColor: #fff) {
+	color: $color;
+	background-color: $bgColor;
+}
+
+@mixin paddingAndMargin($multiPadding: 1, $multiMarging: 1) {
+  margin: $sskSpacingUnit * $multiPadding;
+  padding: $sskSpacingUnit * $multiMarging;
+}
+
+@mixin sskSpacings($multi: 1) {
+  @include paddingAndMargin($multi, $multi);
+}

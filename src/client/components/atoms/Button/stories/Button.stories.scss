@@ -1,3 +1,4 @@
+/* Overwrite class of component */
 .btn--custom {
 	background-color: orange;
 	font-size: 28px;
@@ -5,4 +6,11 @@
 	&:focus {
 		box-shadow: none;
 	}
+}
+
+/* class of stories presentation */
+.preview-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: auto;
 }
