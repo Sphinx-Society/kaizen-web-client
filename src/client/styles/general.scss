@@ -1,3 +1,7 @@
 .ssk--spacing {
   @include sskSpacings(1.0);
 }
+
+.ssk--boxShadow {
+  box-shadow: 0px 0px 4px $sskColorBoxShadowLight;
+}

@@ -9,18 +9,18 @@
 }
 
 /* class of stories presentation */
-.preview-grid {
+%preview-grid {
 	display: grid;
 	grid-template-rows: auto;
 }
 
 .preview-grid1 {
-	@extend .preview-grid;
+	@extend %preview-grid;
 	grid-template-columns: 1fr auto;
 }
 
 .preview-grid2 {
-	@extend .preview-grid;
+	@extend %preview-grid;
 	grid-template-columns: repeat(3, 1fr);
 }
 

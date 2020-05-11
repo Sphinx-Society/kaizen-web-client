@@ -11,3 +11,10 @@
 @mixin sskSpacings($multi: 1) {
   @include paddingAndMargin($multi, $multi);
 }
+
+@mixin padding($pTop: 0, $pRight: 0, $pBottom: 0, $pLeft: 0) {
+  padding-top: $pTop;
+  padding-right: $pRight;
+  padding-bottom: $pBottom;
+  padding-left: $pLeft;
+}

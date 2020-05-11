@@ -17,21 +17,21 @@
 	width: auto;
 	font-size: 1rem;
 	font-weight: $sskFontWeightBold;
-	background: transparent;
 	outline: none;
 	cursor: pointer;
 	border-radius: $sskSpacingUnit * 3;
+	@include colorFontAndBg($sskColorFontDark, transparent);
+	@include btnHover($sskColorFontLight, $sskColorPrimaryMain);
 	@include btnActive($sskColorSuccess, $sskColorFontDark);
-	@include btnHover($sskColorPrimaryMain, transparent);
 
 	&--primary {
-		@include colorFontAndBg($sskFontLight, $sskColorPrimaryMain);
-		@include btnHover($sskFontDark, $sskSecondaryMain);
+		@include colorFontAndBg($sskColorFontLight, $sskColorPrimaryMain);
+		@include btnHover($sskColorFontDark, $sskColorSecondaryMain);
 	}
 
 	&--secondary {
-		@include colorFontAndBg($sskFontDark, $sskColorSecondaryMain);
-		@include btnHover($sskFontLight, $sskPrimaryMain);
+		@include colorFontAndBg($sskColorFontDark, $sskColorSecondaryMain);
+		@include btnHover($sskColorFontLight, $sskColorPrimaryMain);
 	}
 
 	&--warning {
@@ -47,8 +47,13 @@
 
 .btn-icon {
 	@extend .btn;
+	$padTB: getSpacingsSSK('x0.5');
+	$padRL: getSpacingsSSK('x1');
 	line-height: 0;
-	border-radius: $sskSpacingUnit * 0.5;
+	width: fit-content;
+	height: fit-content;
+	border-radius: $sskSpacingUnit * 0;
+	@include btnHover($sskColorPrimaryMain, transparent);
 	@include btnActive(initial, initial);
 
 	&--primary {
@@ -74,5 +79,34 @@
 	&:disabled {
 		@include colorFontAndBg($sskColorFontDisabled, $sskColorBgDisabled);
 		cursor: not-allowed;
+	}
+
+	&--space-mode-circle-0 {
+		border-radius:100%;
+	}
+
+	&--space-mode-circle {
+		@include padding($padRL, $padRL, $padRL, $padRL);
+		border-radius:100%;
+	}
+
+	&--space-mode-1 {
+		@include padding($padTB, $padRL, $padTB, $padRL);
+		border-radius: getSpacingsSSK('x0.5');
+	}
+
+	&--space-mode-2 {
+		@include padding($padTB, $padRL, $padTB, $padRL);
+		border-radius: getSpacingsSSK('x1');
+	}
+
+	&--space-mode-3 {
+		@include padding($padTB, $padRL, $padTB, $padRL);
+		border-radius: getSpacingsSSK('x2');
+	}
+
+	&--space-mode-4 {
+		@include padding($padTB, $padRL, $padTB, $padRL);
+		border-radius: getSpacingsSSK('x4');
 	}
 }
