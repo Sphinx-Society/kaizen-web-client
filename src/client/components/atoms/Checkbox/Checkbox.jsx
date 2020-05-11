@@ -34,10 +34,10 @@ Checkbox.propTypes = {
   /** The ID for input type checkbox and connect with his label  */
   id: PropTypes.string.isRequired,
 
-  /** Function that will be called on change event. */
+  /** Function that will be called on change event */
   onChange: PropTypes.func.isRequired,
 
-  /** Lets start the component as marked. Default is false */
+  /** Lets start the component as marked */
   checked: PropTypes.bool,
 
   /** Determine the icon size */
