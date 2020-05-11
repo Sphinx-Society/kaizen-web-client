@@ -13,7 +13,7 @@ import './Button.stories.scss'
 
 # Button
 
-## Kaizen have two types of Button
+Kaizen have two types of Button
 
 <Preview>
   <div className='preview-flex1'>
@@ -32,7 +32,7 @@ import './Button.stories.scss'
   </div>
 </Preview>
 
-### Type text or other components
+## Type text or other components
 
 <Preview>
   <div className='preview-grid1'>
@@ -66,49 +66,42 @@ import './Button.stories.scss'
   </Button>
 </Preview>
 
-### Type Icon
+## Type Icon
 
 <Preview>
-  <Button type='icon'>
-    <FaEdit size='3em' />
-  </Button>
-  <Button type='icon' color='primary'>
-    <TiUserAdd size='3em' />
-  </Button>
-  <Button type='icon' color='secondary'>
-    <FaEdit size='3em' />
-  </Button>
-  <Button type='icon' color='warning'>
-    <MdKeyboardArrowLeft size='3em' />
-  </Button>
-  <Button type='icon' color='light' className='ssk--boxShadow'>
-    <FaEdit size='3em' />
-  </Button>
-  <Button type='icon' onClick={() => alert('It is a Button')} disabled>
-    <MdKeyboardArrowLeft size='3em' />
-  </Button>
+  <Button icon={<FaEdit size='3em' />} type='icon' />
+  <Button icon={<TiUserAdd size='3em' />} type='icon' color='primary' />
+  <Button icon={<FaEdit size='3em' />} type='icon' color='secondary' />
+  <Button icon={<MdKeyboardArrowLeft size='3em' />} type='icon' color='warning' />
+  <Button icon={<FaEdit size='3em' />} type='icon' color='light' className='ssk--boxShadow' />
+  <Button icon={<MdKeyboardArrowLeft size='3em' />} type='icon' onClick={() => alert('It is a Button')} disabled />
 </Preview>
 
-The icon type has variants regarding its internal spacing
+### The icon type has variants regarding its internal spacing
 
 <Preview>
-  <Button type='icon' iconMode='circle-0' className='ssk--boxShadow'>
-    <TiUserAdd size='3em' />
+  <Button icon={<TiUserAdd size='2em' />} type='icon' iconMode='circle-0' className='ssk--boxShadow' />
+  <Button icon={<TiUserAdd size='2em' />} type='icon' iconMode='circle' className='ssk--boxShadow' />
+  <Button icon={<TiUserAdd size='2em' />} type='icon' iconMode='1' className='ssk--boxShadow' />
+  <Button icon={<TiUserAdd size='2em' />} type='icon' iconMode='2' className='ssk--boxShadow' />
+  <Button icon={<TiUserAdd size='3em' />} type='icon' iconMode='3' className='ssk--boxShadow' />
+  <Button icon={<TiUserAdd size='6em' />} type='icon' iconMode='4' className='ssk--boxShadow' />
+</Preview>
+
+### A text with an icon aside as an integrated part of the button
+
+<Preview>
+  <Button icon={<TiUserAdd size='2em' />} color='primary'>
+    left Icon
   </Button>
-  <Button type='icon' iconMode='circle' className='ssk--boxShadow'>
-    <TiUserAdd size='2em' />
+  <Button icon={<TiUserAdd size='2em' />} iconPosition={true} color='primary'>
+    right Icon
   </Button>
-  <Button type='icon' iconMode='1' className='ssk--boxShadow'>
-    <TiUserAdd size='2em' />
+  <Button icon={<TiUserAdd size='2em' />} iconCenter={true} color='primary'>
+    All centered
   </Button>
-  <Button type='icon' iconMode='2' className='ssk--boxShadow'>
-    <TiUserAdd size='2em' />
-  </Button>
-  <Button type='icon' iconMode='3' className='ssk--boxShadow'>
-    <TiUserAdd size='2em' />
-  </Button>
-  <Button type='icon' iconMode='4' className='ssk--boxShadow'>
-    <TiUserAdd size='6em' />
+  <Button icon={<TiUserAdd size='2em' />} color='primary'>
+    Centered text
   </Button>
 </Preview>
 

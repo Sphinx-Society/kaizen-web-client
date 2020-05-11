@@ -19,7 +19,7 @@
 	font-weight: $sskFontWeightBold;
 	outline: none;
 	cursor: pointer;
-	border-radius: $sskSpacingUnit * 3;
+	border-radius: getSpacingsSSK('x3');
 	@include colorFontAndBg($sskColorFontDark, transparent);
 	@include btnHover($sskColorFontLight, $sskColorPrimaryMain);
 	@include btnActive($sskColorSuccess, $sskColorFontDark);
@@ -108,5 +108,29 @@
 	&--space-mode-4 {
 		@include padding($padTB, $padRL, $padTB, $padRL);
 		border-radius: getSpacingsSSK('x4');
+	}
+}
+
+.btn__container {
+	&--cols3 {
+		display: grid;
+		grid-template-columns: 1fr auto 1fr;
+		align-items: center;
+		column-gap: getSpacingsSSK('x1');
+	}
+
+	&--cols3-right {
+		@extend .btn__container--cols3;
+		&>:nth-child(1) {
+			grid-column: 2 / 3;
+		}
+		&>:nth-child(2) {
+			grid-column: 3 / 4;
+		}
+	}
+
+	&--cols2 {
+		@extend .btn__container--cols3;
+		grid-template-columns: auto auto;
 	}
 }
