@@ -2,18 +2,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+
 import './Button.scss';
 
 const Button = (props) => {
   const {
+    onClick,
     children,
     type,
     iconMode,
-    onClick,
+    color,
     className,
     disabled,
     form,
-    color,
   } = props;
 
   const typeButtons = {
@@ -66,14 +67,20 @@ const Button = (props) => {
 };
 
 Button.propTypes = {
+  /** Function that will be called on click event. */
+  onClick: PropTypes.func.isRequired,
+
+  /** The text inside the button or another component */
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
+
   /** Specify the type of the button */
   type: PropTypes.string,
 
   /* Spacing modes for icon type */
   iconMode: PropTypes.string,
 
-  /** Function that will be called on click event. */
-  onClick: PropTypes.func.isRequired,
+  /** Boolean class to specify if the color button is primary, secondary or warning */
+  color: PropTypes.string,
 
   /** Class to overwrite the styles */
   className: PropTypes.string,
@@ -83,21 +90,15 @@ Button.propTypes = {
 
   /** If the button is outside a form and you want to active the submit event on click, you can pass the form id */
   form: PropTypes.string,
-
-  /** The text inside the button or another component */
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
-
-  /** Boolean class to specify if the color button is primary, secondary or warning */
-  color: PropTypes.string,
 };
 
 Button.defaultProps = {
   type: 'button',
   iconMode: undefined,
+  color: 'default',
   className: undefined,
   disabled: false,
   form: undefined,
-  color: 'default',
 };
 
 export default Button;
