@@ -1,0 +1,12 @@
+.checkbox {
+  display: inline-block;
+  padding: getSpacingsSSK('x0.5');
+  border-radius: getSpacingsSSK('x0.5');
+  color: $sskColorFontLight;
+  background-color: $sskColorPrimaryMain;
+
+  & > div {
+    display: flex;
+    align-content: center;
+  }
+}
