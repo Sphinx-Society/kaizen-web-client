@@ -1,8 +1,32 @@
-.btn--custom {
+/* Overwrite class of component */
+.btn--stories {
 	background-color: orange;
 	font-size: 28px;
 	color: black;
 	&:focus {
 		box-shadow: none;
 	}
+}
+
+/* class of stories presentation */
+%preview-grid {
+	display: grid;
+	grid-template-rows: auto;
+}
+
+.preview-grid1 {
+	@extend %preview-grid;
+	grid-template-columns: 1fr auto;
+}
+
+.preview-grid2 {
+	@extend %preview-grid;
+	grid-template-columns: repeat(3, 1fr);
+}
+
+.preview-flex1 {
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
 }
