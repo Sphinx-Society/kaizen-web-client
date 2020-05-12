@@ -52,7 +52,7 @@
 	line-height: 0;
 	width: fit-content;
 	height: fit-content;
-	border-radius: $sskSpacingUnit * 0;
+	border-radius: getSpacingsSSK('x0');
 	@include btnHover($sskColorPrimaryMain, transparent);
 	@include btnActive(initial, initial);
 

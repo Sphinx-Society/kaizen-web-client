@@ -1,0 +1,71 @@
+.datepicker__container {
+  max-width: 280px;
+  margin: 0 auto;
+  padding: getSpacingsSSK('x1');
+}
+
+.datepicker__calendar__container {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+.datepicker__calendar__table__container {
+    border-spacing: 0px;
+}
+
+.datepicker__calendar__week-days {
+  color: $sskColorBgDark;
+  user-select: none;
+}
+
+.datepicker__input__container {
+  position: relative;
+}
+
+.datepicker__input {
+  width: calc(100% - 45px);
+  @include padding(getSpacingsSSK('x0.5'), getSpacingsSSK('x4'), getSpacingsSSK('x0'), getSpacingsSSK('x0.5'));
+  height: 2em;
+  margin-bottom: getSpacingsSSK('x1');
+  border: none;
+  border-bottom: 1px solid $sskColorBgDark;
+  outline: none;
+
+  &:focus ~ .datepicker__input__label {
+    @include label-collected;
+  }
+
+  &:disabled {
+    border-bottom: 1px solid $sskColorBgDisabled;
+    cursor: not-allowed;
+  }
+}
+
+.datepicker__input__button {
+  position: absolute;
+  right: 2.5px;
+  top: 5px;
+  padding: 0 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.datepicker__input__label {
+  position: absolute;
+  color: $sskColorFontMain;
+  font-size: 14px;
+  top: calc(50% - 14px);
+  left: 16px;
+  cursor: text;
+  transition: .3s;
+  letter-spacing: .2px;
+}
+
+.datepicker__input__label--collected {
+  @include label-collected;
+  transition: 0s;
+}

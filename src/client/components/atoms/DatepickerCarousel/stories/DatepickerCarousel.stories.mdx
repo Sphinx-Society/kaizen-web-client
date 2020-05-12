@@ -1,0 +1,39 @@
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks'
+import DatepickerCarousel from '../DatepickerCarousel'
+
+<Meta
+  title='Components|atoms/DatepickerCarousel'
+  component={DatepickerCarousel}
+/>
+
+# DatepickerCarousel
+
+## DatepickerCarousel is isued by datepicker to render each month day
+
+>You can play with it on the Datepicker section
+
+### By default
+
+<Preview>
+  <DatepickerCarousel
+    onPrevClick={() => null}
+    onNextClick={() => null}
+    value='January'
+  />
+</Preview>
+
+### Yearly
+
+<Preview>
+  <DatepickerCarousel
+    onPrevClick={() => null}
+    onNextClick={() => null}
+    value={1269}
+    isYearly
+    onInputChange={() => null}
+  />
+</Preview>
+
+## Props
+
+<Props of={DatepickerCarousel} />

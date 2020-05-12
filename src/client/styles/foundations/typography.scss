@@ -1,20 +1,9 @@
-// @import './font-families/roboto.css';
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
-/* Old */
-$sskFontLight: 100;
-$sskFontRegular: 300;
-$sskFontMedium: 400;
-$sskFontBold: 700;
-$sskFontFamily: 'Roboto', sans-serif;
-$sskNormalFontSize: 13px;
-$sskSmallFontSize: 10px;
-
-/* New */
 $sskFontWeightThin: 100;
 $sskFontWeightLight: 300;
 $sskFontWeightRegular: 400;
 $sskFontWeightBold: 700;
 $sskFontFamilyBase: 'Roboto', sans-serif;
-$sskFontSizeBase: 16px;
+$sskFontSizeBase: 14px;
 $sskFontSizeSmall: 12px;

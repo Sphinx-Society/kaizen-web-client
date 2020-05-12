@@ -1,0 +1,21 @@
+.datepicker-day__container {
+    padding: getSpacingsSSK('x1');
+    margin: getSpacingsSSK('x0.5');
+    text-align: center;
+    color: $sskColorBgDark;
+    user-select: none;
+    border-radius: getSpacingsSSK('x0.5');
+    &:hover {
+      background-color: rgba(0,0,0,0.1);
+      color: $sskColorBgDark;
+    }
+}
+
+.datepicker-day__container--otherMonth {
+    color: #a5a5a5;
+}
+
+.datepicker-day__container--selected {
+    background-color: $sskColorPrimaryMain;
+    color: white;
+}

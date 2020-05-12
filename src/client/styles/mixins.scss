@@ -18,3 +18,11 @@
   padding-bottom: $pBottom;
   padding-left: $pLeft;
 }
+
+@mixin label-collected {
+  font-size: 12px;
+  top: -2px;
+  left: getSpacingsSSK('x0.5');
+  transition: .3s;
+  color: $sskColorBgDark
+}

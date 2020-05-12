@@ -5,22 +5,26 @@ body, html, #app, * {
 }
 
 body {
-	font-size: $sskNormalFontSize;
-	font-family: $sskFontFamily;
-	font-weight: $sskFontRegular;
+	font-size: $sskFontSizeBase;
+	font-family: $sskFontFamilyBase;
+	font-weight: $sskFontWeightRegular;
 }
 
 h1 {
 	font-size: 50px;
-	font-weight: $sskFontMedium;
+	font-weight: $sskFontWeightRegular;
 }
 
 h2 {
 	font-size: 25px;
-	font-weight: $sskFontMedium;
+	font-weight: $sskFontWeightRegular;
 }
 
 h3 {
 	font-size: 20px;
-	font-weight: $sskFontMedium;
+	font-weight: $sskFontWeightRegular;
+}
+
+th {
+  font-weight: $sskFontWeightRegular;
 }

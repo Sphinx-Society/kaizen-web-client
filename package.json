@@ -102,8 +102,8 @@
   },
   "jest": {
     "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif)$": "<rootDir>/src/client/__mocks__/fileMock.js",
-      "\\.(scss|sass)$": "<rootDir>/src/client/__mocks__/styleMock.js"
+      "\\.(jpg|jpeg|png|gif)$": "<rootDir>/src/client/__mocks__/assets/fileMock.js",
+      "\\.(scss|sass)$": "<rootDir>/src/client/__mocks__/styles/styleMock.js"
     }
   }
 }
