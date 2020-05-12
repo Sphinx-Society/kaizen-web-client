@@ -1,0 +1,50 @@
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks'
+import DatepickerDay from '../DatepickerDay'
+
+<Meta
+  title='Components|atoms/DatepickerDay'
+  component={DatepickerDay}
+/>
+
+# DatepickerDay
+
+## DatepickerDay is isued by datepicker to render each month day
+
+>You can play with it on the Datepicker section
+
+### It's other month
+
+<Preview>
+  <DatepickerDay
+    isOtherMonth={true}
+    onChange={() => null}
+    selectedDay={36986456}
+    day={3698}
+  />
+</Preview>
+
+### It's this month
+
+<Preview>
+  <DatepickerDay
+    isOtherMonth={false}
+    onChange={() => null}
+    selectedDay={15968745}
+    day={159687}
+  />
+</Preview>
+
+### It's selected
+
+<Preview>
+  <DatepickerDay
+    isOtherMonth={false}
+    onChange={() => null}
+    selectedDay={159687}
+    day={159687}
+  />
+</Preview>
+
+## Props
+
+<Props of={DatepickerDay} />
