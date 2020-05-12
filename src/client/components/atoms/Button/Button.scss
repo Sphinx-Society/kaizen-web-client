@@ -1,31 +1,136 @@
+@mixin btnActive($color: initial, $colorBg: initial) {
+	&:active:hover {
+		box-shadow: inset 0 0 6px 2px $color;
+		@include colorFontAndBg($color, transparent);
+	}
+}
+
+@mixin btnHover($color: initial, $colorBg: initial) {
+	&:hover {
+		@include colorFontAndBg($color, $colorBg);
+	}
+}
+
 .btn {
-	border: none;
 	display: inline-block;
+	border: none;
 	width: auto;
-	font-weight: $sskFontBold;
-	background: transparent;
+	font-size: 1rem;
+	font-weight: $sskFontWeightBold;
 	outline: none;
 	cursor: pointer;
-	border-radius: $sskSpacingUnit * 3;
+	border-radius: getSpacingsSSK('x3');
+	@include colorFontAndBg($sskColorFontDark, transparent);
+	@include btnHover($sskColorFontLight, $sskColorPrimaryMain);
+	@include btnActive($sskColorSuccess, $sskColorFontDark);
+
+	&--primary {
+		@include colorFontAndBg($sskColorFontLight, $sskColorPrimaryMain);
+		@include btnHover($sskColorFontDark, $sskColorSecondaryMain);
+	}
+
+	&--secondary {
+		@include colorFontAndBg($sskColorFontDark, $sskColorSecondaryMain);
+		@include btnHover($sskColorFontLight, $sskColorPrimaryMain);
+	}
+
+	&--warning {
+		@include colorFontAndBg($sskColorFontLight, $sskColorWarningPrimary);
+		@include btnHover($sskColorFontDark, $sskColorWarningSecondary);
+	}
+
 	&:disabled {
-		background-color: $sskDisabledBackground;
-		color: $sskDisabledColor;
+		@include colorFontAndBg($sskColorFontDisabled, $sskColorBgDisabled);
 		cursor: not-allowed;
 	}
 }
 
-.btn--primary {
-	background-color: $sskPrimaryMain;
-	color: $sskBackgroundMain;
-	&:focus {
-		box-shadow: inset 0px 0px 0px 1px $sskPrimaryDark;
+.btn-icon {
+	@extend .btn;
+	$padTB: getSpacingsSSK('x0.5');
+	$padRL: getSpacingsSSK('x1');
+	line-height: 0;
+	width: fit-content;
+	height: fit-content;
+	border-radius: $sskSpacingUnit * 0;
+	@include btnHover($sskColorPrimaryMain, transparent);
+	@include btnActive(initial, initial);
+
+	&--primary {
+		@include colorFontAndBg($sskColorPrimaryMain, transparent);
+		@include btnHover($sskColorSecondaryMain, transparent);
+	}
+
+	&--secondary {
+		@include colorFontAndBg($sskColorSecondaryMain, transparent);
+		@include btnHover($sskColorPrimaryMain, transparent);
+	}
+
+	&--warning {
+		@include colorFontAndBg($sskColorWarningPrimary, transparent);
+		@include btnHover($sskColorWarningSecondary, transparent);
+	}
+
+	&--light {
+		@include colorFontAndBg($sskColorFontLight, transparent);
+		@include btnHover($sskColorPrimaryMain, transparent);
+	}
+
+	&:disabled {
+		@include colorFontAndBg($sskColorFontDisabled, $sskColorBgDisabled);
+		cursor: not-allowed;
+	}
+
+	&--space-mode-circle-0 {
+		border-radius:100%;
+	}
+
+	&--space-mode-circle {
+		@include padding($padRL, $padRL, $padRL, $padRL);
+		border-radius:100%;
+	}
+
+	&--space-mode-1 {
+		@include padding($padTB, $padRL, $padTB, $padRL);
+		border-radius: getSpacingsSSK('x0.5');
+	}
+
+	&--space-mode-2 {
+		@include padding($padTB, $padRL, $padTB, $padRL);
+		border-radius: getSpacingsSSK('x1');
+	}
+
+	&--space-mode-3 {
+		@include padding($padTB, $padRL, $padTB, $padRL);
+		border-radius: getSpacingsSSK('x2');
+	}
+
+	&--space-mode-4 {
+		@include padding($padTB, $padRL, $padTB, $padRL);
+		border-radius: getSpacingsSSK('x4');
 	}
 }
 
-.btn--secondary {
-	background-color: $sskSecondaryMain;
-	color: $sskBackgroundDark;
-	&:focus {
-		box-shadow: inset 0px 0px 0px 1px $sskSecondaryDark;
+.btn__container {
+	&--cols3 {
+		display: grid;
+		grid-template-columns: 1fr auto 1fr;
+		align-items: center;
+		column-gap: getSpacingsSSK('x1');
+	}
+
+	&--cols3-right {
+		@extend .btn__container--cols3;
+		&>:nth-child(1) {
+			grid-column: 2 / 3;
+		}
+		&>:nth-child(2) {
+			grid-column: 3 / 4;
+		}
+	}
+
+	&--cols2 {
+		@extend .btn__container--cols3;
+		grid-template-columns: auto auto;
 	}
 }

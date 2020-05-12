@@ -1,0 +1,30 @@
+body, html, #app, * {
+  margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-size: $sskNormalFontSize;
+	font-family: $sskFontFamily;
+	font-weight: $sskFontRegular;
+}
+
+h1 {
+	font-size: 50px;
+	font-weight: $sskFontMedium;
+}
+
+h2 {
+	font-size: 25px;
+	font-weight: $sskFontMedium;
+}
+
+h3 {
+	font-size: 20px;
+	font-weight: $sskFontMedium;
+}
+
+th {
+  font-weight: $sskFontRegular;
+}

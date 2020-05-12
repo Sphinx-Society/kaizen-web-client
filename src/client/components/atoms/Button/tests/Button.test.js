@@ -12,12 +12,12 @@ describe('Button', () => {
   });
 
   test('Button have class .btn--primary', () => {
-    const button = shallow(<Button onClick={() => null}>Btn</Button>);
+    const button = shallow(<Button color='primary' onClick={() => null}>Btn</Button>);
     expect(button.hasClass('btn--primary')).toBe(true);
   });
 
   test('Button have class .btn--secondary', () => {
-    const button = shallow(<Button secondary onClick={() => null}>Btn</Button>);
+    const button = shallow(<Button color='secondary' onClick={() => null}>Btn</Button>);
     expect(button.hasClass('btn--secondary')).toBe(true);
   });
 

@@ -1,4 +1,8 @@
 import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks'
+import { FaEdit } from 'react-icons/fa';
+import { MdKeyboardArrowLeft } from 'react-icons/md';
+import { TiUserAdd } from 'react-icons/ti';
+
 import Button from '../Button'
 import './Button.stories.scss'
 
@@ -9,21 +13,97 @@ import './Button.stories.scss'
 
 # Button
 
-## Kaizen have two types of button, you can add them text and other components
+Kaizen have two types of Button
 
 <Preview>
-  <Button>Primary</Button>
-  <Button secondary>Secondary</Button>
-  <Button disabled>Disabled</Button>
-  <Button>With emoji <span style={{padding: 0, margin: 0}}>😀</span></Button>
+  <div className='preview-flex1'>
+    <Button
+      color='primary'
+      onClick={() => alert('It is a Button')}
+    >
+      Base button
+    </Button>
+    <Button
+      type='icon'
+      onClick={() => alert('It is an Icon Button')}
+    >
+      <FaEdit size='2em' />
+    </Button>
+  </div>
 </Preview>
 
-## You can also overwrite it styles by adding a class
+## Type text or other components
 
 <Preview>
-  <Button className="btn--custom">With custom styles <span style={{padding: 0, margin: 0}}>😀</span></Button>
+  <div className='preview-grid1'>
+    <Button color='primary'>width: auto</Button>
+    <Button color='primary'>width: auto</Button>
+  </div>
 </Preview>
 
+<Preview>
+  <div className='preview-grid2'>
+    <Button>Default color</Button>
+    <Button color='primary'>Primary</Button>
+    <Button color='secondary'>Secondary</Button>
+    <Button color='warning'>Warning</Button>
+    <Button disabled>Disabled</Button>
+    <Button color='primary'>
+      With emoji
+      <span style={{padding: 0, margin: 0}}>😀</span>
+    </Button>
+  </div>
+</Preview>
+
+*__You can also overwrite it styles by adding a class__*
+
+<Preview>
+  <Button className='btn--stories'>
+    With custom styles
+    <span style={{padding: 0, margin: 0}}>
+      😀
+    </span>
+  </Button>
+</Preview>
+
+## Type Icon
+
+<Preview>
+  <Button icon={<FaEdit size='3em' />} type='icon' />
+  <Button icon={<TiUserAdd size='3em' />} type='icon' color='primary' />
+  <Button icon={<FaEdit size='3em' />} type='icon' color='secondary' />
+  <Button icon={<MdKeyboardArrowLeft size='3em' />} type='icon' color='warning' />
+  <Button icon={<FaEdit size='3em' />} type='icon' color='light' className='ssk--boxShadow' />
+  <Button icon={<MdKeyboardArrowLeft size='3em' />} type='icon' onClick={() => alert('It is a Button')} disabled />
+</Preview>
+
+### The icon type has variants regarding its internal spacing
+
+<Preview>
+  <Button icon={<TiUserAdd size='2em' />} type='icon' iconMode='circle-0' className='ssk--boxShadow' />
+  <Button icon={<TiUserAdd size='2em' />} type='icon' iconMode='circle' className='ssk--boxShadow' />
+  <Button icon={<TiUserAdd size='2em' />} type='icon' iconMode='1' className='ssk--boxShadow' />
+  <Button icon={<TiUserAdd size='2em' />} type='icon' iconMode='2' className='ssk--boxShadow' />
+  <Button icon={<TiUserAdd size='3em' />} type='icon' iconMode='3' className='ssk--boxShadow' />
+  <Button icon={<TiUserAdd size='6em' />} type='icon' iconMode='4' className='ssk--boxShadow' />
+</Preview>
+
+### A text with an icon aside as an integrated part of the button
+
+<Preview>
+  <Button icon={<TiUserAdd size='2em' />} color='primary'>
+    left Icon
+  </Button>
+  <Button icon={<TiUserAdd size='2em' />} iconPosition={true} color='primary'>
+    right Icon
+  </Button>
+  <Button icon={<TiUserAdd size='2em' />} iconCenter={true} color='primary'>
+    All centered
+  </Button>
+  <Button icon={<TiUserAdd size='2em' />} color='primary'>
+    Centered text
+  </Button>
+</Preview>
 
 ## Props
 
