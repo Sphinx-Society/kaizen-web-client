@@ -1,12 +1,23 @@
 .checkbox {
+	cursor: pointer;
+  outline: none;
   display: inline-block;
   padding: getSpacingsSSK('x0.5');
   border-radius: getSpacingsSSK('x0.5');
-  color: $sskColorFontLight;
-  background-color: $sskColorPrimaryMain;
+  border: 1px solid $sskPrimaryMain;
+  @include colorFontAndBg($sskColorFontLight, $sskColorPrimaryMain);
 
   & > div {
     display: flex;
     align-content: center;
+  }
+
+  &--off {
+    @include colorFontAndBg($sskColorFontLight, rgba($sskPrimaryMain, 40%));
+  }
+
+  &--disabled {
+		cursor: not-allowed;
+    @include colorFontAndBg($sskColorFontDisabled, $sskColorBgDisabled);
   }
 }

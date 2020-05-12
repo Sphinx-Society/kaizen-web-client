@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { FaCheck } from 'react-icons/fa';
 
 import './Checkbox.scss';
 
 const Checkbox = (props) => {
-  const { id, onChange, checked, size } = props;
+  const { id, onChange, checked, size, disabled } = props;
   const [checkedApply, setChecked] = useState(checked);
 
   const handleOnChange = () => {
@@ -13,8 +14,14 @@ const Checkbox = (props) => {
     onChange();
   };
 
+  const checkedStyles = clsx({
+    'checkbox': true,
+    'checkbox--off': !checkedApply,
+    'checkbox--disabled': disabled,
+  });
+
   return (
-    <label htmlFor={id} className='checkbox'>
+    <label htmlFor={id} className={checkedStyles}>
       <div>
         <input
           className='checkbox__input'
@@ -23,6 +30,7 @@ const Checkbox = (props) => {
           checked={checkedApply}
           id={id}
           hidden
+          disabled={disabled}
         />
         <FaCheck size={size} className={checkedApply ? '' : 'hidden'} />
       </div>
@@ -42,11 +50,15 @@ Checkbox.propTypes = {
 
   /** Determine the icon size */
   size: PropTypes.string,
+
+  /** Allows you to disable the checkbox */
+  disabled: PropTypes.bool,
 };
 
 Checkbox.defaultProps = {
   checked: false,
   size: '1em',
+  disabled: false,
 };
 
 export default Checkbox;
