@@ -1,15 +1,7 @@
-@mixin label-collected {
-  font-size: 12px;
-  top: -2px;
-  left: $sskSpacingUnit / 2;
-  transition: .3s;
-  color: $sskBackgroundDark
-}
-
 .datepicker__container {
   max-width: 280px;
   margin: 0 auto;
-  padding: $sskSpacingUnit;
+  padding: getSpacingsSSK('x1');
 }
 
 .datepicker__calendar__container {
@@ -24,7 +16,7 @@
 }
 
 .datepicker__calendar__week-days {
-  color: $sskBackgroundDark;
+  color: $sskColorBgDark;
   user-select: none;
 }
 
@@ -34,11 +26,11 @@
 
 .datepicker__input {
   width: calc(100% - 45px);
-  padding: $sskSpacingUnit / 2 $sskSpacingUnit * 4 0 $sskSpacingUnit / 2;
+  @include padding(getSpacingsSSK('x0.5'), getSpacingsSSK('x4'), getSpacingsSSK('x0'), getSpacingsSSK('x0.5'));
   height: 2em;
-  margin-bottom: $sskSpacingUnit;
+  margin-bottom: getSpacingsSSK('x1');
   border: none;
-  border-bottom: 1px solid $sskBackgroundDark;
+  border-bottom: 1px solid $sskColorBgDark;
   outline: none;
 
   &:focus ~ .datepicker__input__label {
@@ -46,7 +38,7 @@
   }
 
   &:disabled {
-    border-bottom: 1px solid $sskDisabledBackground;
+    border-bottom: 1px solid $sskColorBgDisabled;
     cursor: not-allowed;
   }
 }
@@ -64,7 +56,7 @@
 
 .datepicker__input__label {
   position: absolute;
-  color: $sskFontMain;
+  color: $sskColorFontMain;
   font-size: 14px;
   top: calc(50% - 14px);
   left: 16px;
