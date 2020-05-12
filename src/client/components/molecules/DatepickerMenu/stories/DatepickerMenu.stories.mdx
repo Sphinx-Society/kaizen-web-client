@@ -1,0 +1,29 @@
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks'
+import DatepickerMenu from '../DatepickerMenu'
+
+<Meta
+  title='Components|Molecules/DatepickerMenu'
+  component={DatepickerMenu}
+/>
+
+# DatepickerMenu
+
+## DatepickerMenu is isued by datepicker to render it menu.
+
+>You can play with it on the Datepicker section
+
+<Preview>
+  <DatepickerMenu
+    month={4}
+    year={2020}
+    onPrevMonthClick={() => null}
+    onNextMonthClick={() => null}
+    onNextYearClick={() => null}
+    onPrevYearClick={() => null}
+    onYearChange={() => null}
+  />
+</Preview>
+
+## Props
+
+<Props of={DatepickerMenu} />
