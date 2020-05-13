@@ -2,8 +2,8 @@ import React from 'react';
 import { shallow, configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import useMonthDays from '../useMonthDays';
-import useMonthDaysMock from '../../../__mocks__/hooks/useMonthDaysMock';
 import HookComponentMock from '../../../__mocks__/components/HookComponentMock';
+import { getCalendarWeeks } from '../../../utils/date';
 
 configure({ adapter: new Adapter() });
 
@@ -16,7 +16,7 @@ describe('useMonthDays hook', () => {
   test('It returns the correct data with the correct values', () => {
     const wrapper = mount(<HookComponentMock hook={() => useMonthDays(4, 2020)} />);
     const { hook } = wrapper.find('div').props();
-    expect(hook).toEqual(useMonthDaysMock);
+    expect(hook).toEqual(getCalendarWeeks(4, 2020));
   });
 
   test('It returns an empty array with different than number', () => {
