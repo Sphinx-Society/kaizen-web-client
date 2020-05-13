@@ -5,15 +5,15 @@
   padding: getSpacingsSSK('x0.5');
   border-radius: getSpacingsSSK('x0.5');
   border: 1px solid $sskPrimaryMain;
-  @include colorFontAndBg($sskColorFontLight, $sskColorPrimaryMain);
+  @include colorFontAndBg($sskColorFontLight, rgba($sskPrimaryMain, 40%));
 
   & > div {
     display: flex;
     align-content: center;
   }
 
-  &--off {
-    @include colorFontAndBg($sskColorFontLight, rgba($sskPrimaryMain, 40%));
+  &--on {
+    @include colorFontAndBg($sskColorFontLight, $sskColorPrimaryMain);
   }
 
   &--disabled {

@@ -16,7 +16,7 @@ const Checkbox = (props) => {
 
   const checkedStyles = clsx({
     'checkbox': true,
-    'checkbox--off': !checkedApply,
+    'checkbox--on': checkedApply,
     'checkbox--disabled': disabled,
   });
 
