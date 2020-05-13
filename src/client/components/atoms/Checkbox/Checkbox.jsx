@@ -10,8 +10,10 @@ const Checkbox = (props) => {
   const [checkedApply, setChecked] = useState(checked);
 
   const handleOnChange = () => {
-    setChecked(!checkedApply);
-    onChange();
+    if (!disabled) {
+      setChecked(!checkedApply);
+      onChange();
+    }
   };
 
   const checkedStyles = clsx({
@@ -21,13 +23,13 @@ const Checkbox = (props) => {
   });
 
   return (
-    <label htmlFor={id} className={checkedStyles}>
+    <label htmlFor={id} className={checkedStyles} onChange={handleOnChange}>
       <div>
         <input
           className='checkbox__input'
           type='checkbox'
-          onChange={handleOnChange}
           checked={checkedApply}
+          readOnly
           id={id}
           hidden
           disabled={disabled}
