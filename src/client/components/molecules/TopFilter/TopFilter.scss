@@ -1,0 +1,29 @@
+.top-filter__container {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  padding: getSpacingsSSK('x2');
+  position: relative;
+}
+
+.top-filter__input {
+  border-radius: getSpacingsSSK('x2');
+  border: none;
+  box-shadow: 0px 0px 4px #a8a8a8;
+  @include padding(getSpacingsSSK('x1'), getSpacingsSSK('x3.5'), getSpacingsSSK('x1'), getSpacingsSSK('x1'));
+  outline: none;
+  color: $sskColorFontMain;
+  width: 100%;
+
+  &:disabled {
+    background-color: $sskColorBgDisabled;
+    cursor: not-allowed;
+  }
+
+}
+
+.top-filter__icon {
+  position: absolute;
+  right: getSpacingsSSK('x3');
+  top: getSpacingsSSK('x2.5');
+  fill: $sskColorFontMain;
+}
