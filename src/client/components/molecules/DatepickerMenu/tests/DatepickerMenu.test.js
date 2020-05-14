@@ -15,7 +15,7 @@ describe('DatepickerMenu', () => {
   test('DatepickerMenu have class .datepicker-menu__container', () => {
     const datepickerDay = shallow(
       <DatepickerMenu
-        month={4}
+        month='Mayo'
         year={2005}
         onPrevMonthClick={onPrevMonthClickMock}
         onNextMonthClick={onNextMonthClickMock}
@@ -30,7 +30,7 @@ describe('DatepickerMenu', () => {
   test('DatepickerMenu props with value', () => {
     const datepickerDay = mount(
       <DatepickerMenu
-        month={4}
+        month='Mayo'
         year={2005}
         onPrevMonthClick={onPrevMonthClickMock}
         onNextMonthClick={onNextMonthClickMock}
@@ -48,7 +48,7 @@ describe('DatepickerMenu', () => {
       onPrevYearClick,
       onYearChange,
     } = datepickerDay.find('DatepickerMenu').props();
-    expect(month).toBe(4);
+    expect(month).toBe('Mayo');
     expect(year).toBe(2005);
     expect(onPrevMonthClick).toBe(onPrevMonthClickMock);
     expect(onNextMonthClick).toBe(onNextMonthClickMock);
