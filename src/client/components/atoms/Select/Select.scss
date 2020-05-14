@@ -1,14 +1,27 @@
 .select {
-  width: auto;
+  @extend .ssk--spacing;
   position: relative;
-  border-bottom: 2px solid $sskColorFontDarkGray;
+  font-size: $sskFontSizeBase;
+  width: auto;
   color: $sskColorFontDark;
+  border-bottom: 2px solid $sskColorFontDarkGray;
+  padding-top: $sskFontSizeBase;
+  padding-bottom: getSpacingsSSK('x0.5');
 
   &__label {
     position: absolute;
     z-index: 4;
-    bottom: 5px;
+    height: auto;
+    top: 36%;
+    left: auto;
+    transition: font-size 0.3s ease-in-out, top 0.2s, left 0.4s;
     color: $sskColorFontMain;
+
+    &--value {
+      top: 0;
+      left: 0;
+      font-size: $sskFontSizeBase * 0.86;
+    }
   }
 
   &__select {

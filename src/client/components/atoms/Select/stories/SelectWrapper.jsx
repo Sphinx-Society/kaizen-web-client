@@ -2,12 +2,12 @@ import React from 'react';
 import Select from '../Select';
 
 const SelectWrapper = () => {
-  const options = ['opt1', 'opt2', 'opt3', 'opt4', 'opt5'];
+  const options = ['Opt1', 'Opt2', 'Opt3', 'Opt4', 'Opt5'];
   const [value, setValue] = React.useState('');
 
   // Este useEffect es para confirmar la ejecución en el Storybook
   React.useEffect(
-    () => { !value ? null : alert(`Value seleccionado: ${value}`); }
+    () => { !value ? null : console.info(`Value seleccionado: ${value}`); }
     , [value],
   );
 
