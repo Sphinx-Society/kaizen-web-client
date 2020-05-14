@@ -55,11 +55,7 @@ const Datepicker = (props) => {
 
   const setYearHandler = (event) => setYear(parseInt(event.target.value, 10));
 
-  const calendarIsVisibleToggle = () => {
-    if (calendarIsVisible) {
-      setCalendarIsVisible(!calendarIsVisible);
-    }
-  };
+  const calendarIsVisibleToggle = () => setCalendarIsVisible(!calendarIsVisible);
 
   const showCalendar = () => setCalendarIsVisible(true);
 

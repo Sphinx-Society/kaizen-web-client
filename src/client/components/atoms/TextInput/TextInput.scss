@@ -1,0 +1,59 @@
+.text-input__container {
+    display: inline-block;
+    position: relative;
+    width: 90%;
+    margin: 5px 0;
+}
+
+.text-input__input {
+    font-family: $sskFontFamilyBase;
+    height: 2em;
+    border: none;
+    border-bottom: 1.5px solid $sskColorBgDark;
+    background: transparent;
+    margin: 10px;
+    outline: none;
+    color: $sskColorFontMain;
+    padding: 0 8px;
+    font-weight: 400;
+    font-size: $sskFontSizeBase;
+    letter-spacing: .1px;
+    width: calc(100% - 26px);
+
+    &:disabled {
+      border-bottom: 1.5px solid $sskColorBgDisabled;
+      cursor: not-allowed;
+  }
+
+    &:focus ~ .text-input__label {
+        @include label-collected(getSpacingsSSK('x1'));
+    }
+}
+
+.text-input__input--primary {
+  &:focus {
+    border-bottom: 1.5px solid $sskColorPrimaryMain;
+  }
+}
+
+.text-input__input--secondary {
+  &:focus {
+    border-bottom: 1.5px solid $sskColorSecondaryMain;
+  }
+}
+
+.text-input__label {
+    position: absolute;
+    color: $sskColorFontMain;
+    font-size: $sskFontSizeBase;
+    top: calc(50% - 14px);
+    left: 16px;
+    cursor: text;
+    transition: .3s;
+    letter-spacing: .2px;
+}
+
+.text-input__label--collected {
+    @include label-collected(getSpacingsSSK('x1'));
+    transition: 0s;
+}

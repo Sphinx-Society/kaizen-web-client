@@ -37,7 +37,7 @@ DatepickerMenu.propTypes = {
   /**
    * The month to show in the mont section
    */
-  month: PropTypes.number.isRequired,
+  month: PropTypes.string.isRequired,
   /**
    * The year to show in the year section
    */
