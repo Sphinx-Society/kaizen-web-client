@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Datepicker from '../Datepicker';
 
-const Caller = () => {
+const DatepickerWrapper = () => {
   const [value, setValue] = useState(new Date().setHours(0, 0, 0, 0));
 
   const datepickerHandler = (value) => setValue(value);
@@ -14,4 +14,4 @@ const Caller = () => {
   );
 };
 
-export default Caller;
+export default DatepickerWrapper;
