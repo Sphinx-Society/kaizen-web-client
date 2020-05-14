@@ -1,0 +1,44 @@
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks'
+import TextInput from '../TextInput'
+
+<Meta
+  title='Components|atoms/TextInput'
+  component={TextInput}
+/>
+
+# TextInput
+
+This atom is used to submit text data by the user
+
+## Primary
+
+<Preview>
+  <TextInput
+    placeholder='Name'
+    id='first'
+  />
+</Preview>
+
+## Secondary
+
+<Preview>
+  <TextInput
+    placeholder='Name'
+    id='second'
+    color='secondary'
+  />
+</Preview>
+
+## Disabled
+
+<Preview>
+  <TextInput
+    placeholder='Name'
+    id='second'
+    disabled
+  />
+</Preview>
+
+## Props
+
+<Props of={TextInput} />
