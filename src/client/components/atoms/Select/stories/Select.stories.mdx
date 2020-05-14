@@ -1,0 +1,65 @@
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks'
+
+import Select from '../Select'
+import SelectWrapper from './SelectWrapper.jsx';
+
+<Meta
+  title='Components|Atoms/Select'
+  component={Select}
+/>
+
+# Select
+
+<Preview>
+  <Select
+    name='bloodType'
+    id='id01'
+    placeholder='Blood Type'
+    value=''
+    onChange={() => console.info('Select actived')}
+    options={['opt1', 'opt2', 'opt3', 'opt4', 'opt5']}
+  />
+</Preview>
+
+## How to use with a wrapper
+
+### Example
+
+<Preview>
+  <SelectWrapper />
+</Preview>
+
+### Code of SelectWrapper
+
+```jsx
+import React from 'react';
+import Select from '../Select';
+
+const SelectWrapper = () => {
+  const options = ['opt1', 'opt2', 'opt3', 'opt4', 'opt5'];
+  const [value, setValue] = React.useState('');
+
+  // Este useEffect es para confirmar la ejecución en el Storybook
+  React.useEffect(
+    () => { !value ? null : alert(`Value seleccionado: ${value}`); }
+    , [value],
+  );
+
+  return (
+    <div>
+      <Select
+        name='MyFiveOpts'
+        id='id02'
+        placeholder='Five Options'
+        value={value}
+        onChange={setValue}
+        options={options}
+      />
+    </div>
+  );
+};
+```
+
+## Props
+
+<Props of={Select} />
