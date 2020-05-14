@@ -1,0 +1,38 @@
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks'
+import TopFilter from '../TopFilter'
+
+<Meta
+  title='Components|Molecules/TopFilter'
+  component={TopFilter}
+/>
+
+# TopFilter
+
+This atom will let the developer add easily a card. By itself it only represent the surface where the other atoms will be putted in.
+
+## Without placeholder
+
+<Preview>
+  <TopFilter/>
+</Preview>
+
+## With placeholder
+
+<Preview>
+  <TopFilter
+    placeholder='Search...'
+  />
+</Preview>
+
+## Disabled
+
+<Preview>
+  <TopFilter
+    placeholder='Search...'
+    disabled
+  />
+</Preview>
+
+## Props
+
+<Props of={TopFilter} />
