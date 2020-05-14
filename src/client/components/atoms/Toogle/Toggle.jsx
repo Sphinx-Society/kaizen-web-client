@@ -51,7 +51,7 @@ Toggle.propTypes = {
   /** Function that will be called on change event */
   onChange: PropTypes.func.isRequired,
 
-  /** Lets start the component as marked */
+  /** Lets start the component as marked, and it is possible interact to change status */
   checked: PropTypes.bool,
 
   /** Determine the icon size */
