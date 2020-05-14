@@ -1,0 +1,19 @@
+.select {
+  width: auto;
+  position: relative;
+  border-bottom: 2px solid $sskColorFontDarkGray;
+  color: $sskColorFontDark;
+
+  &__label {
+    position: absolute;
+    z-index: 4;
+    bottom: 5px;
+    color: $sskColorFontMain;
+  }
+
+  &__select {
+    width: 100%;
+    position: relative;
+    z-index: 8;
+  }
+}
