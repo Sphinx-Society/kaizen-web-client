@@ -1,0 +1,25 @@
+.toggle {
+	cursor: pointer;
+  outline: none;
+  display: inline-block;
+  border-radius: 10em;
+  @include colorFontAndBg($sskColorPrimaryMain, $sskColorSecondaryMain);
+
+  & > div {
+    display: grid;
+    grid-template-columns: 1fr 0.4fr 1fr;
+    align-content: center;
+    padding: 10%;
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    @include colorFontAndBg($sskColorFontDisabled, $sskColorBgDisabled);
+  }
+
+  &__cicle--on {
+    grid-column-start: 3;
+  }
+}
+
+

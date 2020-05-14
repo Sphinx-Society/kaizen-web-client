@@ -4,8 +4,8 @@
   display: inline-block;
   padding: getSpacingsSSK('x0.5');
   border-radius: getSpacingsSSK('x0.5');
-  border: 1px solid $sskPrimaryMain;
-  @include colorFontAndBg($sskColorFontLight, rgba($sskPrimaryMain, 40%));
+  border: 1px solid $sskColorPrimaryMain;
+  @include colorFontAndBg($sskColorFontLight, rgba($sskColorPrimaryMain, 40%));
 
   & > div {
     display: flex;
@@ -17,7 +17,8 @@
   }
 
   &--disabled {
-		cursor: not-allowed;
+    cursor: not-allowed;
+    border-color: $sskColorBgMain;
     @include colorFontAndBg($sskColorFontDisabled, $sskColorBgDisabled);
   }
 }

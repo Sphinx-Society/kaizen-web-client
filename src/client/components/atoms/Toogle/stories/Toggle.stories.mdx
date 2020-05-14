@@ -1,0 +1,32 @@
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks'
+
+import Toggle from '../Toggle'
+
+<Meta
+  title='Components|Atoms/Toggle'
+  component={Toggle}
+/>
+
+# Toggle
+
+<Preview>
+  <Toggle
+    id='id01'
+    onChange={() => console.info('It is a Toggle')}
+  />
+  <Toggle
+    id='id02'
+    onChange={() => alert('I am a Toggle')}
+    size='2em'
+    checked
+  />
+  <Toggle
+    id='id03'
+    onChange={() => alert('Clicked')}
+    disabled
+  />
+</Preview>
+
+## Props
+
+<Props of={Toggle} />
