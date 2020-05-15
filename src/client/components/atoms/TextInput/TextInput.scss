@@ -26,7 +26,7 @@
   }
 
     &:focus ~ .text-input__label {
-        @include label-collected(getSpacingsSSK('x1'));
+        @include labelCollected(getSpacingsSSK('x1'));
     }
 }
 
@@ -54,6 +54,6 @@
 }
 
 .text-input__label--collected {
-    @include label-collected(getSpacingsSSK('x1'));
+    @include labelCollected(getSpacingsSSK('x1'));
     transition: 0s;
 }
