@@ -1,26 +1,39 @@
+@mixin LocalMovePlaceholder {
+  top: 0;
+  left: 0;
+  font-size: $sskFontSizeBase * 0.86;
+}
+
 .select {
-  @extend .ssk--spacing;
   position: relative;
-  font-size: $sskFontSizeBase;
   width: auto;
+  font-size: $sskFontSizeBase;
   color: $sskColorFontDark;
   border-bottom: 2px solid $sskColorFontDarkGray;
-  padding-top: $sskFontSizeBase;
-  padding-bottom: getSpacingsSSK('x0.5');
+  margin: getSpacingsSSK('x1');
+
+  &:active {
+    .select__label {
+      @include LocalMovePlaceholder;
+    }
+  }
+
+  &:disabled {
+    color: sskColorFontDisabled;
+    border-bottom-color: $sskColorBgDisabled;
+  }
 
   &__label {
     position: absolute;
     z-index: 4;
-    height: auto;
+    width: 100%;
     top: 36%;
-    left: auto;
-    transition: font-size 0.3s ease-in-out, top 0.2s, left 0.4s;
+    left: getSpacingsSSK('x1');
+    transition: font-size 0.3s, top 0.3s, left 0.3s;
     color: $sskColorFontMain;
 
     &--value {
-      top: 0;
-      left: 0;
-      font-size: $sskFontSizeBase * 0.86;
+      @include LocalMovePlaceholder;
     }
   }
 
@@ -28,5 +41,12 @@
     width: 100%;
     position: relative;
     z-index: 8;
+    padding: getSpacingsSSK('x1');
+    padding-bottom: getSpacingsSSK('x0.5');
+    padding-top: $sskFontSizeBase * 1.2;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
   }
 }

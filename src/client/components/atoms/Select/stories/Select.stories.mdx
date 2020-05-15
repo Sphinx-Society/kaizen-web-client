@@ -10,6 +10,10 @@ import SelectWrapper from './SelectWrapper.jsx';
 
 # Select
 
+This atom is used to send data from a fixed list of options
+
+## Default
+
 <Preview>
   <Select
     name='bloodType'
@@ -18,6 +22,20 @@ import SelectWrapper from './SelectWrapper.jsx';
     value=''
     onChange={() => console.info('Select actived')}
     options={['opt1', 'opt2', 'opt3', 'opt4', 'opt5']}
+  />
+</Preview>
+
+## Disabled
+
+<Preview>
+  <Select
+    name='bloodType'
+    id='id01'
+    placeholder='Blood Type'
+    value=''
+    onChange={() => console.info('Select actived')}
+    options={['opt1', 'opt2', 'opt3', 'opt4', 'opt5']}
+    disabled
   />
 </Preview>
 
@@ -41,7 +59,7 @@ const SelectWrapper = () => {
 
   // Este useEffect es para confirmar la ejecución en el Storybook
   React.useEffect(
-    () => { !value ? null : alert(`Value seleccionado: ${value}`); }
+    () => { !value ? null : console.info(`Value seleccionado: ${value}`); }
     , [value],
   );
 
