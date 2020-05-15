@@ -1,0 +1,18 @@
+.table__table {
+  width: 100%;
+  border-collapse: collapse;;
+}
+
+.table__row {
+  height: 5em;
+}
+
+.table__cell--bordered {
+  border-bottom: 1px solid $sskColorBgDark;
+}
+
+.table_span {
+  display: flex;
+  justify-content: flex-start;
+  @include padding(0, getSpacingsSSK('x2'), 0, getSpacingsSSK('x2'))
+}
