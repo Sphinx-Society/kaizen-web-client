@@ -5,5 +5,5 @@ $sskFontWeightLight: 300;
 $sskFontWeightRegular: 400;
 $sskFontWeightBold: 700;
 $sskFontFamilyBase: 'Roboto', sans-serif;
-$sskFontSizeBase: 14px;
-$sskFontSizeSmall: 12px;
+$sskFontSizeBase: 16px;
+$sskFontSizeSmall: $sskFontSizeBase - 4px;

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { MdKeyboardArrowDown } from 'react-icons/md';
 
 import './Select.scss';
 
@@ -12,6 +13,7 @@ const Select = (props) => {
 
   const selectStyles = clsx({
     'select': true,
+    'select--disabled': disabled,
     'select--value': value,
   });
 
@@ -21,7 +23,7 @@ const Select = (props) => {
   });
 
   return (
-    <div className={selectStyles} disabled={disabled}>
+    <div className={selectStyles}>
       <label htmlFor={id} className={selectLabelStyles}>{placeholder}</label>
       <select
         name={name}
@@ -36,6 +38,7 @@ const Select = (props) => {
         <option value=''>{value}</option>
         {options.map((item) => <option value={item} key={item}>{item}</option>)}
       </select>
+      <MdKeyboardArrowDown size='2em' />
     </div>
   );
 };
