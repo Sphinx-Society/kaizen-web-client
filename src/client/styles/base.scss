@@ -28,3 +28,12 @@ h3 {
 th {
   font-weight: $sskFontWeightRegular;
 }
+
+select {
+	-webkit-appearance: none;
+  appearance: none;
+	outline: none;
+	cursor: pointer;
+	border: none;
+	background: none;
+}
