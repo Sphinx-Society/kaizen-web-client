@@ -7,12 +7,24 @@
   height: 5em;
 }
 
-.table__cell--bordered {
-  border-bottom: 1px solid $sskColorBgDark;
-}
-
 .table_span {
   display: flex;
   justify-content: flex-start;
   @include padding(0, getSpacingsSSK('x2'), 0, getSpacingsSSK('x2'))
+}
+
+.--filter {
+  padding: 0;
+}
+
+.--head {
+  color: $sskColorFontDarkGray
+}
+
+.--bottom-bordered {
+  border-bottom: 1px solid $sskColorBgDark;
+}
+
+.--collapse {
+  padding: 0;
 }
