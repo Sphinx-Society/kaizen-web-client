@@ -9,7 +9,7 @@
   width: auto;
   font-size: $sskFontSizeBase;
   color: $sskColorFontMain;
-  border-bottom: 2px solid $sskColorFontDarkGray;
+  border-bottom: $borderSolid2xpDarkGray;
   margin: getSpacingsSSK('x1');
 
   &:active {
