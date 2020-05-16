@@ -1,0 +1,41 @@
+.container {
+
+  &-body {
+    width: 100%;
+    padding: 32px;
+    border: solid 1px red;
+  }
+
+  &-page {
+    border: solid 2px red;
+
+    &__element {
+      width: 100%;
+      height: 60px;
+      border: solid 1px blue;
+      background-color: gray;
+    }
+  }
+}
+
+
+@media screen and (min-width: $breakpoint--large) {
+  .container {
+
+    &-body {
+      height: 768px;
+      display: flex;
+      justify-content: flex-end;
+      padding: 0;
+      padding-left: 5em;
+    }
+
+    &-page {
+      width: 100%;
+      padding: 1em;
+      background-color: white;
+      border: none;
+      border-radius: getSpacingsSSK('x2.5');
+    }
+  }
+}

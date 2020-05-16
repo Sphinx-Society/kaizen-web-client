@@ -1,0 +1,45 @@
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks'
+
+import Navbar from '../Navbar'
+import { FaUser } from 'react-icons/fa';
+
+import './Navbar.stories.scss';
+
+<Meta
+  title='Components|Organisms/Navbar'
+  component={Navbar}
+/>
+
+# Navbar
+
+XXXXX This XXXXX is used to send data from a fixed list of options
+
+## Default
+
+<Preview>
+  <Navbar>
+    <FaUser size='3em' />
+    <FaUser size='3em' />
+    <FaUser size='3em' />
+  </Navbar>
+</Preview>
+
+## With a parent container
+
+<Preview>
+  <div className='container-body'>
+    <div className='container-page ssk--boxShadow'>
+      <div className='container-page__element'>Elemento 1</div>
+      <div className='container-page__element'>Elemento 2</div>
+    </div>
+    <Navbar>
+      <FaUser size='3em' />
+      <FaUser size='3em' />
+      <FaUser size='3em' />
+    </Navbar>
+  </div>
+</Preview>
+
+## Props
+
+<Props of={Navbar} />
