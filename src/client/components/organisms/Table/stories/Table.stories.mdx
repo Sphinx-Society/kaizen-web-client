@@ -4,6 +4,9 @@ import Checkbox from '../../../atoms/Checkbox/Checkbox'
 import Button from '../../../atoms/Button/Button'
 import { IoIosEye as EyeIcon, IoMdTrash as TrashIcon } from 'react-icons/io'
 import { FaPen as PencilIcon } from 'react-icons/fa'
+import Select from '../../../atoms/Select/Select'
+
+import './Table.stories.scss'
 
 <Meta
   title='Components|Organisms/Table'
@@ -18,15 +21,19 @@ import { FaPen as PencilIcon } from 'react-icons/fa'
   <Table
     columns={[
       {
-        header: () => <Checkbox/>,
+        header: (col) => <Checkbox/>,
         accessor: '',
-        cell: () => <Checkbox/>
-        id: 0
+        cell: (row) => <Checkbox/>,
+        id: 0,
+        noFilter: true,
+        width: '60px',
+        collapse: true
       },
       {
         header: 'Name',
         accessor: 'name',
-        id: 1
+        id: 1,
+        minWidth: '180px'
       },
       {
         header: 'User',
@@ -41,7 +48,9 @@ import { FaPen as PencilIcon } from 'react-icons/fa'
       {
         header: 'Country',
         accessor: 'country',
-        id: 4
+        id: 4,
+        filter: (col) => <Select options={['Mexico', 'Colombia']}/>,
+        minWidth: '150px'
       },
       {
         header: 'Document',
@@ -51,25 +60,39 @@ import { FaPen as PencilIcon } from 'react-icons/fa'
       {
         header: 'Creation date',
         accessor: 'createdAt',
-        id: 6
+        id: 6,
+        minWidth: '150px'
       },
       {
         header: '',
         accessor: '',
-        cell: () => <Button icon={<EyeIcon size='2em' />} type='icon' iconMode='2' className='ssk--boxShadow' />
-        id: 7
-      },
-      {
-        header: '',
-        accessor: '',
-        cell: () => <Button icon={<PencilIcon size='2em' />} type='icon' iconMode='2' className='ssk--boxShadow' />
-        id: 7
-      },
-      {
-        header: '',
-        accessor: '',
-        cell: () => <Button icon={<TrashIcon size='2em' />} type='icon' iconMode='2' className='ssk--boxShadow' />
-        id: 7
+        cell: (row) => {
+          return (
+            <div className='table__stories__buttons__container'>
+              <Button
+                className='ssk--boxShadow table__stories__button'
+                icon={<EyeIcon size='1.3em' />}
+                type='icon'
+                iconMode='2'
+              />
+              <Button
+                className='ssk--boxShadow table__stories__button'
+                icon={<PencilIcon size='1.3em' />}
+                type='icon'
+                iconMode='2'
+              />
+              <Button
+                className='ssk--boxShadow table__stories__button'
+                icon={<TrashIcon size='1.3em' />}
+                type='icon'
+                iconMode='2'
+              />
+            </div>
+          )
+        },
+        id: 7,
+        noFilter: true,
+        collapse: true
       }
     ]}
     data={[
