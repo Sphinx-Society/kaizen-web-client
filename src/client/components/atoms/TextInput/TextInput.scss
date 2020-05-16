@@ -9,7 +9,7 @@
     font-family: $sskFontFamilyBase;
     height: 2em;
     border: none;
-    border-bottom: 1.5px solid $sskColorBgDark;
+    border-bottom: 2px solid $sskColorFontDarkGray;
     background: transparent;
     margin: 10px;
     outline: none;
@@ -21,7 +21,7 @@
     width: calc(100% - 26px);
 
     &:disabled {
-      border-bottom: 1.5px solid $sskColorBgDisabled;
+      border-bottom: 2px solid $sskColorBgDisabled;
       cursor: not-allowed;
   }
 
@@ -32,13 +32,13 @@
 
 .text-input__input--primary {
   &:focus {
-    border-bottom: 1.5px solid $sskColorPrimaryMain;
+    border-bottom: 2px solid $sskColorPrimaryMain;
   }
 }
 
 .text-input__input--secondary {
   &:focus {
-    border-bottom: 1.5px solid $sskColorSecondaryMain;
+    border-bottom: 2px solid $sskColorSecondaryMain;
   }
 }
 
