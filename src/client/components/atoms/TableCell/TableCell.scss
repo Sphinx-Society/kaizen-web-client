@@ -1,0 +1,20 @@
+.table-cell {
+  &__content {
+    display: flex;
+    justify-content: flex-start;
+    @include padding(0, getSpacingsSSK('x2'), 0, getSpacingsSSK('x2'));
+    color: $sskColorFontMain;
+
+    &--head {
+      color: $sskColorFontDarkGray;
+    }
+
+    &--collapse {
+      padding: 0;
+    }
+  }
+
+  &--bottom-bordered {
+    border-bottom: 3px solid $sskColorFontDarkGray;
+  }
+}

@@ -1,0 +1,37 @@
+import LinkTo from '@storybook/addon-links/react';
+import { Meta, Props, Preview } from '@storybook/addon-docs/blocks'
+import TableCell from '../TableCell'
+import {
+  TABLE_COLUMN_REFERENCE,
+  TABLE_ROW_REFERENCE
+} from '../../../../schemas/references'
+
+<Meta
+  title='Components|Atoms/TableCell'
+  component={TableCell}
+/>
+
+# TableCell
+
+## TableCell is used by Table component to render a head or body cell
+
+<Preview>
+  <TableCell
+    col={{
+      header: 'Header',
+      accessor: '',
+      id: 1
+    }}
+    isHead
+  />
+</Preview>
+
+
+## Props
+
+<Props of={TableCell} />
+
+### Schemas
+
+-  <LinkTo kind={TABLE_COLUMN_REFERENCE.path}>{TABLE_COLUMN_REFERENCE.name}</LinkTo>
+-  <LinkTo kind={TABLE_ROW_REFERENCE.path}>{TABLE_ROW_REFERENCE.name}</LinkTo>
