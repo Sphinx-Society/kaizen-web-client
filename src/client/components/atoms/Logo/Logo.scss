@@ -1,0 +1,35 @@
+@keyframes resize {
+  0% {
+    transform:  scale(1);
+  }
+
+  50% {
+    transform: scale(0.8);
+  }
+
+  100% {
+    transform:  scale(1);
+  }
+}
+
+@keyframes resize--inverted {
+  0% {
+    transform:  scale(0.8);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform:  scale(0.8);
+  }
+}
+
+.resize {
+  animation: resize 1s infinite ease;
+  transform-origin: center;
+  &--inverted {
+    animation: resize--inverted 1s infinite ease;
+  }
+}
