@@ -1,12 +1,18 @@
-import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks'
+import { Meta, Props, Preview } from '@storybook/addon-docs/blocks'
+import LinkTo from '@storybook/addon-links/react';
 import Table from '../Table'
-import Checkbox from '../../../atoms/Checkbox/Checkbox'
-import Button from '../../../atoms/Button/Button'
-import { IoIosEye as EyeIcon, IoMdTrash as TrashIcon } from 'react-icons/io'
-import { FaPen as PencilIcon } from 'react-icons/fa'
-import Select from '../../../atoms/Select/Select'
+import {
+  rows,
+  columns,
+  mobileRow,
+  menu,
+  TableWrapper,
+} from './TableWrapper'
 
-import './Table.stories.scss'
+import {
+  TABLE_COLUMN_REFERENCE,
+  TABLE_ROW_REFERENCE
+} from '../../../../schemas/references'
 
 <Meta
   title='Components|Organisms/Table'
@@ -15,115 +21,43 @@ import './Table.stories.scss'
 
 # Table
 
-## Table allow the user to manage a CRUD or watch data
+Table allow the user to manage a CRUD or watch data
+
+## Default
 
 <Preview>
   <Table
-    columns={[
-      {
-        header: (col) => <Checkbox/>,
-        accessor: '',
-        cell: (row) => <Checkbox/>,
-        id: 0,
-        noFilter: true,
-        width: '60px',
-        collapse: true
-      },
-      {
-        header: 'Name',
-        accessor: 'name',
-        id: 1,
-        minWidth: '180px'
-      },
-      {
-        header: 'User',
-        accessor: 'user',
-        id: 2
-      },
-      {
-        header: 'Role',
-        accessor: 'role',
-        id: 3
-      },
-      {
-        header: 'Country',
-        accessor: 'country',
-        id: 4,
-        filter: (col) => <Select options={['Mexico', 'Colombia']}/>,
-        minWidth: '150px'
-      },
-      {
-        header: 'Document',
-        accessor: 'document',
-        id: 5
-      },
-      {
-        header: 'Creation date',
-        accessor: 'createdAt',
-        id: 6,
-        minWidth: '150px'
-      },
-      {
-        header: '',
-        accessor: '',
-        cell: (row) => {
-          return (
-            <div className='table__stories__buttons__container'>
-              <Button
-                className='ssk--boxShadow table__stories__button'
-                icon={<EyeIcon size='1.3em' />}
-                type='icon'
-                iconMode='2'
-              />
-              <Button
-                className='ssk--boxShadow table__stories__button'
-                icon={<PencilIcon size='1.3em' />}
-                type='icon'
-                iconMode='2'
-              />
-              <Button
-                className='ssk--boxShadow table__stories__button'
-                icon={<TrashIcon size='1.3em' />}
-                type='icon'
-                iconMode='2'
-              />
-            </div>
-          )
-        },
-        id: 7,
-        noFilter: true,
-        collapse: true
-      }
-    ]}
-    data={[
-      {
-        id: 0,
-        name: 'Camilo Santana',
-        user: 'CamSa13',
-        role: 'Paciente',
-        country: 'México',
-        document: '1014286741',
-        createdAt: '2020/03/06',
-      },
-      {
-        id: 1,
-        name: 'Jorge Mengura',
-        user: 'JorgeM15',
-        role: 'Médico',
-        country: 'México',
-        document: '1014286741',
-        createdAt: '2020/03/06',
-      },
-      {
-        id: 2,
-        name: 'Carlos Bake',
-        user: 'charlybake',
-        role: 'Paciente',
-        country: 'Colombia',
-        document: '1014286741',
-        createdAt: '2020/03/06',
-      }
-    ]}
+    columns={columns}
+    rows={rows.slice(0, 3)}
+    totalRows={6}
+    page={1}
+    mobileRow={mobileRow}
+  />
+</Preview>
+
+## With menu
+
+<Preview>
+  <Table
+    columns={columns}
+    rows={rows.slice(0, 3)}
+    totalRows={6}
+    page={1}
+    mobileRow={mobileRow}
+    menu={menu()}
+  />
+</Preview>
+
+## Loading
+
+<Preview>
+  <Table
+    columns={columns}
+    rows={rows.slice(0, 3)}
+    totalRows={6}
+    page={1}
+    mobileRow={mobileRow}
+    isLoading
   />
 </Preview>
 
@@ -131,3 +65,8 @@ import './Table.stories.scss'
 ## Props
 
 <Props of={Table} />
+
+### Schemas
+
+-  <LinkTo kind={TABLE_COLUMN_REFERENCE.path}>{TABLE_COLUMN_REFERENCE.name}</LinkTo>
+-  <LinkTo kind={TABLE_ROW_REFERENCE.path}>{TABLE_ROW_REFERENCE.name}</LinkTo>
