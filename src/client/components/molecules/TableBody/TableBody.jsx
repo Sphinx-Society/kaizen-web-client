@@ -1,6 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import TableCell from '../../atoms/TableCell/TableCell';
+
+import TableColumnSchema from '../../../schemas/TableColumn/TableColumn';
+import TableRowSchema from '../../../schemas/TableRow/TableRow';
 
 import './TableBody.scss';
 
@@ -36,6 +40,33 @@ const TableBody = (props) => {
       ))}
     </Wrapper>
   );
+};
+
+TableBody.propTypes = {
+  /**
+   * To render the loading variant
+   */
+  isLoading: PropTypes.bool.isRequired,
+  /**
+   * To render the mobile version of the table body
+   */
+  isMobile: PropTypes.bool.isRequired,
+  /**
+   * The rows to render inside the body
+   */
+  rows: PropTypes.arrayOf(TableRowSchema).isRequired,
+  /**
+   * The columns to render inside each row
+   */
+  columns: PropTypes.arrayOf(TableColumnSchema).isRequired,
+  /**
+   * If the mobile version is used it can a receive a differente mobile type row
+   */
+  mobileRow: PropTypes.func,
+};
+
+TableBody.defaultProps = {
+  mobileRow: null,
 };
 
 export default TableBody;
