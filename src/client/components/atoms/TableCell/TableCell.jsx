@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import TableColumnSchema from '../../../schemas/TableColumn/TableColumn';
 import TableRowSchema from '../../../schemas/TableRow/TableRow';
@@ -53,8 +54,22 @@ const TableCell = (props) => {
 };
 
 TableCell.propTypes = {
-  row: TableRowSchema,
+  /**
+   * The row where the cell is inside
+   */
+  row: TableRowSchema.isRequired,
+  /**
+   * The column where the cell is inside
+   */
   col: TableColumnSchema.isRequired,
+  /**
+   * Active the head variant of the cell
+   */
+  isHead: PropTypes.bool,
+};
+
+TableCell.defaultProps = {
+  isHead: false,
 };
 
 export default TableCell;
