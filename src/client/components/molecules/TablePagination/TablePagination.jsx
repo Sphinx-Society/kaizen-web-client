@@ -7,6 +7,8 @@ import {
 } from 'react-icons/md';
 import Button from '../../atoms/Button/Button';
 
+import TableRowSchema from '../../../schemas/TableRow/TableRow';
+
 import './TablePagination.scss';
 
 const TablePagination = (props) => {
