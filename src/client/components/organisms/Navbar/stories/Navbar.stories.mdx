@@ -10,17 +10,21 @@ import './Navbar.stories.scss';
 
 # Navbar
 
-XXXXX This organism is used to send data from a fixed list of options
+This body is used to show the main actions of each role.
 
-## Default
+## Default in mobile-first (screen for width less than 1024px)
 
 <Preview>
   <div className='container-body'>
-    <Navbar onClickSearch={() => null} onClickProfile={() => null} onClickSettings={() => null} />
+    <Navbar
+      onClickSearch={() => alert('Search')}
+      onClickProfile={() => alert('MyProfile')}
+      onClickSettings={() => alert('Settings')}
+    />
   </div>
 </Preview>
 
-## With a parent container
+## With a brother container for all other components.
 
 <Preview>
   <div className='container-body'>
@@ -28,7 +32,11 @@ XXXXX This organism is used to send data from a fixed list of options
       <div className='container-page__element'>Elemento 1</div>
       <div className='container-page__element'>Elemento 2</div>
     </div>
-    <Navbar onClickSearch={() => alert('Search')} onClickProfile={() => alert('MyProfile')} onClickSettings={() => alert('Settings')} />
+    <Navbar
+      onClickSearch={() => alert('Search')}
+      onClickProfile={() => alert('MyProfile')}
+      onClickSettings={() => alert('Settings')}
+    />
   </div>
 </Preview>
 

@@ -3,7 +3,7 @@
     display: none;
   }
 
-  &__children {
+  &__buttons {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -43,7 +43,7 @@
       background-color: white;
     }
 
-    &__children {
+    &__buttons {
       width: 3em;;
       height: 100%;
       flex-direction: column;
