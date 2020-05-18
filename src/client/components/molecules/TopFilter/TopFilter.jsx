@@ -11,12 +11,23 @@ const TopFilter = (props) => {
     onChange,
     placeholder,
     disabled,
+    disableShadow,
+    onEnter,
+    onIconClick,
   } = props;
+
+  const enterHandler = (event) => {
+    const { which, keyCode } = event;
+    if (which === 13 || keyCode === 13) {
+      onEnter(event);
+    }
+  };
 
   return (
     <Surface
       className='top-filter__container'
       disableSpacing
+      disableShadow={disableShadow}
     >
       <input
         className='top-filter__input'
@@ -24,10 +35,12 @@ const TopFilter = (props) => {
         onChange={onChange}
         placeholder={placeholder}
         disabled={disabled}
+        onKeyDown={enterHandler}
       />
       <SearchIcon
         className='top-filter__icon'
         size='1.5em'
+        onClick={onIconClick}
       />
     </Surface>
   );
@@ -50,11 +63,26 @@ TopFilter.propTypes = {
    * Disable the filter input
    */
   disabled: PropTypes.bool,
+  /**
+   * Used to remove surface shadow
+   */
+  disableShadow: PropTypes.bool,
+  /**
+   * Function called when user press enter inside the input
+   */
+  onEnter: PropTypes.func,
+  /**
+   * Function called when user click on icon
+   */
+  onIconClick: PropTypes.func,
 };
 
 TopFilter.defaultProps = {
   placeholder: '',
   disabled: false,
+  disableShadow: false,
+  onEnter: () => null,
+  onIconClick: () => null,
 };
 
 export default TopFilter;
