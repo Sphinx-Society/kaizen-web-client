@@ -1,132 +1,129 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import TextInput from '../../atoms/TextInput/TextInput';
 
-import './Table.scss';
+import Logo from '../../atoms/Logo/Logo';
+import TableMenu from '../../molecules/TableMenu/TableMenu';
+import TableHead from '../../molecules/TableHead/TableHead';
+import TableBody from '../../molecules/TableBody/TableBody';
+import TablePagination from '../../molecules/TablePagination/TablePagination';
 
-const renderCell = (row, col) => {
-  const styles = clsx({
-    'table_span': true,
-    '--collapse': col.collapse,
-  });
+import useWindowDimensions from '../../../hooks/useWindowDimensions/useWindowDimensions';
 
-  if (col.cell) {
-    return (
-      <span className={styles}>
-        {col.cell(row)}
-      </span>
-    );
-  }
+import TableColumnSchema from '../../../schemas/TableColumn/TableColumn';
+import TableRowSchema from '../../../schemas/TableRow/TableRow';
 
-  return (
-    <span className={styles}>
-      {row[col.accessor]}
-    </span>
-  );
-};
-
-const renderFilter = (col) => {
-  const styles = clsx({
-    'table_span': true,
-    '--filter': true,
-    '--collapse': col.collapse,
-  });
-
-  if (col.filter) {
-    return (
-      <span className={styles}>
-        {col.filter(col)}
-      </span>
-    );
-  }
-
-  if (!col.noFilter) {
-    return (
-      <span className={styles}>
-        <TextInput />
-      </span>
-    );
-  }
-  return null;
-};
-
-const renderHead = (col) => {
-  const styles = clsx({
-    'table_span': true,
-    '--head': true,
-    '--collapse': col.collapse,
-  });
-
-  return (
-    <span
-      className={styles}
-      style={{
-        width: col.width,
-        maxWidth: col.maxWidth,
-        minWidth: col.minWidth,
-      }}
-    >
-      {typeof col.header === 'function' ? col.header(col) : col.header}
-    </span>
-  );
-};
+import { breakpointMedium } from './Table.scss';
 
 const Table = (props) => {
   const {
     columns,
-    data,
+    rows,
+    totalRows,
+    page,
+    onFilterChange,
+    onNextPageClick,
+    onPrevPageClick,
+    menu,
+    mobileRow,
+    isLoading,
+    onSearch,
   } = props;
+
+  const { width } = useWindowDimensions();
+  const isMobile = width <= parseInt(breakpointMedium, 10);
+
+  const className = clsx({ 'table__wrapper': true });
+  const loaderClassName = clsx({ 'table__loader-container': true });
+
+  const Wrapper = ({ children }) => (isMobile ? <div className={className}>{children}</div> : <table className={className}>{children}</table>);
 
   return (
     <div>
-      <table className='table__table'>
-        <thead>
-          <tr>
-            {columns.map((col) => <th key={col.id}>{renderHead(col)}</th>)}
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((row) => (
-            <tr
-              key={row.id}
-              className='table__row'
-            >
-              {columns.map((col) => {
-                return (
-                  <td
-                    key={col.id}
-                    className='--bottom-bordered'
-                  >
-                    {renderCell(row, col)}
-                  </td>
-                );
-              })}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <div />
+      <TableMenu
+        isMobile={isMobile}
+        onFilterChange={onFilterChange}
+        onSearch={onSearch}
+        menu={menu}
+      />
+      <Wrapper>
+        {!isMobile && (
+          <TableHead columns={columns} />
+        )}
+        <TableBody
+          isLoading={isLoading}
+          isMobile={isMobile}
+          rows={rows}
+          columns={columns}
+          mobileRow={mobileRow}
+        />
+      </Wrapper>
+      {isLoading ? (
+        <div className={loaderClassName}><Logo isLoading size='100px' /></div>
+      ) : (
+        <TablePagination
+          rows={rows}
+          totalRows={totalRows}
+          page={page}
+          onNextPageClick={onNextPageClick}
+          onPrevPageClick={onPrevPageClick}
+        />
+      )}
     </div>
   );
 };
 
 Table.propTypes = {
-  columns: PropTypes.arrayOf(PropTypes.shape({
-    header: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
-    accessor: PropTypes.string.isRequired,
-    cell: PropTypes.func,
-    filter: PropTypes.func,
-    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-    noFilter: PropTypes.bool,
-    width: PropTypes.string,
-    minWidth: PropTypes.string,
-    maxWidth: PropTypes.string,
-    collapse: PropTypes.bool,
-  })).isRequired,
-  data: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  })).isRequired,
+  /**
+   * Columns to use in the table
+   */
+  columns: PropTypes.arrayOf(TableColumnSchema).isRequired,
+  /**
+   * Data to show on the table
+   */
+  rows: PropTypes.arrayOf(TableRowSchema).isRequired,
+  /**
+   * As the table can work with dynamic data and fetch only the actual page it receive the data lenght
+   */
+  totalRows: PropTypes.number.isRequired,
+  /**
+   * Actual page the table is showing
+   */
+  page: PropTypes.number.isRequired,
+  /**
+   * Function to call when filter input is used
+   */
+  onFilterChange: PropTypes.func.isRequired,
+  /**
+   * Function to call when next page button is clicked
+   */
+  onNextPageClick: PropTypes.func.isRequired,
+  /**
+   * Function to call when prev page button is clicked
+   */
+  onPrevPageClick: PropTypes.func.isRequired,
+  /**
+   * It can receive a menu to extend it behavior
+   */
+  menu: PropTypes.node,
+  /**
+   * It can receive a mobile row to replace the desktop rows
+   */
+  mobileRow: PropTypes.func,
+  /**
+   * To render the loading table variant
+   */
+  isLoading: PropTypes.bool,
+  /**
+   * Function to be called when pressing enter or the search button on the filter input
+   */
+  onSearch: PropTypes.func.isRequired,
+};
+
+Table.defaultProps = {
+  menu: null,
+  mobileRow: null,
+  isLoading: false,
 };
 
 export default Table;

@@ -1,30 +1,31 @@
-.table__table {
-  width: 100%;
-  border-collapse: collapse;;
-}
+.table {
 
-.table__row {
-  height: 5em;
-}
+  &__wrapper {
+    width: 100%;
+    border-collapse: collapse;
+  }
 
-.table_span {
-  display: flex;
-  justify-content: flex-start;
-  @include padding(0, getSpacingsSSK('x2'), 0, getSpacingsSSK('x2'))
-}
+  &__loader-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    background-color: rgba(157, 158, 171, 0.1);
+    margin-top: 10px;
+    flex-direction: column;
+  }
 
-.--filter {
-  padding: 0;
-}
+  &__pagination-container {
+    display: flex;
+    justify-content: space-between;
 
-.--head {
-  color: $sskColorFontDarkGray
-}
+    &__item {
+      display: flex;
+      align-items: center;
 
-.--bottom-bordered {
-  border-bottom: 1px solid $sskColorBgDark;
-}
-
-.--collapse {
-  padding: 0;
+      &__buttons-container {
+        margin: getSpacingsSSK('x1')
+      }
+    }
+  }
 }
