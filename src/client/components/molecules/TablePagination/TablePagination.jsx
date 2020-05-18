@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
   MdChevronLeft as LeftIcon,
@@ -56,6 +57,29 @@ const TablePagination = (props) => {
       </div>
     </div>
   );
+};
+
+TablePagination.propTypes = {
+  /**
+   * The rows that the table renders
+   */
+  rows: PropTypes.arrayOf(TableRowSchema).isRequired,
+  /**
+   * As the table can work with dynamic data and fetch only the actual page it receive the data lenght
+   */
+  totalRows: PropTypes.number.isRequired,
+  /**
+   * Actual page the table is showing
+   */
+  page: PropTypes.number.isRequired,
+  /**
+   * Function to call when next page button is clicked
+   */
+  onNextPageClick: PropTypes.func.isRequired,
+  /**
+   * Function to call when prev page button is clicked
+   */
+  onPrevPageClick: PropTypes.func.isRequired,
 };
 
 export default TablePagination;
