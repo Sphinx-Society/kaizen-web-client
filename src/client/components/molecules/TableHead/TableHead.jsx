@@ -1,5 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TableCell from '../../atoms/TableCell/TableCell';
+
+import TableColumnSchema from '../../../schemas/TableColumn/TableColumn';
 
 const TableHead = (props) => {
   const {
@@ -13,6 +16,13 @@ const TableHead = (props) => {
       </tr>
     </thead>
   );
+};
+
+TableHead.propTypes = {
+  /**
+   * The columns to render inside each row
+   */
+  columns: PropTypes.arrayOf(TableColumnSchema).isRequired,
 };
 
 export default TableHead;
