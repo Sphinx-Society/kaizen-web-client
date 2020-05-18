@@ -1,11 +1,11 @@
 .container {
-
   &-body {
     width: 100%;
     padding: 32px;
     border: solid 1px red;
   }
 
+  /* Simulate other components */
   &-page {
     border: solid 2px red;
 
@@ -18,11 +18,14 @@
   }
 }
 
-
+/* To simulate the size of a screen and its layout */
 @media screen and (min-width: $breakpoint--large) {
   .container {
-
     &-body {
+      /* The father needs to have these values */
+      position: relative;
+      z-index: 1;
+      /* --- */
       height: 768px;
       display: flex;
       justify-content: flex-end;
@@ -30,6 +33,7 @@
       padding-left: 5em;
     }
 
+    /* Simulate other components */
     &-page {
       width: 100%;
       padding: 1em;
