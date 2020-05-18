@@ -16,6 +16,8 @@ const TextInput = (props) => {
     required,
     disabled,
     color,
+    icon,
+    iconPosition,
   } = props;
 
   const container = clsx({
@@ -25,7 +27,9 @@ const TextInput = (props) => {
 
   const label = clsx({
     'text-input__label': true,
-    'text-input__label--collected': value,
+    'text-input__label--icon-left': iconPosition === 'left',
+    'text-input__label--collected': value && iconPosition === 'right',
+    'text-input__label--collected--icon-left': value && iconPosition === 'left',
     [labelClassName]: labelClassName,
   });
 
@@ -33,7 +37,15 @@ const TextInput = (props) => {
     'text-input__input': true,
     'text-input__input--primary': color === 'primary',
     'text-input__input--secondary': color === 'secondary',
+    'text-input__input--icon-right': iconPosition === 'right',
+    'text-input__input--icon-left': iconPosition === 'left',
     [inputClassName]: inputClassName,
+  });
+
+  const iconClassName = clsx({
+    'text-input__icon-container': true,
+    'text-input__icon-container--icon-right': iconPosition === 'right',
+    'text-input__icon-container--icon-left': iconPosition === 'left',
   });
 
   return (
@@ -53,6 +65,11 @@ const TextInput = (props) => {
       >
         {placeholder}
       </label>
+      {icon && (
+        <span className={iconClassName}>
+          {icon}
+        </span>
+      )}
     </div>
   );
 };
@@ -98,6 +115,14 @@ TextInput.propTypes = {
    * It change the input color from primary to secondary
    */
   color: PropTypes.oneOf(['primary', 'secondary']),
+  /**
+   * Icon to be shown on the input
+   */
+  icon: PropTypes.node,
+  /**
+   * Position of the icon, left or rigth
+   */
+  iconPosition: PropTypes.oneOf(['left', 'right']),
 };
 
 TextInput.defaultProps = {
@@ -107,6 +132,8 @@ TextInput.defaultProps = {
   required: false,
   disabled: false,
   color: 'primary',
+  icon: null,
+  iconPosition: 'right',
 };
 
 export default TextInput;
