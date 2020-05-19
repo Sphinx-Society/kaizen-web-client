@@ -4,6 +4,7 @@ module.exports = {
   stories: [
     '../src/client/stories/gettingStarted.stories.mdx',
     '../src/client/components/**/**/*.stories.([tj]s[x]|mdx)',
+    '../src/client/schemas/**/stories/*.stories.mdx',
   ],
   addons: [
     {
@@ -14,6 +15,7 @@ module.exports = {
         sourceLoaderOptions: null,
       },
     },
+    '@storybook/addon-links'
   ],
   webpackFinal: async (config) => {
     config.module.rules.push({

@@ -1,0 +1,31 @@
+.table {
+
+  &__wrapper {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  &__loader-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    background-color: rgba(157, 158, 171, 0.1);
+    margin-top: 10px;
+    flex-direction: column;
+  }
+
+  &__pagination-container {
+    display: flex;
+    justify-content: space-between;
+
+    &__item {
+      display: flex;
+      align-items: center;
+
+      &__buttons-container {
+        margin: getSpacingsSSK('x1')
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import Background from '../../../assets/images/fondo.png';
-import Vector1 from '../../../assets/images/Vector 1.png';
+import Vector1 from '../../../assets/images/Vector1.png';
 import Vector2 from '../../../assets/images/Vector2.png';
 import DoctorVector from '../../../assets/images/doctor-vector.png';
 

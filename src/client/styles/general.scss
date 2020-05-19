@@ -1,3 +1,12 @@
+/* Breackpoint to media queries */
+$breakpoint--small-large: 639px;
+$breakpoint--medium: 719px;
+$breakpoint--large: 1023px;
+
+/* Other general variables */
+$borderSolid2xpDarkGray: solid 2px $sskColorFontDarkGray;
+
+/* General classes */
 .ssk--spacing {
   @include sskSpacings(1.0);
 }

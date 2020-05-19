@@ -19,7 +19,7 @@
   padding-left: $pLeft;
 }
 
-@mixin label-collected($left) {
+@mixin labelCollected($left) {
   font-size: $sskFontSizeSmall;
   top: -2px;
   left: $left;

@@ -2,7 +2,8 @@ import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks'
 import { FaEdit } from 'react-icons/fa';
 import { MdKeyboardArrowLeft } from 'react-icons/md';
 import { TiUserAdd } from 'react-icons/ti';
-
+import store from '../../../../redux/store/store'
+import Provider from '../../../../redux/store/ProviderWrapper'
 import Login from '../Login'
 import './Login.stories.scss'
 
@@ -17,9 +18,9 @@ Allow to access to aplicaction
 
 
 <Preview>
-  <div className='preview-flex1'>
-    <Login />
-  </div>
+    <Provider store={store}>
+      <Login />
+    </Provider>
 </Preview>
 
 

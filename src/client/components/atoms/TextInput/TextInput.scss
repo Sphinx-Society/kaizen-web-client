@@ -9,7 +9,7 @@
     font-family: $sskFontFamilyBase;
     height: 2em;
     border: none;
-    border-bottom: 1.5px solid $sskColorBgDark;
+    border-bottom: 2px solid $sskColorFontDarkGray;
     background: transparent;
     margin: 10px;
     outline: none;
@@ -20,25 +20,37 @@
     letter-spacing: .1px;
     width: calc(100% - 26px);
 
+    &--icon-right {
+      padding-right: 50px;
+    }
+
+    &--icon-left {
+      padding-left: 50px;
+    }
+
     &:disabled {
-      border-bottom: 1.5px solid $sskColorBgDisabled;
+      border-bottom: 2px solid $sskColorBgDisabled;
       cursor: not-allowed;
   }
 
     &:focus ~ .text-input__label {
-        @include label-collected(getSpacingsSSK('x1'));
+        @include labelCollected(getSpacingsSSK('x1'));
     }
+
+    &:focus ~ .text-input__label--icon-left {
+      @include labelCollected(getSpacingsSSK('x5'));
+  }
 }
 
 .text-input__input--primary {
   &:focus {
-    border-bottom: 1.5px solid $sskColorPrimaryMain;
+    border-bottom: 2px solid $sskColorPrimaryMain;
   }
 }
 
 .text-input__input--secondary {
   &:focus {
-    border-bottom: 1.5px solid $sskColorSecondaryMain;
+    border-bottom: 2px solid $sskColorSecondaryMain;
   }
 }
 
@@ -51,9 +63,26 @@
     cursor: text;
     transition: .3s;
     letter-spacing: .2px;
+    &--icon-left {
+      left: 60px;
+    }
 }
 
 .text-input__label--collected {
-    @include label-collected(getSpacingsSSK('x1'));
+    @include labelCollected(getSpacingsSSK('x1'));
     transition: 0s;
+    &--icon-left {
+      @include labelCollected(getSpacingsSSK('x5'));
+    }
+}
+
+.text-input__icon-container {
+  position: absolute;
+  bottom: 1em;
+  &--icon-right {
+    right: 25px;
+  }
+  &--icon-left {
+    left: 15px;
+  }
 }

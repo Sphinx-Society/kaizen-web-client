@@ -1,0 +1,45 @@
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks'
+
+import Navbar from '../Navbar'
+import './Navbar.stories.scss';
+
+<Meta
+  title='Components|Organisms/Navbar'
+  component={Navbar}
+/>
+
+# Navbar
+
+This body is used to show the main actions of each role.
+
+## Default in mobile-first (screen for width less than 1024px)
+
+<Preview>
+  <div className='container-body'>
+    <Navbar
+      onClickSearch={() => alert('Search')}
+      onClickProfile={() => alert('MyProfile')}
+      onClickSettings={() => alert('Settings')}
+    />
+  </div>
+</Preview>
+
+## With a brother container for all other components.
+
+<Preview>
+  <div className='container-body'>
+    <div className='container-page ssk--boxShadow'>
+      <div className='container-page__element'>Elemento 1</div>
+      <div className='container-page__element'>Elemento 2</div>
+    </div>
+    <Navbar
+      onClickSearch={() => alert('Search')}
+      onClickProfile={() => alert('MyProfile')}
+      onClickSettings={() => alert('Settings')}
+    />
+  </div>
+</Preview>
+
+## Props
+
+<Props of={Navbar} />

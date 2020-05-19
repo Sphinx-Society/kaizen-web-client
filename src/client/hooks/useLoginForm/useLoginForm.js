@@ -9,6 +9,7 @@ const useInputsChange = (action) => {
     setInputsState({ ...inputsState,
       [e.target.name]: e.target.value,
     });
+    console.log('hellu');
   };
   const handleSubmitForm = (e) => {
     e.preventDefault();

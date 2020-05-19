@@ -1,0 +1,72 @@
+import { Meta, Props, Preview } from '@storybook/addon-docs/blocks'
+import LinkTo from '@storybook/addon-links/react';
+import Table from '../Table'
+import {
+  rows,
+  columns,
+  mobileRow,
+  menu,
+  TableWrapper,
+} from './TableWrapper'
+
+import {
+  TABLE_COLUMN_REFERENCE,
+  TABLE_ROW_REFERENCE
+} from '../../../../schemas/references'
+
+<Meta
+  title='Components|Organisms/Table'
+  component={Table}
+/>
+
+# Table
+
+Table allow the user to manage a CRUD or watch data
+
+## Default
+
+<Preview>
+  <Table
+    columns={columns}
+    rows={rows.slice(0, 3)}
+    totalRows={6}
+    page={1}
+    mobileRow={mobileRow}
+  />
+</Preview>
+
+## With menu
+
+<Preview>
+  <Table
+    columns={columns}
+    rows={rows.slice(0, 3)}
+    totalRows={6}
+    page={1}
+    mobileRow={mobileRow}
+    menu={menu()}
+  />
+</Preview>
+
+## Loading
+
+<Preview>
+  <Table
+    columns={columns}
+    rows={rows.slice(0, 3)}
+    totalRows={6}
+    page={1}
+    mobileRow={mobileRow}
+    isLoading
+  />
+</Preview>
+
+
+## Props
+
+<Props of={Table} />
+
+### Schemas
+
+-  <LinkTo kind={TABLE_COLUMN_REFERENCE.path}>{TABLE_COLUMN_REFERENCE.name}</LinkTo>
+-  <LinkTo kind={TABLE_ROW_REFERENCE.path}>{TABLE_ROW_REFERENCE.name}</LinkTo>

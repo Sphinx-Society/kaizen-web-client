@@ -8,11 +8,13 @@ const Surface = (props) => {
     children,
     className,
     disableSpacing,
+    disableShadow,
   } = props;
 
   const surfaceStyles = clsx({
     'ssk--spacing': !disableSpacing,
     'surface__container': true,
+    'surface__container--no-shadow': disableShadow,
     [className]: className,
   });
 
@@ -36,11 +38,16 @@ Surface.propTypes = {
    * Used to remove the default padding and margin
    */
   disableSpacing: PropTypes.bool,
+  /**
+   * Used to remove surface shadow
+   */
+  disableShadow: PropTypes.bool,
 };
 
 Surface.defaultProps = {
   className: '',
   disableSpacing: false,
+  disableShadow: false,
 };
 
 export default Surface;
