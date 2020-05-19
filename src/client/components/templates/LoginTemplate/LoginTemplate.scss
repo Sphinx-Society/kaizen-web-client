@@ -1,0 +1,14 @@
+
+.login-template {
+  
+  display: grid;
+  grid-template-columns: 60% 40%;
+  height: 100%;
+  overflow: hidden;
+}
+
+@media (max-width: 768px)  {
+  .login-template {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,61 @@
+@mixin LocalMovePlaceholder {
+  top: 0;
+  left: 0;
+  font-size: $sskFontSizeBase * 0.75;
+}
+
+.select {
+  position: relative;
+  width: auto;
+  font-size: $sskFontSizeBase;
+  color: $sskColorFontMain;
+  border-bottom: 2px solid $sskColorFontDarkGray;
+  margin: getSpacingsSSK('x1');
+
+  &:active {
+    .select__label {
+      @include LocalMovePlaceholder;
+    }
+  }
+
+  &--disabled {
+    background-color: $sskColorBgDisabled;
+  }
+
+  &__label {
+    position: absolute;
+    z-index: 4;
+    top: 40%;
+    left: getSpacingsSSK('x1');
+    transition: font-size 0.3s, top 0.3s, left 0.3s;
+    color: $sskColorFontMain;
+
+    &--value {
+      @include LocalMovePlaceholder;
+    }
+  }
+
+  &__select {
+    width: 100%;
+    position: relative;
+    z-index: 8;
+    background-color: transparent;
+    color: sskColorFontDark;
+    font-size: $sskFontSizeBase;
+    padding: getSpacingsSSK('x1');
+    padding-bottom: getSpacingsSSK('x0.5');
+    padding-top: $sskFontSizeBase * 1.2;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  & svg {
+    display: inline-block;
+    position: absolute;
+    z-index: 6;
+    right: 0;
+    top: 32%;
+  }
+}

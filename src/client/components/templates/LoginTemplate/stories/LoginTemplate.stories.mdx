@@ -1,0 +1,22 @@
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks'
+import LoginTemplate from '../LoginTemplate.js'
+
+import store from '../../../../redux/store'
+import Provider from '../../../../redux/ProviderWrapper'
+
+
+<Meta
+  title='Components|Templates/LoginTemplate'
+  component={LoginTemplate}
+/>
+
+# LoginTemplate
+It is in charge of putting in order login and Shapes-container components
+<Preview>
+  <div className='preview1'>
+    <Provider store={store}>
+      <LoginTemplate />
+    </Provider>
+    </div>
+</Preview>
+
