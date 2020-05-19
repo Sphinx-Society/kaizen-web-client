@@ -3,6 +3,10 @@ body, html, #app, * {
 	padding: 0;
 	box-sizing: border-box;
 }
+#app {
+	height: 100vh;
+	position: relative;
+}
 
 body {
 	font-size: $sskFontSizeBase;
@@ -27,4 +31,13 @@ h3 {
 
 th {
   font-weight: $sskFontWeightRegular;
+}
+
+select {
+	-webkit-appearance: none;
+  appearance: none;
+	outline: none;
+	cursor: pointer;
+	border: none;
+	background: none;
 }

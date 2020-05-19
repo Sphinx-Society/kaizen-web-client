@@ -5,3 +5,15 @@ $nMultiSizes: ('x0': 0, 'x0.5': 0.5, 'x1': 1.0, 'x1.5': 1.5, 'x2': 2.0, 'x2.5': 
 @function getSpacingsSSK($findKey) {
   @return $sskSpacingUnit * map-get($nMultiSizes, $findKey);
 }
+
+@mixin flex ($direction: rows, $horizontal: center, $vertical: center) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $horizontal;
+  align-items: $vertical;
+  
+}
+@mixin paddingAndMargin($multiPadding: 1, $multiMarging: 1) {
+  margin: $sskSpacingUnit * $multiPadding;
+  padding: $sskSpacingUnit * $multiMarging;
+}
