@@ -42,7 +42,31 @@
 	&:disabled {
 		@include colorFontAndBg($sskColorFontDisabled, $sskColorBgDisabled);
 		cursor: not-allowed;
-	}
+  }
+
+  &__content {
+    &--cols3 {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      column-gap: getSpacingsSSK('x1');
+    }
+
+    &--cols3-right {
+      @extend .btn__content--cols3;
+      &>:nth-child(1) {
+        grid-column: 2 / 3;
+      }
+      &>:nth-child(2) {
+        grid-column: 3 / 4;
+      }
+    }
+
+    &--cols2 {
+      @extend .btn__content--cols3;
+      grid-template-columns: auto auto;
+    }
+  }
 }
 
 .btn-icon {
@@ -108,29 +132,5 @@
 	&--space-mode-4 {
 		@include padding($padTB, $padRL, $padTB, $padRL);
 		border-radius: getSpacingsSSK('x4');
-	}
-}
-
-.btn__container {
-	&--cols3 {
-		display: grid;
-		grid-template-columns: 1fr auto 1fr;
-		align-items: center;
-		column-gap: getSpacingsSSK('x1');
-	}
-
-	&--cols3-right {
-		@extend .btn__container--cols3;
-		&>:nth-child(1) {
-			grid-column: 2 / 3;
-		}
-		&>:nth-child(2) {
-			grid-column: 3 / 4;
-		}
-	}
-
-	&--cols2 {
-		@extend .btn__container--cols3;
-		grid-template-columns: auto auto;
 	}
 }
