@@ -1,0 +1,48 @@
+import { Meta, Props, Preview } from '@storybook/addon-docs/blocks'
+import Logo from '../Logo'
+
+<Meta
+  title='Components|Atoms/Logo'
+  component={Logo}
+/>
+
+# Logo
+
+Logo is used to represent the application logo or a loader
+
+## Default
+
+<Preview>
+  <Logo/>
+</Preview>
+
+## With loader
+
+<Preview>
+  <Logo isLoading/>
+</Preview>
+
+## With sizes
+
+<Preview>
+  <Logo size='1em'/>
+  <Logo size='2em'/>
+  <Logo size='3em'/>
+  <Logo size='4em'/>
+  <Logo size='5em'/>
+</Preview>
+
+## With sizes and loader
+
+<Preview>
+  <Logo isLoading size='1em' hideLabel/>
+  <Logo isLoading size='2em' hideLabel/>
+  <Logo isLoading size='3em'/>
+  <Logo isLoading size='4em'/>
+  <Logo isLoading size='5em'/>
+</Preview>
+
+
+## Props
+
+<Props of={Logo} />

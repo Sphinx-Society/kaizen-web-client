@@ -1,5 +1,6 @@
 import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks'
 import TextInput from '../TextInput'
+import { MdSearch } from 'react-icons/md';
 
 <Meta
   title='Components|atoms/TextInput'
@@ -34,10 +35,32 @@ This atom is used to submit text data by the user
 <Preview>
   <TextInput
     placeholder='Name'
-    id='second'
+    id='third'
     disabled
   />
 </Preview>
+
+## Icon
+
+<Preview>
+  <TextInput
+    placeholder='Name'
+    id='fourth'
+    icon={<MdSearch size="2em"/>}
+  />
+</Preview>
+
+## Left Icon
+
+<Preview>
+  <TextInput
+    placeholder='Name'
+    id='fifth'
+    icon={<MdSearch size="2em"/>}
+    iconPosition='left'
+  />
+</Preview>
+
 
 ## Props
 

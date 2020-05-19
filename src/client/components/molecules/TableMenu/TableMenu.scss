@@ -1,0 +1,21 @@
+.table-menu {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  justify-items: end;
+  align-items: center;
+  margin-bottom: getSpacingsSSK('x2');
+  @include apply-to('medium') {
+    margin-bottom: 200px;
+  }
+
+  &__input {
+    justify-self: left;
+    width: 100%;
+    @include apply-to('medium') {
+      position: fixed;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+  }
+}

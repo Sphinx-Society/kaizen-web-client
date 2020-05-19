@@ -1,0 +1,18 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta
+  title='Schemas|TableColumn'
+/>
+
+# TableColumn Schema
+
+| Attribute | Type             | Description                                                                                                                                                                                            |
+|-----------|------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| header*   | string\|function | Header to be shown in the column, it can be a function that receives the column as parameter and return a component to render inside the header. Example: (column) => <ComponentToRender {...column}/> |
+| accessor* | string           | Key to access in the row object                                                                                                                                                                        |
+| cell      | function         | A function that receives the row as parameter and return an component to render inside the cell. Example: (row) => <ComponentToRender {...row}/>                                                       |
+| id*       | string\|number   | ID of the column                                                                                                                                                                                       |
+| width     | string           | Width of the column                                                                                                                                                                                    |
+| minWidth  | string           | Min width of the column                                                                                                                                                                                |
+| maxWidth  | string           | Max width of the column                                                                                                                                                                                |
+| collapse  | boolean          | It removes the padding inside the column cells
