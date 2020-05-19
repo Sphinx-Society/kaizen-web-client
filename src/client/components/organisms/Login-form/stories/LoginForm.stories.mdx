@@ -1,0 +1,23 @@
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks'
+import LoginForm from '../LoginForm'
+import store from '../../../../redux/store'
+import Provider from '../../../../redux/ProviderWrapper'
+
+import './LoginForm.stories.scss'
+
+<Meta
+  title='Components|Organisms/LoginForm'
+  component={LoginForm}
+/>
+
+# LoginForm
+Allow application authentication by user role
+<Preview>
+    <Provider store={store}>
+      <LoginForm />
+    </Provider>
+</Preview>
+
+
+## Props
+<Props of={LoginForm} />

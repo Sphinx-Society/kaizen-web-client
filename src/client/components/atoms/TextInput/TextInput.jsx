@@ -13,8 +13,10 @@ const TextInput = (props) => {
     containerClassName,
     labelClassName,
     inputClassName,
+    inputName,
     required,
     disabled,
+    type,
     color,
   } = props;
 
@@ -39,13 +41,14 @@ const TextInput = (props) => {
   return (
     <div className={container}>
       <input
+        name={inputName}
         className={input}
         id={id}
         value={value}
         onChange={onChange}
         required={required}
         disabled={disabled}
-        type='text'
+        type={type}
       />
       <label
         className={label}
@@ -62,6 +65,10 @@ TextInput.propTypes = {
    * The input identification, it's also needed for the placeholder to move on click
    */
   id: PropTypes.string.isRequired,
+  /**
+   * The input identification, it's also needed for the placeholder to move on click
+   */
+  type: PropTypes.oneOf(['text', 'password', 'email']),
   /**
    * It represent both, placeholder and label
    */
@@ -107,6 +114,7 @@ TextInput.defaultProps = {
   required: false,
   disabled: false,
   color: 'primary',
+  type: 'text',
 };
 
 export default TextInput;
