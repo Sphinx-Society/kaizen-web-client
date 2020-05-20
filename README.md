@@ -35,7 +35,7 @@ npm init
 
 Installing dependencies
 ```
-npm instal
+npm install
 ```
 Executing to develop
 ```
