@@ -1,16 +1,18 @@
-$breakpoint--small: 600px;
-$breakpoint--medium: 960px;
-$breakpoint--large: 1280px;
-$breakpoint--extra-large: 1920px;
+$breakpointExtraSmall: 600px;
+$breakpointSmall: 768px;
+$breakpointMedium: 1024px;
+$breakpointLarge: 1366px;
+$breakpointExtraLarge: 1920px;
 
 $breakpoints: (
-  'small':  ( max-width:  $breakpoint--small ),
-  'medium': ( max-width:  $breakpoint--medium ),
-  'large':  ( max-width: $breakpoint--medium ),
-  'extra-large':  ( max-width: $breakpoint--extra-large ),
+  'xs':  (max-width:  $breakpointExtraSmall),
+  's':  (max-width:  $breakpointSmall),
+  'm': (max-width:  $breakpointMedium),
+  'l':  (max-width: $breakpointLarge),
+  'xl':  (max-width: $breakpointExtraLarge),
 ) !default;
 
-@mixin apply-to($breakpoint) {
+@mixin applyTo($breakpoint) {
   @if map-has-key($breakpoints, $breakpoint) {
     @media #{inspect(map-get($breakpoints, $breakpoint))} {
       @content;
@@ -18,13 +20,14 @@ $breakpoints: (
   }
 
   @else {
-    @warn "Unfortunately, no value could be retrieved from `#{$breakpoint}`. Available breakpoints are: #{map-keys($breakpoints)}.";
+    @warn "No value could be retrieved from `#{$breakpoint}`. Available breakpoints are: #{map-keys($breakpoints)}.";
   }
 }
 
 :export {
-  breakpointSmall: $breakpoint--small;
-  breakpointMedium: $breakpoint--medium;
-  breakpointLarge: $breakpoint--large;
-  breakpointExtraLarge: $breakpoint--extra-large;
+  breakpointExtraSmall: $breakpointExtraSmall;
+  breakpointSmall: $breakpointSmall;
+  breakpointMedium: $breakpointMedium;
+  breakpointLarge: $breakpointLarge;
+  breakpointExtraLarge: $breakpointExtraLarge;
 }

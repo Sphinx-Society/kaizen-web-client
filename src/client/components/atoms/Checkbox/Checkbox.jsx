@@ -1,40 +1,42 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { FaCheck } from 'react-icons/fa';
+import { FaCheck as CheckIcon } from 'react-icons/fa';
 
 import './Checkbox.scss';
 
 const Checkbox = (props) => {
   const { id, onChange, checked, size, disabled } = props;
-  const [checkedApply, setChecked] = useState(checked);
+  const [isChecked, setIsChecked] = useState(checked);
 
   const handleOnChange = () => {
     if (!disabled) {
-      setChecked(!checkedApply);
+      setIsChecked(!isChecked);
       onChange();
     }
   };
 
-  const checkedStyles = clsx({
+  const checkboxClassName = clsx({
     'checkbox': true,
-    'checkbox--on': checkedApply,
+    'checkbox--enable': isChecked,
     'checkbox--disabled': disabled,
   });
 
+  const iconClassName = cslx({ '--hidden': !isChecked });
+
   return (
-    <label htmlFor={id} className={checkedStyles} onChange={handleOnChange}>
+    <label htmlFor={id} className={checkboxClassName} onChange={handleOnChange}>
       <div>
         <input
           className='checkbox__input'
           type='checkbox'
-          checked={checkedApply}
+          checked={isChecked}
           readOnly
           id={id}
           hidden
           disabled={disabled}
         />
-        <FaCheck size={size} className={checkedApply ? '' : 'hidden'} />
+        <CheckIcon size={size} className={iconClassName} />
       </div>
     </label>
   );
@@ -43,16 +45,12 @@ const Checkbox = (props) => {
 Checkbox.propTypes = {
   /** The ID for input type checkbox and connect with his label  */
   id: PropTypes.string.isRequired,
-
   /** Function that will be called on change event */
   onChange: PropTypes.func.isRequired,
-
   /** Lets start the component as marked */
   checked: PropTypes.bool,
-
   /** Determine the icon size */
   size: PropTypes.string,
-
   /** Allows you to disable the checkbox */
   disabled: PropTypes.bool,
 };

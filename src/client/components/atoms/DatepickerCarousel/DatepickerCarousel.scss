@@ -12,14 +12,14 @@
 }
 
 .datepicker-carousel__text {
-  color: $sskColorBgDark;
+  color: $colorBgDark;
 }
 
 .datepiker-carousel__input {
   border: none;
-  border-bottom: 1px solid $sskColorBgDark;
+  border-bottom: 1px solid $colorBgDark;
   outline: none;
-  width: getSpacingsSSK('x3');
+  width: getSpacing(3);
   &::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;

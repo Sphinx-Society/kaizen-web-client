@@ -25,7 +25,7 @@ const TablePagination = (props) => {
   const className = clsx({ 'table__pagination-container': true });
   const itemClassName = clsx({ 'table__pagination-container__item': true });
   const menuClassName = clsx({ 'table__pagination-container__item__buttons-container': true });
-  const buttonClassName = clsx({ 'ssk--boxShadow': true });
+  const buttonClassName = clsx({ '--shadowed': true });
 
   const Icon = ({ side }) => (side === 'left' ? <LeftIcon size='1.3em' /> : <RightIcon size='1.3em' />);
 

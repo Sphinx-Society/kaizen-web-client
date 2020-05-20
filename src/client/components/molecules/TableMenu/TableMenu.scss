@@ -3,7 +3,7 @@
   grid-template-columns: 40% 60%;
   justify-items: end;
   align-items: center;
-  margin-bottom: getSpacingsSSK('x2');
+  margin-bottom: getSpacing(2);
   @include apply-to('medium') {
     margin-bottom: 200px;
   }

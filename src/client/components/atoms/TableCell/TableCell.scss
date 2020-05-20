@@ -2,11 +2,11 @@
   &__content {
     display: flex;
     justify-content: flex-start;
-    @include padding(0, getSpacingsSSK('x2'), 0, getSpacingsSSK('x2'));
-    color: $sskColorFontMain;
+    @include padding(0, getSpacing(2), 0, getSpacing(2));
+    color: $colorFontMain;
 
     &--head {
-      color: $sskColorFontDarkGray;
+      color: $colorFontDarkGray;
     }
 
     &--collapse {
@@ -15,6 +15,6 @@
   }
 
   &--bottom-bordered {
-    border-bottom: 3px solid $sskColorFontDarkGray;
+    border-bottom: 3px solid $colorFontDarkGray;
   }
 }

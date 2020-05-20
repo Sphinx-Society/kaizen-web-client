@@ -1,21 +1,21 @@
 .top-filter__container {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  padding: getSpacingsSSK('x2');
+  padding: getSpacing(2);
   position: relative;
 }
 
 .top-filter__input {
-  border-radius: getSpacingsSSK('x2');
+  border-radius: getSpacing(2);
   border: none;
   box-shadow: 0px 0px 4px #a8a8a8;
-  @include padding(getSpacingsSSK('x1'), getSpacingsSSK('x3.5'), getSpacingsSSK('x1'), getSpacingsSSK('x1'));
+  @include padding(getSpacing(1), getSpacing(3.5), getSpacing(1), getSpacing(1));
   outline: none;
-  color: $sskColorFontMain;
+  color: $colorFontMain;
   width: 100%;
 
   &:disabled {
-    background-color: $sskColorBgDisabled;
+    background-color: $colorBgDisabled;
     cursor: not-allowed;
   }
 
@@ -23,7 +23,7 @@
 
 .top-filter__icon {
   position: absolute;
-  right: getSpacingsSSK('x3');
-  top: getSpacingsSSK('x2.5');
-  fill: $sskColorFontMain;
+  right: getSpacing(3);
+  top: getSpacing(2.5);
+  fill: $colorFontMain;
 }

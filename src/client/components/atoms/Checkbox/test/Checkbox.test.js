@@ -43,8 +43,8 @@ describe('Checkbox', () => {
         expect(cBox.find('svg').prop('width')).toBe('1em');
       });
 
-      test('Has a "class" equal to "hidden"', () => {
-        expect(cBox.find('svg').prop('class')).toBe('hidden');
+      test('Has a "class" equal to "--hidden"', () => {
+        expect(cBox.find('svg').prop('class')).toBe('--hidden');
       });
     });
 

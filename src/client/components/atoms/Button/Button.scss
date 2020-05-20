@@ -16,31 +16,31 @@
 	border: none;
 	width: auto;
 	font-size: 1rem;
-	font-weight: $sskFontWeightBold;
+	font-weight: $fontWeightBold;
 	outline: none;
 	cursor: pointer;
-	border-radius: getSpacingsSSK('x3');
-	@include colorFontAndBg($sskColorFontDark, transparent);
-	@include btnHover($sskColorFontLight, $sskColorPrimaryMain);
-	@include btnActive($sskColorSuccess, $sskColorFontDark);
+	border-radius: getSpacing(3);
+	@include colorFontAndBg($colorFontDark, transparent);
+	@include btnHover($colorFontLight, $colorPrimaryMain);
+	@include btnActive($colorSuccess, $colorFontDark);
 
 	&--primary {
-		@include colorFontAndBg($sskColorFontLight, $sskColorPrimaryMain);
-		@include btnHover($sskColorFontDark, $sskColorSecondaryMain);
+		@include colorFontAndBg($colorFontLight, $colorPrimaryMain);
+		@include btnHover($colorFontDark, $colorSecondaryMain);
 	}
 
 	&--secondary {
-		@include colorFontAndBg($sskColorFontDark, $sskColorSecondaryMain);
-		@include btnHover($sskColorFontLight, $sskColorPrimaryMain);
+		@include colorFontAndBg($colorFontDark, $colorSecondaryMain);
+		@include btnHover($colorFontLight, $colorPrimaryMain);
 	}
 
 	&--warning {
-		@include colorFontAndBg($sskColorFontLight, $sskColorWarningPrimary);
-		@include btnHover($sskColorFontDark, $sskColorWarningSecondary);
+		@include colorFontAndBg($colorFontLight, $colorWarningPrimary);
+		@include btnHover($colorFontDark, $colorWarningSecondary);
 	}
 
 	&:disabled {
-		@include colorFontAndBg($sskColorFontDisabled, $sskColorBgDisabled);
+		@include colorFontAndBg($colorFontDisabled, $colorBgDisabled);
 		cursor: not-allowed;
   }
 
@@ -49,7 +49,7 @@
       display: grid;
       grid-template-columns: 1fr auto 1fr;
       align-items: center;
-      column-gap: getSpacingsSSK('x1');
+      column-gap: getSpacing(1);
     }
 
     &--cols3-right {
@@ -71,39 +71,39 @@
 
 .btn-icon {
 	@extend .btn;
-	$padTB: getSpacingsSSK('x0.5');
-	$padRL: getSpacingsSSK('x1');
+	$padTB: getSpacing(0.5);
+	$padRL: getSpacing(1);
 	line-height: 0;
 	width: fit-content;
 	height: fit-content;
-	border-radius: getSpacingsSSK('x0');
-	@include btnHover($sskColorPrimaryMain, transparent);
+	border-radius: getSpacing(0);
+	@include btnHover($colorPrimaryMain, transparent);
 	@include btnActive(initial, initial);
 
 	&--primary {
-		@include colorFontAndBg($sskColorPrimaryMain, transparent);
-		@include btnHover($sskColorSecondaryMain, transparent);
+		@include colorFontAndBg($colorPrimaryMain, transparent);
+		@include btnHover($colorSecondaryMain, transparent);
 	}
 
 	&--secondary {
-		@include colorFontAndBg($sskColorSecondaryMain, transparent);
-		@include btnHover($sskColorPrimaryMain, transparent);
+		@include colorFontAndBg($colorSecondaryMain, transparent);
+		@include btnHover($colorPrimaryMain, transparent);
 	}
 
 	&--warning {
-		@include colorFontAndBg($sskColorWarningPrimary, transparent);
-		@include btnHover($sskColorWarningSecondary, transparent);
+		@include colorFontAndBg($colorWarningPrimary, transparent);
+		@include btnHover($colorWarningSecondary, transparent);
 	}
 
 	&--light {
-		@include colorFontAndBg($sskColorFontLight, transparent);
-		@include btnHover($sskColorPrimaryMain, transparent);
+		@include colorFontAndBg($colorFontLight, transparent);
+		@include btnHover($colorPrimaryMain, transparent);
 	}
 
 	&:disabled {
-		@include colorFontAndBg($sskColorFontDisabled, $sskColorBgDisabled);
+		@include colorFontAndBg($colorFontDisabled, $colorBgDisabled);
 		cursor: not-allowed;
-	}
+  }
 
 	&--space-mode-circle-0 {
 		border-radius:100%;
@@ -116,21 +116,21 @@
 
 	&--space-mode-1 {
 		@include padding($padTB, $padRL, $padTB, $padRL);
-		border-radius: getSpacingsSSK('x0.5');
+		border-radius: getSpacing(0.5);
 	}
 
 	&--space-mode-2 {
 		@include padding($padTB, $padRL, $padTB, $padRL);
-		border-radius: getSpacingsSSK('x1');
+		border-radius: getSpacing(1);
 	}
 
 	&--space-mode-3 {
 		@include padding($padTB, $padRL, $padTB, $padRL);
-		border-radius: getSpacingsSSK('x2');
+		border-radius: getSpacing(2);
 	}
 
 	&--space-mode-4 {
 		@include padding($padTB, $padRL, $padTB, $padRL);
-		border-radius: getSpacingsSSK('x4');
+		border-radius: getSpacing(4);
 	}
 }

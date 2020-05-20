@@ -6,17 +6,17 @@
 }
 
 .text-input__input {
-    font-family: $sskFontFamilyBase;
+    font-family: $fontFamilyBase;
     height: 2em;
     border: none;
-    border-bottom: 2px solid $sskColorFontDarkGray;
+    border-bottom: 2px solid $colorFontDarkGray;
     background: transparent;
     margin: 10px;
     outline: none;
-    color: $sskColorFontMain;
+    color: $colorFontMain;
     padding: 0 8px;
     font-weight: 400;
-    font-size: $sskFontSizeBase;
+    font-size: $fontSizeBase;
     letter-spacing: .1px;
     width: calc(100% - 26px);
 
@@ -29,35 +29,35 @@
     }
 
     &:disabled {
-      border-bottom: 2px solid $sskColorBgDisabled;
+      border-bottom: 2px solid $colorBgDisabled;
       cursor: not-allowed;
   }
 
     &:focus ~ .text-input__label {
-        @include labelCollected(getSpacingsSSK('x1'));
+        @include labelCollected(getSpacing(1));
     }
 
     &:focus ~ .text-input__label--icon-left {
-      @include labelCollected(getSpacingsSSK('x5'));
+      @include labelCollected(getSpacing(5));
   }
 }
 
 .text-input__input--primary {
   &:focus {
-    border-bottom: 2px solid $sskColorPrimaryMain;
+    border-bottom: 2px solid $colorPrimaryMain;
   }
 }
 
 .text-input__input--secondary {
   &:focus {
-    border-bottom: 2px solid $sskColorSecondaryMain;
+    border-bottom: 2px solid $colorSecondaryMain;
   }
 }
 
 .text-input__label {
     position: absolute;
-    color: $sskColorFontMain;
-    font-size: $sskFontSizeBase;
+    color: $colorFontMain;
+    font-size: $fontSizeBase;
     top: calc(50% - 14px);
     left: 16px;
     cursor: text;
@@ -69,10 +69,10 @@
 }
 
 .text-input__label--collected {
-    @include labelCollected(getSpacingsSSK('x1'));
+    @include labelCollected(getSpacing(1));
     transition: 0s;
     &--icon-left {
-      @include labelCollected(getSpacingsSSK('x5'));
+      @include labelCollected(getSpacing(5));
     }
 }
 

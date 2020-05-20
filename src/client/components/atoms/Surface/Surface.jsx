@@ -12,7 +12,7 @@ const Surface = (props) => {
   } = props;
 
   const surfaceStyles = clsx({
-    'ssk--spacing': !disableSpacing,
+    '--spaced': !disableSpacing,
     'surface__container': true,
     'surface__container--no-shadow': disableShadow,
     [className]: className,

@@ -1,13 +1,13 @@
 .datepicker-day__container {
-    padding: getSpacingsSSK('x1');
-    margin: getSpacingsSSK('x0.5');
+    padding: getSpacing(1);
+    margin: getSpacing(0.5);
     text-align: center;
-    color: $sskColorBgDark;
+    color: $colorBgDark;
     user-select: none;
-    border-radius: getSpacingsSSK('x0.5');
+    border-radius: getSpacing(0.5);
     &:hover {
       background-color: rgba(0,0,0,0.1);
-      color: $sskColorBgDark;
+      color: $colorBgDark;
     }
 }
 
@@ -16,6 +16,6 @@
 }
 
 .datepicker-day__container--selected {
-    background-color: $sskColorPrimaryMain;
+    background-color: $colorPrimaryMain;
     color: white;
 }

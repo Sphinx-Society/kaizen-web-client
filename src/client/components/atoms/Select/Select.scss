@@ -1,16 +1,16 @@
 @mixin LocalMovePlaceholder {
   top: 0;
   left: 0;
-  font-size: $sskFontSizeBase * 0.75;
+  font-size: $fontSizeBase * 0.75;
 }
 
 .select {
   position: relative;
   width: 100%;
-  font-size: $sskFontSizeBase;
-  color: $sskColorFontMain;
-  border-bottom: $borderSolid2xpDarkGray;
-  margin: getSpacingsSSK('x1');
+  font-size: $fontSizeBase;
+  color: $colorFontMain;
+  border-bottom: $borderSolid2pxDarkGray;
+  margin: getSpacing(1);
 
   &:active {
     .select__label {
@@ -19,16 +19,16 @@
   }
 
   &--disabled {
-    background-color: $sskColorBgDisabled;
+    background-color: $colorBgDisabled;
   }
 
   &__label {
     position: absolute;
     z-index: 4;
     top: 25%;
-    left: getSpacingsSSK('x1');
+    left: getSpacing(1);
     transition: font-size 0.3s, top 0.3s, left 0.3s;
-    color: $sskColorFontMain;
+    color: $colorFontMain;
 
     &--value {
       @include LocalMovePlaceholder;
@@ -40,9 +40,9 @@
     position: relative;
     z-index: 8;
     background-color: transparent;
-    color: $sskColorFontDark;
-    font-size: $sskFontSizeBase;
-    padding: 5.5px getSpacingsSSK('x1');
+    color: $colorFontDark;
+    font-size: $fontSizeBase;
+    padding: 5.5px getSpacing(1);
 
     &:disabled {
       cursor: not-allowed;

@@ -2,23 +2,23 @@
 	cursor: pointer;
   outline: none;
   display: inline-block;
-  padding: getSpacingsSSK('x0.5');
-  border-radius: getSpacingsSSK('x0.5');
-  border: 1px solid $sskColorPrimaryMain;
-  @include colorFontAndBg($sskColorFontLight, rgba($sskColorPrimaryMain, 40%));
+  padding: getSpacing(0.5);
+  border-radius: getSpacing(0.5);
+  border: 1px solid $colorPrimaryMain;
+  @include colorFontAndBg($colorFontLight, rgba($colorPrimaryMain, 40%));
 
   & > div {
     display: flex;
     align-content: center;
   }
 
-  &--on {
-    @include colorFontAndBg($sskColorFontLight, $sskColorPrimaryMain);
+  &--enable {
+    @include colorFontAndBg($colorFontLight, $colorPrimaryMain);
   }
 
   &--disabled {
     cursor: not-allowed;
-    border-color: $sskColorBgMain;
-    @include colorFontAndBg($sskColorFontDisabled, $sskColorBgDisabled);
+    border-color: $colorBgMain;
+    @include colorFontAndBg($colorFontDisabled, $colorBgDisabled);
   }
 }

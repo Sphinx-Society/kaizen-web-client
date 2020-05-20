@@ -28,7 +28,7 @@ const Button = (props) => {
   const setClass = (isIcon, array, value, index) => isIcon && (array[index] === value);
 
   const buttonClassName = clsx({
-    'ssk--spacing': !isIcon,
+    '--spaced': !isIcon,
     'btn': !isIcon,
     'btn--primary': setClass(!isIcon, colors, color, 0),
     'btn--secondary': setClass(!isIcon, colors, color, 1),
@@ -74,49 +74,27 @@ const Button = (props) => {
 };
 
 Button.propTypes = {
-  /**
-   * Function that will be called on click event.
-   */
+  /** Function that will be called on click event. */
   onClick: PropTypes.func.isRequired,
-  /**
-   * The text inside the button or another component
-   */
+  /** The text inside the button or another component */
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
-  /**
-   * Specify the type of the button
-   */
+  /** Specify the type of the button */
   type: PropTypes.oneOf(['button', 'submit', 'reset']),
-  /**
-   * Element Icon type
-   */
+  /** Element Icon type */
   icon: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
-  /**
-   * Spacing modes for icon type
-   */
+  /** Spacing modes for icon type */
   iconMode: PropTypes.oneOf(iconModes),
-  /**
-   * Indicates is placed on the right side of the text
-   */
+  /** Indicates is placed on the right side of the text */
   iconRight: PropTypes.bool,
-  /**
-   * Icon and other elements will be centered.
-   */
+  /** Icon and other elements will be centered. */
   centered: PropTypes.bool,
-  /**
-   * Boolean class to specify if the color button is primary, secondary or warning
-   */
+  /** Boolean class to specify if the color button is primary, secondary or warning */
   color: PropTypes.oneOf(colors),
-  /**
-   * Class to overwrite the styles
-   */
+  /** Class to overwrite the styles */
   className: PropTypes.string,
-  /**
-   * Specify if the button is disabled or not
-   */
+  /** Specify if the button is disabled or not */
   disabled: PropTypes.bool,
-  /**
-   * If the button is outside a form and you want to active the submit event on click, you can pass the form id
-   */
+  /** If the button is outside a form and you want to active the submit event on click, you can pass the form id */
   form: PropTypes.string,
 };
 

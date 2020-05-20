@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: column;
   margin: 0;
-  padding: getSpacingsSSK('x1');
+  padding: getSpacing(1);
 }
 
 .datepicker__calendar__table__container {
@@ -15,7 +15,7 @@
 }
 
 .datepicker__calendar__week-days {
-  color: $sskColorBgDark;
+  color: $colorBgDark;
   user-select: none;
 }
 
@@ -25,19 +25,19 @@
 
 .datepicker__input {
   width: calc(100% - 45px);
-  @include padding(getSpacingsSSK('x0.5'), getSpacingsSSK('x4'), getSpacingsSSK('x0'), getSpacingsSSK('x0.5'));
+  @include padding(getSpacing(0.5), getSpacing(4), getSpacing(0), getSpacing(0.5));
   height: 2em;
-  margin-bottom: getSpacingsSSK('x1');
+  margin-bottom: getSpacing(1);
   border: none;
-  border-bottom: 1px solid $sskColorBgDark;
+  border-bottom: 1px solid $colorBgDark;
   outline: none;
 
   &:focus ~ .datepicker__input__label {
-    @include labelCollected(getSpacingsSSK('x0.5'));
+    @include labelCollected(getSpacing(0.5));
   }
 
   &:disabled {
-    border-bottom: 1px solid $sskColorBgDisabled;
+    border-bottom: 1px solid $colorBgDisabled;
     cursor: not-allowed;
   }
 }
@@ -55,7 +55,7 @@
 
 .datepicker__input__label {
   position: absolute;
-  color: $sskColorFontMain;
+  color: $colorFontMain;
   font-size: 14px;
   top: calc(50% - 14px);
   left: 16px;
@@ -65,6 +65,6 @@
 }
 
 .datepicker__input__label--collected {
-  @include labelCollected(getSpacingsSSK('x0.5'));
+  @include labelCollected(getSpacing(0.5));
   transition: 0s;
 }

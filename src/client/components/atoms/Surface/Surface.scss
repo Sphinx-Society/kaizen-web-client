@@ -1,7 +1,7 @@
 .surface__container {
   display: inline-block;
-  border-radius: getSpacingsSSK('x2');
-  box-shadow: 0px 0px 4px $sskColorBoxShadowLight;
+  border-radius: getSpacing(2);
+  box-shadow: 0px 0px 4px $colorBoxShadowLight;
 
   &--no-shadow {
     box-shadow: none;

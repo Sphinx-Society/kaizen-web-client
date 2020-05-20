@@ -1,20 +1,15 @@
-/* Breackpoint to media queries */
-$breakpoint--small-large: 639px;
-$breakpoint--medium: 719px;
-$breakpoint--large: 1023px;
-
 /* Other general variables */
-$borderSolid2xpDarkGray: solid 2px $sskColorFontDarkGray;
+$borderSolid2pxDarkGray: solid 2px $colorFontDarkGray;
 
 /* General classes */
-.ssk--spacing {
-  @include sskSpacings(1.0);
+.--spaced {
+  @include addSpaces(1.0);
 }
 
-.ssk--boxShadow {
+.--shadowed {
   box-shadow: 0px 0px 4px $sskColorBoxShadowLight;
 }
 
-.hidden {
+.--hidden {
   visibility: hidden;
 }
