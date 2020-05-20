@@ -32,6 +32,11 @@ node 12.x
 npm init
 ```
 ## Getting Started
+
+Installing dependencies
+```
+npm instal
+```
 Executing to develop
 ```
 npm dev
