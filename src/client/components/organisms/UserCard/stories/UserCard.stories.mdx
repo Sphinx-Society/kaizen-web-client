@@ -1,4 +1,5 @@
 import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks'
+import StoryRouter from 'storybook-react-router';
 
 import UserCard from '../UserCard'
 
@@ -9,16 +10,42 @@ import UserCard from '../UserCard'
 
 # UserCard
 
-XXXXXXXXXXXXXXX
+It is a card to present the user's information and at the same time the actions that can be carried out, according to the role of the person who consults them.
+
+Its design is intended for mobile presentations, but can be used in other circumstances.
+
+#### Example of what an administrator would see
 
 <Preview>
-  <UserCard
-    data={[
-      {title: 'First Name', description: 'Bruce Lee'},
-      {title: 'Last Name', description: 'Wayne Gordon'},
-      {title: 'Document ID', description: '1235123'},
-    ]}
-  />
+  <Story name='is Administrator who view info' decorators={[StoryRouter()]}>
+    <UserCard
+      isAdminWhoView={true}
+      data={[
+        {title: 'First Name', description: 'Bruce Lee'},
+        {title: 'Last Name', description: 'Wayne Gordon'},
+        {title: 'Document ID', description: '1235123'},
+      ]}
+      linkToViewMore={'/ViewUser'}
+      linkToEdit={'/EditUser'}
+      onClickDelete={() => alert('Warning, Do you want delete this resource?')}
+    />
+  </Story>
+</Preview>
+
+#### Example of what an Non-administrator would see
+
+<Preview>
+  <Story name='is Not Administrator who view info' decorators={[StoryRouter()]}>
+    <UserCard
+      data={[
+        {title: 'First Name', description: 'Luis Armando'},
+        {title: 'Last Name', description: 'Casas Despacho'},
+        {title: 'Document ID', description: '79850023'},
+        {title: 'Address', description: 'Angel third avenue with 98 east'},
+      ]}
+      linkToViewMore={'/ViewUser2'}
+    />
+  </Story>
 </Preview>
 
 ## Props

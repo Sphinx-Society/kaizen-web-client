@@ -12,7 +12,7 @@
 @media screen and (min-width: $breakpoint--small) {
   .user-card {
     &__info {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: auto auto;
     }
   }
 }
