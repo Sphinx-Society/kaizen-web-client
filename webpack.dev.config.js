@@ -4,9 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
 module.exports = {
-  entry: {
-    app: resolve(__dirname, 'src/client/index.js'),
-  },
+  entry: ['@babel/polyfill', './src/client/index.js'],
   output: {
     path: resolve(__dirname, 'dist'),
     filename: 'js/[name].js',

@@ -3,6 +3,10 @@ body, html, #app, * {
 	padding: 0;
 	box-sizing: border-box;
 }
+#app {
+	height: 100vh;
+	position: relative;
+}
 
 body {
 	font-size: $sskFontSizeBase;
