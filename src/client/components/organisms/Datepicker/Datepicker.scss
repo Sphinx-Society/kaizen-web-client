@@ -1,70 +1,80 @@
-.datepicker__container {
-  max-width: 300px;
-  margin: 0 auto;
-}
-
-.datepicker__calendar__container {
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  padding: getSpacing(1);
-}
-
-.datepicker__calendar__table__container {
-    border-spacing: 0px;
-}
-
-.datepicker__calendar__week-days {
-  color: $colorBgDark;
-  user-select: none;
-}
-
-.datepicker__input__container {
-  position: relative;
-}
-
-.datepicker__input {
-  width: calc(100% - 45px);
-  @include padding(getSpacing(0.5), getSpacing(4), getSpacing(0), getSpacing(0.5));
-  height: 2em;
-  margin-bottom: getSpacing(1);
-  border: none;
-  border-bottom: 1px solid $colorBgDark;
-  outline: none;
-
-  &:focus ~ .datepicker__input__label {
-    @include labelCollected(getSpacing(0.5));
+.datepicker {
+  &__container {
+    max-width: getSpacing(30);
+    margin: 0 auto;
   }
 
-  &:disabled {
-    border-bottom: 1px solid $colorBgDisabled;
-    cursor: not-allowed;
+  &__calendar {
+    &__container {
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      padding: getSpacing(1);
+    }
+
+    &__table {
+      &__container {
+        border-spacing: 0px;
+      }
+    }
+
+    &__week-days {
+      color: $colorFontMain;
+      user-select: none;
+    }
   }
-}
 
-.datepicker__input__button {
-  position: absolute;
-  right: 2.5px;
-  top: 5px;
-  padding: 0 5px;
-  background: none;
-  border: none;
-  cursor: pointer;
-  outline: none;
-}
+  &__input {
+    width: calc(100% - 45px);
+    @include padding(getSpacing(0.5), getSpacing(4), getSpacing(0), getSpacing(0.5));
+    height: 2em;
+    margin-bottom: getSpacing(1);
+    border: none;
+    border-bottom: $borderSolid2pxDarkGray;
+    outline: none;
 
-.datepicker__input__label {
-  position: absolute;
-  color: $colorFontMain;
-  font-size: 14px;
-  top: calc(50% - 14px);
-  left: 16px;
-  cursor: text;
-  transition: .3s;
-  letter-spacing: .2px;
-}
+    &:focus ~ .datepicker__input__label {
+      @include labelCollected(-5px, getSpacing(0.5));
+    }
 
-.datepicker__input__label--collected {
-  @include labelCollected(getSpacing(0.5));
-  transition: 0s;
+    &:disabled {
+      border-bottom: 2px solid $colorBgDisabled;
+      cursor: not-allowed;
+    }
+
+    &:disabled ~ .datepicker__input__label {
+      color: $colorFontDarkGray;
+    }
+
+    &__container {
+      position: relative;
+    }
+
+    &__button {
+      position: absolute;
+      right: getSpacing(0.25);
+      top: getSpacing(0.5);
+      padding: 0 getSpcing(0.5);
+      background: none;
+      border: none;
+      cursor: pointer;
+      outline: none;
+    }
+
+    &__label {
+      position: absolute;
+      color: $colorFontMain;
+      font-size: $fontSizeBase;
+      top: calc(50% - 14px);
+      left: getSpacing(1.6);
+      cursor: text;
+      transition: .3s;
+      letter-spacing: .2px;
+
+      &--collected {
+        @include labelCollected(-5px, getSpacing(0.5));
+        transition: 0s;
+      }
+    }
+  }
 }

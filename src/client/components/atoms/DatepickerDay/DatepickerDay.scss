@@ -2,20 +2,19 @@
     padding: getSpacing(1);
     margin: getSpacing(0.5);
     text-align: center;
-    color: $colorBgDark;
+    color: $colorFontMain;
     user-select: none;
     border-radius: getSpacing(0.5);
+
     &:hover {
-      background-color: rgba(0,0,0,0.1);
-      color: $colorBgDark;
+      @include colorFontAndBg($colorFontDark, getTransparency(0.1))
     }
-}
 
-.datepicker-day__container--otherMonth {
-    color: #a5a5a5;
-}
+    &--other-month {
+      color: $colorFontDisabled;
+    }
 
-.datepicker-day__container--selected {
-    background-color: $colorPrimaryMain;
-    color: white;
+    &--selected {
+      @include colorFontAndBg(white, $colorPrimaryMain)
+    }
 }

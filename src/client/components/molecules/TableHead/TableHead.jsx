@@ -19,9 +19,7 @@ const TableHead = (props) => {
 };
 
 TableHead.propTypes = {
-  /**
-   * The columns to render inside each row
-   */
+  /** The columns to render inside each row */
   columns: PropTypes.arrayOf(TableColumnSchema).isRequired,
 };
 

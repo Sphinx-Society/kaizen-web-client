@@ -5,11 +5,11 @@ $breakpointLarge: 1366px;
 $breakpointExtraLarge: 1920px;
 
 $breakpoints: (
-  'xs':  (max-width:  $breakpointExtraSmall),
-  's':  (max-width:  $breakpointSmall),
-  'm': (max-width:  $breakpointMedium),
-  'l':  (max-width: $breakpointLarge),
-  'xl':  (max-width: $breakpointExtraLarge),
+  'xs':  (min-width:  $breakpointExtraSmall),
+  's':  (min-width:  $breakpointSmall),
+  'm': (min-width:  $breakpointMedium),
+  'l':  (min-width: $breakpointLarge),
+  'xl':  (min-width: $breakpointExtraLarge),
 ) !default;
 
 @mixin applyTo($breakpoint) {

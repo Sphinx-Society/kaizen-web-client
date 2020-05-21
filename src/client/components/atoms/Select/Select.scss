@@ -1,9 +1,3 @@
-@mixin LocalMovePlaceholder {
-  top: 0;
-  left: 0;
-  font-size: $fontSizeBase * 0.75;
-}
-
 .select {
   position: relative;
   width: 100%;
@@ -14,7 +8,7 @@
 
   &:active {
     .select__label {
-      @include LocalMovePlaceholder;
+      @include labelCollected(-8px, 0);
     }
   }
 
@@ -31,7 +25,7 @@
     color: $colorFontMain;
 
     &--value {
-      @include LocalMovePlaceholder;
+      @include labelCollected(-8px, 0);
     }
   }
 
@@ -53,7 +47,7 @@
     display: inline-block;
     position: absolute;
     z-index: 6;
-    right: 0;
-    top: 0;
+    right: 5px;
+    bottom: 0;
   }
 }

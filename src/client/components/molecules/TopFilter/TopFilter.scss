@@ -1,29 +1,29 @@
-.top-filter__container {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  padding: getSpacing(2);
-  position: relative;
-}
-
-.top-filter__input {
-  border-radius: getSpacing(2);
-  border: none;
-  box-shadow: 0px 0px 4px #a8a8a8;
-  @include padding(getSpacing(1), getSpacing(3.5), getSpacing(1), getSpacing(1));
-  outline: none;
-  color: $colorFontMain;
-  width: 100%;
-
-  &:disabled {
-    background-color: $colorBgDisabled;
-    cursor: not-allowed;
+.top-filter {
+  &__container {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    padding: getSpacing(2);
+    position: relative;
   }
 
-}
+  &__input {
+    border-radius: getSpacing(2);
+    border: none;
+    @include padding(getSpacing(1), getSpacing(3.5), getSpacing(1), getSpacing(1));
+    outline: none;
+    color: $colorFontMain;
+    width: 100%;
 
-.top-filter__icon {
-  position: absolute;
-  right: getSpacing(3);
-  top: getSpacing(2.5);
-  fill: $colorFontMain;
+    &:disabled {
+      background-color: $colorBgDisabled;
+      cursor: not-allowed;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    right: getSpacing(3);
+    top: getSpacing(2.5);
+    fill: $colorFontMain;
+  }
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import TableCell from '../../atoms/TableCell/TableCell';
 
 import TableColumnSchema from '../../../schemas/TableColumn/TableColumn';
@@ -17,8 +16,6 @@ const TableBody = (props) => {
     mobileRow,
   } = props;
 
-  const rowClassName = clsx({ 'table-body__row': true });
-
   const Wrapper = ({ children }) => (isMobile ? <div>{children}</div> : <tbody>{children}</tbody>);
 
   const RowWrapper = ({ children, row }) => {
@@ -27,7 +24,7 @@ const TableBody = (props) => {
     }
 
     return (
-      <tr className={rowClassName}>{children}</tr>
+      <tr className='table-body__row'>{children}</tr>
     );
   };
 
@@ -43,25 +40,15 @@ const TableBody = (props) => {
 };
 
 TableBody.propTypes = {
-  /**
-   * To render the loading variant
-   */
+  /** To render the loading variant */
   isLoading: PropTypes.bool.isRequired,
-  /**
-   * To render the mobile version of the table body
-   */
+  /** To render the mobile version of the table body */
   isMobile: PropTypes.bool.isRequired,
-  /**
-   * The rows to render inside the body
-   */
+  /** The rows to render inside the body */
   rows: PropTypes.arrayOf(TableRowSchema).isRequired,
-  /**
-   * The columns to render inside each row
-   */
+  /** The columns to render inside each row */
   columns: PropTypes.arrayOf(TableColumnSchema).isRequired,
-  /**
-   * If the mobile version is used it can a receive a differente mobile type row
-   */
+  /** If the mobile version is used it can a receive a differente mobile type row */
   mobileRow: PropTypes.func,
 };
 

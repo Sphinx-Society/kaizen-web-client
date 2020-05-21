@@ -22,7 +22,7 @@ const Checkbox = (props) => {
     'checkbox--disabled': disabled,
   });
 
-  const iconClassName = cslx({ '--hidden': !isChecked });
+  const iconClassName = clsx({ '--hidden': !isChecked });
 
   return (
     <label htmlFor={id} className={checkboxClassName} onChange={handleOnChange}>

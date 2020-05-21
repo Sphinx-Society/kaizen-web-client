@@ -1,26 +1,5 @@
 .container {
-  &-body {
-    width: 100%;
-    padding: 32px;
-    border: solid 1px red;
-  }
-
-  /* Simulate other components */
-  &-page {
-    border: solid 2px red;
-
-    &__element {
-      width: 100%;
-      height: 60px;
-      border: solid 1px blue;
-      background-color: gray;
-    }
-  }
-}
-
-/* To simulate the size of a screen and its layout */
-@media screen and (min-width: $breakpoint--large) {
-  .container {
+  @include applyTo('m') {
     &-body {
       /* The father needs to have these values */
       position: relative;
@@ -40,6 +19,24 @@
       background-color: white;
       border: none;
       border-radius: getSpacing(2.5);
+    }
+  }
+
+  &-body {
+    width: 100%;
+    padding: 32px;
+    border: solid 1px red;
+  }
+
+  /* Simulate other components */
+  &-page {
+    border: solid 2px red;
+
+    &__element {
+      width: 100%;
+      height: 60px;
+      border: solid 1px blue;
+      background-color: gray;
     }
   }
 }

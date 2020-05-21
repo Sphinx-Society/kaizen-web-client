@@ -11,36 +11,28 @@ const Surface = (props) => {
     disableShadow,
   } = props;
 
-  const surfaceStyles = clsx({
-    '--spaced': !disableSpacing,
+  const surfaceClassName = clsx({
     'surface__container': true,
-    'surface__container--no-shadow': disableShadow,
+    '--spaced': !disableSpacing,
+    '--shadowed': !disableShadow,
     [className]: className,
   });
 
   return (
-    <div className={surfaceStyles}>
+    <div className={surfaceClassName}>
       {children}
     </div>
   );
 };
 
 Surface.propTypes = {
-  /**
-   * The children to be inside the surface
-   */
+  /** The children to be inside the surface */
   children: PropTypes.node.isRequired,
-  /**
-   * It can receive a classname to overwrites it styles
-   */
+  /** It can receive a classname to overwrites it styles */
   className: PropTypes.string,
-  /**
-   * Used to remove the default padding and margin
-   */
+  /** Used to remove the default padding and margin */
   disableSpacing: PropTypes.bool,
-  /**
-   * Used to remove surface shadow
-   */
+  /** Used to remove surface shadow */
   disableShadow: PropTypes.bool,
 };
 

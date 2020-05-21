@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { FaCircle } from 'react-icons/fa';
+import { FaCircle as CircleIcon } from 'react-icons/fa';
 
 import './Toggle.scss';
 
@@ -16,18 +16,18 @@ const Toggle = (props) => {
     }
   };
 
-  const toggleStyles = clsx({
+  const toggleClassName = clsx({
     'toggle': true,
     'toggle--disabled': disabled,
   });
 
-  const toggleCircleStyles = clsx({
+  const circleClassName = clsx({
     'toggle__cicle': true,
     'toggle__cicle--on': toggleApply,
   });
 
   return (
-    <label htmlFor={id} className={toggleStyles} onChange={handleOnChange}>
+    <label htmlFor={id} className={toggleClassName} onChange={handleOnChange}>
       <div>
         <input
           className='toggle__input'
@@ -38,7 +38,7 @@ const Toggle = (props) => {
           hidden
           disabled={disabled}
         />
-        <FaCircle size={size} className={toggleCircleStyles} />
+        <CircleIcon size={size} className={circleClassName} />
       </div>
     </label>
   );
@@ -47,16 +47,12 @@ const Toggle = (props) => {
 Toggle.propTypes = {
   /** The ID for input type checkbox and connect with his label  */
   id: PropTypes.string.isRequired,
-
   /** Function that will be called on change event */
   onChange: PropTypes.func.isRequired,
-
   /** Lets start the component as marked, and it is possible interact to change status */
   checked: PropTypes.bool,
-
   /** Determine the icon size */
   size: PropTypes.string,
-
   /** Allows you to disable the input checkbox */
   disabled: PropTypes.bool,
 };

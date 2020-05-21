@@ -19,10 +19,9 @@
   padding-left: $pLeft;
 }
 
-@mixin labelCollected($left) {
+@mixin labelCollected($top, $left) {
   font-size: $fontSizeSmall;
-  top: -2px;
+  top: $top;
   left: $left;
   transition: .3s;
-  color: $colorBgDark
 }
