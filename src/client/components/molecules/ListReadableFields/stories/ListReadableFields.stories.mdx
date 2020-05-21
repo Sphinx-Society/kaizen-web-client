@@ -1,0 +1,25 @@
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks'
+
+import ListReadableFields from '../ListReadableFields'
+import ReadableField from '../../../atoms/ReadableField/ReadableField'
+
+<Meta
+  title='Components|Molecules/ListReadableFields'
+  component={ListReadableFields}
+/>
+
+# ListReadableFields
+
+This component is the specific use of the HTML `<dl>` element that represents a description list.
+
+<Preview>
+  <ListReadableFields>
+    <ReadableField title='Name' description='Bruce' />
+    <ReadableField title='Apellido' description='Wayne' />
+    <ReadableField title='Documento' description='1245898' />
+  </ListReadableFields>
+</Preview>
+
+## Props
+
+<Props of={ListReadableFields} />

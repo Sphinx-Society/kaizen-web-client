@@ -8,9 +8,7 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
-  entry: {
-    app: resolve(__dirname, 'src/client/index.js'),
-  },
+  entry: ['@babel/polyfill', './src/client/index.js'],
   output: {
     path: resolve(__dirname, 'dist'),
     filename: 'js/[name].[hash].js',

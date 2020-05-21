@@ -3,3 +3,15 @@ $spacingUnit: 10px;
 @function getSpacing($times) {
   @return $spacingUnit * $times;
 }
+
+@mixin flex ($direction: rows, $horizontal: center, $vertical: center) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $horizontal;
+  align-items: $vertical;
+}
+
+@mixin paddingAndMargin($multiPadding: 1, $multiMarging: 1) {
+  margin: $sskSpacingUnit * $multiPadding;
+  padding: $sskSpacingUnit * $multiMarging;
+}

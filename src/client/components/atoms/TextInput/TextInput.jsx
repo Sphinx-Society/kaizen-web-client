@@ -14,8 +14,10 @@ const TextInput = (props) => {
     labelClassName,
     inputClassName,
     iconContainerClassName,
+    inputName,
     required,
     disabled,
+    type,
     color,
     icon,
     iconPosition,
@@ -29,7 +31,7 @@ const TextInput = (props) => {
   const textInputLabelClassName = clsx({
     'text-input__label': true,
     'text-input__label--icon-left': iconPosition === 'left',
-    'text-input__label--collected': value && iconPosition === 'right',
+    'text-input__label--collected': value,
     'text-input__label--collected--icon-left': value && iconPosition === 'left',
     [labelClassName]: labelClassName,
   });
@@ -54,12 +56,13 @@ const TextInput = (props) => {
     <div className={textInputContainerClassName}>
       <input
         className={textInputInputClassName}
+        name={inputName}
         id={id}
         value={value}
         onChange={onChange}
         required={required}
         disabled={disabled}
-        type='text'
+        type={type}
       />
       <label
         className={textInputLabelClassName}
@@ -79,6 +82,8 @@ const TextInput = (props) => {
 TextInput.propTypes = {
   /** The input identification, it's also needed for the placeholder to move on click */
   id: PropTypes.string.isRequired,
+  /** The input identification, it's also needed for the placeholder to move on click */
+  type: PropTypes.oneOf(['text', 'password', 'email']),
   /** It represent both, placeholder and label */
   placeholder: PropTypes.string.isRequired,
   /** Function to be called on input change */
@@ -113,8 +118,7 @@ TextInput.defaultProps = {
   required: false,
   disabled: false,
   color: 'primary',
-  icon: null,
-  iconPosition: 'right',
+  type: 'text',
 };
 
 export default TextInput;
