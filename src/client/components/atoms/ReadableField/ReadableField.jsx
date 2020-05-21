@@ -15,7 +15,9 @@ const ReadableField = (props) => {
 };
 
 ReadableField.propTypes = {
+  /** element specifies a term in a description or definition list */
   title: PropTypes.string.isRequired,
+  /** element provides the definition or other related text */
   description: PropTypes.string,
 };
 
