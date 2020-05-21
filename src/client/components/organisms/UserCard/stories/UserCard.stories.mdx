@@ -1,0 +1,26 @@
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks'
+
+import UserCard from '../UserCard'
+
+<Meta
+  title='Components|Organisms/UserCard'
+  component={UserCard}
+/>
+
+# UserCard
+
+XXXXXXXXXXXXXXX
+
+<Preview>
+  <UserCard
+    data={[
+      {title: 'First Name', description: 'Bruce Lee'},
+      {title: 'Last Name', description: 'Wayne Gordon'},
+      {title: 'Document ID', description: '1235123'},
+    ]}
+  />
+</Preview>
+
+## Props
+
+<Props of={UserCard} />
