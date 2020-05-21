@@ -1,0 +1,13 @@
+.list-readable-fields {
+  display: grid;
+  row-gap: getSpacingsSSK('x1.5');
+  column-gap: getSpacingsSSK('x1.5');
+
+  dt {
+    font-style: italic;
+  }
+
+  dd {
+    margin-left: 1em;
+  }
+}

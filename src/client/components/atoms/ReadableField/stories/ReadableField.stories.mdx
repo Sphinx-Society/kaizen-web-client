@@ -1,0 +1,30 @@
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks'
+
+import ReadableField from '../ReadableField'
+
+<Meta
+  title='Components|Atoms/ReadableField'
+  component={ReadableField}
+/>
+
+# ReadableField
+
+Element that should belong to a list of `dl` term groups. Outside of a parent `dl` tag, its presentation is basic.
+
+<Preview>
+  <ReadableField title='Nombre' description='Bruce' />
+  <ReadableField title='Apellido' description='Wayne' />
+</Preview>
+
+<Preview>
+  <dl>
+    <ReadableField title='Name' description='Bruce' />
+    <ReadableField title='Apellido' description='Wayne' />
+    <ReadableField title='Campo vacío' />
+    <ReadableField title='Documento' description='1245898' />
+  </dl>
+</Preview>
+
+## Props
+
+<Props of={ReadableField} />
