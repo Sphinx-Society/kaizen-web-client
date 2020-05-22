@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import clsx from 'clsx';
 import {
   FaEye as ViewIcon,
   FaPen as EditIcon,
@@ -23,8 +24,13 @@ const UserCard = (props) => {
     sizeIcons,
   } = props;
 
+  const userCardClassName = clsx({
+    'user-card': true,
+    'surface--card': true,
+  });
+
   return (
-    <article className='user-card surface--card'>
+    <article className={userCardClassName}>
       <ListReadableFields className='user-card__info'>
         {data.map((item, index) => (
           <ReadableField
