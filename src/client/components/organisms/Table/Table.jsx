@@ -32,7 +32,7 @@ const Table = (props) => {
   const { width } = useWindowDimensions();
   const isMobile = width < parseInt(breakpointMedium, 10);
 
-  const Wrapper = ({ children }) => (isMobile ? <div className='table__wrapper'>{children}</div> : <table className={className}>{children}</table>);
+  const Wrapper = ({ children }) => (isMobile ? <div className='table__wrapper'>{children}</div> : <table className='table__wrapper'>{children}</table>);
 
   return (
     <div>

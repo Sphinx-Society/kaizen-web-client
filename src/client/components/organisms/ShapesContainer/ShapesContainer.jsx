@@ -21,7 +21,6 @@ const ShapesContainer = () => {
         </h1>
         <img className='login-doctor-vector' src={DoctorVector} alt='DoctorVector' />
       </div>
-
     </div>
   );
 };

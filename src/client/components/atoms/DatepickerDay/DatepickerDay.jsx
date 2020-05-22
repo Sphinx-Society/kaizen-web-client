@@ -18,12 +18,12 @@ const DatepickerDay = (props) => {
     'datepicker-day__container--selected': day === selectedDay,
   });
 
-  const onClickHandler = () => onClick(day);
+  const handleOnClick = () => onClick(day);
 
   return (
     <td
       className={datePickerDayClassName}
-      onClick={onClickHandler}
+      onClick={handleOnClick}
     >
       {new Date(day).getDate()}
     </td>

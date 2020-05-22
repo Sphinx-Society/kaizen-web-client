@@ -77,9 +77,9 @@ Button.propTypes = {
   /** Function that will be called on click event. */
   onClick: PropTypes.func.isRequired,
   /** The text inside the button or another component */
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   /** Specify the type of the button */
-  type: PropTypes.oneOf(['button', 'submit', 'reset']),
+  type: PropTypes.oneOf(['button', 'submit', 'reset', 'icon']),
   /** Element Icon type */
   icon: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
   /** Spacing modes for icon type */
@@ -108,6 +108,7 @@ Button.defaultProps = {
   className: '',
   disabled: false,
   form: '',
+  children: null,
 };
 
 export default Button;

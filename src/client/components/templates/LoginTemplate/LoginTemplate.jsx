@@ -1,6 +1,6 @@
 import React from 'react';
 import ShapesContainer from '../../organisms/ShapesContainer/ShapesContainer';
-import LoginForm from '../../organisms/Login-form/LoginForm';
+import LoginForm from '../../organisms/LoginForm/LoginForm';
 
 import './LoginTemplate.scss';
 

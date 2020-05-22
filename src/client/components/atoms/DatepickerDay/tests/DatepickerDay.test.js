@@ -20,7 +20,7 @@ describe('DatepickerDay', () => {
     expect(datepickerDay.hasClass('datepicker-day__container')).toBe(true);
   });
 
-  test('DatepickerDay have class .datepicker-day__container--otherMonth', () => {
+  test('DatepickerDay have class .datepicker-day__container--other-month', () => {
     const datepickerDay = shallow(
       <DatepickerDay
         onClick={onClickMock}
@@ -29,7 +29,7 @@ describe('DatepickerDay', () => {
         day={15}
       />,
     );
-    expect(datepickerDay.hasClass('datepicker-day__container--otherMonth')).toBe(true);
+    expect(datepickerDay.hasClass('datepicker-day__container--other-month')).toBe(true);
   });
 
   test('DatepickerDay have class .datepicker-day__container--selected', () => {
