@@ -1,34 +1,37 @@
-.datepicker-carousel__container {
-  display: flex;
-  min-width: 130px;
-  justify-content: space-between;
-}
-
-.datepicker-carousel__button {
-  outline: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.datepicker-carousel__text {
-  color: $sskColorBgDark;
-}
-
-.datepiker-carousel__input {
-  border: none;
-  border-bottom: 1px solid $sskColorBgDark;
-  outline: none;
-  width: getSpacingsSSK('x3');
-  &::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+.datepicker-carousel {
+  &__container {
+    display: flex;
+    min-width: 130px;
+    justify-content: space-between;
   }
-  &::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+
+  &__button {
+    outline: none;
+    background: none;
+    border: none;
+    cursor: pointer;
   }
-}
-.datepiker-carousel__input[type=number] {
-  -moz-appearance: textfield;
+
+  &__text {
+    color: $colorFontMain;
+  }
+
+  &__input {
+    border: none;
+    border-bottom: 1px solid $colorFontMain;
+    outline: none;
+    width: getSpacing(3);
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
+  &__input[type=number] {
+    -moz-appearance: textfield;
+  }
 }

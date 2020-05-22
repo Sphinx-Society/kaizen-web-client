@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { IoIosSearch as SearchIcon } from 'react-icons/io';
 import Surface from '../../atoms/Surface/Surface';
 
@@ -16,6 +17,11 @@ const TopFilter = (props) => {
     onIconClick,
   } = props;
 
+  const inputClassName = clsx({
+    'top-filter__input': true,
+    '--shadowed': true,
+  });
+
   const enterHandler = (event) => {
     const { which, keyCode } = event;
     if (which === 13 || keyCode === 13) {
@@ -30,7 +36,7 @@ const TopFilter = (props) => {
       disableShadow={disableShadow}
     >
       <input
-        className='top-filter__input'
+        className={inputClassName}
         value={value}
         onChange={onChange}
         placeholder={placeholder}
@@ -47,33 +53,19 @@ const TopFilter = (props) => {
 };
 
 TopFilter.propTypes = {
-  /**
-   * Value to give to the filter input
-   */
+  /** Value to give to the filter input */
   value: PropTypes.string.isRequired,
-  /**
-   * Function to be called on change
-   */
+  /** Function to be called on change */
   onChange: PropTypes.func.isRequired,
-  /**
-   * Placeholder of the input
-   */
+  /** Placeholder of the input */
   placeholder: PropTypes.string,
-  /**
-   * Disable the filter input
-   */
+  /** Disable the filter input */
   disabled: PropTypes.bool,
-  /**
-   * Used to remove surface shadow
-   */
+  /** Used to remove surface shadow */
   disableShadow: PropTypes.bool,
-  /**
-   * Function called when user press enter inside the input
-   */
+  /** Function called when user press enter inside the input */
   onEnter: PropTypes.func,
-  /**
-   * Function called when user click on icon
-   */
+  /** Function called when user click on icon */
   onIconClick: PropTypes.func,
 };
 

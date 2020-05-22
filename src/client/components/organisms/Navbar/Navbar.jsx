@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MdFindInPage } from 'react-icons/md';
-import { GoGear } from 'react-icons/go';
-import { FaUser } from 'react-icons/fa';
+import { FaUser as UserIcon } from 'react-icons/fa';
+import {
+  MdFindInPage as FindIcon,
+  MdSettings as SettingsIcon,
+} from 'react-icons/md';
 import Button from '../../atoms/Button/Button';
 
 import './Navbar.scss';
@@ -21,19 +23,19 @@ const Navbar = (props) => {
 
       <div className='navbar__buttons'>
         <Button
-          icon={<MdFindInPage size='3em' />}
+          icon={<FindIcon size='3em' />}
           type='icon'
           color='primary'
           onClick={onClickSearch}
         />
         <Button
-          icon={<FaUser size='3em' />}
+          icon={<UserIcon size='3em' />}
           type='icon'
           color='primary'
           onClick={onClickProfile}
         />
         <Button
-          icon={<GoGear size='3em' />}
+          icon={<SettingsIcon size='3em' />}
           type='icon'
           color='primary'
           onClick={onClickSettings}

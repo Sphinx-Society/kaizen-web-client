@@ -1,9 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 
-$sskFontWeightThin: 100;
-$sskFontWeightLight: 300;
-$sskFontWeightRegular: 400;
-$sskFontWeightBold: 700;
-$sskFontFamilyBase: 'Roboto', sans-serif;
-$sskFontSizeBase: 16px;
-$sskFontSizeSmall: $sskFontSizeBase - 4px;
+$fontWeightThin: 100;
+$fontWeightLight: 300;
+$fontWeightRegular: 400;
+$fontWeightBold: 700;
+$fontFamilyBase: 'Roboto', sans-serif;
+$fontSizeBase: 16px;
+$fontSizeSmall: $fontSizeBase - 4px;
+
+:export {
+  fontWeightThin: $fontWeightThin;
+  fontWeightLight: $fontWeightLight;
+  fontWeightRegular: $fontWeightRegular;
+  fontWeightBold: $fontWeightBold;
+  fontFamilyBase: $fontFamilyBase;
+  fontSizeBase: $fontSizeBase;
+  fontSizeSmall: $fontSizeSmall;
+}

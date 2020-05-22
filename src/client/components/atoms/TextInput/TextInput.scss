@@ -1,27 +1,28 @@
-.text-input__container {
+.text-input {
+  &__container {
     display: inline-block;
     position: relative;
     width: 90%;
-    margin: 5px 0;
-}
+    margin: getSpacing(0.5) 0;
+  }
 
-.text-input__input {
-    font-family: $sskFontFamilyBase;
+  &__input {
+    font-family: $fontFamilyBase;
     height: 2em;
     border: none;
-    border-bottom: 2px solid $sskColorFontDarkGray;
+    border-bottom: $borderSolid2pxDarkGray;
     background: transparent;
-    margin: 10px;
+    margin: getSpacing(1);
     outline: none;
-    color: $sskColorFontMain;
-    padding: 0 8px;
+    color: $colorFontMain;
+    padding: 0 getSpacing(0.8);
     font-weight: 400;
-    font-size: $sskFontSizeBase;
-    letter-spacing: .1px;
+    font-size: $fontSizeBase;
+    letter-spacing: getSpacing(0.01);
     width: calc(100% - 26px);
 
     &--icon-right {
-      padding-right: 50px;
+      padding-right: getSpacing(5);
     }
 
     &--icon-left {
@@ -29,60 +30,65 @@
     }
 
     &:disabled {
-      border-bottom: 2px solid $sskColorBgDisabled;
+      border-bottom: 2px solid $colorBgDisabled;
       cursor: not-allowed;
-  }
+    }
 
     &:focus ~ .text-input__label {
-        @include labelCollected(getSpacingsSSK('x1'));
+        @include labelCollected(-2px, getSpacing(1));
     }
 
     &:focus ~ .text-input__label--icon-left {
-      @include labelCollected(getSpacingsSSK('x5'));
-  }
-}
+      @include labelCollected(-2px, getSpacing(5));
+    }
 
-.text-input__input--primary {
-  &:focus {
-    border-bottom: 2px solid $sskColorPrimaryMain;
-  }
-}
+    &--primary {
+      &:focus {
+        border-bottom: 2px solid $colorPrimaryMain;
+      }
+    }
 
-.text-input__input--secondary {
-  &:focus {
-    border-bottom: 2px solid $sskColorSecondaryMain;
+    &--secondary {
+      &:focus {
+        border-bottom: 2px solid $colorSecondaryMain;
+      }
+    }
   }
-}
 
-.text-input__label {
+  &__label {
     position: absolute;
-    color: $sskColorFontMain;
-    font-size: $sskFontSizeBase;
+    color: $colorFontMain;
+    font-size: $fontSizeBase;
     top: calc(50% - 14px);
-    left: 16px;
+    left: getSpacing(1.6);
     cursor: text;
     transition: .3s;
-    letter-spacing: .2px;
-    &--icon-left {
-      left: 60px;
-    }
-}
+    letter-spacing: getSpacing(0.02);
 
-.text-input__label--collected {
-    @include labelCollected(getSpacingsSSK('x1'));
-    transition: 0s;
     &--icon-left {
-      @include labelCollected(getSpacingsSSK('x5'));
+      left: getSpacing(6);
     }
-}
 
-.text-input__icon-container {
-  position: absolute;
-  bottom: 1em;
-  &--icon-right {
-    right: 25px;
+    &--collected {
+      @include labelCollected(-2px, getSpacing(1));
+      transition: 0s;
+
+      &--icon-left {
+        @include labelCollected(-2px, getSpacing(5));
+      }
+    }
   }
-  &--icon-left {
-    left: 15px;
+
+  &__icon-container {
+    position: absolute;
+    bottom: 1em;
+
+    &--icon-right {
+      right: getSpacing(2.5);
+    }
+
+    &--icon-left {
+      left: getSpacing(1.5);
+    }
   }
 }

@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import {
-  MdChevronLeft as LeftIcon,
-  MdChevronRight as RightIcon,
-} from 'react-icons/md';
+  FaChevronLeft as LeftIcon,
+  FaChevronRight as RightIcon,
+} from 'react-icons/fa';
 import Button from '../../atoms/Button/Button';
 
 import TableRowSchema from '../../../schemas/TableRow/TableRow';
@@ -22,34 +21,29 @@ const TablePagination = (props) => {
 
   const pageSize = rows.length;
 
-  const className = clsx({ 'table__pagination-container': true });
-  const itemClassName = clsx({ 'table__pagination-container__item': true });
-  const menuClassName = clsx({ 'table__pagination-container__item__buttons-container': true });
-  const buttonClassName = clsx({ 'ssk--boxShadow': true });
-
   const Icon = ({ side }) => (side === 'left' ? <LeftIcon size='1.3em' /> : <RightIcon size='1.3em' />);
 
   return (
-    <div className={className}>
-      <div className={itemClassName}>
+    <div className='table-pagination'>
+      <div className='table-pagination__item'>
         <p>
           Mostrando:
           {' '}
           <b>{pageSize}</b>
         </p>
       </div>
-      <div className={itemClassName}>
+      <div className='table-pagination__item'>
         <p>{`${page} - ${page * pageSize} de ${totalRows}`}</p>
-        <div className={menuClassName}>
+        <div className='table-pagination__item__buttons-container'>
           <Button
-            className={buttonClassName}
+            className='--shadowed'
             icon={<Icon side='left' />}
             type='icon'
             iconMode='2'
             onClick={onPrevPageClick}
           />
           <Button
-            className={buttonClassName}
+            className='--shadowed'
             icon={<Icon side='rigth' />}
             type='icon'
             iconMode='2'
@@ -62,25 +56,15 @@ const TablePagination = (props) => {
 };
 
 TablePagination.propTypes = {
-  /**
-   * The rows that the table renders
-   */
+  /** The rows that the table renders */
   rows: PropTypes.arrayOf(TableRowSchema).isRequired,
-  /**
-   * As the table can work with dynamic data and fetch only the actual page it receive the data lenght
-   */
+  /** As the table can work with dynamic data and fetch only the actual page it receive the data lenght */
   totalRows: PropTypes.number.isRequired,
-  /**
-   * Actual page the table is showing
-   */
+  /** Actual page the table is showing */
   page: PropTypes.number.isRequired,
-  /**
-   * Function to call when next page button is clicked
-   */
+  /** Function to call when next page button is clicked */
   onNextPageClick: PropTypes.func.isRequired,
-  /**
-   * Function to call when prev page button is clicked
-   */
+  /** Function to call when prev page button is clicked */
   onPrevPageClick: PropTypes.func.isRequired,
 };
 

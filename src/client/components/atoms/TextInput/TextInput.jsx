@@ -13,6 +13,7 @@ const TextInput = (props) => {
     containerClassName,
     labelClassName,
     inputClassName,
+    iconContainerClassName,
     inputName,
     required,
     disabled,
@@ -22,12 +23,12 @@ const TextInput = (props) => {
     iconPosition,
   } = props;
 
-  const container = clsx({
+  const textInputContainerClassName = clsx({
     'text-input__container': true,
     [containerClassName]: containerClassName,
   });
 
-  const label = clsx({
+  const textInputLabelClassName = clsx({
     'text-input__label': true,
     'text-input__label--icon-left': iconPosition === 'left',
     'text-input__label--collected': value,
@@ -35,7 +36,7 @@ const TextInput = (props) => {
     [labelClassName]: labelClassName,
   });
 
-  const input = clsx({
+  const textInputInputClassName = clsx({
     'text-input__input': true,
     'text-input__input--primary': color === 'primary',
     'text-input__input--secondary': color === 'secondary',
@@ -44,17 +45,18 @@ const TextInput = (props) => {
     [inputClassName]: inputClassName,
   });
 
-  const iconClassName = clsx({
+  const textInputIconContainerClassName = clsx({
     'text-input__icon-container': true,
     'text-input__icon-container--icon-right': iconPosition === 'right',
     'text-input__icon-container--icon-left': iconPosition === 'left',
+    [iconContainerClassName]: iconContainerClassName,
   });
 
   return (
-    <div className={container}>
+    <div className={textInputContainerClassName}>
       <input
+        className={textInputInputClassName}
         name={inputName}
-        className={input}
         id={id}
         value={value}
         onChange={onChange}
@@ -63,13 +65,13 @@ const TextInput = (props) => {
         type={type}
       />
       <label
-        className={label}
+        className={textInputLabelClassName}
         htmlFor={id}
       >
         {placeholder}
       </label>
       {icon && (
-        <span className={iconClassName}>
+        <span className={textInputIconContainerClassName}>
           {icon}
         </span>
       )}
@@ -78,57 +80,33 @@ const TextInput = (props) => {
 };
 
 TextInput.propTypes = {
-  /**
-   * The input identification, it's also needed for the placeholder to move on click
-   */
+  /** The input identification, it's also needed for the placeholder to move on click */
   id: PropTypes.string.isRequired,
-  /**
-   * The input identification, it's also needed for the placeholder to move on click
-   */
+  /** The input identification, it's also needed for the placeholder to move on click */
   type: PropTypes.oneOf(['text', 'password', 'email']),
-  /**
-   * It represent both, placeholder and label
-   */
+  /** It represent both, placeholder and label */
   placeholder: PropTypes.string.isRequired,
-  /**
-   * Function to be called on input change
-   */
+  /** Function to be called on input change */
   onChange: PropTypes.func.isRequired,
-  /**
-   * Value to be shown on the input
-   */
+  /** Value to be shown on the input */
   value: PropTypes.string.isRequired,
-  /**
-   * Classname to overwrite container styles
-   */
+  /** Classname to overwrite container styles */
   containerClassName: PropTypes.string,
-  /**
-   * Classname to overwrite the label styles
-   */
+  /** Classname to overwrite the label styles */
   labelClassName: PropTypes.string,
-  /**
-   * Classname to overwrite the input styles
-   */
+  /** Classname to overwrite the input styles */
   inputClassName: PropTypes.string,
-  /**
-   * To make the input field required inside a form
-   */
+  /** Classname to overwrite the icon styles */
+  iconContainerClassName: PropTypes.string,
+  /** To make the input field required inside a form */
   required: PropTypes.bool,
-  /**
-   * This prop make the input disabled
-   */
+  /** This prop make the input disabled */
   disabled: PropTypes.bool,
-  /**
-   * It change the input color from primary to secondary
-   */
+  /** It change the input color from primary to secondary */
   color: PropTypes.oneOf(['primary', 'secondary']),
-  /**
-   * Icon to be shown on the input
-   */
+  /** Icon to be shown on the input */
   icon: PropTypes.node,
-  /**
-   * Position of the icon, left or rigth
-   */
+  /** Position of the icon, left or rigth */
   iconPosition: PropTypes.oneOf(['left', 'right']),
 };
 
@@ -136,6 +114,7 @@ TextInput.defaultProps = {
   containerClassName: '',
   labelClassName: '',
   inputClassName: '',
+  iconContainerClassName: '',
   required: false,
   disabled: false,
   color: 'primary',

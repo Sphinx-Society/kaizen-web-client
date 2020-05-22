@@ -3,6 +3,8 @@ const { resolve } = require('path')
 module.exports = {
   stories: [
     '../src/client/stories/gettingStarted.stories.mdx',
+    '../src/client/stories/codeOfConduct.stories.mdx',
+    '../src/client/stories/contributing.stories.mdx',
     '../src/client/components/**/**/*.stories.([tj]s[x]|mdx)',
     '../src/client/schemas/**/stories/*.stories.mdx',
   ],

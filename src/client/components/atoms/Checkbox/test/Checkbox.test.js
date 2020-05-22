@@ -43,8 +43,8 @@ describe('Checkbox', () => {
         expect(cBox.find('svg').prop('width')).toBe('1em');
       });
 
-      test('Has a "class" equal to "hidden"', () => {
-        expect(cBox.find('svg').prop('class')).toBe('hidden');
+      test('Has a "class" equal to "--hidden"', () => {
+        expect(cBox.find('svg').prop('class')).toBe('--hidden');
       });
     });
 
@@ -71,7 +71,7 @@ describe('Checkbox', () => {
       cBox.simulate('change');
 
       test('should be able to verify:', () => {
-        expect(cBox.find('label').hasClass('checkbox checkbox--on')).toBe(true);
+        expect(cBox.find('label').hasClass('checkbox checkbox--enable')).toBe(true);
       });
 
       test('should not have classes on the icon:', () => {

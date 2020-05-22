@@ -1,11 +1,11 @@
 .readable-field {
-  background-color: $sskColorBgMain;
+  background-color: $colorBgMain;
 
   &__dt {
-    color: $sskColorFontDarkGray;
+    color: $colorFontDarkGray;
   }
 
   &__dd {
-    color: $sskColorFontMain;
+    color: $colorFontMain;
   }
 }

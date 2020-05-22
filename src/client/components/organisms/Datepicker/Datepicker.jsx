@@ -22,6 +22,7 @@ const Datepicker = (props) => {
     initialYear,
     placeholder,
     id,
+    disabled,
   } = props;
 
   const [month, setMonth] = useState(initialMonth);
@@ -80,6 +81,7 @@ const Datepicker = (props) => {
           value={getStringFromDate(new Date(value))}
           readOnly
           onFocus={showCalendar}
+          disabled={disabled}
         />
         <label
           className={labelClass}
@@ -91,6 +93,7 @@ const Datepicker = (props) => {
           className='datepicker__input__button'
           type='button'
           onClick={calendarIsVisibleToggle}
+          disabled={disabled}
         >
           <CalendarIcon size='2em' />
         </button>
@@ -141,33 +144,19 @@ const Datepicker = (props) => {
 };
 
 Datepicker.propTypes = {
-  /**
-   * It can receive the month to init with, value bewteen 0-11
-   */
+  /** It can receive the month to init with, value bewteen 0-11 */
   initialMonth: PropTypes.number,
-  /**
-   * It can receive the year to init with
-   */
+  /** It can receive the year to init with */
   initialYear: PropTypes.number,
-  /**
-   * It can receive the days of the week to use in the calendar
-   */
+  /** It can receive the days of the week to use in the calendar */
   weekDays: PropTypes.arrayOf(PropTypes.string),
-  /**
-   * It can receive the months to use in the calendar
-   */
+  /** It can receive the months to use in the calendar */
   months: PropTypes.arrayOf(PropTypes.string),
-  /**
-   * Actual day by default, it can be a date representative number or a string in DD/MM/YYYY format
-   */
+  /** Actual day by default, it can be a date representative number or a string in DD/MM/YYYY format */
   value: PropTypes.number,
-  /**
-   * This function will be called when a new date is selected
-   */
+  /** This function will be called when a new date is selected */
   onChange: PropTypes.func,
-  /**
-   * The placeholder it would be shown on the date input
-   */
+  /** The placeholder it would be shown on the date input */
   placeholder: PropTypes.string,
 };
 
