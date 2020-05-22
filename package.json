@@ -59,7 +59,7 @@
     "react-router-config": "5.1.1",
     "react-router-dom": "5.1.2",
     "redux": "4.0.5",
-    "remove": "^0.1.5"
+    "remove": "0.1.5"
   },
   "devDependencies": {
     "@babel/core": "7.9.6",
@@ -103,7 +103,7 @@
     "wait-on": "5.0.0",
     "webpack": "4.43.0",
     "webpack-cli": "3.3.11",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "3.11.0"
   },
   "jest": {
     "moduleNameMapper": {

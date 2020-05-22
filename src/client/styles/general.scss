@@ -18,3 +18,10 @@ $borderSolid2xpDarkGray: solid 2px $sskColorFontDarkGray;
 .hidden {
   visibility: hidden;
 }
+
+.surface--card {
+  display: inline-block;
+  @include sskSpacings(1.0);
+  border-radius: getSpacingsSSK('x2');
+  box-shadow: 0px 0px 4px $sskColorBoxShadowLight;
+}

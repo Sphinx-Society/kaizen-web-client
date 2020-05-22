@@ -24,7 +24,7 @@ const UserCard = (props) => {
   } = props;
 
   return (
-    <article className='user-card ssk--spacing surface__container'>
+    <article className='user-card surface--card'>
       <ListReadableFields className='user-card__info'>
         {data.map((item, index) => (
           <ReadableField
@@ -66,6 +66,7 @@ const UserCard = (props) => {
               onClick={onClickDelete}
               color='warning'
               className='ssk--boxShadow'
+              id='btn-delete'
             />
           </>
         )}
