@@ -6,7 +6,7 @@
   &__scroller {
     @include applyTo('m') {
       max-height: 50vh;
-      overflow-y: scroll;
+      overflow-y: auto;
     }
   }
 
