@@ -7,7 +7,7 @@ import Checkbox from '../../atoms/Checkbox/Checkbox';
 import Button from '../../atoms/Button/Button';
 import MainViewProvider from '../../providers/MainViewProvider/MainViewProvider';
 
-const AdminExamsCrud = () => {
+const ExamsManagement = () => {
   const { exams } = useSelector((state) => state.exams);
   const { isLoading } = useSelector((state) => state.feedback);
 
@@ -16,7 +16,6 @@ const AdminExamsCrud = () => {
       title='Examen 1'
       showBottomLine
       moveTitle
-      menu={<button>Buton</button>}
     >
       <Table
         isLoading={isLoading}
@@ -55,4 +54,4 @@ const AdminExamsCrud = () => {
   );
 };
 
-export default AdminExamsCrud;
+export default ExamsManagement;
