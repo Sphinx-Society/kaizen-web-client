@@ -1,0 +1,21 @@
+.exam-card {
+  display: flex;
+  padding: getSpacing(2);
+  width: 100%;
+  justify-content: space-around;
+  max-width: 300px;
+  margin: getSpacing(1) auto;
+
+  &__readable-field {
+    margin: getSpacing(1) 0;
+  }
+
+  &__buttons-container {
+    display: flex;
+    flex-direction: column;
+
+    &__button {
+      margin: getSpacing(0.5);
+    }
+  }
+}
