@@ -113,5 +113,10 @@
       "\\.(jpg|jpeg|png|gif)$": "<rootDir>/src/client/__mocks__/assets/fileMock.js",
       "\\.(scss|sass)$": "<rootDir>/src/client/__mocks__/styles/styleMock.js"
     }
+  },
+  "storybook-deployer": {
+    "gitUsername": "omarefg",
+    "gitEmail": "dev@omarefg.com",
+    "commitMessage": "Deploy Storybook to GitHub Pages"
   }
 }
