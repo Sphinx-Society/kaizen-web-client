@@ -1,0 +1,22 @@
+.main-view-provider {
+  &--title-moved {
+    padding-top: getSpacing(8);
+  }
+
+  @include applyTo('m') {
+    padding: getSpacing(3);
+  }
+
+  &__head {
+    padding: getSpacing(2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &--bottom-line {
+      @include applyTo('m') {
+        border-bottom: $borderSolid2pxDarkGray;
+      }
+    }
+  }
+}

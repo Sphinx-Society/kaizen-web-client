@@ -1,0 +1,51 @@
+import { Meta, Props, Preview } from '@storybook/addon-docs/blocks'
+import MainViewProvider from '../MainViewProvider'
+import Button from '../../../atoms/Button/Button'
+
+<Meta
+  title='Components|Providers/MainViewProvider'
+  component={MainViewProvider}
+/>
+
+# MainViewProvider
+
+It is a provider that gives the pages the basic template that adapts to each of them
+
+## With back button
+
+<Preview>
+  <MainViewProvider
+    showBackButton
+    title="With back button"
+  >
+    <p>Content</p>
+  </MainViewProvider>
+</Preview>
+
+## With bottom line
+
+<Preview>
+  <MainViewProvider
+    showBottomLine
+    title="With bottom line"
+  >
+    <p>Content</p>
+  </MainViewProvider>
+</Preview>
+
+## With menu
+
+<Preview>
+  <MainViewProvider
+    showBottomLine
+    showBackButton
+    menu={<Button>I'm a menu Button</Button>}
+    title="With bottom line"
+  >
+    <p>Content</p>
+  </MainViewProvider>
+</Preview>
+
+## Props
+
+<Props of={MainViewProvider} />
