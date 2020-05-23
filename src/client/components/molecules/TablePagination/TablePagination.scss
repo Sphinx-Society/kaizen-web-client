@@ -1,6 +1,18 @@
 .table-pagination {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  background-color: white;
+
+  @include applyTo('m') {
+    align-items: flex-end;
+    flex: 1;
+    position: unset;
+  }
 
   &__item {
     display: flex;
