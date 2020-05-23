@@ -1,5 +1,4 @@
 import React from 'react';
-import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { MdFindInPage as ExamsIcon } from 'react-icons/md';
@@ -11,15 +10,11 @@ import './Navbar.scss';
 
 const Navbar = (props) => {
   const { isAdmin } = props ;
-  const navbarStyles = clsx({
-    'navbar': true,
-  });
   return (
-    <nav className={navbarStyles}>
+    <nav className='navbar'>
       <div className='navbar__logo .ssk--boxShadow'>
         <Logo size='30px' />
       </div>
-
       <div className='navbar__buttons'>
         <div className='button--container'>
           <NavLink className='link' to='/home' activeClassName='is-selected'>
@@ -27,7 +22,6 @@ const Navbar = (props) => {
           </NavLink>
           <dd>Inicio</dd>
         </div>
-
         {isAdmin && (
           <div className='button--container'>
             <NavLink to='/exams' activeClassName='is-selected'>
@@ -36,14 +30,12 @@ const Navbar = (props) => {
             <dd>Examenes</dd>
           </div>
         )}
-
         <div className='button--container'>
           <NavLink to='/settings' activeClassName='is-selected'>
             <SettingsIcon size='2em' />
           </NavLink>
           <dd>Ajustes</dd>
         </div>
-
       </div>
     </nav>
   );
@@ -53,9 +45,7 @@ Navbar.propTypes = {
   isAdmin: PropTypes.bool,
 
 };
-
 Navbar.defaultProps = {
   isAdmin: false,
 };
-
 export default Navbar;
