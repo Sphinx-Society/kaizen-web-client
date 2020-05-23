@@ -116,19 +116,19 @@ export const columns = [
       return (
         <div className='table__stories__buttons__container'>
           <Button
-            className='ssk--boxShadow table__stories__button'
+            className='--shadowed table__stories__button'
             icon={<EyeIcon size='1.3em' />}
             type='icon'
             iconMode='2'
           />
           <Button
-            className='ssk--boxShadow table__stories__button'
+            className='--shadowed table__stories__button'
             icon={<PencilIcon size='1.3em' />}
             type='icon'
             iconMode='2'
           />
           <Button
-            className='ssk--boxShadow table__stories__button'
+            className='--shadowed table__stories__button'
             icon={<TrashIcon size='1.3em' />}
             type='icon'
             iconMode='2'
@@ -146,8 +146,8 @@ export const mobileRow = (row) => <Surface>{row.name}</Surface>;
 
 export const menu = () => (
   <div className='table__stories__buttons__container'>
-    <Button className='ssk--boxShadow table__stories__button'>Import CSV</Button>
-    <Button className='ssk--boxShadow table__stories__button'>Add user</Button>
+    <Button className='--shadowed table__stories__button'>Import CSV</Button>
+    <Button className='--shadowed table__stories__button'>Add user</Button>
   </div>
 );
 

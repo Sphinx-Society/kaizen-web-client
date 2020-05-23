@@ -12,18 +12,18 @@ const DatepickerDay = (props) => {
     day,
   } = props;
 
-  const icon = clsx({
+  const datePickerDayClassName = clsx({
     'datepicker-day__container': true,
-    'datepicker-day__container--otherMonth': isOtherMonth,
+    'datepicker-day__container--other-month': isOtherMonth,
     'datepicker-day__container--selected': day === selectedDay,
   });
 
-  const onClickHandler = () => onClick(day);
+  const handleOnClick = () => onClick(day);
 
   return (
     <td
-      className={icon}
-      onClick={onClickHandler}
+      className={datePickerDayClassName}
+      onClick={handleOnClick}
     >
       {new Date(day).getDate()}
     </td>
@@ -31,21 +31,13 @@ const DatepickerDay = (props) => {
 };
 
 DatepickerDay.propTypes = {
-  /**
-   * This tell the atom to use the isOtherMonth styles
-   */
+  /** This tell the atom to use the isOtherMonth styles */
   isOtherMonth: PropTypes.bool.isRequired,
-  /**
-   * Function to be call when you click on a day
-   */
+  /** Function to be call when you click on a day */
   onClick: PropTypes.func.isRequired,
-  /**
-   * This tell the atom if the day is selected
-   */
+  /** This tell the atom if the day is selected */
   selectedDay: PropTypes.number.isRequired,
-  /**
-   * This is the day to render
-   */
+  /** This is the day to render */
   day: PropTypes.number.isRequired,
 };
 

@@ -57,7 +57,7 @@ The documentation is divided into several sections:
 
 * [Design system](https://www.notion.so/Design-System-c2b6a84e07064f138b4a3d97a331b980)
 * [File structure](https://www.notion.so/File-structure-e68a15a61efb443e98eba8b6ae766fb1)
-* [Storybook](https://www.notion.so/File-structure-e68a15a61efb443e98eba8b6ae766fb1)
+* [Storybook](https://sphinx-society.github.io/kaizen-web-client)
 
 ## Contributing
 

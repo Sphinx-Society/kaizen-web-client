@@ -1,17 +1,43 @@
-$sskColorPrimaryDark: #003572;
-$sskColorPrimaryMain: #0066ff;
-$sskColorSecondaryDark: #72b2d4;
-$sskColorSecondaryMain: #b5e2fa;
-$sskColorFontDark: #303030;
-$sskColorFontMain: #4c4e5a;
-$sskColorFontDarkGray: #9d9eab;
-$sskColorFontLight: #fafafa;
-$sskColorFontDisabled: #777777;
-$sskColorBgDark: #383a40;
-$sskColorBgMain: #fefefe;
-$sskColorBgDisabled: #aeaeae;
-$sskColorBoxShadowLight: #a8a8a8;
-$sskColorError: #D23737;
-$sskColorSuccess: #388e3c;
-$sskColorWarningPrimary: $sskColorError;
-$sskColorWarningSecondary: #ffc914;
+$colorPrimaryDark: #003572;
+$colorPrimaryMain: #0066ff;
+$colorSecondaryDark: #72b2d4;
+$colorSecondaryMain: #b5e2fa;
+$colorFontDark: #1d1d1d;
+$colorFontMain: #303030;
+$colorFontDarkGray: #747581;
+$colorFontLight: #fafafa;
+$colorFontDisabled: #777777;
+$colorBgDark: #383a40;
+$colorBgMain: #fefefe;
+$colorBgDisabled: #aeaeae;
+$colorBoxShadowLight: #a8a8a8;
+$colorError: #d23737;
+$colorSuccess: #388e3c;
+$colorWarningPrimary: $colorError;
+$colorWarningSecondary: #ffc914;
+$colorTransparency: #0000001a;
+
+@function getTransparency($transparency) {
+  @return rgba(0,0,0,$transparency)
+}
+
+:export {
+  colorPrimaryDark: $colorPrimaryDark;
+  colorPrimaryMain: $colorPrimaryMain;
+  colorSecondaryDark: $colorSecondaryDark;
+  colorSecondaryMain: $colorSecondaryMain;
+  colorFontDark: $colorFontDark;
+  colorFontMain: $colorFontMain;
+  colorFontDarkGray: $colorFontDarkGray;
+  colorFontLight: $colorFontLight;
+  colorFontDisabled: $colorFontDisabled;
+  colorBgDark: $colorBgDark;
+  colorBgMain: $colorBgMain;
+  colorBgDisabled: $colorBgDisabled;
+  colorBoxShadowLight: $colorBoxShadowLight;
+  colorError: $colorError;
+  colorSuccess: $colorSuccess;
+  colorWarningPrimary: $colorWarningPrimary;
+  colorWarningSecondary: $colorWarningSecondary;
+  colorTransparency: $colorTransparency;
+}

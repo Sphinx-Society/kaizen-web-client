@@ -50,21 +50,13 @@ const Logo = (props) => {
 };
 
 Logo.propTypes = {
-  /**
-   * It tells the component to start the loading animation
-   */
+  /** It tells the component to start the loading animation */
   isLoading: PropTypes.bool,
-  /**
-   * Represent the size of the component
-   */
+  /** Represent the size of the component */
   size: PropTypes.string,
-  /**
-   * Message to show with loader
-   */
+  /** Message to show with loader */
   label: PropTypes.string,
-  /**
-   * It determinate if loader message should be hide
-   */
+  /** It determinate if loader message should be hide */
   hideLabel: PropTypes.bool,
 };
 

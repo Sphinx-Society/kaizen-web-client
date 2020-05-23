@@ -66,8 +66,8 @@ describe('Select', () => {
     });
 
     describe('In child type "svg" (react-icon):', () => {
-      test('Has a prop "width" (size) equal to "2em"', () => {
-        expect(select.find('svg').prop('width')).toBe('2em');
+      test('Has a prop "width" (size) equal to "1.5em"', () => {
+        expect(select.find('svg').prop('width')).toBe('1.5em');
       });
     });
 

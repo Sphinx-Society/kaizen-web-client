@@ -4,11 +4,11 @@
 }
 
 @mixin paddingAndMargin($multiPadding: 1, $multiMarging: 1) {
-  margin: $sskSpacingUnit * $multiPadding;
-  padding: $sskSpacingUnit * $multiMarging;
+  margin: $spacingUnit * $multiPadding;
+  padding: $spacingUnit * $multiMarging;
 }
 
-@mixin sskSpacings($multi: 1) {
+@mixin addSpaces($multi: 1) {
   @include paddingAndMargin($multi, $multi);
 }
 
@@ -19,10 +19,9 @@
   padding-left: $pLeft;
 }
 
-@mixin labelCollected($left) {
-  font-size: $sskFontSizeSmall;
-  top: -2px;
+@mixin labelCollected($top, $left) {
+  font-size: $fontSizeSmall;
+  top: $top;
   left: $left;
   transition: .3s;
-  color: $sskColorBgDark
 }

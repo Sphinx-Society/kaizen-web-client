@@ -13,7 +13,7 @@ const TableCell = (props) => {
     isHead,
   } = props;
 
-  const className = clsx({
+  const tableCellClassName = clsx({
     'table-cell__content': true,
     'table-cell__content--head': isHead,
     'table-cell__content--collapse': col.collapse,
@@ -30,7 +30,7 @@ const TableCell = (props) => {
   const Wrapper = ({ children }) => (
     <CellType>
       <span
-        className={className}
+        className={tableCellClassName}
         style={{ width, maxWidth, minWidth }}
       >
         {children}
@@ -54,17 +54,11 @@ const TableCell = (props) => {
 };
 
 TableCell.propTypes = {
-  /**
-   * The row where the cell is inside
-   */
+  /** The row where the cell is inside */
   row: TableRowSchema.isRequired,
-  /**
-   * The column where the cell is inside
-   */
+  /** The column where the cell is inside */
   col: TableColumnSchema.isRequired,
-  /**
-   * Active the head variant of the cell
-   */
+  /** Active the head variant of the cell */
   isHead: PropTypes.bool,
 };
 

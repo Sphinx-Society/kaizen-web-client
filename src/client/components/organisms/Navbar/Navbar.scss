@@ -1,23 +1,5 @@
 .navbar {
-  &__logo {
-    display: none;
-  }
-
-  &__buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    height: fit-content;
-    border-top: $borderSolid2xpDarkGray;
-    padding-top: getSpacingsSSK('x1');
-    margin-top: getSpacingsSSK('x2');
-  }
-}
-
-@media screen and (min-width: $breakpoint--large) {
-  .navbar {
+  @include applyTo('m') {
     position: absolute;
     margin: 0;
     top: 0;
@@ -30,30 +12,46 @@
     align-items: flex-start;
     justify-content: flex-start;
     border: none;
-    color: $sskColorFontLight;
-    background-color: $sskColorPrimaryMain;
-    border-radius: getSpacingsSSK('x5.5');
+    color: $colorFontLight;
+    background-color: $colorPrimaryMain;
+    border-radius: getSpacing(5.5);
     @include padding(3em, 0, 6em, 1em);
+  }
 
-    &__logo {
+  &__logo {
+    display: none;
+
+    @include applyTo('m') {
       display: inline-block;
       width: 3em;
       height: 3em;
       border-radius: 100%;
       background-color: white;
     }
+  }
 
-    &__buttons {
-      width: 3em;;
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: fit-content;
+    border-top: $borderSolid2pxDarkGray;
+    padding-top: getSpacing(1);
+    margin-top: getSpacing(2);
+
+    @include applyTo('m') {
+      width: 3em;
       height: 100%;
       flex-direction: column;
       align-items: flex-start;
       border: none;
       & .btn-icon {
-        color: $sskColorFontLight;
+        color: $colorFontLight;
       }
       & .btn-icon:hover {
-        color: $sskColorFontMain;
+        color: $colorFontMain;
       }
     }
   }

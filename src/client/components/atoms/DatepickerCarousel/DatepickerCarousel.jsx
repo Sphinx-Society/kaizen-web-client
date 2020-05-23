@@ -5,7 +5,7 @@ import {
   FaChevronLeft as LeftIcon,
 } from 'react-icons/fa';
 
-import './DatepickerCarousel.scss';
+import { colorFontMain } from './DatepickerCarousel.scss';
 
 const DatepickerCarousel = (props) => {
   const {
@@ -23,11 +23,11 @@ const DatepickerCarousel = (props) => {
         type='button'
         onClick={onPrevClick}
       >
-        <LeftIcon size='1.2em' color='#383a40' />
+        <LeftIcon size='1.2em' color={colorFontMain} />
       </button>
       {isYearly ? (
         <input
-          className='datepiker-carousel__input'
+          className='datepicker-carousel__input'
           value={value}
           onChange={onInputChange}
           type='number'
@@ -47,25 +47,15 @@ const DatepickerCarousel = (props) => {
 };
 
 DatepickerCarousel.propTypes = {
-  /**
-   * Function to be called clicking on right chevron
-   */
+  /** Function to be called clicking on right chevron */
   onPrevClick: PropTypes.func.isRequired,
-  /**
-   * Function to be called clicking on left chevron
-   */
+  /** Function to be called clicking on left chevron */
   onNextClick: PropTypes.func.isRequired,
-  /**
-   * The value to be shown on center
-   */
+  /** The value to be shown on center */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  /**
-   * This activate the year variant of the component and the value now is rendered inside a number input
-   */
+  /** This activate the year variant of the component and the value now is rendered inside a number input */
   isYearly: PropTypes.bool,
-  /**
-   * Function to be called when the year is changed from inside the number input
-   */
+  /** Function to be called when the year is changed from inside the number input */
   onInputChange: PropTypes.func,
 };
 

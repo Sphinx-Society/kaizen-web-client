@@ -14,18 +14,4 @@
     margin-top: 10px;
     flex-direction: column;
   }
-
-  &__pagination-container {
-    display: flex;
-    justify-content: space-between;
-
-    &__item {
-      display: flex;
-      align-items: center;
-
-      &__buttons-container {
-        margin: getSpacingsSSK('x1')
-      }
-    }
-  }
 }

@@ -1,0 +1,13 @@
+.table-pagination {
+  display: flex;
+  justify-content: space-between;
+
+  &__item {
+    display: flex;
+    align-items: center;
+
+    &__buttons-container {
+      margin: getSpacing(1)
+    }
+  }
+}

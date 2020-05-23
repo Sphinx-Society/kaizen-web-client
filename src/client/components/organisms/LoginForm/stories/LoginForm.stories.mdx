@@ -1,7 +1,6 @@
-import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks'
+import { Meta, Props, Preview } from '@storybook/addon-docs/blocks'
 import LoginForm from '../LoginForm'
-import store from '../../../../redux/store/store'
-import Provider from '../../../../redux/store/ProviderWrapper'
+import ProviderMock from '../../../../__mocks__/redux/ProviderMock'
 
 import './LoginForm.stories.scss'
 
@@ -12,10 +11,11 @@ import './LoginForm.stories.scss'
 
 # LoginForm
 Allow application authentication by user role
+
 <Preview>
-    <Provider store={store}>
-      <LoginForm />
-    </Provider>
+  <ProviderMock>
+    <LoginForm />
+  </ProviderMock>
 </Preview>
 
 

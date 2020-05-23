@@ -1,17 +1,22 @@
-
  .shapes-container {
+  display: none;
   position: relative;
-  @include flex();
+
+  @include applyTo('s') {
+    @include flex();
+  }
+
   .login-banner-container {
     z-index: 5;
-    h1 {
-      color: $sskColorFontLight;
-      margin-bottom: $sskSpacingUnit*2;
-      
-    }
     @include flex(column);
+
     .login-doctor-vector {
       width: 300px;
+    }
+
+    h1 {
+      color: $colorFontLight;
+      margin-bottom: getSpacing(2);
     }
   }
 }
@@ -20,32 +25,27 @@
   position: absolute;
   width: 1200px;
 
-
   &--background {
     right: -19%;
     top: -34%;
   }
+
   &--vector1 {
     right: 4%;
     top: -19%;
     z-index: 3;
   }
+
   &--vector2 {
     transform: rotate(7deg);
     right: 25%;
     top: -33%;
     z-index: 2;
   }
+
   &--vector3 {
     right: 24%;
     transform: rotate(-86deg);
     top: 29%;
-
-  }
-}
-
-@media (max-width: 768px)  {
-  .shapes-container {
-    display: none;
   }
 }

@@ -73,19 +73,19 @@ Kaizen have two types of Button
   <Button icon={<TiUserAdd size='3em' />} type='icon' color='primary' />
   <Button icon={<FaEdit size='3em' />} type='icon' color='secondary' />
   <Button icon={<MdKeyboardArrowLeft size='3em' />} type='icon' color='warning' />
-  <Button icon={<FaEdit size='3em' />} type='icon' color='light' className='ssk--boxShadow' />
+  <Button icon={<FaEdit size='3em' />} type='icon' color='light' className='--shadowed' />
   <Button icon={<MdKeyboardArrowLeft size='3em' />} type='icon' onClick={() => alert('It is a Button')} disabled />
 </Preview>
 
 ### The icon type has variants regarding its internal spacing
 
 <Preview>
-  <Button icon={<TiUserAdd size='2em' />} type='icon' iconMode='circle-0' className='ssk--boxShadow' />
-  <Button icon={<TiUserAdd size='2em' />} type='icon' iconMode='circle' className='ssk--boxShadow' />
-  <Button icon={<TiUserAdd size='2em' />} type='icon' iconMode='1' className='ssk--boxShadow' />
-  <Button icon={<TiUserAdd size='2em' />} type='icon' iconMode='2' className='ssk--boxShadow' />
-  <Button icon={<TiUserAdd size='3em' />} type='icon' iconMode='3' className='ssk--boxShadow' />
-  <Button icon={<TiUserAdd size='6em' />} type='icon' iconMode='4' className='ssk--boxShadow' />
+  <Button icon={<TiUserAdd size='2em' />} type='icon' iconMode='circle-0' className='--shadowed' />
+  <Button icon={<TiUserAdd size='2em' />} type='icon' iconMode='circle' className='--shadowed' />
+  <Button icon={<TiUserAdd size='2em' />} type='icon' iconMode='1' className='--shadowed' />
+  <Button icon={<TiUserAdd size='2em' />} type='icon' iconMode='2' className='--shadowed' />
+  <Button icon={<TiUserAdd size='3em' />} type='icon' iconMode='3' className='--shadowed' />
+  <Button icon={<TiUserAdd size='6em' />} type='icon' iconMode='4' className='--shadowed' />
 </Preview>
 
 ### A text with an icon aside as an integrated part of the button
@@ -94,10 +94,10 @@ Kaizen have two types of Button
   <Button icon={<TiUserAdd size='2em' />} color='primary'>
     left Icon
   </Button>
-  <Button icon={<TiUserAdd size='2em' />} iconPosition={true} color='primary'>
+  <Button icon={<TiUserAdd size='2em' />} iconRight color='primary'>
     right Icon
   </Button>
-  <Button icon={<TiUserAdd size='2em' />} iconCenter={true} color='primary'>
+  <Button icon={<TiUserAdd size='2em' />} centered color='primary'>
     All centered
   </Button>
   <Button icon={<TiUserAdd size='2em' />} color='primary'>

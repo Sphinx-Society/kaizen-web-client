@@ -1,21 +1,25 @@
 .table-menu {
-  display: grid;
-  grid-template-columns: 40% 60%;
-  justify-items: end;
-  align-items: center;
-  margin-bottom: getSpacingsSSK('x2');
-  @include apply-to('medium') {
-    margin-bottom: 200px;
+  margin-bottom: 200px;
+
+  @include applyTo('m') {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    justify-items: end;
+    align-items: center;
+    margin-bottom: getSpacing(2);
   }
 
   &__input {
-    justify-self: left;
+    position: fixed;
     width: 100%;
-    @include apply-to('medium') {
-      position: fixed;
-      width: 100%;
-      display: flex;
-      justify-content: center;
+    display: flex;
+    justify-content: center;
+    top: 0;
+
+    @include applyTo('m') {
+      position: unset;
+      justify-self: left;
+      display: block;
     }
   }
 }
