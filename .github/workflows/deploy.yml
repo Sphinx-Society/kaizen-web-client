@@ -11,11 +11,13 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - uses: actions/setup-node@v1
+      env:
+        GH_TOKEN: ${{ secrets.APP_TOKEN }}
       with:
         node-version: '12.x'
     - run: npm i
     - run: npm run build-storybook
-    - run: npm run deploy-storybook -- --ci --host-token-env-variable=${{ secrets.APP_TOKEN }}
+    - run: npm run deploy-storybook -- --ci
     - name: Login to Heroku Container registry
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
