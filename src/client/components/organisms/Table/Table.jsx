@@ -35,25 +35,27 @@ const Table = (props) => {
   const Wrapper = ({ children }) => (isMobile ? <div className='table__wrapper'>{children}</div> : <table className='table__wrapper'>{children}</table>);
 
   return (
-    <div>
+    <div className='table'>
       <TableMenu
         isMobile={isMobile}
         onFilterChange={onFilterChange}
         onSearch={onSearch}
         menu={menu}
       />
-      <Wrapper>
-        {!isMobile && (
-          <TableHead columns={columns} />
-        )}
-        <TableBody
-          isLoading={isLoading}
-          isMobile={isMobile}
-          rows={rows}
-          columns={columns}
-          mobileRow={mobileRow}
-        />
-      </Wrapper>
+      <div className='table__scroller'>
+        <Wrapper>
+          {!isMobile && (
+            <TableHead columns={columns} />
+          )}
+          <TableBody
+            isLoading={isLoading}
+            isMobile={isMobile}
+            rows={rows}
+            columns={columns}
+            mobileRow={mobileRow}
+          />
+        </Wrapper>
+      </div>
       {isLoading ? (
         <div className='table__loader-container'><Logo isLoading size='100px' /></div>
       ) : (

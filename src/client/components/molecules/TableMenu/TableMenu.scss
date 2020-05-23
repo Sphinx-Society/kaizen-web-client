@@ -1,6 +1,4 @@
 .table-menu {
-  margin-bottom: 200px;
-
   @include applyTo('m') {
     display: grid;
     grid-template-columns: 40% 60%;

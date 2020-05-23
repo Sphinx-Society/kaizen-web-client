@@ -1,4 +1,14 @@
 .table {
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+
+  &__scroller {
+    @include applyTo('m') {
+      max-height: 50vh;
+      overflow-y: auto;
+    }
+  }
 
   &__wrapper {
     width: 100%;

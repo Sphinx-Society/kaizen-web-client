@@ -22,7 +22,13 @@
 	border-radius: getSpacing(3);
 	@include colorFontAndBg($colorFontDark, transparent);
 	@include btnHover($colorFontLight, $colorPrimaryMain);
-	@include btnActive($colorSuccess, $colorFontDark);
+  @include btnActive($colorSuccess, $colorFontDark);
+
+  &__container {
+    &--icon {
+      display: flex;
+    }
+  }
 
 	&--primary {
 		@include colorFontAndBg($colorFontLight, $colorPrimaryMain);

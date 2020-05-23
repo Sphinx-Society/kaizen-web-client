@@ -17,6 +17,7 @@ module.exports = {
   devServer: {
     hot: true,
     contentBase: resolve(__dirname, 'dist'),
+    historyApiFallback: true,
   },
   module: {
     rules: [
