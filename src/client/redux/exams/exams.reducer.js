@@ -1,11 +1,5 @@
 export const initialState = {
-  exams: [
-    {
-      name: 'test',
-      category: 'aasd',
-      creationDate: 1456456121235,
-    },
-  ],
+  exams: [],
 };
 
 export default (state = initialState, action) => {
