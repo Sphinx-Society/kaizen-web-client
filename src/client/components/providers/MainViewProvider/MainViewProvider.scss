@@ -11,6 +11,7 @@
     padding: getSpacing(2);
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     &--bottom-line {
       @include applyTo('m') {
