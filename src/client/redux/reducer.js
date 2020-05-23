@@ -7,5 +7,5 @@ import exams from './exams/exams.reducer';
 export default combineReducers({
   user,
   feedback,
-  exams
+  exams,
 });
