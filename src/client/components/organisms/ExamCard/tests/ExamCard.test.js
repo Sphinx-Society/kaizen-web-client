@@ -40,9 +40,5 @@ describe('ExamCard', () => {
       expect(category).toBe(categoryMock);
       expect(creationDate).toBe(creationDateMock);
     });
-
-    // test('Child "dt" should have a class "readable-field__dd"', () => {
-    //   expect(examCard.find('dd').hasClass('readable-field__dd')).toBeTruthy();
-    // });
   });
 });
