@@ -1,7 +1,7 @@
-import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks'
-
-import Navbar from '../Navbar'
-import './Navbar.stories.scss';
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import StoryRouter from 'storybook-react-router';
+import Navbar from '../Navbar';
+import Surface from '../../../atoms/Surface/Surface'
 
 <Meta
   title='Components|Organisms/Navbar'
@@ -10,34 +10,24 @@ import './Navbar.stories.scss';
 
 # Navbar
 
-This body is used to show the main actions of each role.
-
-## Default in mobile-first (screen for width less than 1024px)
+This body is used to show the main actions of each role, in this case we're looking the admin role.
 
 <Preview>
-  <div className='container-body'>
-    <Navbar
-      onClickSearch={() => alert('Search')}
-      onClickProfile={() => alert('MyProfile')}
-      onClickSettings={() => alert('Settings')}
-    />
-  </div>
+    <Story name='is Administrator who view info' decorators={[StoryRouter()]}>
+      <Surface>
+        <Navbar isAdmin={true}/>
+      </Surface>
+    </Story>
 </Preview>
 
-## With a brother container for all other components.
+In this other case we're looking no admin role.
 
 <Preview>
-  <div className='container-body'>
-    <div className='container-page --shadowed'>
-      <div className='container-page__element'>Elemento 1</div>
-      <div className='container-page__element'>Elemento 2</div>
-    </div>
-    <Navbar
-      onClickSearch={() => alert('Search')}
-      onClickProfile={() => alert('MyProfile')}
-      onClickSettings={() => alert('Settings')}
-    />
-  </div>
+    <Story name='is User who view info' decorators={[StoryRouter()]}>
+      <Surface>
+        <Navbar />
+      </Surface>
+    </Story>
 </Preview>
 
 ## Props
