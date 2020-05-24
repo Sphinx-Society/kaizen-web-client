@@ -2,6 +2,7 @@ export const initialState = {
   templates: [],
   isAddingField: false,
   editingField: null,
+  editingTemplate: null,
 };
 
 export default (state = initialState, action) => {

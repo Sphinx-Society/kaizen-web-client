@@ -15,14 +15,14 @@ import NavbarProvider from '../../providers/NavbarProvider/NavbarProvider';
 
 import { getStringFromDate } from '../../../utils/date';
 
-import { templateCreator } from '../../../routes/paths';
+import { templateEditor } from '../../../routes/paths';
 
 const TemplatesManagement = (props) => {
   const { history } = props;
   const { templates } = useSelector((state) => state.templates);
   const { isLoading } = useSelector((state) => state.feedback);
 
-  const goToTemplateCreator = () => history.push(templateCreator());
+  const goToTemplateCreator = () => history.push(templateEditor());
 
   return (
     <NavbarProvider>
