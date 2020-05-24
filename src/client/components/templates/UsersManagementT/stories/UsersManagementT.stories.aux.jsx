@@ -103,18 +103,21 @@ const columns = [
             icon={<EyeIcon size='1.3em' />}
             type='icon'
             iconMode='2'
+            onChange={() => null}
           />
           <Button
             className='--shadowed table__stories__button'
             icon={<PencilIcon size='1.3em' />}
             type='icon'
             iconMode='2'
+            onChange={() => null}
           />
           <Button
             className='--shadowed table__stories__button'
             icon={<TrashIcon size='1.3em' />}
             type='icon'
             iconMode='2'
+            onChange={() => null}
           />
         </div>
       );

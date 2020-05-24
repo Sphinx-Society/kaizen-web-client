@@ -9,8 +9,7 @@ import MainViewProvider from '../../providers/MainViewProvider/MainViewProvider'
 
 import './UsersManagementT.scss';
 
-import TableColumnSchema from '../../../schemas/TableColumn/TableColumn';
-import TableRowSchema from '../../../schemas/TableRow/TableRow';
+import UsersTableSchema from '../../../schemas/UsersTable/UsersTable';
 
 const UsersManagementT = (props) => {
   const {
@@ -84,18 +83,16 @@ UsersManagementT.propTypes = {
   className: PropTypes.string,
   /** Contain the information in a specific struct. Columns to use in the table
    *  and Data to show on the table */
-  data: PropTypes.objectOf(
-    { columns: PropTypes.arrayOf(TableColumnSchema), rows: PropTypes.arrayOf(TableRowSchema) },
-  ),
+  data: PropTypes.objectOf(UsersTableSchema),
   /** Table number of pages */
   tablePage: PropTypes.number,
-  /**  */
+  /** Anchor to view more information of the user */
   linkToViewUser: PropTypes.string,
-  /**  */
+  /** Anchor to edit information of the user */
   linkToUserEdit: PropTypes.string,
-  /**  */
+  /** Function to "delete" specific user of the register */
   fnUserDelete: PropTypes.func,
-  /**  */
+  /** Optional menu to table users */
   menu: PropTypes.func,
 };
 
@@ -108,3 +105,5 @@ UsersManagementT.defaultProps = {
   fnUserDelete: null,
   menu: null,
 };
+
+export default UsersManagementT;

@@ -7,8 +7,7 @@ import UsersManagementT from '../UsersManagementT'
 import { data, menu } from './UsersManagementT.stories.aux'
 
 import {
-  TABLE_COLUMN_REFERENCE,
-  TABLE_ROW_REFERENCE
+  USERS_TABLE_REFERENCE,
 } from '../../../../schemas/references'
 
 <Meta
@@ -39,5 +38,4 @@ Table to manage the list of users by an administrator.
 
 ### Schemas
 
--  <LinkTo kind={TABLE_COLUMN_REFERENCE.path}>{TABLE_COLUMN_REFERENCE.name}</LinkTo>
--  <LinkTo kind={TABLE_ROW_REFERENCE.path}>{TABLE_ROW_REFERENCE.name}</LinkTo>
+-  <LinkTo kind={USERS_TABLE_REFERENCE.path}>{USERS_TABLE_REFERENCE.name}</LinkTo>
