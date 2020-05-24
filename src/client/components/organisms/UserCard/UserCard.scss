@@ -8,11 +8,3 @@
     margin-top: getSpacing(2);
   }
 }
-
-@media screen and (min-width: $breakpointExtraSmall) {
-  .user-card {
-    &__info {
-      grid-template-columns: auto auto;
-    }
-  }
-}
