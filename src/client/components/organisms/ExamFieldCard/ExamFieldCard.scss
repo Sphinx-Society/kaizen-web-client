@@ -1,0 +1,32 @@
+.exam-field-card {
+  padding: getSpacing(3);
+  margin: getSpacing(1) auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-height: 80vh;
+  overflow-y: auto;
+  width: 80vw;
+  max-width: 500px;
+
+  &__close {
+    position: absolute;
+    top: getSpacing(0.5);
+    right: getSpacing(0.5);
+    cursor: pointer;
+    &:hover {
+      filter: brightness(1.5);
+    }
+  }
+
+  &__flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: getSpacing(1);
+
+    &--no-margin {
+      margin: 0
+    }
+  }
+}
