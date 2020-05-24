@@ -13,6 +13,10 @@
     justify-content: space-between;
     align-items: center;
 
+    h2 {
+      flex: 1;
+    }
+
     &--bottom-line {
       @include applyTo('m') {
         border-bottom: $borderSolid2pxDarkGray;
