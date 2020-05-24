@@ -24,6 +24,15 @@
 	@include btnHover($colorFontLight, $colorPrimaryMain);
   @include btnActive($colorSuccess, $colorFontDark);
 
+  &__wrapper {
+    position: fixed;
+    bottom: getSpacing(1);
+    display: flex;
+    justify-content: center;
+    left: 0;
+    right: 0;
+  }
+
   &__container {
     &--icon {
       display: flex;
@@ -43,7 +52,11 @@
 	&--warning {
 		@include colorFontAndBg($colorFontLight, $colorWarningPrimary);
 		@include btnHover($colorFontDark, $colorWarningSecondary);
-	}
+  }
+
+  &--spaced {
+    padding: getSpacing(1) getSpacing(4);
+  }
 
 	&:disabled {
 		@include colorFontAndBg($colorFontDisabled, $colorBgDisabled);
