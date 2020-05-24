@@ -72,7 +72,10 @@ Select.propTypes = {
   /** Function to be called on input change to set a new value */
   onChange: PropTypes.func.isRequired,
   /** List of elements to display in selector */
-  options: PropTypes.oneOfType([PropTypes.array, PropTypes.shape({ label: PropTypes.string, value: PropTypes.string })]),
+  options: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
+  })])).isRequired,
   /** Must be the id of a "form" element in the same document. If the
    * attribute is not specified, this "input" element must be a descendant of
    * a "form" element. */
@@ -86,7 +89,6 @@ Select.propTypes = {
 };
 
 Select.defaultProps = {
-  options: [],
   form: undefined,
   required: false,
   disabled: false,
