@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import {
   FaRegTimesCircle as CloseIcon,
   FaTrashAlt as TrashIcon,
@@ -14,26 +15,28 @@ import Checkbox from '../../atoms/Checkbox/Checkbox';
 import useForm from '../../../hooks/useForm/useForm';
 import useOutsideClick from '../../../hooks/useOutsideClick/useOutsideClick';
 
-import { colorError } from './ExamFieldCard.scss';
+import { colorError } from './TemplateFieldCard.scss';
 
-const ExamFieldCard = (props) => {
+const TemplateFieldCard = (props) => {
   const {
     onSubmit,
     onCancel,
   } = props;
 
+  const editingField = useSelector((state) => state.templates.editingField);
+
   const ref = useRef(null);
 
-  const [options, setOptions] = useState([]);
+  const [options, setOptions] = useState(editingField ? editingField.options : []);
 
-  const initialFormState = {
+  const initialFormState = editingField || {
     name: '',
     type: '',
     placeholder: '',
     minLimit: '',
     maxLimit: '',
     unit: '',
-    required: false,
+    required: true,
   };
 
   const [{
@@ -44,7 +47,22 @@ const ExamFieldCard = (props) => {
     maxLimit,
     unit,
     required,
-  }, handleOnChange, handleSubmit] = useForm(initialFormState, onSubmit);
+  }, handleOnChange] = useForm(initialFormState);
+
+  const handleOnSubmit = (event) => {
+    event.preventDefault();
+    onSubmit({
+      ...initialFormState,
+      name,
+      type,
+      placeholder,
+      minLimit,
+      maxLimit,
+      unit,
+      required,
+      options,
+    });
+  };
 
   const types = [
     { label: 'Texto', value: 'text' },
@@ -89,14 +107,14 @@ const ExamFieldCard = (props) => {
   const ButtonWrapper = () => {
     if (type === 'options') {
       return (
-        <div className='exam-field-card__flex-container'>
+        <div className='template-field-card__flex-container'>
           <Button onClick={addOption}>Agregar opción</Button>
-          <Button form='exam-field-card' type='submit'>Agregar campo</Button>
+          <Button form='template-field-card' type='submit'>Agregar campo</Button>
         </div>
       );
     }
     return (
-      <Button form='exam-field-card' type='submit'>Agregar campo</Button>
+      <Button form='template-field-card' type='submit'>Agregar campo</Button>
     );
   };
 
@@ -107,23 +125,25 @@ const ExamFieldCard = (props) => {
         return (
           <form
             ref={ref}
-            onSubmit={handleSubmit}
-            id='exam-field-card'
+            onSubmit={handleOnSubmit}
+            id='template-field-card'
           >
-            <Surface disableSpacing className='exam-field-card'>
+            <Surface disableSpacing className='template-field-card'>
               <TextInput
                 value={name}
                 onChange={handleOnChange}
                 placeholder='Nombre del campo'
                 inputName='name'
-                id='exam-field-card-name'
+                id='template-field-card-name'
+                required
               />
               <TextInput
                 value={placeholder}
                 onChange={handleOnChange}
                 placeholder='Etiqueta'
                 inputName='placeholder'
-                id='exam-field-card-placeholder'
+                id='template-field-card-placeholder'
+                required
               />
               <Select
                 value={type}
@@ -132,7 +152,8 @@ const ExamFieldCard = (props) => {
                 options={types}
                 name='type'
                 defaultOption='Selecciona un tipo'
-                id='exam-field-card-type'
+                id='template-field-card-type'
+                required
               />
               {type === 'number' && (
                 <>
@@ -141,37 +162,41 @@ const ExamFieldCard = (props) => {
                     onChange={handleOnChange}
                     placeholder='Unidad'
                     inputName='unit'
-                    id='exam-field-card-unit'
+                    id='template-field-card-unit'
+                    required
                   />
                   <TextInput
                     value={minLimit}
                     onChange={handleOnChange}
                     placeholder='Desde'
                     inputName='minLimit'
-                    id='exam-field-card-min'
+                    id='template-field-card-min'
                     type='number'
+                    required
                   />
                   <TextInput
                     value={maxLimit}
                     onChange={handleOnChange}
                     placeholder='Hasta'
                     inputName='maxLimit'
-                    id='exam-field-card-max'
+                    id='template-field-card-max'
                     type='number'
+                    required
                   />
                 </>
               )}
               {type === 'options' && (
                 options.map(({ id, value }) => (
                   <div
-                    className='exam-field-card__flex-container exam-field-card__flex-container--no-margin'
+                    className='horizontal-flex-container horizontal-flex-container--no-margin'
                     key={id}
                   >
                     <TextInput
                       value={value}
                       onChange={(event) => handleOptionValue(event.target.value, id)}
-                      id={`exam-field-card-option-${id}`}
+                      id={`template-field-card-option-${id}`}
                       placeholder={`Opción ${id}`}
+                      required
                     />
                     <Button
                       icon={<TrashIcon size='1em' />}
@@ -183,10 +208,10 @@ const ExamFieldCard = (props) => {
                   </div>
                 ))
               )}
-              <div className='exam-field-card__flex-container'>
+              <div className='horizontal-flex-container'>
                 <span>Campo requerido</span>
                 <Checkbox
-                  id='exam-field-card-is-required'
+                  id='template-field-card-is-required'
                   onChange={handleOnChange}
                   name='required'
                   checked={required}
@@ -194,7 +219,7 @@ const ExamFieldCard = (props) => {
               </div>
               <ButtonWrapper />
               <CloseIcon
-                className='exam-field-card__close'
+                className='template-field-card__close'
                 color={colorError}
                 size='1.5em'
                 onClick={onCancel}
@@ -207,9 +232,9 @@ const ExamFieldCard = (props) => {
   );
 };
 
-ExamFieldCard.propTypes = {
+TemplateFieldCard.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
 };
 
-export default ExamFieldCard;
+export default TemplateFieldCard;

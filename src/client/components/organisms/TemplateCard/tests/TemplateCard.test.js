@@ -1,30 +1,30 @@
 import React from 'react';
 import { configure, mount, render } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import ExamCard from '../ExamCard';
+import TemplateCard from '../TemplateCard';
 
 configure({ adapter: new Adapter() });
 
-describe('ExamCard', () => {
+describe('TemplateCard', () => {
   describe('Default Classes', () => {
     const nameMock = 'Blood test';
     const categoryMock = 'Laboratory';
     const creationDateMock = 1234568512;
 
     test('Should have a class ".exam-card"', () => {
-      const examCard = render(
-        <ExamCard
+      const templateCard = render(
+        <TemplateCard
           name={nameMock}
           category={categoryMock}
           creationDate={creationDateMock}
         />,
       );
-      expect(examCard.hasClass('exam-card')).toBe(true);
+      expect(templateCard.hasClass('exam-card')).toBe(true);
     });
 
-    test('ExamCard props', () => {
-      const examCard = mount(
-        <ExamCard
+    test('TemplateCard props', () => {
+      const templateCard = mount(
+        <TemplateCard
           name={nameMock}
           category={categoryMock}
           creationDate={creationDateMock}
@@ -34,7 +34,7 @@ describe('ExamCard', () => {
         name,
         category,
         creationDate,
-      } = examCard.find('ExamCard').props();
+      } = templateCard.find('TemplateCard').props();
 
       expect(name).toBe(nameMock);
       expect(category).toBe(categoryMock);

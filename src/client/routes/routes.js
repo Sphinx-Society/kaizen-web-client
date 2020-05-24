@@ -1,13 +1,15 @@
 import NotFound from '../components/pages/NotFound';
 import Login from '../components/pages/Login/Login';
-import ExamsManagement from '../components/pages/ExamsManagement/ExamsManagement';
-import ExamCreator from '../components/pages/ExamCreator/ExamCreator';
-import ExamEditor from '../components/pages/ExamEditor/ExamEditor';
+import TemplatesManagement from '../components/pages/TemplatesManagement/TemplatesManagement';
+import TemplateCreator from '../components/pages/TemplateCreator/TemplateCreator';
+import TemplateEditor from '../components/pages/TemplateEditor/TemplateEditor';
 
-export const templateManagement = () => '/exams-management';
-export const createTemplate = () => '/exams-management/create';
-export const editTemplate = (id) => `/exams-management/${id}`;
-export const login = () => '/';
+import {
+  login,
+  templatesManagement,
+  templateCreator,
+  templateEditor,
+} from './paths';
 
 export default [
   {
@@ -16,18 +18,18 @@ export default [
     exact: true,
   },
   {
-    path: templateManagement(),
-    component: ExamsManagement,
+    path: templatesManagement(),
+    component: TemplatesManagement,
     exact: true,
   },
   {
-    path: createTemplate(),
-    component: ExamCreator,
+    path: templateCreator(),
+    component: TemplateCreator,
     exact: true,
   },
   {
-    path: editTemplate(':id'),
-    component: ExamEditor,
+    path: templateEditor(':id'),
+    component: TemplateEditor,
     exact: true,
   },
   {

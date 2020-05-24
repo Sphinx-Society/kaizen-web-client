@@ -1,21 +1,27 @@
 export const initialState = {
-  exams: [],
+  templates: [],
   isAddingField: false,
+  editingField: null,
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case 'EXAMS/SET_EXAMS': {
+    case 'TEMPLATES/SET_TEMPLATES': {
       return {
         ...state,
-        exams: action.payload.exams,
+        templates: action.payload.templates,
       };
     }
-    case 'EXAMS/SET_IS_ADDING_FIELD': {
-      console.log(state);
+    case 'TEMPLATES/SET_IS_ADDING_FIELD': {
       return {
         ...state,
         isAddingField: action.payload.isAddingField,
+      };
+    }
+    case 'TEMPLATES/SET_EDITING_FIELD': {
+      return {
+        ...state,
+        editingField: action.payload.editingField,
       };
     }
     default: {
