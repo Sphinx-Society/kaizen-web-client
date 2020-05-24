@@ -1,9 +1,10 @@
 import React from 'react';
+
 import { IoIosEye as EyeIcon, IoMdTrash as TrashIcon } from 'react-icons/io';
 import { FaPen as PencilIcon } from 'react-icons/fa';
 
-import Button from '../../../atoms/Button/Button';
-import Select from '../../../atoms/Select/Select';
+import Button from '../../components/atoms/Button/Button';
+import Select from '../../components/atoms/Select/Select';
 
 const rows = [
   {
