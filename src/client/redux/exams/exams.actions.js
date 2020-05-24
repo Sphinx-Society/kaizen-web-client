@@ -3,4 +3,8 @@ export const setExams = (payload) => ({
   payload,
 });
 
-export default setExams;
+export const setIsAddingField = (payload) => ({
+  type: 'EXAMS/SET_IS_ADDING_FIELD',
+  payload,
+});
+

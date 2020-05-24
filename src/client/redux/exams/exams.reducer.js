@@ -1,5 +1,6 @@
 export const initialState = {
   exams: [],
+  isAddingField: false,
 };
 
 export default (state = initialState, action) => {
@@ -8,6 +9,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         exams: action.payload.exams,
+      };
+    }
+    case 'EXAMS/SET_IS_ADDING_FIELD': {
+      console.log(state);
+      return {
+        ...state,
+        isAddingField: action.payload.isAddingField,
       };
     }
     default: {
