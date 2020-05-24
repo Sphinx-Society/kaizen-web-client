@@ -26,11 +26,15 @@
 
   &__wrapper {
     position: fixed;
-    bottom: getSpacing(1);
+    bottom: getSpacing(10);
     display: flex;
     justify-content: center;
     left: 0;
     right: 0;
+
+    @include applyTo('m') {
+      bottom: getSpacing(1);
+    }
   }
 
   &__container {
