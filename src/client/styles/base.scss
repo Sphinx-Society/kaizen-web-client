@@ -8,6 +8,23 @@ body, html, #app, * {
 	position: relative;
 }
 
+.portal {
+  position: fixed;
+  z-index: 5000;
+  display: none;
+
+  &--enable {
+    display: flex;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: getTransparency(0.9);
+    align-items: center;
+    justify-content: center;
+  }
+}
+
 body {
 	font-size: $fontSizeBase;
 	font-family: $fontFamilyBase;
