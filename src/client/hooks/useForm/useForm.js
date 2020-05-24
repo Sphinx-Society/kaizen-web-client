@@ -4,8 +4,9 @@ const useForm = (initialState, submitCallback) => {
   const [state, setState] = useState(initialState);
 
   const handleOnChange = (event) => {
-    const { name, value } = event.target;
-    setState({ ...state, [name]: value });
+    const { name, value, checked, type } = event.target;
+    const val = type === 'checkbox' ? checked : value;
+    setState({ ...state, [name]: val });
   };
 
   const handleSubmit = (event) => {
