@@ -16,6 +16,7 @@ $colorSuccess: #388e3c;
 $colorWarningPrimary: $colorError;
 $colorWarningSecondary: #ffc914;
 $colorTransparency: #0000001a;
+$colorLightBlue: #ADBCFF;
 
 @function getTransparency($transparency) {
   @return rgba(0,0,0,$transparency)
