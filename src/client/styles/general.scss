@@ -14,6 +14,17 @@ $borderSolid2pxDarkGray: solid 2px $colorFontDarkGray;
   visibility: hidden;
 }
 
+.horizontal-flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: getSpacing(1);
+
+  &--no-margin {
+    margin: 0
+  }
+}
+
 .surface--card {
   display: inline-block;
   @include addSpaces(1);
