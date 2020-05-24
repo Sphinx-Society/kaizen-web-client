@@ -7,8 +7,16 @@ import './Select.scss';
 
 const Select = (props) => {
   const {
-    name, id, placeholder, value, onChange,
-    options, form, required, disabled,
+    name,
+    id,
+    placeholder,
+    value,
+    onChange,
+    options,
+    form,
+    required,
+    disabled,
+    defaultOption,
   } = props;
 
   const selectClassName = clsx({
@@ -19,7 +27,7 @@ const Select = (props) => {
 
   const labelClassName = clsx({
     'select__label': true,
-    'select__label--value': value,
+    'select__label--value': value || defaultOption,
   });
 
   return (
@@ -29,14 +37,23 @@ const Select = (props) => {
         name={name}
         id={id}
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={onChange}
         form={form}
         required={required}
         className='select__select'
         disabled={disabled}
       >
-        <option value=''>{value}</option>
-        {options.map((item) => <option value={item} key={item}>{item}</option>)}
+        <option value=''>{defaultOption}</option>
+        {options.map((item) => {
+          if (typeof item === 'string') {
+            return (
+              <option value={item} key={item}>{item}</option>
+            );
+          }
+          return (
+            <option value={item.value} key={item.value}>{item.label}</option>
+          );
+        })}
       </select>
       <DownArrowIcon size='1.5em' />
     </div>
@@ -55,7 +72,7 @@ Select.propTypes = {
   /** Function to be called on input change to set a new value */
   onChange: PropTypes.func.isRequired,
   /** List of elements to display in selector */
-  options: PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+  options: PropTypes.oneOfType([PropTypes.array, PropTypes.shape({ label: PropTypes.string, value: PropTypes.string })]),
   /** Must be the id of a "form" element in the same document. If the
    * attribute is not specified, this "input" element must be a descendant of
    * a "form" element. */
@@ -64,6 +81,8 @@ Select.propTypes = {
   required: PropTypes.bool,
   /** This prop make the input disabled */
   disabled: PropTypes.bool,
+  /** Default option to return to a defuault value */
+  defaultOption: PropTypes.string,
 };
 
 Select.defaultProps = {
@@ -71,6 +90,7 @@ Select.defaultProps = {
   form: undefined,
   required: false,
   disabled: false,
+  defaultOption: '',
 };
 
 export default Select;
