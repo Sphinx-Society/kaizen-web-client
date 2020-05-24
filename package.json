@@ -51,8 +51,9 @@
   "homepage": "https://github.com/Sphinx-Society/kaizen-web-client#readme",
   "dependencies": {
     "@babel/polyfill": "7.8.7",
+    "axios": "0.19.2",
     "clsx": "1.1.0",
-    "dotenv": "^8.2.0",
+    "dotenv": "8.2.0",
     "express": "4.17.1",
     "prop-types": "15.7.2",
     "react": "16.13.1",
