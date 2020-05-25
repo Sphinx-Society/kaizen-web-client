@@ -1,10 +1,8 @@
 import axios from 'axios';
 
-const { API_URL } = process.env;
-
 class Request {
   constructor(token) {
-    this.apiUrl = API_URL;
+    this.apiUrl = `${process.env.API_URL}/${process.env.API_VERSION}`;
     this.token = token;
     this.axios = axios;
 
