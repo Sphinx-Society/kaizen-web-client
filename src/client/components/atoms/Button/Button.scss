@@ -24,19 +24,6 @@
 	@include btnHover($colorFontLight, $colorPrimaryMain);
   @include btnActive($colorSuccess, $colorFontDark);
 
-  &__wrapper {
-    position: absolute;
-    bottom: getSpacing(6);
-    display: flex;
-    justify-content: center;
-    left: 0;
-    right: 0;
-
-    @include applyTo('m') {
-      bottom: getSpacing(1);
-    }
-  }
-
   &__container {
     &--icon {
       display: flex;
