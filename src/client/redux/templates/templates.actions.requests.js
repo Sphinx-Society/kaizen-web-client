@@ -10,8 +10,10 @@ export const listTemplates = () => async (dispatch) => {
     dispatch(templateActions.setTemplates(templates));
   } catch (error) {
     dispatch(feedbackActions.setFeedback({
-      message: error.message,
-      type: 'error',
+      feedback: {
+        message: error.message,
+        type: 'error',
+      },
     }));
     dispatch(feedbackActions.setIsLoading({ isLoading: false }));
   }
