@@ -38,7 +38,7 @@ const Navbar = (props) => {
             >
               <ExamsIcon />
             </NavLink>
-            <dd>Examenes</dd>
+            <dd>Plantillas</dd>
           </div>
         )}
         <div className='navbar__links__link'>

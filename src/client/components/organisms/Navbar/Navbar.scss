@@ -63,8 +63,9 @@
         display: none;
 
         @include applyTo('m') {
-          opacity: 0;
           transition: .3s;
+          display: unset;
+          color: rgba(255, 255, 255, 0.7);;
         }
       }
 
@@ -85,6 +86,10 @@
           font-size: 3em;
           color: white;
         }
+      }
+
+      &--selected ~ dd {
+        color: white;
       }
     }
   }
