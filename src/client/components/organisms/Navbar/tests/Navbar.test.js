@@ -33,8 +33,9 @@ describe('Navbar organism', () => {
   test('Should render logo', () => {
     expect(component.find('.navbar__logo').length).toEqual(1);
   });
+
   test('Should render only two icons when user is not admin', () => {
-    const icon = component.find('.button--container');
+    const icon = component.find('.navbar__links__link');
     expect(icon.length).toBe(2);
   });
 });

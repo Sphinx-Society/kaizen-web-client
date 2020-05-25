@@ -28,8 +28,8 @@ const Button = (props) => {
   const setClass = (isIcon, array, value, index) => isIcon && (array[index] === value);
 
   const buttonClassName = clsx({
-    '--spaced': !isIcon,
     'btn': !isIcon,
+    'btn--spaced': !isIcon,
     'btn--primary': setClass(!isIcon, colors, color, 0),
     'btn--secondary': setClass(!isIcon, colors, color, 1),
     'btn--warning': setClass(!isIcon, colors, color, 2),
@@ -75,7 +75,7 @@ const Button = (props) => {
 
 Button.propTypes = {
   /** Function that will be called on click event. */
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
   /** The text inside the button or another component */
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   /** Specify the type of the button */
@@ -109,6 +109,7 @@ Button.defaultProps = {
   disabled: false,
   form: '',
   children: null,
+  onClick: null,
 };
 
 export default Button;

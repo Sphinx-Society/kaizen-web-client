@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   FaEye as EyeIcon,
-  FaPen as PenIcon,
   FaTrashAlt as TrashIcon,
 } from 'react-icons/fa';
 import Surface from '../../atoms/Surface/Surface';
@@ -10,9 +9,9 @@ import Button from '../../atoms/Button/Button';
 import ReadableField from '../../atoms/ReadableField/ReadableField';
 import { getStringFromDate } from '../../../utils/date';
 
-import './ExamCard.scss';
+import './TemplateCard.scss';
 
-const ExamCard = (props) => {
+const TemplateCard = (props) => {
   const {
     name,
     category,
@@ -22,39 +21,33 @@ const ExamCard = (props) => {
   const formattedDate = getStringFromDate(new Date(creationDate));
 
   return (
-    <Surface disableSpacing className='exam-card'>
+    <Surface disableSpacing className='template-card'>
       <div>
         <ReadableField
-          className='exam-card__readable-field'
+          className='template-card__readable-field'
           title='Nombre'
           description={name}
         />
         <ReadableField
-          className='exam-card__readable-field'
+          className='template-card__readable-field'
           title='Categoría'
           description={category}
         />
         <ReadableField
-          className='exam-card__readable-field'
+          className='template-card__readable-field'
           title='Fecha de creación'
           description={formattedDate}
         />
       </div>
-      <div className='exam-card__buttons-container'>
+      <div className='template-card__buttons-container'>
         <Button
-          className='exam-card__buttons-container__button --shadowed'
+          className='template-card__buttons-container__button --shadowed'
           type='icon'
           icon={<EyeIcon />}
           iconMode='1'
         />
         <Button
-          className='exam-card__buttons-container__button --shadowed'
-          type='icon'
-          icon={<PenIcon />}
-          iconMode='1'
-        />
-        <Button
-          className='exam-card__buttons-container__button --shadowed'
+          className='template-card__buttons-container__button --shadowed'
           type='icon'
           icon={<TrashIcon />}
           iconMode='1'
@@ -64,7 +57,7 @@ const ExamCard = (props) => {
   );
 };
 
-ExamCard.propTypes = {
+TemplateCard.propTypes = {
   /** Name of the exam */
   name: PropTypes.string.isRequired,
   /** Category where the exam below*/
@@ -73,4 +66,4 @@ ExamCard.propTypes = {
   creationDate: PropTypes.number.isRequired,
 };
 
-export default ExamCard;
+export default TemplateCard;

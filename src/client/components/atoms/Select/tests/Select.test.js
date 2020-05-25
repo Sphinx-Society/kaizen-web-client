@@ -93,7 +93,7 @@ describe('Select', () => {
   describe('When it is changed the value', () => {
     describe('If it is possible to choose', () => {
       let valueTest = '';
-      const onChangeFn = (newValue) => { valueTest = newValue; };
+      const onChangeFn = (event) => { valueTest = event.target.value; };
       const select = mount(
         <Select
           name={id}

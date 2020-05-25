@@ -43,7 +43,14 @@
 	&--warning {
 		@include colorFontAndBg($colorFontLight, $colorWarningPrimary);
 		@include btnHover($colorFontDark, $colorWarningSecondary);
-	}
+  }
+
+  &--spaced {
+    padding: getSpacing(1);
+    @include applyTo('m') {
+      padding: getSpacing(1) getSpacing(4);
+    }
+  }
 
 	&:disabled {
 		@include colorFontAndBg($colorFontDisabled, $colorBgDisabled);

@@ -3,6 +3,8 @@
     padding-top: getSpacing(8);
   }
 
+  padding-bottom: getSpacing(10);
+
   @include applyTo('m') {
     padding: getSpacing(3);
   }
@@ -11,8 +13,23 @@
     padding: getSpacing(2);
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
+    align-items: stretch;
+    flex-direction: column;
+
+    @include applyTo('m') {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    h2 {
+      flex: 1;
+      margin-bottom: getSpacing(2);
+
+      @include applyTo('m') {
+        margin-bottom: getSpacing(0);
+      }
+
+    }
 
     &--bottom-line {
       @include applyTo('m') {

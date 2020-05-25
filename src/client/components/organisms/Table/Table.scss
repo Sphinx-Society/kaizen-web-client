@@ -1,7 +1,10 @@
 .table {
-  min-height: 400px;
   display: flex;
   flex-direction: column;
+
+  @include applyTo('m') {
+    min-height: 400px;
+  }
 
   &__scroller {
     @include applyTo('m') {

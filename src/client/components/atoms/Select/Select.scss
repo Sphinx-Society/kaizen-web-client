@@ -1,19 +1,38 @@
 .select {
+  display: flex;
   position: relative;
-  width: 100%;
-  font-size: $fontSizeBase;
-  color: $colorFontMain;
-  border-bottom: $borderSolid2pxDarkGray;
-  margin: getSpacing(1);
+  margin: getSpacing(0.5) 0;
+  align-items: center;
 
-  &:active {
-    .select__label {
-      @include labelCollected(-8px, 0);
+  &__select {
+    font-family: $fontFamilyBase;
+    height: 2em;
+    border: none;
+    border-bottom: $borderSolid2pxDarkGray;
+    background: transparent;
+    margin: getSpacing(1);
+    outline: none;
+    color: $colorFontMain;
+    padding: 0 getSpacing(0.8);
+    font-weight: 400;
+    font-size: $fontSizeBase;
+    letter-spacing: getSpacing(0.01);
+    width: 100%;
+    padding-right: getSpacing(3);
+    padding-bottom: getSpacing(0.5);
+
+    &:disabled {
+      cursor: not-allowed;
+      background-color: $colorBgDisabled;
     }
-  }
 
-  &--disabled {
-    background-color: $colorBgDisabled;
+    &:focus {
+      border-bottom: 2px solid $colorPrimaryMain;
+    }
+
+    &:focus ~ .select__label {
+      @include labelCollected(-2px, getSpacing(1));
+    }
   }
 
   &__label {
@@ -25,29 +44,13 @@
     color: $colorFontMain;
 
     &--value {
-      @include labelCollected(-8px, 0);
-    }
-  }
-
-  &__select {
-    width: 100%;
-    position: relative;
-    z-index: 8;
-    background-color: transparent;
-    color: $colorFontDark;
-    font-size: $fontSizeBase;
-    padding: 5.5px getSpacing(1);
-
-    &:disabled {
-      cursor: not-allowed;
+      @include labelCollected(-2px, getSpacing(1));
     }
   }
 
   & svg {
-    display: inline-block;
     position: absolute;
-    z-index: 6;
-    right: 5px;
-    bottom: 0;
+    top: getSpacing(1);
+    right: getSpacing(1);
   }
 }

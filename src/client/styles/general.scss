@@ -14,6 +14,27 @@ $borderSolid2pxDarkGray: solid 2px $colorFontDarkGray;
   visibility: hidden;
 }
 
+.--is-for-submit {
+  position: absolute;
+  bottom: $navbarHeight + 10px;
+  width: calc(100% - 40px);
+
+  @include applyTo('m') {
+    width: auto;
+  }
+}
+
+.horizontal-flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: getSpacing(1);
+
+  &--no-margin {
+    margin: 0
+  }
+}
+
 .--surface-card {
   display: block;
   @include addSpaces(2);

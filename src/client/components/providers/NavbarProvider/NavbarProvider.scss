@@ -1,0 +1,30 @@
+.navbar-provider {
+  display: grid;
+  width: 100%;
+  min-height: 100vh;
+  grid-template-columns: 1fr;
+  grid-template-rows: 90% 10%;
+  position: relative;
+  grid-template-areas: "component"
+                        "navbar";
+
+  &__navbar {
+    position: fixed;
+    grid-area: navbar;
+    bottom: 0;
+    width: 100%;
+    height: $navbarHeight;
+
+    @include applyTo('m') {
+      position: unset;
+      height: auto;
+    }
+  }
+
+  @include applyTo('m'){
+    grid-template-rows: 1fr;
+    grid-template-columns: getSpacing(10) 1fr;
+    grid-template-areas: "navbar component";
+    grid-template-areas: "navbar component";
+  }
+}

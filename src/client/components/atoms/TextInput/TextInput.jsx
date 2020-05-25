@@ -21,6 +21,8 @@ const TextInput = (props) => {
     color,
     icon,
     iconPosition,
+    min,
+    max,
   } = props;
 
   const textInputContainerClassName = clsx({
@@ -63,6 +65,8 @@ const TextInput = (props) => {
         required={required}
         disabled={disabled}
         type={type}
+        min={min}
+        max={max}
       />
       <label
         className={textInputLabelClassName}
@@ -83,7 +87,7 @@ TextInput.propTypes = {
   /** The input identification, it's also needed for the placeholder to move on click */
   id: PropTypes.string.isRequired,
   /** The input identification, it's also needed for the placeholder to move on click */
-  type: PropTypes.oneOf(['text', 'password', 'email']),
+  type: PropTypes.oneOf(['text', 'password', 'email', 'number']),
   /** It represent both, placeholder and label */
   placeholder: PropTypes.string.isRequired,
   /** Function to be called on input change */
@@ -108,6 +112,10 @@ TextInput.propTypes = {
   icon: PropTypes.node,
   /** Position of the icon, left or rigth */
   iconPosition: PropTypes.oneOf(['left', 'right']),
+  /** Min limit if the input is of type number */
+  min: PropTypes.number,
+  /** Max limit if the input is of type number */
+  max: PropTypes.number,
 };
 
 TextInput.defaultProps = {
@@ -119,6 +127,8 @@ TextInput.defaultProps = {
   disabled: false,
   color: 'primary',
   type: 'text',
+  min: null,
+  max: null,
 };
 
 export default TextInput;
