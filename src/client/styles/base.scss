@@ -14,7 +14,7 @@ body, html, #app, * {
 
 .portal {
   position: fixed;
-  z-index: 5000;
+  z-index: $zIndexPortal;
   display: none;
 
   &--enable {

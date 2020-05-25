@@ -41,8 +41,8 @@
 	}
 
 	&--warning {
-		@include colorFontAndBg($colorFontLight, $colorWarningPrimary);
-		@include btnHover($colorFontDark, $colorWarningSecondary);
+    @include colorFontAndBg($colorFontLight, $colorWarning);
+		@include btnHover($colorFontDark, $colorError);
   }
 
   &--spaced {
@@ -104,8 +104,8 @@
 	}
 
 	&--warning {
-		@include colorFontAndBg($colorWarningPrimary, transparent);
-		@include btnHover($colorWarningSecondary, transparent);
+		@include colorFontAndBg($colorWarning, transparent);
+		@include btnHover($colorError, transparent);
 	}
 
 	&--light {
