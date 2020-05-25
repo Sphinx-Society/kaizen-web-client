@@ -147,7 +147,7 @@ const TemplateForm = (props) => {
         <Button
           type='submit'
           form='template-form'
-          implementWrapper
+          className='--is-for-submit'
         >
           {submitButtonLabel}
         </Button>

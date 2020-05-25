@@ -13,7 +13,8 @@
     grid-area: navbar;
     bottom: 0;
     width: 100%;
-    height: getSpacing(5);
+    height: $navbarHeight;
+
     @include applyTo('m') {
       position: unset;
       height: auto;

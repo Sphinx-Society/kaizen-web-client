@@ -4,6 +4,8 @@ $spacingUnit: 10px;
   @return $spacingUnit * $times;
 }
 
+$navbarHeight: getSpacing(5);
+
 @mixin flex ($direction: rows, $horizontal: center, $vertical: center) {
   display: flex;
   flex-direction: $direction;

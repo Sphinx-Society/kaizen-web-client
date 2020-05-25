@@ -21,7 +21,6 @@ const Button = (props) => {
     className,
     disabled,
     form,
-    implementWrapper,
   } = props;
 
   const isIcon = type === 'icon';
@@ -55,35 +54,23 @@ const Button = (props) => {
     'btn__content--cols3-right': !isIcon && (icon && !centered && iconRight),
   });
 
-  const Btn = () => {
-    return (
-      <button
-        onClick={onClick}
-        type={type}
-        className={buttonClassName}
-        disabled={disabled}
-        form={form}
-      >
-        {icon ? (
-          <div className={contentClassName}>
-            {!iconRight && <div className='btn__container--icon'>{icon}</div>}
-            <div className='btn__container--children'>{children}</div>
-            {iconRight && <div className='btn__container--icon'>{icon}</div>}
-          </div>
-        ) : children}
-      </button>
-    );
-  };
-
-  if (implementWrapper) {
-    return (
-      <div className='btn__wrapper'>
-        <Btn />
-      </div>
-    );
-  }
-
-  return (<Btn />);
+  return (
+    <button
+      onClick={onClick}
+      type={type}
+      className={buttonClassName}
+      disabled={disabled}
+      form={form}
+    >
+      {icon ? (
+        <div className={contentClassName}>
+          {!iconRight && <div className='btn__container--icon'>{icon}</div>}
+          <div className='btn__container--children'>{children}</div>
+          {iconRight && <div className='btn__container--icon'>{icon}</div>}
+        </div>
+      ) : children}
+    </button>
+  );
 };
 
 Button.propTypes = {
@@ -107,8 +94,6 @@ Button.propTypes = {
   className: PropTypes.string,
   /** Specify if the button is disabled or not */
   disabled: PropTypes.bool,
-  /** Specify if the button should follow the standard wrapping and send it to the bottom of the screen in mobile */
-  implementWrapper: PropTypes.bool,
   /** If the button is outside a form and you want to active the submit event on click, you can pass the form id */
   form: PropTypes.string,
 };
@@ -122,7 +107,6 @@ Button.defaultProps = {
   color: 'primary',
   className: '',
   disabled: false,
-  implementWrapper: false,
   form: '',
   children: null,
   onClick: null,
