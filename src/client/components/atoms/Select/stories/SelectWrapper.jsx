@@ -5,7 +5,7 @@ const SelectWrapper = () => {
   const options = ['Opt1', 'Opt2', 'Opt3', 'Opt4', 'Opt5'];
   const [value, setValue] = React.useState('');
 
-  // Este useEffect es para confirmar la ejecución en el Storybook
+  // This effect is to confirm the execution of the storybook
   React.useEffect(
     () => { !value ? null : console.info(`Value seleccionado: ${value}`); }
     , [value],
@@ -18,7 +18,7 @@ const SelectWrapper = () => {
         id='id02'
         placeholder='Five Options'
         value={value}
-        onChange={setValue}
+        onChange={(event) => setValue(event.target.value)}
         options={options}
       />
     </div>

@@ -29,7 +29,7 @@
     }
 
     &:disabled {
-      border-bottom: 2px solid $colorBgDisabled;
+      background-color: $colorBgDisabled;
       cursor: not-allowed;
     }
 

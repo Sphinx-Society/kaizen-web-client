@@ -32,7 +32,6 @@ const Select = (props) => {
 
   return (
     <div className={selectClassName}>
-      <label htmlFor={id} className={labelClassName}>{placeholder}</label>
       <select
         name={name}
         id={id}
@@ -55,6 +54,7 @@ const Select = (props) => {
           );
         })}
       </select>
+      <label htmlFor={id} className={labelClassName}>{placeholder}</label>
       <DownArrowIcon size='1.5em' />
     </div>
   );
