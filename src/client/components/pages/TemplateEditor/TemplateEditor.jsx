@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IoMdAdd as AddIcon } from 'react-icons/io';
 import MainViewProvider from '../../providers/MainViewProvider/MainViewProvider';
 import NavbarProvider from '../../providers/NavbarProvider/NavbarProvider';
+import FeedbackProvider from '../../providers/FeedbackProvider/FeedbackProvider';
 import TemplateForm from '../../organisms/TemplateForm/TemplateForm';
 import Button from '../../atoms/Button/Button';
 import { setIsAddingField, setTemplates } from '../../../redux/templates/templates.actions';
@@ -26,19 +27,21 @@ const TemplateEditor = (props) => {
   };
 
   return (
-    <NavbarProvider>
-      <MainViewProvider
-        showBackButton
-        title={editingTemplate ? editingTemplate.name : 'Crear plantilla'}
-        showBottomLine
-        onBackButtonClick={goToManagerView}
-        menu={<Button onClick={addField} icon={<AddIcon />}>Nuevo campo</Button>}
-      >
-        <TemplateForm
-          onSubmit={addTemplate}
-        />
-      </MainViewProvider>
-    </NavbarProvider>
+    <FeedbackProvider>
+      <NavbarProvider>
+        <MainViewProvider
+          showBackButton
+          title={editingTemplate ? editingTemplate.name : 'Crear plantilla'}
+          showBottomLine
+          onBackButtonClick={goToManagerView}
+          menu={<Button onClick={addField} icon={<AddIcon />}>Nuevo campo</Button>}
+        >
+          <TemplateForm
+            onSubmit={addTemplate}
+          />
+        </MainViewProvider>
+      </NavbarProvider>
+    </FeedbackProvider>
   );
 };
 
