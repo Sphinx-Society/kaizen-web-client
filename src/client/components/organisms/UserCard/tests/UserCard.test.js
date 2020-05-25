@@ -50,9 +50,9 @@ describe('UserCard organism', () => {
   describe('Default clases', () => {
     const userCard = componentRender();
 
-    test('article should have some class "user-card" and "surface--card"', () => {
+    test('article should have some class "user-card" and "--surface-card"', () => {
       expect(userCard.find('article').hasClass('user-card')).toBeTruthy();
-      expect(userCard.find('article').hasClass('surface--card')).toBeTruthy();
+      expect(userCard.find('article').hasClass('--surface-card')).toBeTruthy();
     });
 
     test('ListReadableFields should have a class "user-card__info"', () => {
