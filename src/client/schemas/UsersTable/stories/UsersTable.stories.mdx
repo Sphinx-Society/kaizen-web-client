@@ -1,0 +1,21 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+import LinkTo from '@storybook/addon-links/react';
+
+import {
+  TABLE_COLUMN_REFERENCE,
+  TABLE_ROW_REFERENCE,
+} from '../../references'
+
+<Meta
+  title='Schemas|UsersTable'
+/>
+
+# UsersTable Schema
+
+| Attribute | Type             | Description                                                                                                                                                                                            |
+|-----------|------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| columns   | TableColumSchema | Contains the name and other details of the columns that the table will have.                                                                                                                           |
+| rows      | TableRowSchema   | The information of each user per row                                                                                                                                                                   |
+
+- <LinkTo kind={TABLE_COLUMN_REFERENCE.path}>{TABLE_COLUMN_REFERENCE.name}</LinkTo>
+- <LinkTo kind={TABLE_ROW_REFERENCE.path}>{TABLE_ROW_REFERENCE.name}</LinkTo>

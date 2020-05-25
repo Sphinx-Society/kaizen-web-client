@@ -22,11 +22,13 @@ const UserCard = (props) => {
     linkToEdit,
     onClickDelete,
     sizeIcons,
+    className,
   } = props;
 
   const userCardClassName = clsx({
     'user-card': true,
-    'surface--card': true,
+    '--surface-card': true,
+    [className]: className,
   });
 
   return (
@@ -96,6 +98,8 @@ UserCard.propTypes = {
   onClickDelete: PropTypes.func,
   /** Size of action icons */
   sizeIcons: PropTypes.string,
+  /** Class to overwrite the styles */
+  className: PropTypes.string,
 };
 
 UserCard.defaultProps = {
@@ -104,6 +108,7 @@ UserCard.defaultProps = {
   linkToEdit: '/',
   onClickDelete: undefined,
   sizeIcons: '3em',
+  className: '',
 };
 
 export default UserCard;

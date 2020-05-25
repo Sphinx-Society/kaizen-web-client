@@ -25,9 +25,9 @@ $borderSolid2pxDarkGray: solid 2px $colorFontDarkGray;
   }
 }
 
-.surface--card {
-  display: inline-block;
-  @include addSpaces(1);
+.--surface-card {
+  display: block;
+  @include addSpaces(2);
   border-radius: getSpacing(2);
   box-shadow: 0px 0px 4px $colorBoxShadowLight;
 }
