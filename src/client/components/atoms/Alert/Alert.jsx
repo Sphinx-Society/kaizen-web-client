@@ -23,7 +23,8 @@ const Alert = (props) => {
   const ref = useRef(null);
 
   useEffect(() => {
-    setTimeout(onClose, closeTime);
+    const timeout = setTimeout(onClose, closeTime);
+    return () => clearTimeout(timeout);
   }, []);
 
   const icons = {
