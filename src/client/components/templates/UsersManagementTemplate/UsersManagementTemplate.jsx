@@ -11,11 +11,11 @@ import MainViewProvider from '../../providers/MainViewProvider/MainViewProvider'
 import Button from '../../atoms/Button/Button';
 import { getStringFromDate } from '../../../utils/date';
 
-import './UsersManagementT.scss';
+import './UsersManagementTemplate.scss';
 
 import UsersTableSchema from '../../../schemas/UsersTable/UsersTable';
 
-const UsersManagementT = (props) => {
+const UsersManagementTemplate = (props) => {
   const {
     className,
     data,
@@ -104,7 +104,7 @@ const UsersManagementT = (props) => {
   );
 };
 
-UsersManagementT.propTypes = {
+UsersManagementTemplate.propTypes = {
   /** Class to overwrite the styles */
   className: PropTypes.string,
   /** Contain the information in a specific struct. Columns to use in the table
@@ -124,7 +124,7 @@ UsersManagementT.propTypes = {
   fnDeleteUser: PropTypes.func,
 };
 
-UsersManagementT.defaultProps = {
+UsersManagementTemplate.defaultProps = {
   className: '',
   data: { columns: [], rows: [] },
   tablePage: 1,
@@ -135,4 +135,4 @@ UsersManagementT.defaultProps = {
   fnDeleteUser: null,
 };
 
-export default UsersManagementT;
+export default UsersManagementTemplate;

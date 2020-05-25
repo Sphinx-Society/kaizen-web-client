@@ -3,7 +3,7 @@ import { configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { MemoryRouter } from 'react-router-dom';
 
-import UsersManagementT from '../UsersManagementT';
+import UsersManagementTemplate from '../UsersManagementTemplate';
 import data from '../../../../__mocks__/components/UserTableMock';
 
 configure({ adapter: new Adapter() });
@@ -15,7 +15,7 @@ const linkToCreateNewUser = '/CreateUser';
 function componentRender(data, fnImport, fnDel) {
   return mount(
     <MemoryRouter>
-      <UsersManagementT
+      <UsersManagementTemplate
         isAdminWhoView={true}
         data={data || { columns: [], rows: [] }}
         linkToCreateNewUser={linkToCreateNewUser}
@@ -28,7 +28,7 @@ function componentRender(data, fnImport, fnDel) {
   );
 }
 
-describe('UsersManagementT Template', () => {
+describe('UsersManagementTemplate', () => {
   describe('Default clases', () => {
     const usersMgmT = componentRender(data);
     test('article should have some class "users-management":', () => {

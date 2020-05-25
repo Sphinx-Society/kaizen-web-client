@@ -1,18 +1,18 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import UsersManagementT from '../../templates/UsersManagementT/UsersManagementT';
+import UsersManagementTemplate from '../../templates/UsersManagementTemplate/UsersManagementTemplate';
 
 const UserManagement = () => {
   const users = useSelector((state) => state.users || []);
-  const linkToCreateNewUser= '/users/create/'
-  const fnImportUsers = () => alert(`Importar Usuarios`);
+  const linkToCreateNewUser= '/users/create/';
+  const fnImportUsers = () => alert('Importar Usuarios');
   const linkViewUserProfile = '/users/view/';
   const linkEditUserProfile = '/users/edit/';
   const fnDeleteUser = (id) => alert(`Eliminar elemento ${id}`);
 
   return (
-    <UsersManagementT
+    <UsersManagementTemplate
       data={{ columns: [], rows: users }}
       tablePage={1}
       linkToCreateNewUser={linkToCreateNewUser}
