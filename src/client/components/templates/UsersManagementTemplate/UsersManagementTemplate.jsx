@@ -6,7 +6,7 @@ import { FaPlus as PlusIcon, FaFileCsv as FileImport } from 'react-icons/fa';
 
 import Table from '../../organisms/Table/Table';
 import UserCard from '../../organisms/UserCard/UserCard';
-import NavbarProvider from '../NavbarProvider/NavbarProvider';
+import NavbarProvider from '../../providers/NavbarProvider/NavbarProvider';
 import MainViewProvider from '../../providers/MainViewProvider/MainViewProvider';
 import Button from '../../atoms/Button/Button';
 import { getStringFromDate } from '../../../utils/date';

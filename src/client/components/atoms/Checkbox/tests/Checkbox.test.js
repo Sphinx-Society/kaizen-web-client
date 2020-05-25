@@ -67,8 +67,8 @@ describe('Checkbox', () => {
   describe('When it is clicked', () => {
     describe('If, it is enable to check', () => {
       const onChangeFn = jest.fn().mockReturnValue(100);
-      const cBox = mount(<Checkbox id='id100' onChange={onChangeFn} />);
-      cBox.simulate('change');
+      const cBox = mount(<Checkbox id='id100' checked onChange={onChangeFn} />);
+      cBox.find('input').simulate('change');
 
       test('should be able to verify:', () => {
         expect(cBox.find('label').hasClass('checkbox checkbox--enable')).toBe(true);

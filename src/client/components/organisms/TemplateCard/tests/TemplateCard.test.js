@@ -11,7 +11,7 @@ describe('TemplateCard', () => {
     const categoryMock = 'Laboratory';
     const creationDateMock = 1234568512;
 
-    test('Should have a class ".exam-card"', () => {
+    test('Should have a class ".template-card"', () => {
       const templateCard = render(
         <TemplateCard
           name={nameMock}
@@ -19,7 +19,7 @@ describe('TemplateCard', () => {
           creationDate={creationDateMock}
         />,
       );
-      expect(templateCard.hasClass('exam-card')).toBe(true);
+      expect(templateCard.hasClass('template-card')).toBe(true);
     });
 
     test('TemplateCard props', () => {
