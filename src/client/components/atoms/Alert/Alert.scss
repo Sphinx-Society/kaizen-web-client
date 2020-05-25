@@ -1,0 +1,56 @@
+.alert {
+  display: grid;
+  grid-template-columns: 3em 1fr 3em;
+  border-radius: getSpacing(0.5);
+  font-weight: $fontWeightRegular;
+  animation-name: bounce-in-left;
+  animation-duration: .5s;
+  margin: getSpacing(1) 0;
+  position: fixed;
+  bottom: getSpacing(2);
+  left: getSpacing(2);
+  right: getSpacing(2);
+  padding: getSpacing(1) 0;
+  z-index: $zIndexfeedback;
+  align-items: center;
+
+  @include applyTo('m') {
+    max-width: 300px;
+  }
+
+  &--success {
+    background-color: $colorSuccess;
+    color: white;
+  }
+
+  &--error {
+    background-color: $colorError;
+    color: white;
+  }
+
+  &--warning {
+    background-color: $colorWarning;
+    color: black;
+  }
+
+  &__icon {
+    align-self: center;
+    justify-self: center;
+    display: flex;
+  }
+
+  &__text {
+    align-self: center;
+    padding: 0 getSpacing(3);
+
+    p {
+      word-break: break-word;
+    }
+  }
+
+  &__close {
+    cursor: pointer;
+  }
+}
+
+
