@@ -59,7 +59,10 @@
   }
 
   &--spaced {
-    padding: getSpacing(1) getSpacing(4);
+    padding: getSpacing(1);
+    @include applyTo('m') {
+      padding: getSpacing(1) getSpacing(4);
+    }
   }
 
 	&:disabled {

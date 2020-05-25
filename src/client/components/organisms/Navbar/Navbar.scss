@@ -10,30 +10,6 @@
   align-items: center;
   height: 100%;
 
-  a {
-    color: $colorFontDarkGray;
-  }
-  .is-selected {
-    color: $colorPrimaryMain;
-  }
-  &__logo {
-    display: none;
-  }
-  &__buttons {
-
-    @include flex(row,space-around);
-    align-items: center;
-    width: 100%;
-    height: 80%;
-    z-index: 10;
-    overflow-x: visible;
-  }
-  .button--container {
-    dd {
-      display: none;
-    }
-  }
-
   @include applyTo('m') {
     width: 100%;
     transition: 1s;
@@ -44,13 +20,13 @@
     grid-template-rows: 60px 1fr;
     grid-gap: getSpacing(3);
     padding: getSpacing(1);
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.424);
+    box-shadow: 2px 2px 10px getTransparency(0.5);
+  }
 
-    a {
-      color: $colorLightBlue;
-    }
+  &__logo {
+    display: none;
 
-    &__logo {
+    @include applyTo('m') {
       @include flex();
       width: 80%;
       height: 100%;
@@ -58,8 +34,17 @@
       background-color: $colorBgMain;
       border-radius: 50%;
     }
+  }
 
-    &__buttons {
+  &__links {
+    @include flex(row,space-around);
+    align-items: center;
+    width: 100%;
+    height: 80%;
+    z-index: 10;
+    overflow-x: visible;
+
+    @include applyTo('m') {
       position: relative;
       @include flex(column,space-around);
       align-items: center;
@@ -69,25 +54,38 @@
       overflow-x: visible;
     }
 
-    .button--container {
-      @include flex(column);
-      dd {
-        opacity: 0;
-        transition: .3s;
+    &__link {
+      @include applyTo('m') {
+        @include flex(column);
       }
-    }
-    .button--container:hover a {
-      color: $colorFontMain;
-    }
-    .option-container:hover {
-      color: $colorFontLight;
-    }
-    .button--container:hover dd {
-      opacity: 1;
-      color: $colorFontMain;
-    }
-    .is-selected {
-      color: $colorLightBlue;
+
+      dd {
+        display: none;
+
+        @include applyTo('m') {
+          opacity: 0;
+          transition: .3s;
+        }
+      }
+
+      &--unselected {
+        color: $colorFontDarkGray;
+        font-size: 2em;
+
+        @include applyTo('m') {
+          font-size: 2.5em;
+          color: rgba(255, 255, 255, 0.7);
+        }
+      }
+
+      &--selected {
+        color: $colorPrimaryMain;
+
+        @include applyTo('m') {
+          font-size: 3em;
+          color: white;
+        }
+      }
     }
   }
 }

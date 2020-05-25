@@ -1,6 +1,6 @@
 .table-pagination {
   position: fixed;
-  bottom: 0;
+  bottom: getSpacing(5);
   left: 0;
   right: 0;
   width: 100%;
