@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   FaEye as EyeIcon,
   FaPen as PenIcon,
@@ -12,17 +12,24 @@ import TemplateCard from '../../organisms/TemplateCard/TemplateCard';
 import Button from '../../atoms/Button/Button';
 import MainViewProvider from '../../providers/MainViewProvider/MainViewProvider';
 import NavbarProvider from '../../providers/NavbarProvider/NavbarProvider';
+import { listTemplates } from '../../../redux/templates/templates.actions.requests';
 
 import { getStringFromDate } from '../../../utils/date';
-
 import { templateEditor } from '../../../routes/paths';
 
 const TemplatesManagement = (props) => {
   const { history } = props;
+  const dispatch = useDispatch();
   const { templates } = useSelector((state) => state.templates);
   const { isLoading } = useSelector((state) => state.feedback);
 
   const goToTemplateCreator = () => history.push(templateEditor());
+
+  // useEffect(() => {
+  //   dispatch(listTemplates());
+  // }, []);
+
+  const editTe = () => {};
 
   return (
     <NavbarProvider>
@@ -60,12 +67,6 @@ const TemplatesManagement = (props) => {
                     className='--shadowed --spaced'
                     type='icon'
                     icon={<EyeIcon />}
-                    iconMode='1'
-                  />
-                  <Button
-                    className='--shadowed --spaced'
-                    type='icon'
-                    icon={<PenIcon />}
                     iconMode='1'
                   />
                   <Button

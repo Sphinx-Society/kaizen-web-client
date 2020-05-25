@@ -107,14 +107,14 @@ const TemplateFieldCard = (props) => {
   const ButtonWrapper = () => {
     if (type === 'options') {
       return (
-        <div className='template-field-card__flex-container'>
+        <div className='horizontal-flex-container'>
           <Button onClick={addOption}>Agregar opción</Button>
-          <Button form='template-field-card' type='submit'>Agregar campo</Button>
+          <Button form='template-field-card' type='submit'>{editingField ? 'Guardar' : 'Agregar campo'}</Button>
         </div>
       );
     }
     return (
-      <Button form='template-field-card' type='submit'>Agregar campo</Button>
+      <Button form='template-field-card' type='submit'>{editingField ? 'Guardar' : 'Agregar campo'}</Button>
     );
   };
 

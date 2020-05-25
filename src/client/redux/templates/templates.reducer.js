@@ -3,6 +3,8 @@ export const initialState = {
   isAddingField: false,
   editingField: null,
   editingTemplate: null,
+  editingTemplateFields: null,
+  isEditingTemplate: false,
 };
 
 export default (state = initialState, action) => {
@@ -23,6 +25,24 @@ export default (state = initialState, action) => {
       return {
         ...state,
         editingField: action.payload.editingField,
+      };
+    }
+    case 'TEMPLATES/SET_EDITING_TEMPLATE': {
+      return {
+        ...state,
+        editingTemplate: action.payload.editingTemplate,
+      };
+    }
+    case 'TEMPLATES/SET_EDITING_TEMPLATE_FIELDS': {
+      return {
+        ...state,
+        editingTemplateFields: action.payload.editingTemplateFields,
+      };
+    }
+    case 'TEMPLATES/SET_IS_EDITING_TEMPLATE': {
+      return {
+        ...state,
+        isEditingTemplate: action.payload.isEditingTemplate,
       };
     }
     default: {

@@ -16,7 +16,7 @@ const TemplateEditor = (props) => {
 
   const goToManagerView = () => push(templatesManagement());
 
-  const { templates } = useSelector((state) => state.templates);
+  const { templates, editingTemplate } = useSelector((state) => state.templates);
 
   const addField = () => dispatch(setIsAddingField({ isAddingField: true }));
 
@@ -29,7 +29,7 @@ const TemplateEditor = (props) => {
     <NavbarProvider>
       <MainViewProvider
         showBackButton
-        title='Crear plantilla'
+        title={editingTemplate ? editingTemplate.name : 'Crear plantilla'}
         showBottomLine
         onBackButtonClick={goToManagerView}
         menu={<Button onClick={addField} icon={<AddIcon />}>Nuevo campo</Button>}

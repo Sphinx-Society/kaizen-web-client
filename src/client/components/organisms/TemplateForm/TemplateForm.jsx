@@ -21,17 +21,19 @@ const TemplateForm = (props) => {
   const {
     onSubmit,
     submitButtonLabel,
-    editingExam,
-    editingExamFields,
   } = props;
 
   const dispatch = useDispatch();
 
-  const isAddingField = useSelector((state) => state.templates.isAddingField);
+  const {
+    isAddingField,
+    editingTemplateFields,
+    editingTemplate,
+  } = useSelector((state) => state.templates);
 
-  const [fields, setFields] = useState(editingExamFields || []);
+  const [fields, setFields] = useState(editingTemplateFields || []);
 
-  const initialFormState = editingExam || { name: '', type: '' };
+  const initialFormState = editingTemplate || { name: '', type: '' };
 
   const [{ name, type }, handleOnChange] = useForm(initialFormState);
 
@@ -96,7 +98,7 @@ const TemplateForm = (props) => {
         id='template-form'
         onSubmit={handleOnSubmit}
       >
-        <div>
+        <div className='template-form__principals'>
           <TextInput
             inputName='name'
             onChange={handleOnChange}

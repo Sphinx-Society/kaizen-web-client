@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   FaEye as EyeIcon,
-  FaPen as PenIcon,
   FaTrashAlt as TrashIcon,
 } from 'react-icons/fa';
 import Surface from '../../atoms/Surface/Surface';
@@ -45,12 +44,6 @@ const TemplateCard = (props) => {
           className='template-card__buttons-container__button --shadowed'
           type='icon'
           icon={<EyeIcon />}
-          iconMode='1'
-        />
-        <Button
-          className='template-card__buttons-container__button --shadowed'
-          type='icon'
-          icon={<PenIcon />}
           iconMode='1'
         />
         <Button
