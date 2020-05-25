@@ -3,3 +3,4 @@
 export const templatesManagement = () => '/templates-management';
 export const templateEditor = () => '/templates-management/editor';
 export const login = () => '/';
+export const usersManagement = () => '/users-management';

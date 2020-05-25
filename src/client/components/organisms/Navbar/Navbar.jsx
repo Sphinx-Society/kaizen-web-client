@@ -6,7 +6,7 @@ import { GoGear as SettingsIcon } from 'react-icons/go';
 import { AiFillHome as HomeIcon } from 'react-icons/ai';
 import Logo from '../../atoms/Logo/Logo';
 
-import { templatesManagement } from '../../../routes/paths';
+import { templatesManagement, usersManagement } from '../../../routes/paths';
 
 import './Navbar.scss';
 
@@ -23,7 +23,7 @@ const Navbar = (props) => {
           <NavLink
             className='navbar__links__link--unselected'
             activeClassName='navbar__links__link--selected'
-            to='/home'
+            to={usersManagement()}
           >
             <HomeIcon />
           </NavLink>
