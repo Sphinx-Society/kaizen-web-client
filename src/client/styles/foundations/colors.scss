@@ -13,8 +13,7 @@ $colorBgDisabled: #aeaeae;
 $colorBoxShadowLight: #a8a8a8;
 $colorError: #d23737;
 $colorSuccess: #388e3c;
-$colorWarningPrimary: $colorError;
-$colorWarningSecondary: #ffc914;
+$colorWarning: #ffc914;
 $colorTransparency: #0000001a;
 $colorLightBlue: #ADBCFF;
 
@@ -38,7 +37,6 @@ $colorLightBlue: #ADBCFF;
   colorBoxShadowLight: $colorBoxShadowLight;
   colorError: $colorError;
   colorSuccess: $colorSuccess;
-  colorWarningPrimary: $colorWarningPrimary;
-  colorWarningSecondary: $colorWarningSecondary;
+  colorWarning: $colorWarning;
   colorTransparency: $colorTransparency;
 }
