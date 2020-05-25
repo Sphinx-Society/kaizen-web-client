@@ -4,7 +4,7 @@ import StoryRouter from 'storybook-react-router';
 
 import UsersManagementT from '../UsersManagementT'
 
-import { data, menu } from '../../../../__mocks__/components/UserTableMock.js';
+import data from '../../../../__mocks__/components/UserTableMock.js';
 
 import {
   USERS_TABLE_REFERENCE,
@@ -24,10 +24,11 @@ Table to manage the list of users by an administrator.
   <Story name='Users Management Template'>
     <UsersManagementT
       data={data}
-      menu={menu()}
-      linkToViewUser='/view/user/'
-      linkToUserEdit='/edit/user/'
-      fnUserDelete={(id) => alert(`Do you want to delete the user ${id}`)}
+      linkToCreateNewUser='/users/new/'
+      fnImportUsers={() => alert('Import users to file .CSV')}
+      linkToViewUser='/users/view/'
+      linkToEditUser='/users/create/'
+      fnDeleteUser={(id) => alert(`Do you want to delete the user ${id}`)}
     />
   </Story>
 </Preview>

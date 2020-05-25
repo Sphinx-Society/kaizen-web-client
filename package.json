@@ -114,7 +114,6 @@
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif)$": "<rootDir>/src/client/__mocks__/assets/fileMock.js",
       "\\.(scss|sass)$": "<rootDir>/src/client/__mocks__/styles/styleMock.js"
-    },
-    "testMatch": [ "**/*.test.[jt]s?(x)", "**/*.spec.[jt]s?(x)" ]
+    }
   }
 }

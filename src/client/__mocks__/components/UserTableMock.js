@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { IoIosEye as EyeIcon, IoMdTrash as TrashIcon } from 'react-icons/io';
 import { FaPen as PencilIcon } from 'react-icons/fa';
 
@@ -129,13 +128,6 @@ const columns = [
   },
 ];
 
-export const data = { rows, columns };
+const data = { rows, columns };
 
-export const menu = () => {
-  return (
-    <div>
-      <Button className='--shadowed'>Import CSV</Button>
-      <Button className='--shadowed'>Add user</Button>
-    </div>
-  );
-};
+export default data;
