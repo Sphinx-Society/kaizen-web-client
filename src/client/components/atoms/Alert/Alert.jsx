@@ -45,6 +45,7 @@ const Alert = (props) => {
     <div
       className={alertClassName}
       ref={ref}
+      id='feedback-alert-container'
     >
       <div className='alert__icon'>
         {icons[type]}
@@ -59,9 +60,13 @@ const Alert = (props) => {
 };
 
 Alert.propTypes = {
+  /** Type of the alert */
   type: PropTypes.oneOf(['error', 'warning', 'success']),
+  /** Message to show on the alert */
   message: PropTypes.string,
+  /** Function to call when the alert is closed */
   onClose: PropTypes.func.isRequired,
+  /** Time before the alert closes automatically */
   closeTime: PropTypes.number,
 };
 
