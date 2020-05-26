@@ -29,8 +29,6 @@ const TemplatesManagement = (props) => {
     dispatch(listTemplates());
   }, []);
 
-  const editTe = () => {};
-
   return (
     <FeedbackProvider>
       <NavbarProvider>
