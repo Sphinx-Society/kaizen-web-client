@@ -8,6 +8,7 @@ import FeedbackProvider from '../../providers/FeedbackProvider/FeedbackProvider'
 import TemplateForm from '../../organisms/TemplateForm/TemplateForm';
 import Button from '../../atoms/Button/Button';
 import { setIsAddingField, setTemplates } from '../../../redux/templates/templates.actions';
+import { createTemplate } from '../../../redux/templates/templates.actions.requests';
 
 import { templatesManagement } from '../../../routes/paths';
 
@@ -22,8 +23,8 @@ const TemplateEditor = (props) => {
   const addField = () => dispatch(setIsAddingField({ isAddingField: true }));
 
   const addTemplate = (template) => {
-    dispatch(setTemplates({ templates: [...templates, template] }));
-    push(templatesManagement());
+    dispatch(createTemplate(template));
+    // push(templatesManagement());
   };
 
   return (
