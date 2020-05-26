@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { TiArrowBack as BackIcon } from 'react-icons/ti';
+import UserCover from '../../atoms/UserCover/UserCover';
 import Button from '../../atoms/Button/Button';
 
 import './MainViewProvider.scss';
@@ -15,6 +16,7 @@ const MainViewProvider = (props) => {
     title,
     moveTitle,
     onBackButtonClick,
+    userCover,
   } = props;
 
   const mainViewProviderClassName = clsx({
@@ -39,6 +41,8 @@ const MainViewProvider = (props) => {
         </Button>
       )}
       <div className={headClassName}>
+        {userCover && <UserCover userCover={userCover} /> }
+
         <h2>{title}</h2>
         {menu}
       </div>
@@ -52,6 +56,8 @@ MainViewProvider.propTypes = {
   children: PropTypes.node.isRequired,
   /** Title to show inside the provider */
   title: PropTypes.string.isRequired,
+  /** Function to call when the back button is clicked, required if showBackButton is true */
+  userCover: PropTypes.string,
   /** Menu to render inside the provider */
   menu: PropTypes.node,
   /** It decide if the back button should be shown */

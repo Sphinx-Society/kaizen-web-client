@@ -3,12 +3,16 @@ import Login from '../components/pages/Login/Login';
 import TemplatesManagement from '../components/pages/TemplatesManagement/TemplatesManagement';
 import TemplateEditor from '../components/pages/TemplateEditor/TemplateEditor';
 import UsersManagement from '../components/pages/UsersManagement/UsersManagement';
+import UserProfile from '../components/pages/UserProfile/UserProfile';
+import ViewUser from '../components/pages/ViewUser/ViewUser';
 
 import {
   login,
   templatesManagement,
   templateEditor,
   usersManagement,
+  userProfile,
+  viewUser,
 } from './paths';
 
 export default [
@@ -30,6 +34,16 @@ export default [
   {
     path: usersManagement(),
     component: UsersManagement,
+    exact: true,
+  },
+  {
+    path: userProfile(),
+    component: UserProfile,
+    exact: true,
+  },
+  {
+    path: viewUser(),
+    component: ViewUser,
     exact: true,
   },
   {
