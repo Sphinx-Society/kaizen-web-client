@@ -27,6 +27,7 @@ const Table = (props) => {
     mobileRow,
     isLoading,
     onSearch,
+    totalPages,
   } = props;
 
   const { width } = useWindowDimensions();
@@ -65,6 +66,7 @@ const Table = (props) => {
           page={page}
           onNextPageClick={onNextPageClick}
           onPrevPageClick={onPrevPageClick}
+          totalPages={totalPages}
         />
       )}
     </div>
@@ -78,6 +80,7 @@ Table.propTypes = {
   rows: PropTypes.arrayOf(TableRowSchema).isRequired,
   /** As the table can work with dynamic data and fetch only the actual page it receive the data lenght */
   totalRows: PropTypes.number.isRequired,
+  totalPages: PropTypes.number.isRequired,
   /** Actual page the table is showing */
   page: PropTypes.number.isRequired,
   /** Function to call when filter input is used */
