@@ -41,15 +41,15 @@
 	}
 
 	&--warning {
-    @include colorFontAndBg($colorFontLight, $colorWarning);
-		@include btnHover($colorFontDark, $colorError);
+    @include colorFontAndBg($colorFontDark, $colorWarning);
+		@include btnHover($colorFontLight, $colorError);
   }
 
   &--spaced {
-    padding: getSpacing(1);
-    @include applyTo('m') {
+    padding: 1em;
+    /* @include applyTo('m') {
       padding: getSpacing(1) getSpacing(4);
-    }
+    } */
   }
 
 	&:disabled {
@@ -110,7 +110,7 @@
 
 	&--light {
 		@include colorFontAndBg($colorFontLight, transparent);
-		@include btnHover($colorPrimaryMain, transparent);
+		@include btnHover($colorSecondaryDark, transparent);
 	}
 
 	&:disabled {
