@@ -20,14 +20,35 @@ import { templateEditor } from '../../../routes/paths';
 const TemplatesManagement = (props) => {
   const { history } = props;
   const dispatch = useDispatch();
-  const { templates } = useSelector((state) => state.templates);
+  const {
+    templates,
+    currentPage,
+    totalTemplates,
+    totalPages,
+  } = useSelector((state) => state.templates);
   const { isLoading } = useSelector((state) => state.feedback);
 
   const goToTemplateCreator = () => history.push(templateEditor());
 
   useEffect(() => {
-    dispatch(listTemplates());
+    if (!templates.length) {
+      dispatch(listTemplates());
+    }
   }, []);
+
+  const handleNextPage = () => {
+    const page = currentPage + 1;
+    if (page <= totalPages) {
+      dispatch(listTemplates(page));
+    }
+  };
+
+  const handlePrevPage = () => {
+    const page = currentPage - 1;
+    if (page >= 1) {
+      dispatch(listTemplates(page));
+    }
+  };
 
   const editTe = () => {};
 
@@ -82,9 +103,12 @@ const TemplatesManagement = (props) => {
               },
             ]}
             rows={templates}
-            totalRows={templates.length}
-            page={0}
+            totalRows={totalTemplates}
+            page={currentPage}
+            totalPages={totalPages}
             mobileRow={(row) => <TemplateCard {...row} />}
+            onNextPageClick={handleNextPage}
+            onPrevPageClick={handlePrevPage}
           />
         </MainViewProvider>
       </NavbarProvider>
