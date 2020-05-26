@@ -3,12 +3,14 @@ import Login from '../components/pages/Login/Login';
 import TemplatesManagement from '../components/pages/TemplatesManagement/TemplatesManagement';
 import TemplateEditor from '../components/pages/TemplateEditor/TemplateEditor';
 import UsersManagement from '../components/pages/UsersManagement/UsersManagement';
+import ExamsHistory from '../components/pages/ExamsHistory/ExamsHistory';
 
 import {
   login,
   templatesManagement,
   templateEditor,
   usersManagement,
+  examsHistory,
 } from './paths';
 
 export default [
@@ -30,6 +32,11 @@ export default [
   {
     path: usersManagement(),
     component: UsersManagement,
+    exact: true,
+  },
+  {
+    path: examsHistory(),
+    component: ExamsHistory,
     exact: true,
   },
   {
