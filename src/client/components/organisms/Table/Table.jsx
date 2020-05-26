@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Logo from '../../atoms/Logo/Logo';
-import TableMenu from '../../molecules/TableMenu/TableMenu';
 import TableHead from '../../molecules/TableHead/TableHead';
 import TableBody from '../../molecules/TableBody/TableBody';
 import TablePagination from '../../molecules/TablePagination/TablePagination';
+import TopFilter from '../../molecules/TopFilter/TopFilter';
 
 import useWindowDimensions from '../../../hooks/useWindowDimensions/useWindowDimensions';
 
@@ -20,15 +20,19 @@ const Table = (props) => {
     rows,
     totalRows,
     page,
-    onFilterChange,
     onNextPageClick,
     onPrevPageClick,
-    menu,
     mobileRow,
     isLoading,
     onSearch,
     totalPages,
   } = props;
+
+  const [tableQuery, setTableQuery] = useState('');
+
+  const handleSearchValue = (event) => setTableQuery(event.target.value);
+
+  const handleOnSearch = () => onSearch(tableQuery);
 
   const { width } = useWindowDimensions();
   const isMobile = width < parseInt(breakpointMedium, 10);
@@ -37,12 +41,18 @@ const Table = (props) => {
 
   return (
     <div className='table'>
-      <TableMenu
-        isMobile={isMobile}
-        onFilterChange={onFilterChange}
-        onSearch={onSearch}
-        menu={menu}
-      />
+      <div className='table__-menu'>
+        <div className='table__menu__input'>
+          <TopFilter
+            placeholder='Buscar...'
+            onChange={handleSearchValue}
+            onEnter={handleOnSearch}
+            onIconClick={handleOnSearch}
+            disableShadow={!isMobile}
+            value={tableQuery}
+          />
+        </div>
+      </div>
       <div className='table__scroller'>
         <Wrapper>
           {!isMobile && (
@@ -80,17 +90,14 @@ Table.propTypes = {
   rows: PropTypes.arrayOf(TableRowSchema).isRequired,
   /** As the table can work with dynamic data and fetch only the actual page it receive the data lenght */
   totalRows: PropTypes.number.isRequired,
+  /** Total of the pages the table will handle */
   totalPages: PropTypes.number.isRequired,
   /** Actual page the table is showing */
   page: PropTypes.number.isRequired,
-  /** Function to call when filter input is used */
-  onFilterChange: PropTypes.func.isRequired,
   /** Function to call when next page button is clicked */
   onNextPageClick: PropTypes.func.isRequired,
   /** Function to call when prev page button is clicked */
   onPrevPageClick: PropTypes.func.isRequired,
-  /** It can receive a menu to extend it behavior */
-  menu: PropTypes.node,
   /** It can receive a mobile row to replace the desktop rows */
   mobileRow: PropTypes.func,
   /** To render the loading table variant */
@@ -100,7 +107,6 @@ Table.propTypes = {
 };
 
 Table.defaultProps = {
-  menu: null,
   mobileRow: null,
   isLoading: false,
 };
