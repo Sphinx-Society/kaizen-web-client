@@ -7,7 +7,6 @@ import {
 import Surface from '../../atoms/Surface/Surface';
 import Button from '../../atoms/Button/Button';
 import ReadableField from '../../atoms/ReadableField/ReadableField';
-import { getStringFromDate } from '../../../utils/date';
 
 import './TemplateCard.scss';
 
@@ -16,9 +15,9 @@ const TemplateCard = (props) => {
     name,
     category,
     creationDate,
+    onView,
+    onDelete,
   } = props;
-
-  const formattedDate = getStringFromDate(new Date(creationDate));
 
   return (
     <Surface disableSpacing className='template-card'>
@@ -36,7 +35,7 @@ const TemplateCard = (props) => {
         <ReadableField
           className='template-card__readable-field'
           title='Fecha de creación'
-          description={formattedDate}
+          description={creationDate}
         />
       </div>
       <div className='template-card__buttons-container'>
@@ -45,12 +44,14 @@ const TemplateCard = (props) => {
           type='icon'
           icon={<EyeIcon />}
           iconMode='1'
+          onClick={onView}
         />
         <Button
           className='template-card__buttons-container__button --shadowed'
           type='icon'
           icon={<TrashIcon />}
           iconMode='1'
+          onClick={onDelete}
         />
       </div>
     </Surface>
@@ -64,6 +65,10 @@ TemplateCard.propTypes = {
   category: PropTypes.string.isRequired,
   /** Date where the exam was created*/
   creationDate: PropTypes.number.isRequired,
+  /** Function to be called when view button is clicked */
+  onView: PropTypes.func.isRequired,
+  /** Function to be called when delete button is clicked */
+  onDelete: PropTypes.func.isRequired,
 };
 
 export default TemplateCard;
