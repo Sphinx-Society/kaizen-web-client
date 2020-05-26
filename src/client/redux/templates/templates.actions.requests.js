@@ -2,8 +2,10 @@ import * as feedbackActions from '../feedback/feedback.actions';
 import * as templateActions from './templates.actions';
 import TemplateService from '../../services/Template';
 
-export const listTemplates = (page = 1) => async (dispatch) => {
-  dispatch(feedbackActions.setIsLoading({ isLoading: true }));
+const setIsLoading = (dispatch, isLoading) => dispatch(feedbackActions.setIsLoading({ isLoading }));
+
+export const listTemplates = (page = 1, query) => async (dispatch) => {
+  setIsLoading(dispatch, true);
   const Template = new TemplateService();
   try {
     const {
@@ -11,7 +13,7 @@ export const listTemplates = (page = 1) => async (dispatch) => {
       currentPage,
       totalTemplates,
       totalPages,
-    } = await Template.listTemplates(page);
+    } = await Template.listTemplates(page, query);
     dispatch(templateActions.setTemplates({
       templates,
       currentPage,
@@ -25,16 +27,24 @@ export const listTemplates = (page = 1) => async (dispatch) => {
         type: 'error',
       },
     }));
+    setIsLoading(dispatch, false);
+    throw error;
   }
-  dispatch(feedbackActions.setIsLoading({ isLoading: false }));
+  setIsLoading(dispatch, false);
 };
 
 export const createTemplate = (template) => async (dispatch) => {
-  dispatch(feedbackActions.setIsLoading({ isLoading: true }));
+  setIsLoading(dispatch, true);
   const Template = new TemplateService();
   try {
-    const data = await Template.createTemplate(template);
-    console.log(data);
+    await Template.createTemplate(template);
+    await dispatch(listTemplates());
+    dispatch(feedbackActions.setFeedback({
+      feedback: {
+        message: 'Plantilla generada',
+        type: 'success',
+      },
+    }));
   } catch (error) {
     dispatch(feedbackActions.setFeedback({
       feedback: {
@@ -42,6 +52,58 @@ export const createTemplate = (template) => async (dispatch) => {
         type: 'error',
       },
     }));
+    setIsLoading(dispatch, false);
+    throw error;
   }
-  dispatch(feedbackActions.setIsLoading({ isLoading: false }));
+  setIsLoading(dispatch, false);
+};
+
+export const deleteTemplate = (id) => async (dispatch) => {
+  setIsLoading(dispatch, true);
+  const Template = new TemplateService();
+  try {
+    await Template.deleteTemplate(id);
+    await dispatch(listTemplates());
+    dispatch(feedbackActions.setFeedback({
+      feedback: {
+        message: 'Plantilla eliminada',
+        type: 'success',
+      },
+    }));
+  } catch (error) {
+    dispatch(feedbackActions.setFeedback({
+      feedback: {
+        message: error.message,
+        type: 'error',
+      },
+    }));
+    setIsLoading(dispatch, false);
+    throw error;
+  }
+  setIsLoading(dispatch, false);
+};
+
+export const editTemplate = (template) => async (dispatch) => {
+  setIsLoading(dispatch, true);
+  const Template = new TemplateService();
+  try {
+    await Template.editTemplate(template);
+    await dispatch(listTemplates());
+    dispatch(feedbackActions.setFeedback({
+      feedback: {
+        message: 'Plantilla editada',
+        type: 'success',
+      },
+    }));
+  } catch (error) {
+    dispatch(feedbackActions.setFeedback({
+      feedback: {
+        message: error.message,
+        type: 'error',
+      },
+    }));
+    setIsLoading(dispatch, false);
+    throw error;
+  }
+  setIsLoading(dispatch, false);
 };
