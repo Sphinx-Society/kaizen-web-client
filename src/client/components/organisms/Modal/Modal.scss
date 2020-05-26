@@ -1,0 +1,41 @@
+.modal {
+  font-size: $fontSizeBase;
+  width: 17em;
+  height: 18em;
+  margin: auto;
+  padding: getSpacing(1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $colorBgMain;
+
+  &__close {
+    width: 100%;
+    text-align: right;
+    & button {
+      color: $colorError;
+    }
+  }
+
+  &__message {
+    font-size: 1.5em;
+    height: 40%;
+  }
+
+  &__actions {
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 1em;
+  }
+
+  &__actions-btn-close:hover {
+    background-color: $colorBoxShadowLight;
+    color: $colorFontLight;
+  }
+
+  &__actions-btn--download {
+    background-color: $colorSuccess;
+    color: $colorFontLight;
+  }
+}
