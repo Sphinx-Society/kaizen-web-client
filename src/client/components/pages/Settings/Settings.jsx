@@ -8,6 +8,7 @@ import Surface from '../../atoms/Surface/Surface';
 import Logo from '../../atoms/Logo/Logo';
 import NavbarProvider from '../../providers/NavbarProvider/NavbarProvider';
 import './Settings.scss';
+import { login } from '../../../routes/paths';
 
 const Settings = () => {
 
@@ -21,12 +22,12 @@ const Settings = () => {
             <h2> Kaizen</h2>
           </div>
           <section className='settings-container__options'>
-            <Link id='profile-link' className='option-container' to='/profile'>
+            <Link id='profile-link' className='option-container' to='userProfile'>
               <dd>Ver mi perfil</dd>
               <ProfileIcon size='1.5em' />
             </Link>
 
-            <Link id='logout' className='option-container logout' to='/'>
+            <Link id='logout' className='option-container logout' to={login()}>
               <dd>Cerrar sesión</dd>
               <LogoutIcon size='1.5em' />
             </Link>
