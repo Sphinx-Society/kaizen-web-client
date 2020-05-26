@@ -7,9 +7,9 @@
   display: flex;
   justify-content: space-between;
   background-color: white;
+  align-items: center;
 
   @include applyTo('m') {
-    align-items: flex-end;
     flex: 1;
     position: unset;
   }
@@ -17,9 +17,12 @@
   &__item {
     display: flex;
     align-items: center;
+    flex-direction: column;
 
-    &__buttons-container {
-      margin: getSpacing(1)
+    &--text {
+      display: flex;
+      align-items: flex-end;
+      flex-direction: column;
     }
   }
 }
