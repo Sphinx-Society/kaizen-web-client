@@ -19,8 +19,8 @@ confirmation.
     <Modal
       type='confirm'
       message='Are you sure about this? second line?'
+      mainFn={() => alert('Thanks for confirm')}
       onClose={() => alert('Cancel process')}
-      onClick={() => alert('Thanks for confirm')}
     />
   </Story>
 </Preview>
@@ -32,8 +32,8 @@ confirmation.
     <Modal
       type='delete'
       message='Are you sure about this? second line?'
+      mainFn={() => alert('Element X has been deleted')}
       onClose={() => alert('Cancel process')}
-      onClick={() => alert('Element X has been deleted')}
     />
   </Story>
 </Preview>
@@ -45,8 +45,8 @@ confirmation.
     <Modal
       type='save'
       message='Are you sure about this? second line?'
+      mainFn={() => alert('Element X has been saved')}
       onClose={() => alert('Cancel process')}
-      onClick={() => alert('Element X has been saved')}
     />
   </Story>
 </Preview>
@@ -58,8 +58,8 @@ confirmation.
     <Modal
       type='download'
       message='Are you sure about this? second line?'
+      mainFn={() => alert('Element X will be downloaded ')}
       onClose={() => alert('Cancel process')}
-      onClick={() => alert('Element X will be downloaded ')}
     />
   </Story>
 </Preview>

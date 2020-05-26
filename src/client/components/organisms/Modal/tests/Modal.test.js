@@ -12,8 +12,8 @@ function componentRender(type = 'confirm') {
     <Modal
       type={type}
       message={message}
+      mainFn={() => null}
       onClose={() => null}
-      onClick={() => null}
     />,
   );
 

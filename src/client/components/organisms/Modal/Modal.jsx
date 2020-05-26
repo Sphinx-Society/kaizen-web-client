@@ -17,8 +17,8 @@ const Modal = (props) => {
   const {
     type,
     message,
+    mainFn,
     onClose,
-    onClick,
     className,
   } = props;
 
@@ -72,7 +72,7 @@ const Modal = (props) => {
 
       <div className='modal__actions'>
         <Button
-          onClick={onClick}
+          onClick={mainFn}
           icon={mainAction[type].icon}
           color={mainAction[type].color}
           className={mainAction[type].className}
@@ -98,10 +98,10 @@ Modal.propTypes = {
   type: PropTypes.string,
   /** Text to present to the user */
   message: PropTypes.string.isRequired,
+  /** Function that executes the main action of the process */
+  mainFn: PropTypes.func.isRequired,
   /** Function that close the process  */
   onClose: PropTypes.func.isRequired,
-  /** Function that executes the main action of the process */
-  onClick: PropTypes.func.isRequired,
   /** Class to overwrite the styles */
   className: PropTypes.string,
 };
