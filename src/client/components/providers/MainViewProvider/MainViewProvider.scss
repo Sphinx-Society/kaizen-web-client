@@ -3,7 +3,7 @@
     padding-top: getSpacing(8);
   }
 
-  padding-bottom: getSpacing(10);
+  padding-bottom: getSpacing(13);
 
   @include applyTo('m') {
     padding: getSpacing(3);
