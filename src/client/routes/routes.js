@@ -3,22 +3,16 @@ import Login from '../components/pages/Login/Login';
 import TemplatesManagement from '../components/pages/TemplatesManagement/TemplatesManagement';
 import TemplateEditor from '../components/pages/TemplateEditor/TemplateEditor';
 import UsersManagement from '../components/pages/UsersManagement/UsersManagement';
-<<<<<<< HEAD
 import ExamsHistory from '../components/pages/ExamsHistory/ExamsHistory';
-=======
 import Settings from '../components/pages/Settings/Settings';
->>>>>>> 983306d... SSKW-30 Added settings page to structure layout
 
 import {
   login,
   templatesManagement,
   templateEditor,
   usersManagement,
-<<<<<<< HEAD
   examsHistory,
-=======
   settings,
->>>>>>> 983306d... SSKW-30 Added settings page to structure layout
 } from './paths';
 
 export default [
