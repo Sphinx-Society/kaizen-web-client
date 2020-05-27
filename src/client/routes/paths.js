@@ -6,3 +6,4 @@ export const login = () => '/';
 export const usersManagement = () => '/users-management';
 export const examsHistory = () => '/exams-history';
 export const settings = () => '/settings';
+export const userEditor = () => '/user';
