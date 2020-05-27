@@ -12,6 +12,7 @@ import Button from '../../atoms/Button/Button';
 import MainViewProvider from '../../providers/MainViewProvider/MainViewProvider';
 import NavbarProvider from '../../providers/NavbarProvider/NavbarProvider';
 import FeedbackProvider from '../../providers/FeedbackProvider/FeedbackProvider';
+import ModalProvider from '../../providers/ModalProvider/ModalProvider';
 import { listTemplates } from '../../../redux/templates/templates.actions.requests';
 
 import { getStringFromDate } from '../../../utils/date';
@@ -30,63 +31,65 @@ const TemplatesManagement = (props) => {
   }, []);
 
   return (
-    <FeedbackProvider>
-      <NavbarProvider>
-        <MainViewProvider
-          title='Plantillas'
-          showBottomLine
-          moveTitle
-          menu={<Button onClick={goToTemplateCreator} icon={<AddIcon />}>Nueva plantilla</Button>}
-        >
-          <Table
-            isLoading={isLoading}
-            columns={[
-              {
-                header: 'Name',
-                accessor: 'name',
-                id: 1,
-              },
-              {
-                header: 'Categoría',
-                accessor: 'type',
-                id: 2,
-              },
-              {
-                header: 'Fecha de creación',
-                accessor: 'creationDate',
-                cell: (row) => <span>{getStringFromDate(new Date(row.creationDate))}</span>,
-                id: 3,
-              },
-              {
-                header: '',
-                accessor: '',
-                cell: (row) => (
-                  <div className='horizontal-flex-container'>
-                    <Button
-                      className='--shadowed --spaced'
-                      type='icon'
-                      icon={<EyeIcon />}
-                      iconMode='1'
-                    />
-                    <Button
-                      className='--shadowed --spaced'
-                      type='icon'
-                      icon={<TrashIcon />}
-                      iconMode='1'
-                    />
-                  </div>
-                ),
-                id: 4,
-              },
-            ]}
-            rows={templates}
-            totalRows={templates.length}
-            page={0}
-            mobileRow={(row) => <TemplateCard {...row} />}
-          />
-        </MainViewProvider>
-      </NavbarProvider>
-    </FeedbackProvider>
+    <ModalProvider>
+      <FeedbackProvider>
+        <NavbarProvider>
+          <MainViewProvider
+            title='Plantillas'
+            showBottomLine
+            moveTitle
+            menu={<Button onClick={goToTemplateCreator} icon={<AddIcon />}>Nueva plantilla</Button>}
+          >
+            <Table
+              isLoading={isLoading}
+              columns={[
+                {
+                  header: 'Name',
+                  accessor: 'name',
+                  id: 1,
+                },
+                {
+                  header: 'Categoría',
+                  accessor: 'type',
+                  id: 2,
+                },
+                {
+                  header: 'Fecha de creación',
+                  accessor: 'creationDate',
+                  cell: (row) => <span>{getStringFromDate(new Date(row.creationDate))}</span>,
+                  id: 3,
+                },
+                {
+                  header: '',
+                  accessor: '',
+                  cell: (row) => (
+                    <div className='horizontal-flex-container'>
+                      <Button
+                        className='--shadowed --spaced'
+                        type='icon'
+                        icon={<EyeIcon />}
+                        iconMode='1'
+                      />
+                      <Button
+                        className='--shadowed --spaced'
+                        type='icon'
+                        icon={<TrashIcon />}
+                        iconMode='1'
+                      />
+                    </div>
+                  ),
+                  id: 4,
+                },
+              ]}
+              rows={templates}
+              totalRows={templates.length}
+              page={0}
+              mobileRow={(row) => <TemplateCard {...row} />}
+            />
+          </MainViewProvider>
+        </NavbarProvider>
+      </FeedbackProvider>
+    </ModalProvider>
   );
 };
 

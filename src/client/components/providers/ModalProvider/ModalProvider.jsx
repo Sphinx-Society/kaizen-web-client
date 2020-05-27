@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Modal from '../../organisms/Modal/Modal';
 import setModalDialog from '../../../redux/modalDialog/modalDialog.actions';
 import PortalProvider from '../PortalProvider/PortalProvider';
+import useOutsideClick from '../../../hooks/useOutsideClick/useOutsideClick';
 
 import './ModalProvider.scss';
 
 const ModalProvider = (props) => {
   const { children } = props;
+  const ref = useRef(null);
   const dispatch = useDispatch();
   const { type, message, mainFn } = useSelector((state) => state.modalDialog.modal);
 
@@ -29,8 +31,9 @@ const ModalProvider = (props) => {
         && (
           <PortalProvider>
             {() => {
+              useOutsideClick(ref, closeDialog);
               return (
-                <dialog className='modal-dialog' open={Boolean(type)}>
+                <dialog className='modal-dialog' open={Boolean(type)} ref={ref}>
                   <Modal
                     type={type}
                     message={message}
