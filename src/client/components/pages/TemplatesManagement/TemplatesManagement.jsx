@@ -27,12 +27,17 @@ const TemplatesManagement = (props) => {
     totalPages,
   } = useSelector((state) => state.templates);
   const { isLoading } = useSelector((state) => state.feedback);
+  const { editingTemplate } = useSelector((state) => state.templates);
 
   const goToTemplateCreator = () => push(templateEditor());
 
   useEffect(() => {
     if (!templates.length) {
       dispatch(listTemplates());
+    }
+
+    if (editingTemplate) {
+      dispatch(setEditingTemplate({ editingTemplate: null }));
     }
   }, []);
 

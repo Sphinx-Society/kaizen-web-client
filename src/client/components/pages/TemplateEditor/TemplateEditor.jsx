@@ -7,7 +7,7 @@ import NavbarProvider from '../../providers/NavbarProvider/NavbarProvider';
 import FeedbackProvider from '../../providers/FeedbackProvider/FeedbackProvider';
 import TemplateForm from '../../organisms/TemplateForm/TemplateForm';
 import Button from '../../atoms/Button/Button';
-import { setIsAddingField, setEditingTemplate } from '../../../redux/templates/templates.actions';
+import { setIsAddingField } from '../../../redux/templates/templates.actions';
 import { createTemplate, editTemplate } from '../../../redux/templates/templates.actions.requests';
 
 import { templatesManagement } from '../../../routes/paths';
@@ -16,10 +16,7 @@ const TemplateEditor = (props) => {
   const { history: { push } } = props;
   const dispatch = useDispatch();
 
-  const goToManagerView = () => {
-    dispatch(setEditingTemplate({ editingTemplate: null }));
-    push(templatesManagement());
-  };
+  const goToManagerView = () => push(templatesManagement());
 
   const { editingTemplate } = useSelector((state) => state.templates);
 
