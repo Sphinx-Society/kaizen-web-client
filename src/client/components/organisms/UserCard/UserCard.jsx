@@ -74,9 +74,9 @@ UserCard.propTypes = {
   /** It is the administrator who will see the information  */
   isAdminWhoView: PropTypes.bool,
   /** Path to edit user details */
-  onEditClick: PropTypes.string,
+  onEditClick: PropTypes.func.isRequired,
   /** Action to delete specific source */
-  onClickDelete: PropTypes.func,
+  onClickDelete: PropTypes.func.isRequired,
   /** Size of action icons */
   sizeIcons: PropTypes.string,
   /** Class to overwrite the styles */
@@ -85,8 +85,6 @@ UserCard.propTypes = {
 
 UserCard.defaultProps = {
   isAdminWhoView: false,
-  onEditClick: '/',
-  onClickDelete: undefined,
   sizeIcons: '3em',
   className: '',
 };
