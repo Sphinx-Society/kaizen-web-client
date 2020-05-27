@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  FaEye as EyeIcon,
+  FaPen as PenIcon,
   FaTrashAlt as TrashIcon,
 } from 'react-icons/fa';
 import Surface from '../../atoms/Surface/Surface';
@@ -42,7 +42,7 @@ const TemplateCard = (props) => {
         <Button
           className='template-card__buttons-container__button --shadowed'
           type='icon'
-          icon={<EyeIcon />}
+          icon={<PenIcon />}
           iconMode='1'
           onClick={onView}
         />
@@ -64,7 +64,7 @@ TemplateCard.propTypes = {
   /** Category where the exam below*/
   category: PropTypes.string.isRequired,
   /** Date where the exam was created*/
-  creationDate: PropTypes.number.isRequired,
+  creationDate: PropTypes.string.isRequired,
   /** Function to be called when view button is clicked */
   onView: PropTypes.func.isRequired,
   /** Function to be called when delete button is clicked */

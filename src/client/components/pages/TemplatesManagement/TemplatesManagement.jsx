@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import {
-  FaEye as EyeIcon,
+  FaPen as PenIcon,
   FaTrashAlt as TrashIcon,
 } from 'react-icons/fa';
 import { IoMdAdd as AddIcon } from 'react-icons/io';
@@ -99,7 +99,7 @@ const TemplatesManagement = (props) => {
                     <Button
                       className='--shadowed --spaced'
                       type='icon'
-                      icon={<EyeIcon />}
+                      icon={<PenIcon />}
                       iconMode='1'
                       onClick={handleEditTemplate(row)}
                     />
