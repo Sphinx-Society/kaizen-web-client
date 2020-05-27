@@ -95,7 +95,7 @@ const Modal = (props) => {
 
 Modal.propTypes = {
   /** Type of the dialog */
-  type: PropTypes.string,
+  type: PropTypes.string.isRequired,
   /** Text to present to the user */
   message: PropTypes.string.isRequired,
   /** Function that executes the main action of the process */
@@ -107,7 +107,6 @@ Modal.propTypes = {
 };
 
 Modal.defaultProps = {
-  type: 'confirm',
   className: '',
 };
 
