@@ -16,7 +16,7 @@ const UserCard = (props) => {
   const {
     data,
     isAdminWhoView,
-    onEditClick,
+    onClickEdit,
     onClickDelete,
     sizeIcons,
     className,
@@ -41,15 +41,15 @@ const UserCard = (props) => {
       </ListReadableFields>
 
       <div className='user-card__actions'>
+        <Button
+          icon={<EditIcon size={sizeIcons} />}
+          type='icon'
+          iconMode='2'
+          onClick={() => onClickEdit(data)}
+          className='--boxShadow'
+        />
         {isAdminWhoView && (
           <>
-            <Button
-              icon={<EditIcon size={sizeIcons} />}
-              type='icon'
-              iconMode='2'
-              onClick={onEditClick(data)}
-              className='--boxShadow'
-            />
             <Button
               icon={<DeleteIcon size={sizeIcons} />}
               type='icon'
@@ -57,7 +57,6 @@ const UserCard = (props) => {
               onClick={onClickDelete}
               color='warning'
               className='--boxShadow'
-              id='btn-delete'
             />
           </>
         )}
@@ -74,9 +73,9 @@ UserCard.propTypes = {
   /** It is the administrator who will see the information  */
   isAdminWhoView: PropTypes.bool,
   /** Path to edit user details */
-  onEditClick: PropTypes.func.isRequired,
+  onClickEdit: PropTypes.func.isRequired,
   /** Action to delete specific source */
-  onClickDelete: PropTypes.func.isRequired,
+  onClickDelete: PropTypes.func,
   /** Size of action icons */
   sizeIcons: PropTypes.string,
   /** Class to overwrite the styles */
@@ -85,7 +84,8 @@ UserCard.propTypes = {
 
 UserCard.defaultProps = {
   isAdminWhoView: false,
-  sizeIcons: '3em',
+  onClickDelete: null,
+  sizeIcons: '2.5em',
   className: '',
 };
 
