@@ -3,7 +3,6 @@ export const initialState = {
   isAddingField: false,
   editingField: null,
   editingTemplate: null,
-  editingTemplateFields: null,
   isEditingTemplate: false,
   currentPage: 1,
   totalTemplates: 0,
@@ -37,12 +36,6 @@ export default (state = initialState, action) => {
       return {
         ...state,
         editingTemplate: action.payload.editingTemplate,
-      };
-    }
-    case 'TEMPLATES/SET_EDITING_TEMPLATE_FIELDS': {
-      return {
-        ...state,
-        editingTemplateFields: action.payload.editingTemplateFields,
       };
     }
     case 'TEMPLATES/SET_IS_EDITING_TEMPLATE': {
