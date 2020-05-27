@@ -5,9 +5,11 @@ import { IoMdAdd as AddIcon } from 'react-icons/io';
 import MainViewProvider from '../../providers/MainViewProvider/MainViewProvider';
 import NavbarProvider from '../../providers/NavbarProvider/NavbarProvider';
 import FeedbackProvider from '../../providers/FeedbackProvider/FeedbackProvider';
+import ModalProvider from '../../providers/ModalProvider/ModalProvider';
 import TemplateForm from '../../organisms/TemplateForm/TemplateForm';
 import Button from '../../atoms/Button/Button';
-import { setIsAddingField, setTemplates } from '../../../redux/templates/templates.actions';
+import { setIsAddingField } from '../../../redux/templates/templates.actions';
+import { createTemplate, editTemplate } from '../../../redux/templates/templates.actions.requests';
 
 import { templatesManagement } from '../../../routes/paths';
 
@@ -17,31 +19,51 @@ const TemplateEditor = (props) => {
 
   const goToManagerView = () => push(templatesManagement());
 
-  const { templates, editingTemplate } = useSelector((state) => state.templates);
+  const { editingTemplate } = useSelector((state) => state.templates);
 
   const addField = () => dispatch(setIsAddingField({ isAddingField: true }));
 
-  const addTemplate = (template) => {
-    dispatch(setTemplates({ templates: [...templates, template] }));
-    push(templatesManagement());
+  const handleCreateTemplate = (template) => {
+    dispatch(createTemplate(template))
+      .then(() => {
+        push(templatesManagement());
+      });
+  };
+
+  const handleEditTemplate = (template) => {
+    dispatch(editTemplate(template))
+      .then(() => {
+        goToManagerView();
+      });
+  };
+
+  const handleOnSubmit = (template) => {
+    if (editingTemplate) {
+      handleEditTemplate(template);
+    } else {
+      handleCreateTemplate(template);
+    }
   };
 
   return (
-    <FeedbackProvider>
-      <NavbarProvider>
-        <MainViewProvider
-          showBackButton
-          title={editingTemplate ? editingTemplate.name : 'Crear plantilla'}
-          showBottomLine
-          onBackButtonClick={goToManagerView}
-          menu={<Button onClick={addField} icon={<AddIcon />}>Nuevo campo</Button>}
-        >
-          <TemplateForm
-            onSubmit={addTemplate}
-          />
-        </MainViewProvider>
-      </NavbarProvider>
-    </FeedbackProvider>
+    <ModalProvider>
+      <FeedbackProvider>
+        <NavbarProvider>
+          <MainViewProvider
+            showBackButton
+            title={editingTemplate ? editingTemplate.name : 'Crear plantilla'}
+            showBottomLine
+            onBackButtonClick={goToManagerView}
+            menu={<Button onClick={addField} icon={<AddIcon />}>Nuevo campo</Button>}
+          >
+            <TemplateForm
+              onSubmit={handleOnSubmit}
+              submitButtonLabel={editingTemplate ? 'Guardar' : 'Crear'}
+            />
+          </MainViewProvider>
+        </NavbarProvider>
+      </FeedbackProvider>
+    </ModalProvider>
   );
 };
 

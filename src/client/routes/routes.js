@@ -4,7 +4,8 @@ import TemplatesManagement from '../components/pages/TemplatesManagement/Templat
 import TemplateEditor from '../components/pages/TemplateEditor/TemplateEditor';
 import UsersManagement from '../components/pages/UsersManagement/UsersManagement';
 import UserProfile from '../components/pages/UserProfile/UserProfile';
-import ViewUser from '../components/pages/ViewUser/ViewUser';
+import ExamsHistory from '../components/pages/ExamsHistory/ExamsHistory';
+import Settings from '../components/pages/Settings/Settings';
 
 import {
   login,
@@ -12,7 +13,8 @@ import {
   templateEditor,
   usersManagement,
   userProfile,
-  viewUser,
+  examsHistory,
+  settings,
 } from './paths';
 
 export default [
@@ -37,13 +39,18 @@ export default [
     exact: true,
   },
   {
-    path: userProfile(),
-    component: UserProfile,
+    path: examsHistory(),
+    component: ExamsHistory,
     exact: true,
   },
   {
-    path: viewUser(),
-    component: ViewUser,
+    path: settings(),
+    component: Settings,
+    exact: true,
+  },
+  {
+    path: userProfile(),
+    component: UserProfile,
     exact: true,
   },
   {
@@ -51,5 +58,6 @@ export default [
     component: NotFound,
     exact: false,
   },
+
 ];
 

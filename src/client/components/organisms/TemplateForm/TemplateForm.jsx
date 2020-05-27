@@ -27,11 +27,12 @@ const TemplateForm = (props) => {
 
   const {
     isAddingField,
-    editingTemplateFields,
     editingTemplate,
   } = useSelector((state) => state.templates);
 
-  const [fields, setFields] = useState(editingTemplateFields || []);
+  const { isLoading } = useSelector((state) => state.feedback);
+
+  const [fields, setFields] = useState(editingTemplate ? editingTemplate.fields : []);
 
   const initialFormState = editingTemplate || { name: '', type: '' };
 
@@ -39,7 +40,11 @@ const TemplateForm = (props) => {
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
-    onSubmit({ name, type, fields });
+    let data = { name, type, fields };
+    if (editingTemplate) {
+      data = { ...editingTemplate, ...data };
+    }
+    onSubmit(data);
   };
 
   const resetEditingField = () => dispatch(setEditingField({ editingField: null }));
@@ -148,6 +153,7 @@ const TemplateForm = (props) => {
           type='submit'
           form='template-form'
           className='--is-for-submit'
+          disabled={isLoading}
         >
           {submitButtonLabel}
         </Button>

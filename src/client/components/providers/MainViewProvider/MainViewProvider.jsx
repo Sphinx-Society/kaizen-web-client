@@ -46,7 +46,9 @@ const MainViewProvider = (props) => {
         <h2>{title}</h2>
         {menu}
       </div>
-      {children}
+      <main>
+        {children}
+      </main>
     </div>
   );
 };

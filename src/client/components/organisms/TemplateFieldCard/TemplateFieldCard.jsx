@@ -32,7 +32,6 @@ const TemplateFieldCard = (props) => {
   const initialFormState = editingField || {
     name: '',
     type: '',
-    placeholder: '',
     minLimit: '',
     maxLimit: '',
     unit: '',
@@ -42,7 +41,6 @@ const TemplateFieldCard = (props) => {
   const [{
     name,
     type,
-    placeholder,
     minLimit,
     maxLimit,
     unit,
@@ -55,7 +53,6 @@ const TemplateFieldCard = (props) => {
       ...initialFormState,
       name,
       type,
-      placeholder,
       minLimit,
       maxLimit,
       unit,
@@ -65,10 +62,10 @@ const TemplateFieldCard = (props) => {
   };
 
   const types = [
-    { label: 'Texto', value: 'text' },
+    { label: 'Texto', value: 'string' },
     { label: 'Número', value: 'number' },
     { label: 'Opciones', value: 'options' },
-    { label: 'Párrafo', value: 'parragraph' },
+    { label: 'Párrafo', value: 'text' },
     { label: 'Archivo', value: 'file' },
   ];
 
@@ -135,14 +132,6 @@ const TemplateFieldCard = (props) => {
                 placeholder='Nombre del campo'
                 inputName='name'
                 id='template-field-card-name'
-                required
-              />
-              <TextInput
-                value={placeholder}
-                onChange={handleOnChange}
-                placeholder='Etiqueta'
-                inputName='placeholder'
-                id='template-field-card-placeholder'
                 required
               />
               <Select

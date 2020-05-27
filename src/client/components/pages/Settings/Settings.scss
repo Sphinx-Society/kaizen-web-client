@@ -1,0 +1,39 @@
+.settings-container {
+  width: 100%;
+  height: 80%;
+  margin: 0 auto;
+  @include flex(column, space-around);
+  &__logo{
+    @include flex(column);
+    margin: getSpacing(3);
+  }
+  &__options {
+    @include flex(column, flex-start);
+  }
+  .option-container {
+    margin: getSpacing(2);
+    border-bottom: 2px solid $colorFontDarkGray;
+    width: 80%;
+    color: grey;
+    @include flex('', space-between);
+    
+  }
+  .option-container:hover {
+    color: $colorPrimaryMain;
+    
+  }
+  
+  a {
+    text-decoration: none;
+  }
+ 
+  .logout:hover {
+    color: $colorError;
+  }
+  @include applyTo('m') {
+    width: 100%;
+  }
+}
+
+
+

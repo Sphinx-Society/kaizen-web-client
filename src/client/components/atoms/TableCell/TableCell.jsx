@@ -55,7 +55,7 @@ const TableCell = (props) => {
 
 TableCell.propTypes = {
   /** The row where the cell is inside */
-  row: TableRowSchema.isRequired,
+  row: TableRowSchema,
   /** The column where the cell is inside */
   col: TableColumnSchema.isRequired,
   /** Active the head variant of the cell */
@@ -64,6 +64,7 @@ TableCell.propTypes = {
 
 TableCell.defaultProps = {
   isHead: false,
+  row: null,
 };
 
 export default TableCell;
