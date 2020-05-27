@@ -1,0 +1,69 @@
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks'
+
+import Modal from '../Modal'
+
+<Meta
+  title='Components|Organisms/Modal'
+  component={Modal}
+/>
+
+# Modal
+
+Display a modal for the user after an action that requires
+confirmation.
+
+## Default / Confirm
+
+<Preview>
+  <Story name='Case confirm'>
+    <Modal
+      type='confirm'
+      message='Are you sure about this? second line?'
+      mainFn={() => alert('Thanks for confirm')}
+      onClose={() => alert('Cancel process')}
+    />
+  </Story>
+</Preview>
+
+## When you want to delete a resource
+
+<Preview>
+  <Story name='Case delete'>
+    <Modal
+      type='delete'
+      message='Are you sure about this? second line?'
+      mainFn={() => alert('Element X has been deleted')}
+      onClose={() => alert('Cancel process')}
+    />
+  </Story>
+</Preview>
+
+## When you want to save a resource
+
+<Preview>
+  <Story name='Case save'>
+    <Modal
+      type='save'
+      message='Are you sure about this? second line?'
+      mainFn={() => alert('Element X has been saved')}
+      onClose={() => alert('Cancel process')}
+    />
+  </Story>
+</Preview>
+
+## When you want to download a resource to the device
+
+<Preview>
+  <Story name='Case download'>
+    <Modal
+      type='download'
+      message='Are you sure about this? second line?'
+      mainFn={() => alert('Element X will be downloaded ')}
+      onClose={() => alert('Cancel process')}
+    />
+  </Story>
+</Preview>
+
+## Props
+
+<Props of={Modal} />
