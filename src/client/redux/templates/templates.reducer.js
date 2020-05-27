@@ -3,8 +3,10 @@ export const initialState = {
   isAddingField: false,
   editingField: null,
   editingTemplate: null,
-  editingTemplateFields: null,
   isEditingTemplate: false,
+  currentPage: 1,
+  totalTemplates: 0,
+  totalPages: 0,
 };
 
 export default (state = initialState, action) => {
@@ -13,6 +15,9 @@ export default (state = initialState, action) => {
       return {
         ...state,
         templates: action.payload.templates,
+        currentPage: action.payload.currentPage,
+        totalTemplates: action.payload.totalTemplates,
+        totalPages: action.payload.totalPages,
       };
     }
     case 'TEMPLATES/SET_IS_ADDING_FIELD': {
@@ -31,12 +36,6 @@ export default (state = initialState, action) => {
       return {
         ...state,
         editingTemplate: action.payload.editingTemplate,
-      };
-    }
-    case 'TEMPLATES/SET_EDITING_TEMPLATE_FIELDS': {
-      return {
-        ...state,
-        editingTemplateFields: action.payload.editingTemplateFields,
       };
     }
     case 'TEMPLATES/SET_IS_EDITING_TEMPLATE': {

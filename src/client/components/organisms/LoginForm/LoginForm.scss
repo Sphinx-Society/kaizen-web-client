@@ -18,8 +18,9 @@
 
   .login-form{
     display: grid;
-    grid-template-rows: 40% 25%;
+    grid-template-rows: 40% 60px;
     grid-gap: getSpacing(2);
+    justify-content: center;
 
     &__inputs-container {
       @include flex(column) ;

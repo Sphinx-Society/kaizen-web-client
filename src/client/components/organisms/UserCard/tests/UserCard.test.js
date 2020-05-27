@@ -1,30 +1,25 @@
 import React from 'react';
 import { configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import { MemoryRouter } from 'react-router-dom';
 
 import UserCard from '../UserCard';
 
 configure({ adapter: new Adapter() });
 
-const linkToViewMore = '/ViewUser';
-const linkToEdit = '/EditUser';
+const onClickFn = jest.fn();
 
 function componentRender() {
   return mount(
-    <MemoryRouter>
-      <UserCard
-        isAdminWhoView={true}
-        data={[
-          { title: 'First Name', description: 'name' },
-          { title: 'Last Name', description: 'lastname' },
-          { title: 'id', description: '1234' },
-        ]}
-        linkToViewMore={linkToViewMore}
-        linkToEdit={linkToEdit}
-        onClickDelete={() => null}
-      />
-    </MemoryRouter>,
+    <UserCard
+      isAdminWhoView={true}
+      data={[
+        { title: 'First Name', description: 'name' },
+        { title: 'Last Name', description: 'lastname' },
+        { title: 'id', description: '1234' },
+      ]}
+      onEditClick={() => onClickFn}
+      onClickDelete={onClickFn}
+    />,
   );
 }
 
@@ -43,7 +38,7 @@ describe('UserCard organism', () => {
     });
 
     test('should exist 3 children into "div.user-card__actions":', () => {
-      expect(userCard.find('Button').length).toEqual(3);
+      expect(userCard.find('Button').length).toEqual(2);
     });
   });
 
@@ -66,47 +61,27 @@ describe('UserCard organism', () => {
     test('should exist 3 Buttons with a class "--boxShadow"', () => {
       expect(userCard.find('Button').at(0).hasClass('--boxShadow')).toBeTruthy();
       expect(userCard.find('Button').at(1).hasClass('--boxShadow')).toBeTruthy();
-      expect(userCard.find('Button').at(2).hasClass('--boxShadow')).toBeTruthy();
-    });
-  });
-
-  describe('The components "Link"', () => {
-    test('should have two Link:', () => {
-      const userCard = componentRender();
-      expect(userCard.find('Link').length).toEqual(2);
-    });
-
-    test('should have a prop "to":', () => {
-      const userCard = componentRender();
-      expect(userCard.find('Link').at(0).prop('to')).toBe(linkToViewMore);
-      expect(userCard.find('Link').at(1).prop('to')).toBe(linkToEdit);
     });
   });
 
   test('should excute the action delete:', () => {
-    const onClickFn = jest.fn();
     const userCard = mount(
-      <MemoryRouter>
-        <UserCard
-          isAdminWhoView={true}
-          data={[
-            { title: 'First Name', description: 'name' },
-            { title: 'Last Name', description: 'lastname' },
-            { title: 'id', description: '1234' },
-          ]}
-          linkToViewMore={linkToViewMore}
-          linkToEdit={linkToEdit}
-          onClickDelete={onClickFn}
-        />
-      </MemoryRouter>,
+      <UserCard
+        isAdminWhoView={true}
+        data={[
+          { title: 'First Name', description: 'name' },
+          { title: 'Last Name', description: 'lastname' },
+          { title: 'id', description: '1234' },
+        ]}
+        onEditClick={() => onClickFn}
+        onClickDelete={onClickFn}
+      />,
     );
 
     // Simulate other clicks null in the first buttons
     userCard.find('Button').at(0).simulate('click');
-    userCard.find('Button').at(1).simulate('click');
-
-    // The real action by external function
-    userCard.find('Button').at(2).simulate('click');
     expect(onClickFn.mock.calls.length).toEqual(1);
+
+    // userCard.find('Button').at(1).simulate('click');
   });
 });

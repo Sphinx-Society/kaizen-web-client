@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import {
-  FaEye as ViewIcon,
   FaPen as EditIcon,
   FaTrashAlt as DeleteIcon,
 } from 'react-icons/fa';
@@ -18,8 +16,7 @@ const UserCard = (props) => {
   const {
     data,
     isAdminWhoView,
-    linkToViewMore,
-    linkToEdit,
+    onEditClick,
     onClickDelete,
     sizeIcons,
     className,
@@ -34,39 +31,25 @@ const UserCard = (props) => {
   return (
     <article className={userCardClassName}>
       <ListReadableFields className='user-card__info'>
-        {data.map((item, index) => (
+        {data.map((item) => (
           <ReadableField
             title={item.title}
             description={item.description}
-            key={index}
+            key={item.id}
           />
         ))}
       </ListReadableFields>
 
       <div className='user-card__actions'>
-        <Link to={linkToViewMore}>
-          <Button
-            icon={<ViewIcon size={sizeIcons} />}
-            type='icon'
-            iconMode='2'
-            onClick={() => null}
-            color='primary'
-            className='--boxShadow'
-          />
-        </Link>
-
         {isAdminWhoView && (
           <>
-            <Link to={linkToEdit}>
-              <Button
-                icon={<EditIcon size={sizeIcons} />}
-                type='icon'
-                iconMode='2'
-                onClick={() => null}
-                className='--boxShadow'
-              />
-            </Link>
-
+            <Button
+              icon={<EditIcon size={sizeIcons} />}
+              type='icon'
+              iconMode='2'
+              onClick={onEditClick(data)}
+              className='--boxShadow'
+            />
             <Button
               icon={<DeleteIcon size={sizeIcons} />}
               type='icon'
@@ -90,12 +73,10 @@ UserCard.propTypes = {
   ).isRequired,
   /** It is the administrator who will see the information  */
   isAdminWhoView: PropTypes.bool,
-  /** Path to view more user details  */
-  linkToViewMore: PropTypes.string,
   /** Path to edit user details */
-  linkToEdit: PropTypes.string,
+  onEditClick: PropTypes.func.isRequired,
   /** Action to delete specific source */
-  onClickDelete: PropTypes.func,
+  onClickDelete: PropTypes.func.isRequired,
   /** Size of action icons */
   sizeIcons: PropTypes.string,
   /** Class to overwrite the styles */
@@ -104,9 +85,6 @@ UserCard.propTypes = {
 
 UserCard.defaultProps = {
   isAdminWhoView: false,
-  linkToViewMore: '/',
-  linkToEdit: '/',
-  onClickDelete: undefined,
   sizeIcons: '3em',
   className: '',
 };

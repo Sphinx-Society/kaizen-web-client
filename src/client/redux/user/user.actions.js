@@ -3,4 +3,13 @@ export const setUser = (payload) => ({
   payload,
 });
 
-export default setUser;
+export const setUsers = (payload) => ({
+  type: 'USER/SET_USERS',
+  payload,
+});
+
+export const setEditingUser = (payload) => ({
+  type: 'USER/SET_EDITING_USER',
+  payload,
+});
+
