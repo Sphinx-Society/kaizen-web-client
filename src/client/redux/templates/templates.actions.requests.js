@@ -2,7 +2,7 @@ import * as feedbackActions from '../feedback/feedback.actions';
 import * as templateActions from './templates.actions';
 import TemplateService from '../../services/Template';
 
-const setIsLoading = (dispatch, isLoading) => dispatch(feedbackActions.setIsLoading({ isLoading }));
+import { setIsLoading } from '../feedback/feedback.utils';
 
 export const listTemplates = (page = 1, query) => async (dispatch) => {
   setIsLoading(dispatch, true);
