@@ -12,6 +12,7 @@ import Button from '../../atoms/Button/Button';
 import MainViewProvider from '../../providers/MainViewProvider/MainViewProvider';
 import NavbarProvider from '../../providers/NavbarProvider/NavbarProvider';
 import FeedbackProvider from '../../providers/FeedbackProvider/FeedbackProvider';
+import ModalProvider from '../../providers/ModalProvider/ModalProvider';
 import { listTemplates, deleteTemplate } from '../../../redux/templates/templates.actions.requests';
 import { setEditingTemplate } from '../../../redux/templates/templates.actions';
 
@@ -65,74 +66,76 @@ const TemplatesManagement = (props) => {
   const handleDeleteTemplate = (id) => () => dispatch(deleteTemplate(id));
 
   return (
-    <FeedbackProvider>
-      <NavbarProvider>
-        <MainViewProvider
-          title='Plantillas'
-          showBottomLine
-          moveTitle
-          menu={<Button onClick={goToTemplateCreator} icon={<AddIcon />}>Nueva plantilla</Button>}
-        >
-          <Table
-            isLoading={isLoading}
-            columns={[
-              {
-                header: 'Name',
-                accessor: 'name',
-                id: 1,
-              },
-              {
-                header: 'Categoría',
-                accessor: 'type',
-                id: 2,
-              },
-              {
-                header: 'Fecha de creación',
-                accessor: 'creationDate',
-                id: 3,
-              },
-              {
-                header: '',
-                accessor: '',
-                cell: (row) => (
-                  <div className='horizontal-flex-container'>
-                    <Button
-                      className='--shadowed --spaced'
-                      type='icon'
-                      icon={<PenIcon />}
-                      iconMode='1'
-                      onClick={handleEditTemplate(row)}
-                    />
-                    <Button
-                      className='--shadowed --spaced'
-                      type='icon'
-                      icon={<TrashIcon />}
-                      iconMode='1'
-                      onClick={handleDeleteTemplate(row.id)}
-                    />
-                  </div>
-                ),
-                id: 4,
-              },
-            ]}
-            rows={templates}
-            totalRows={totalTemplates}
-            page={currentPage}
-            totalPages={totalPages}
-            mobileRow={(row) => (
-              <TemplateCard
-                {...row}
-                onDelete={handleDeleteTemplate(row.id)}
-                onView={handleEditTemplate(row)}
-              />
-            )}
-            onNextPageClick={handleNextPage}
-            onPrevPageClick={handlePrevPage}
-            onSearch={searchForTemplates}
-          />
-        </MainViewProvider>
-      </NavbarProvider>
-    </FeedbackProvider>
+    <ModalProvider>
+      <FeedbackProvider>
+        <NavbarProvider>
+          <MainViewProvider
+            title='Plantillas'
+            showBottomLine
+            moveTitle
+            menu={<Button onClick={goToTemplateCreator} icon={<AddIcon />}>Nueva plantilla</Button>}
+          >
+            <Table
+              isLoading={isLoading}
+              columns={[
+                {
+                  header: 'Name',
+                  accessor: 'name',
+                  id: 1,
+                },
+                {
+                  header: 'Categoría',
+                  accessor: 'type',
+                  id: 2,
+                },
+                {
+                  header: 'Fecha de creación',
+                  accessor: 'creationDate',
+                  id: 3,
+                },
+                {
+                  header: '',
+                  accessor: '',
+                  cell: (row) => (
+                    <div className='horizontal-flex-container'>
+                      <Button
+                        className='--shadowed --spaced'
+                        type='icon'
+                        icon={<PenIcon />}
+                        iconMode='1'
+                        onClick={handleEditTemplate(row)}
+                      />
+                      <Button
+                        className='--shadowed --spaced'
+                        type='icon'
+                        icon={<TrashIcon />}
+                        iconMode='1'
+                        onClick={handleDeleteTemplate(row.id)}
+                      />
+                    </div>
+                  ),
+                  id: 4,
+                },
+              ]}
+              rows={templates}
+              totalRows={totalTemplates}
+              page={currentPage}
+              totalPages={totalPages}
+              mobileRow={(row) => (
+                <TemplateCard
+                  {...row}
+                  onDelete={handleDeleteTemplate(row.id)}
+                  onView={handleEditTemplate(row)}
+                />
+              )}
+              onNextPageClick={handleNextPage}
+              onPrevPageClick={handlePrevPage}
+              onSearch={searchForTemplates}
+            />
+          </MainViewProvider>
+        </NavbarProvider>
+      </FeedbackProvider>
+    </ModalProvider>
   );
 };
 

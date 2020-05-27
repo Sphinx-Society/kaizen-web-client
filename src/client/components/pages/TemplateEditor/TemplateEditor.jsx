@@ -5,6 +5,7 @@ import { IoMdAdd as AddIcon } from 'react-icons/io';
 import MainViewProvider from '../../providers/MainViewProvider/MainViewProvider';
 import NavbarProvider from '../../providers/NavbarProvider/NavbarProvider';
 import FeedbackProvider from '../../providers/FeedbackProvider/FeedbackProvider';
+import ModalProvider from '../../providers/ModalProvider/ModalProvider';
 import TemplateForm from '../../organisms/TemplateForm/TemplateForm';
 import Button from '../../atoms/Button/Button';
 import { setIsAddingField } from '../../../redux/templates/templates.actions';
@@ -45,22 +46,24 @@ const TemplateEditor = (props) => {
   };
 
   return (
-    <FeedbackProvider>
-      <NavbarProvider>
-        <MainViewProvider
-          showBackButton
-          title={editingTemplate ? editingTemplate.name : 'Crear plantilla'}
-          showBottomLine
-          onBackButtonClick={goToManagerView}
-          menu={<Button onClick={addField} icon={<AddIcon />}>Nuevo campo</Button>}
-        >
-          <TemplateForm
-            onSubmit={handleOnSubmit}
-            submitButtonLabel={editingTemplate ? 'Guardar' : 'Crear'}
-          />
-        </MainViewProvider>
-      </NavbarProvider>
-    </FeedbackProvider>
+    <ModalProvider>
+      <FeedbackProvider>
+        <NavbarProvider>
+          <MainViewProvider
+            showBackButton
+            title={editingTemplate ? editingTemplate.name : 'Crear plantilla'}
+            showBottomLine
+            onBackButtonClick={goToManagerView}
+            menu={<Button onClick={addField} icon={<AddIcon />}>Nuevo campo</Button>}
+          >
+            <TemplateForm
+              onSubmit={handleOnSubmit}
+              submitButtonLabel={editingTemplate ? 'Guardar' : 'Crear'}
+            />
+          </MainViewProvider>
+        </NavbarProvider>
+      </FeedbackProvider>
+    </ModalProvider>
   );
 };
 
