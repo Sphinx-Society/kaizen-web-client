@@ -1,8 +1,4 @@
 export const initialState = {
-  modal: {
-    message: '',
-    type: '',
-  },
   isLoading: false,
   feedback: {
     message: '',
