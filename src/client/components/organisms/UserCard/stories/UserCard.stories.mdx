@@ -1,5 +1,4 @@
 import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks'
-import StoryRouter from 'storybook-react-router';
 
 import UserCard from '../UserCard'
 
@@ -17,7 +16,7 @@ Its design is intended for mobile presentations, but can be used in other circum
 #### Example of what an administrator would see
 
 <Preview>
-  <Story name='is Administrator who view info' decorators={[StoryRouter()]}>
+  <Story name='is Administrator who view info'>
     <UserCard
       isAdminWhoView={true}
       data={[
@@ -25,8 +24,7 @@ Its design is intended for mobile presentations, but can be used in other circum
         {title: 'Last Name', description: 'Wayne Gordon'},
         {title: 'Document ID', description: '1235123'},
       ]}
-      linkToViewMore={'/ViewUser'}
-      linkToEdit={'/EditUser'}
+      onClickEdit={() => alert('Go to edit this resource...')}
       onClickDelete={() => alert('Warning, Do you want delete this resource?')}
     />
   </Story>
@@ -35,7 +33,7 @@ Its design is intended for mobile presentations, but can be used in other circum
 #### Example of what an Non-administrator would see
 
 <Preview>
-  <Story name='is Not Administrator who view info' decorators={[StoryRouter()]}>
+  <Story name='is Not Administrator who view info'>
     <UserCard
       data={[
         {title: 'First Name', description: 'Luis Armando'},
@@ -43,7 +41,7 @@ Its design is intended for mobile presentations, but can be used in other circum
         {title: 'Document ID', description: '79850023'},
         {title: 'Address', description: 'Angel third avenue with 98 east'},
       ]}
-      linkToViewMore={'/ViewUser2'}
+      onClickEdit={() => alert('Go to edit this resource...')}
     />
   </Story>
 </Preview>

@@ -131,7 +131,7 @@ const UserManagement = (props) => {
     <UserCard
       className='users-management__user-card--surface'
       isAdminWhoView={true}
-      onEditClick={handleEditUser}
+      onClickEdit={handleEditUser}
       onClickDelete={() => fnDeleteUser(item.id)}
       data={[
         { title: 'Rol', description: item.role },

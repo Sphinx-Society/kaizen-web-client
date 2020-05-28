@@ -6,8 +6,6 @@ import UserCard from '../UserCard';
 
 configure({ adapter: new Adapter() });
 
-const onClickFn = jest.fn();
-
 function componentRender() {
   return mount(
     <UserCard
@@ -17,8 +15,8 @@ function componentRender() {
         { title: 'Last Name', description: 'lastname' },
         { title: 'id', description: '1234' },
       ]}
-      onEditClick={() => onClickFn}
-      onClickDelete={onClickFn}
+      onClickEdit={() => null}
+      onClickDelete={() => null}
     />,
   );
 }
@@ -64,7 +62,9 @@ describe('UserCard organism', () => {
     });
   });
 
-  test('should excute the action delete:', () => {
+  test('should excute the action buttons:', () => {
+    const onClickEditFn = jest.fn();
+    const onClickDeleteFn = jest.fn();
     const userCard = mount(
       <UserCard
         isAdminWhoView={true}
@@ -73,15 +73,16 @@ describe('UserCard organism', () => {
           { title: 'Last Name', description: 'lastname' },
           { title: 'id', description: '1234' },
         ]}
-        onEditClick={() => onClickFn}
-        onClickDelete={onClickFn}
+        onClickEdit={onClickEditFn}
+        onClickDelete={onClickDeleteFn}
       />,
     );
 
     // Simulate other clicks null in the first buttons
     userCard.find('Button').at(0).simulate('click');
-    expect(onClickFn.mock.calls.length).toEqual(1);
+    expect(onClickEditFn.mock.calls.length).toEqual(1);
 
-    // userCard.find('Button').at(1).simulate('click');
+    userCard.find('Button').at(1).simulate('click');
+    expect(onClickDeleteFn.mock.calls.length).toEqual(1);
   });
 });
