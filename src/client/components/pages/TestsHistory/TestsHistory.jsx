@@ -46,7 +46,7 @@ const TestsHistory = () => {
   const editTe = () => {};
 
   useEffect(() => {
-    dispatch(getUser('5ec5f50ea76d8d1b91de94e5'));
+    dispatch(getUser());
   }, []);
 
   useEffect(() => {
@@ -93,7 +93,7 @@ const TestsHistory = () => {
                 id: 1,
               },
               {
-                header: 'Doctor que receta',
+                header: 'Asignado por',
                 accessor: 'doctorName',
                 id: 2,
               },
