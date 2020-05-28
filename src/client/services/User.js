@@ -1,6 +1,7 @@
 import Request from './Request';
 import { getStringFromDate } from '../utils/date';
 import { getErrorType } from '../utils/error';
+import { parseJwt } from '../utils/parseJwt';
 
 class User extends Request {
 
@@ -45,6 +46,32 @@ class User extends Request {
       .then(({ data }) => data)
       .catch((error) => {
         throw error;
+      });
+  }
+
+  async login(data) {
+    const url = `${this.apiUrl}/users/login`;
+    return this.axios.post(url, data)
+      .then(({ data }) => {
+        return data.message;
+      })
+      .catch((error) => {
+        throw getErrorType(error);
+      });
+  }
+
+  async getUser() {
+    const AuthStr = 'Bearer '.concat(document.cookie.substr(4));
+
+    const { userId } = parseJwt(document.cookie);
+    const url = `${this.apiUrl}/users/${userId}`;
+
+    return this.axios.get(url, { headers: { Authorization: AuthStr } })
+      .then(({ data }) => {
+        return data.message;
+      })
+      .catch((error) => {
+        throw getErrorType(error);
       });
   }
 

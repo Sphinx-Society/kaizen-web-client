@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import NavbarProvider from '../../providers/NavbarProvider/NavbarProvider';
@@ -7,10 +7,11 @@ import Button from '../../atoms/Button/Button';
 import TextInput from '../../atoms/TextInput/TextInput';
 import Datepicker from '../../organisms/Datepicker/Datepicker';
 import Select from '../../atoms/Select/Select';
+import { getUser } from '../../../redux/user/user.actions.requests';
+
 import { settings, userProfile } from '../../../routes/paths';
 
 import useForm from '../../../hooks/useForm/useForm';
-import { setUserProfile } from '../../../redux/user/user.actions.requests';
 
 import './UserProfile.scss';
 
@@ -18,7 +19,7 @@ const UserProfile = function (props) {
 
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
-  const { avatar } = user.profile;
+  // const { avatar } = user.profile;
   const { history: { push } } = props;
   const goToSettingsView = () => push(settings());
   const { profile } = user || { profile: '', auth: '' };
@@ -30,6 +31,9 @@ const UserProfile = function (props) {
     submitCallback(stateProfile);
     push(settings());
   };
+  useEffect(() => {
+    dispatch(getUser());
+  }, []);
   return (
     <NavbarProvider>
       <MainViewProvider
@@ -40,7 +44,7 @@ const UserProfile = function (props) {
         title='Mi perfil'
         showBottomLine
         moveTitle
-        avatar={avatar}
+        // avatar={avatar}
       >
         <div>
           <form
@@ -49,7 +53,7 @@ const UserProfile = function (props) {
             onSubmit={handleOnSubmit}
           >
             <div className='user-form__inputs-container'>
-              <TextInput
+              {/* <TextInput
                 required
                 id='firstName'
                 placeholder='Nombre'
@@ -95,7 +99,7 @@ const UserProfile = function (props) {
                 name='birthDate'
                 onChange={handleOnChange}
                 value={stateProfile.birthDate}
-              />
+              /> */}
             </div>
             <Button
               form='user-form'
