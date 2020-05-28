@@ -54,6 +54,13 @@ const TextInput = (props) => {
     [iconContainerClassName]: iconContainerClassName,
   });
 
+  const autoCompleteProp = clsx({
+    '': true,
+    'username': id === 'username',
+    'current-password': id === 'current-password',
+    'new-password': id === 'new-password',
+  });
+
   return (
     <div className={textInputContainerClassName}>
       <input
@@ -67,6 +74,7 @@ const TextInput = (props) => {
         type={type}
         min={min}
         max={max}
+        autoComplete={autoCompleteProp}
       />
       <label
         className={textInputLabelClassName}
