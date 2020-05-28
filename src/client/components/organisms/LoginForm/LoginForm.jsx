@@ -14,15 +14,10 @@ const LoginForm = () => {
   const dispatch = useDispatch();
 
   const { isLoading, feedback } = useSelector((state) => state.feedback);
-  const [isError, setIsError] = React.useState(false);
 
   const initialFormState = { username: '', password: '' };
   const submitCallback = (data) => dispatch(login(data));
   const [state, handleOnChange, handleOnSubmit] = useForm(initialFormState, submitCallback);
-
-  React.useEffect(() => {
-    setIsError(Boolean(feedback.type));
-  }, [feedback]);
 
   return (
     <div data-test='login-form-container' className='form-container'>
@@ -35,7 +30,6 @@ const LoginForm = () => {
         className='login-form'
       >
         <div className='login-form__inputs-container'>
-          {isError && <FormErrorMessage>{feedback.message}</FormErrorMessage>}
           <TextInput
             data-test='login-input-user'
             placeholder='Usuario'

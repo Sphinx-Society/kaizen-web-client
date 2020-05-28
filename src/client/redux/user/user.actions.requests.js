@@ -6,11 +6,11 @@ import { setIsLoading } from '../feedback/feedback.utils';
 
 export const login = (data) => async (dispatch) => {
   const User = new UserService();
-  dispatch(feedbackActions.setIsLoading({ isLoading: true }));
+  setIsLoading(dispatch, true);
 
   try {
     const authenticate = await User.login(data);
-    document.cookie = `jwt=${authenticate.jwt};max-age=43200`;
+    document.cookie = `token=${authenticate.jwt};max-age=43200`;
     dispatch(userActions.setUser(data.username));
   } catch (error) {
     dispatch(feedbackActions.setFeedback({
@@ -20,7 +20,7 @@ export const login = (data) => async (dispatch) => {
       },
     }));
   } finally {
-    dispatch(feedbackActions.setIsLoading({ isLoading: false }));
+    setIsLoading(dispatch, false);
   }
 };
 
