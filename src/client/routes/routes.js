@@ -1,3 +1,4 @@
+import CreateUser from '../components/pages/CreateUser/CreateUser';
 import NotFound from '../components/pages/NotFound';
 import Login from '../components/pages/Login/Login';
 import TemplatesManagement from '../components/pages/TemplatesManagement/TemplatesManagement';
@@ -6,7 +7,6 @@ import UsersManagement from '../components/pages/UsersManagement/UsersManagement
 import UserProfile from '../components/pages/UserProfile/UserProfile';
 import ExamsHistory from '../components/pages/ExamsHistory/ExamsHistory';
 import Settings from '../components/pages/Settings/Settings';
-
 import {
   login,
   templatesManagement,
@@ -15,6 +15,7 @@ import {
   userProfile,
   examsHistory,
   settings,
+  createUser,
 } from './paths';
 
 export default [
@@ -51,6 +52,11 @@ export default [
   {
     path: userProfile(),
     component: UserProfile,
+    exact: true,
+  },
+  {
+    path: createUser(),
+    component: CreateUser,
     exact: true,
   },
   {

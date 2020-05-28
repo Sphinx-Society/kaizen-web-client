@@ -20,7 +20,7 @@ import Select from '../../atoms/Select/Select';
 import { setModalDialog } from '../../../redux/modalDialog/modalDialog.actions';
 import { listUsers } from '../../../redux/user/user.actions.requests';
 import { setEditingUser } from '../../../redux/user/user.actions';
-import { userEditor } from '../../../routes/paths';
+import { createUser } from '../../../routes/paths';
 
 const UserManagement = (props) => {
   const { history: { push } } = props;
@@ -55,7 +55,7 @@ const UserManagement = (props) => {
     },
   }));
 
-  const gotToUserEditor = () => push(userEditor());
+  const gotToUserEditor = () => push(createUser());
 
   const handleNextPage = () => {
     const page = currentPage + 1;

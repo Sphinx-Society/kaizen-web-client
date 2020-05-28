@@ -1,4 +1,3 @@
-import { browserHistory } from 'react-router';
 import * as userActions from './user.actions';
 import * as feedbackActions from '../feedback/feedback.actions';
 import UserService from '../../services/User';
@@ -52,7 +51,6 @@ export const setUserProfile = (data) => async (dispatch) => {
   try {
     console.log('done');
     dispatch(userActions.setUserProfile(data));
-    browserHistory.push('/cart');
 
   } catch (error) {
     dispatch(feedbackActions.setFeedback({
