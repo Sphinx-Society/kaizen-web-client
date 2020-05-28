@@ -46,4 +46,42 @@ export const listUsers = (page = 1, documentId, role) => async (dispatch) => {
   setIsLoading(dispatch, false);
 };
 
+export const getUser = (id) => async (dispatch) => {
+  setIsLoading(dispatch, true);
+  const User = new UserService();
+  try {
+    const user = await User.getUser(id);
+    dispatch(userActions.setUser({ user }));
+  } catch (error) {
+    dispatch(feedbackActions.setFeedback({
+      feedback: {
+        message: error.message,
+        type: 'error',
+      },
+    }));
+    setIsLoading(dispatch, false);
+    throw error;
+  }
+  setIsLoading(dispatch, false);
+};
+
+export const downloadTests = (id, testIds) => async (dispatch) => {
+  setIsLoading(dispatch, true);
+  const User = new UserService();
+  try {
+    const paths = await User.downloadTests(id, testIds);
+    console.log(paths);
+  } catch (error) {
+    dispatch(feedbackActions.setFeedback({
+      feedback: {
+        message: error.message,
+        type: 'error',
+      },
+    }));
+    setIsLoading(dispatch, false);
+    throw error;
+  }
+  setIsLoading(dispatch, false);
+};
+
 export default login;

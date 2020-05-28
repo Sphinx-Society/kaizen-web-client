@@ -5,6 +5,7 @@ export const initialState = {
   totalUsers: 0,
   totalPages: 1,
   editingUser: null,
+  selectedTests: [],
 };
 
 export default (state = initialState, action) => {
@@ -28,6 +29,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         editingUser: action.payload.editingUser,
+      };
+    }
+    case 'USER/SET_SELECTED_TESTS': {
+      return {
+        ...state,
+        selectedTests: action.payload.selectedTests,
       };
     }
     default: {
