@@ -4,11 +4,11 @@ import { FaUserAlt as UserCoverIcon } from 'react-icons/fa';
 import './UserCover.scss';
 
 const UserCover = (props) => {
-  const { userCover } = props;
+  const { avatar } = props;
 
   return (
     <div className='user-cover'>
-      {userCover.length > 0 ? <img src={userCover} alt='user-cover' /> : <UserCoverIcon />}
+      {avatar.length > 0 ? <img src={avatar} alt='user-cover' /> : <UserCoverIcon />}
 
     </div>
   );
@@ -16,11 +16,11 @@ const UserCover = (props) => {
 
 UserCover.propTypes = {
   /** The ID for input type checkbox and connect with his label  */
-  userCover: PropTypes.string,
+  avatar: PropTypes.string,
 };
 
 UserCover.defaultProps = {
-  userCover: '',
+  avatar: '',
 };
 
 export default UserCover;

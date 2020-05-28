@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 const useForm = (initialState, submitCallback) => {
-  const [state, setState] = useState(initialState);
+  const [state, setState] = useState({ ...initialState });
 
   const handleOnChange = (event) => {
     const { name, value, checked, type } = event.target;

@@ -1,11 +1,13 @@
 .datepicker {
   &__container {
-    max-width: getSpacing(30);
+    @include flex();
     margin: 0 auto;
   }
 
   &__calendar {
     &__container {
+
+      position: absolute;
       display: flex;
       flex-direction: column;
       margin: 0;
@@ -25,13 +27,12 @@
   }
 
   &__input {
-    width: calc(100% - 45px);
-    @include padding(getSpacing(0.5), getSpacing(4), getSpacing(0), getSpacing(0.5));
+    @include padding(getSpacing(1.6), getSpacing(4), getSpacing(1.4), getSpacing(0.5));
     height: 2em;
-    margin-bottom: getSpacing(1);
     border: none;
     border-bottom: $borderSolid2pxDarkGray;
     outline: none;
+
 
     &:focus ~ .datepicker__input__label {
       @include labelCollected(-5px, getSpacing(0.5));
@@ -48,11 +49,14 @@
 
     &__container {
       position: relative;
+      width: 100%;
+      @include flex('', flex-start);
+      height: 100%;
     }
 
     &__button {
-      position: absolute;
-      right: getSpacing(0.25);
+      position: relative;
+      right: getSpacing(3);
       top: getSpacing(0.5);
       padding: 0 getSpcing(0.5);
       background: none;
@@ -72,7 +76,7 @@
       letter-spacing: .2px;
 
       &--collected {
-        @include labelCollected(-5px, getSpacing(0.5));
+        @include labelCollected(getSpacing(0.1), getSpacing(0.1));
         transition: 0s;
       }
     }

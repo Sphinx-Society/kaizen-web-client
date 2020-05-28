@@ -1,4 +1,6 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+
 import {
   AiOutlineUser as ProfileIcon,
   AiOutlineLogout as LogoutIcon } from 'react-icons/ai';
@@ -8,9 +10,10 @@ import Surface from '../../atoms/Surface/Surface';
 import Logo from '../../atoms/Logo/Logo';
 import NavbarProvider from '../../providers/NavbarProvider/NavbarProvider';
 import './Settings.scss';
-import { login } from '../../../routes/paths';
+import { login, userProfile } from '../../../routes/paths';
 
 const Settings = () => {
+  const userId = useSelector((state) => state.user.user._id);
 
   return (
 
@@ -22,7 +25,7 @@ const Settings = () => {
             <h2> Kaizen</h2>
           </div>
           <section className='settings-container__options'>
-            <Link id='profile-link' className='option-container' to='userProfile'>
+            <Link id='profile-link' className='option-container' to={userProfile(userId)}>
               <dd>Ver mi perfil</dd>
               <ProfileIcon size='1.5em' />
             </Link>

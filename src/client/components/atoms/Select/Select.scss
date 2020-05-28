@@ -1,10 +1,9 @@
 .select {
   display: flex;
   position: relative;
-  margin: getSpacing(0.5) 0;
   align-items: center;
-
   &__select {
+    width: 100%;
     font-family: $fontFamilyBase;
     height: 2em;
     border: none;
@@ -17,7 +16,6 @@
     font-weight: 400;
     font-size: $fontSizeBase;
     letter-spacing: getSpacing(0.01);
-    width: 100%;
     padding-right: getSpacing(3);
     padding-bottom: getSpacing(0.5);
 
@@ -49,8 +47,7 @@
   }
 
   & svg {
-    position: absolute;
-    top: getSpacing(1);
-    right: getSpacing(1);
+    position: relative;
+    right: getSpacing(3);
   }
 }
