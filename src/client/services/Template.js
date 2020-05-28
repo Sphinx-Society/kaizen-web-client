@@ -3,8 +3,13 @@ import { getStringFromDate } from '../utils/date';
 import { getErrorType } from '../utils/error';
 
 class Template extends Request {
+  constructor(token) {
+    super(token);
+    this.baseUrl = `${this.apiUrl}/templates`;
+  }
+
   async listTemplates(page, query) {
-    let url = `${this.apiUrl}/templates?page=${page}`;
+    let url = `${this.baseUrl}?page=${page}`;
 
     if (query) {
       url = `${url}&q=${query}`;
@@ -41,7 +46,7 @@ class Template extends Request {
       };
     });
 
-    return this.axios.post(`${this.apiUrl}/templates`, data)
+    return this.axios.post(`${this.baseUrl}`, data)
       .then(({ data: { message } }) => {
         return message;
       })
@@ -51,7 +56,7 @@ class Template extends Request {
   }
 
   async deleteTemplate(id) {
-    return this.axios.delete(`${this.apiUrl}/templates/${id}`)
+    return this.axios.delete(`${this.baseUrl}/${id}`)
       .then(({ data: { message } }) => {
         return message;
       })
@@ -80,7 +85,7 @@ class Template extends Request {
       };
     });
 
-    return this.axios.put(`${this.apiUrl}/templates/${template.id}`, data)
+    return this.axios.put(`${this.baseUrl}/${template.id}`, data)
       .then(({ data: { message } }) => {
         return message;
       })
