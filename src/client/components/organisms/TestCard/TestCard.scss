@@ -1,0 +1,36 @@
+.test-card {
+  margin: getSpacing(2) auto;
+  display: flex;
+  width: 80%;
+  padding: getSpacing(2);
+  align-items: center;
+  justify-content: space-between;
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex: 1;
+
+    &__controls {
+      display: flex;
+      align-items: center;
+
+      .readable-field {
+        flex: 1;
+        margin-left: getSpacing(1);
+      }
+
+      dt {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: getSpacing(9);
+      }
+    }
+
+    h3 {
+      margin-left: getSpacing(1);
+    }
+  }
+}

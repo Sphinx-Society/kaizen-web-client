@@ -53,8 +53,8 @@
   }
 
 	&:disabled {
-		@include colorFontAndBg($colorFontDisabled, $colorBgDisabled);
-		cursor: not-allowed;
+    @include colorFontAndBg($colorFontDisabled, $colorBgDisabled);
+    pointer-events: none;
   }
 
   &__content {
@@ -114,8 +114,8 @@
 	}
 
 	&:disabled {
-		@include colorFontAndBg($colorFontDisabled, $colorBgDisabled);
-		cursor: not-allowed;
+    @include colorFontAndBg($colorFontDisabled, $colorBgDisabled);
+    pointer-events: none;
   }
 
 	&--space-mode-circle-0 {

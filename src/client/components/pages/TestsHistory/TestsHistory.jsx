@@ -6,41 +6,54 @@ import {
   FaDownload as DownloadIcon,
 } from 'react-icons/fa';
 import Table from '../../organisms/Table/Table';
-import ExamCard from '../../organisms/ExamCard/ExamCard';
+import TestCard from '../../organisms/TestCard/TestCard';
 import Button from '../../atoms/Button/Button';
 import Checkbox from '../../atoms/Checkbox/Checkbox';
 import MainViewProvider from '../../providers/MainViewProvider/MainViewProvider';
 import NavbarProvider from '../../providers/NavbarProvider/NavbarProvider';
 import FeedbackProvider from '../../providers/FeedbackProvider/FeedbackProvider';
-import { listExams } from '../../../redux/exams/exams.actions.requests';
-import { setSelectedExams } from '../../../redux/exams/exams.actions';
+import { getUser } from '../../../redux/user/user.actions.requests';
+import { setSelectedTests } from '../../../redux/user/user.actions';
 
-import { getStringFromDate } from '../../../utils/date';
-import { templateEditor } from '../../../routes/paths';
-
-const ExamsHistory = (props) => {
-  const { history } = props;
-
+const TestsHistory = () => {
   const dispatch = useDispatch();
-  const { exams, selectedExams } = useSelector((state) => state.exams);
+  const { user, selectedTests } = useSelector((state) => state.user);
   const { isLoading } = useSelector((state) => state.feedback);
+
+  const [filteredTests, setFilteredTests] = useState(user ? user.tests : []);
 
   const handleCheckboxOnChange = (id) => (event) => {
     const { checked } = event.target;
     if (checked) {
-      dispatch(setSelectedExams({ selectedExams: [...selectedExams, id] }));
+      dispatch(setSelectedTests({ selectedTests: [...selectedTests, id] }));
     } else {
-      dispatch(setSelectedExams({
-        selectedExams: selectedExams.filter((examId) => examId !== id),
+      dispatch(setSelectedTests({
+        selectedTests: selectedTests.filter((testId) => testId !== id),
       }));
     }
   };
 
-  useEffect(() => {
-    dispatch(listExams());
-  }, []);
+  const handleOnSearch = (query) => {
+    if (query) {
+      setFilteredTests(filteredTests.filter(({ name }) => {
+        return name.toUpperCase().includes(query.toUpperCase());
+      }));
+    } else {
+      setFilteredTests(user.tests);
+    }
+  };
 
   const editTe = () => {};
+
+  useEffect(() => {
+    dispatch(getUser());
+  }, []);
+
+  useEffect(() => {
+    if (user) {
+      setFilteredTests(user.tests);
+    }
+  }, [user]);
 
   return (
     <FeedbackProvider>
@@ -62,10 +75,12 @@ const ExamsHistory = (props) => {
               {
                 header: '',
                 accessor: '',
-                cell: ({ id }) => (
+                cell: ({ id, status }) => (
                   <Checkbox
                     onChange={handleCheckboxOnChange(id)}
-                    checked={selectedExams.includes(id)}
+                    checked={selectedTests.includes(id)}
+                    disabled={status !== 'done'}
+                    id={id}
                   />
                 ),
                 id: 0,
@@ -78,20 +93,14 @@ const ExamsHistory = (props) => {
                 id: 1,
               },
               {
-                header: 'Categoría',
-                accessor: 'type',
+                header: 'Asignado por',
+                accessor: 'doctorName',
                 id: 2,
               },
               {
-                header: 'Fecha de asignación',
-                accessor: 'creationDate',
-                cell: (row) => <span>{getStringFromDate(new Date(row.creationDate))}</span>,
-                id: 3,
-              },
-              {
                 header: 'Estado',
-                accessor: 'state',
-                id: 4,
+                accessor: 'statusLabel',
+                id: 3,
               },
               {
                 header: '',
@@ -103,28 +112,36 @@ const ExamsHistory = (props) => {
                       type='icon'
                       icon={<EyeIcon />}
                       iconMode='1'
+                      disabled={row.status !== 'done'}
                     />
                     <Button
                       className='--shadowed --spaced'
                       type='icon'
                       icon={<DownloadIcon />}
                       iconMode='1'
+                      disabled={row.status !== 'done'}
                     />
                   </div>
                 ),
-                id: 5,
+                id: 4,
               },
             ]}
-            rows={exams}
-            totalRows={exams.length}
-            page={0}
+            rows={filteredTests}
+            totalRows={filteredTests.length}
+            page={1}
+            totalPages={1}
             mobileRow={(row) => (
-              <ExamCard
+              <TestCard
                 key={row.id}
                 onCheckboxChange={handleCheckboxOnChange(row.id)}
+                selected={selectedTests.includes(row.id)}
+                disabled={row.status !== 'done'}
                 {...row}
               />
             )}
+            onNextPageClick={() => null}
+            onPrevPageClick={() => null}
+            onSearch={handleOnSearch}
           />
         </MainViewProvider>
       </NavbarProvider>
@@ -132,10 +149,10 @@ const ExamsHistory = (props) => {
   );
 };
 
-ExamsHistory.propTypes = {
+TestsHistory.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,
 };
 
-export default ExamsHistory;
+export default TestsHistory;
