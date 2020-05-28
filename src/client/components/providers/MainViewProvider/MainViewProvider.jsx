@@ -16,7 +16,7 @@ const MainViewProvider = (props) => {
     title,
     moveTitle,
     onBackButtonClick,
-    userCover,
+    avatar,
   } = props;
 
   const mainViewProviderClassName = clsx({
@@ -41,7 +41,7 @@ const MainViewProvider = (props) => {
         </Button>
       )}
       <div className={headClassName}>
-        {userCover && <UserCover userCover={userCover} /> }
+        {avatar && <UserCover avatar={avatar} /> }
 
         <h2>{title}</h2>
         {menu}

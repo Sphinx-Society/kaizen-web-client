@@ -1,5 +1,27 @@
 export const initialState = {
-  user: null,
+  user: {
+    '_id': '5ebb5ed9aeaa9713c11fc3d0',
+    'profile': {
+      'firstName': 'Alejandro Demetrio',
+      'lastName': 'Cortez Álvarez',
+      'birthDate': 684633600,
+      'phoneNumber': '+525563584267',
+      'avatar': '',
+      'gender': 'Other',
+      'country': 'MX',
+      'documentId': '1234567899',
+    },
+    'auth': {
+      'email': 'ziker@live.com.mx',
+      'role': 'administrator',
+      'username': 'alejandro.cortez.7890',
+      'password': '$2b$10$hI6i09VU7UofrVATN17WP.v1PwfurgNx8a3NzQYpE/LGo9cJN3RYO',
+      'active': true,
+      'isConfirmed': false,
+    },
+    'InsertedAt': 1589337816980,
+    'updatedAt': 1590337583007,
+  },
   users: [],
   currentPage: 1,
   totalUsers: 0,
@@ -12,7 +34,15 @@ export default (state = initialState, action) => {
     case 'USER/SET_USER': {
       return {
         ...state,
-        user: { ...action.payload.user },
+        user: {
+          ...action.payload.user },
+      };
+    }
+    case 'USER/SET_USER_PROFILE': {
+      return {
+        ...state,
+        user: { ...state.user,
+          profile: { ...action.payload } },
       };
     }
     case 'USER/SET_USERS': {
