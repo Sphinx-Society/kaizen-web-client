@@ -1,5 +1,5 @@
 export const initialState = {
-  user: null,
+  username: null,
   users: [],
   currentPage: 1,
   totalUsers: 0,
@@ -12,7 +12,7 @@ export default (state = initialState, action) => {
     case 'USER/SET_USER': {
       return {
         ...state,
-        user: { ...action.payload.user },
+        username: { ...action.payload.username },
       };
     }
     case 'USER/SET_USERS': {

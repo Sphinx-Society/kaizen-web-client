@@ -5,21 +5,29 @@ import UserService from '../../services/User';
 import { setIsLoading } from '../feedback/feedback.utils';
 
 export const login = (data) => async (dispatch) => {
+  const User = new UserService();
   dispatch(feedbackActions.setIsLoading({ isLoading: true }));
+
   try {
-    const authenticate = await true;
-    dispatch(userActions.setUser(authenticate));
+    const authenticate = await User.login(data);
+    document.cookie = `jwt=${authenticate.jwt};max-age=43200`;
+    dispatch(userActions.setUser(data.username));
   } catch (error) {
     dispatch(feedbackActions.setFeedback({
-      message: error.message,
-      type: 'error',
+      feedback: {
+        message: error.message,
+        type: 'error',
+      },
     }));
+  } finally {
+    dispatch(feedbackActions.setIsLoading({ isLoading: false }));
   }
 };
 
 export const listUsers = (page = 1, documentId, role) => async (dispatch) => {
   setIsLoading(dispatch, true);
   const User = new UserService();
+
   try {
     const {
       totalPages,
