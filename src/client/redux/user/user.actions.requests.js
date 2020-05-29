@@ -11,7 +11,6 @@ export const login = (data) => async (dispatch) => {
   try {
     const authenticate = await User.login(data);
     document.cookie = `token=${authenticate.jwt};max-age=43200`;
-    dispatch(userActions.setUser(data.username));
   } catch (error) {
     dispatch(feedbackActions.setFeedback({
       feedback: {
@@ -19,6 +18,7 @@ export const login = (data) => async (dispatch) => {
         type: 'error',
       },
     }));
+    throw error;
   } finally {
     setIsLoading(dispatch, false);
   }

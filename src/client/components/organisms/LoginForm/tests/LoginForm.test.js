@@ -1,4 +1,5 @@
 import React from 'react';
+import { MemoryRouter } from 'react-router-dom';
 import { shallow, configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import ProviderMock from '../../../../__mocks__/redux/ProviderMock';
@@ -9,7 +10,9 @@ configure({ adapter: new Adapter() });
 describe('LoginForm', () => {
   const loginForm = shallow(
     <ProviderMock>
-      <LoginForm />
+      <MemoryRouter>
+        <LoginForm />
+      </MemoryRouter>
     </ProviderMock>,
   );
   test('Should render without errors', () => {
@@ -18,7 +21,9 @@ describe('LoginForm', () => {
   test('Should render without errors', () => {
     const loginForm = mount(
       <ProviderMock>
-        <LoginForm />
+        <MemoryRouter>
+          <LoginForm />
+        </MemoryRouter>
       </ProviderMock>,
     );
     expect(loginForm.find('.form-container').length).toEqual(1);

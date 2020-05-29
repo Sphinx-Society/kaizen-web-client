@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../atoms/Button/Button';
 import TextInput from '../../atoms/TextInput/TextInput';
@@ -10,13 +11,17 @@ import { login } from '../../../redux/user/user.actions.requests';
 
 import './LoginForm.scss';
 
-const LoginForm = () => {
+const LoginForm = (props) => {
+  const { history: { push } } = props;
   const dispatch = useDispatch();
 
   const { isLoading, feedback } = useSelector((state) => state.feedback);
 
   const initialFormState = { username: '', password: '' };
-  const submitCallback = (data) => dispatch(login(data));
+  const submitCallback = (data) => {
+    dispatch(login(data))
+      .then(() => push('/'));
+  };
   const [state, handleOnChange, handleOnSubmit] = useForm(initialFormState, submitCallback);
 
   return (
@@ -66,4 +71,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default withRouter(LoginForm);
