@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
@@ -12,6 +12,8 @@ import useOutsideClick from '../../../hooks/useOutsideClick/useOutsideClick';
 
 import './Alert.scss';
 
+const types = ['error', 'warning', 'success'];
+
 const Alert = (props) => {
   const {
     type,
@@ -20,17 +22,10 @@ const Alert = (props) => {
     closeTime,
   } = props;
 
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const timeout = setTimeout(onClose, closeTime);
-    return () => clearTimeout(timeout);
-  }, []);
-
   const icons = {
-    error: <ErrorIcon />,
-    warning: <WarningIcon />,
-    success: <CheckIcon />,
+    error: <ErrorIcon className='alert__icon' />,
+    warning: <WarningIcon className='alert__icon' />,
+    success: <CheckIcon className='alert__icon' />,
   };
 
   const alertClassName = clsx({
@@ -40,29 +35,36 @@ const Alert = (props) => {
     'alert--success': type === 'success',
   });
 
+  const ref = useRef(null);
+
   useOutsideClick(ref, onClose);
 
+  React.useEffect(() => {
+    const timeout = setTimeout(onClose, closeTime);
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
-    <div
+    <figure
       className={alertClassName}
       ref={ref}
       id='feedback-alert-container'
     >
-      <div className='alert__icon'>
-        {icons[type]}
-      </div>
-      <div className='alert__text'><p>{message}</p></div>
+      {icons[type]}
+      <figcaption className='alert__text'>
+        {message}
+      </figcaption>
       <CloseIcon
         className='alert__close'
         onClick={onClose}
       />
-    </div>
+    </figure>
   );
 };
 
 Alert.propTypes = {
   /** Type of the alert */
-  type: PropTypes.oneOf(['error', 'warning', 'success']),
+  type: PropTypes.oneOf(types),
   /** Message to show on the alert */
   message: PropTypes.string,
   /** Function to call when the alert is closed */
