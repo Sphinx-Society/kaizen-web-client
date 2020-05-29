@@ -14,6 +14,7 @@ import NavbarProvider from '../../providers/NavbarProvider/NavbarProvider';
 import FeedbackProvider from '../../providers/FeedbackProvider/FeedbackProvider';
 import ModalProvider from '../../providers/ModalProvider/ModalProvider';
 import withAuth from '../../hocs/withAuth';
+import withUserData from '../../hocs/withUserData';
 import { listTemplates, deleteTemplate } from '../../../redux/templates/templates.actions.requests';
 import { setEditingTemplate } from '../../../redux/templates/templates.actions';
 
@@ -146,4 +147,4 @@ TemplatesManagement.propTypes = {
   }).isRequired,
 };
 
-export default withAuth(TemplatesManagement);
+export default withUserData(withAuth(TemplatesManagement));

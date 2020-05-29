@@ -11,7 +11,7 @@ import { getUser, updateProfile } from '../../../redux/user/user.actions.request
 import withAuth from '../../hocs/withAuth';
 import withUserData from '../../hocs/withUserData';
 import { settings } from '../../../routes/paths';
-
+import FeedbackProvider from '../../providers/FeedbackProvider/FeedbackProvider';
 import useForm from '../../../hooks/useForm/useForm';
 
 import './UserProfile.scss';
@@ -27,91 +27,92 @@ const UserProfile = function (props) {
   const [stateProfile, handleOnChange] = useForm(user, submitCallback);
   const handleOnSubmit = (event) => {
     event.preventDefault();
-    console.log(stateProfile);
     submitCallback(stateProfile);
   };
   return (
-    <NavbarProvider>
-      <MainViewProvider
-        showBackButton={true}
-        onBackButtonClick={() => {
-          debugger;
-          history.push(settings());
-        }}
-        title='Mi perfil'
-        showBottomLine
-        moveTitle
+    <FeedbackProvider>
+      <NavbarProvider>
+        <MainViewProvider
+          showBackButton={true}
+          onBackButtonClick={() => {
+            history.push(settings());
+          }}
+          title='Mi perfil'
+          showBottomLine
+          moveTitle
         // avatar={avatar}
-      >
-        <div>
-          <form
-            id='user-form'
-            className='user-form'
-            onSubmit={handleOnSubmit}
-          >
-            <div className='user-form__inputs-container'>
-              <TextInput
-                required
-                id='firstName'
-                placeholder='Nombre'
-                inputName='firstName'
-                value={stateProfile.firstName}
-                onChange={handleOnChange}
-              />
-              <TextInput
-                required
-                id='lastName'
-                placeholder='Apellido'
-                inputName='lastName'
-                value={stateProfile.lastName}
-                onChange={handleOnChange}
-              />
-              <Select
-                name='country'
-                id='country'
-                placeholder='País'
-                value={stateProfile.country}
-                onChange={handleOnChange}
-                options={['MX', 'COL']}
-              />
-
-              <TextInput
-                required
-                id='phone'
-                placeholder='Teléfono'
-                inputName='phone'
-                value={stateProfile.phone}
-                onChange={handleOnChange}
-              />
-              <Select
-                name='gender'
-                id='8'
-                placeholder='Genero'
-                value={stateProfile.gender}
-                onChange={handleOnChange}
-                options={['M', 'F', 'Other']}
-              />
-              <Datepicker
-                placeholder='Fecha de nacimiento'
-                name='birthDate'
-                onChange={handleOnChange}
-                value={stateProfile.birthDate}
-              />
-            </div>
-            <Button
-              form='user-form'
-              className='--is-for-submit'
-              onClick={() => null}
-              color='primary'
-              type='submit'
+        >
+          <div>
+            <form
+              id='user-form'
+              className='user-form'
+              onSubmit={handleOnSubmit}
             >
-              Guardar cambios
-            </Button>
-          </form>
-        </div>
+              <div className='user-form__inputs-container'>
+                <TextInput
+                  required
+                  id='firstName'
+                  placeholder='Nombre'
+                  inputName='firstName'
+                  value={stateProfile.firstName}
+                  onChange={handleOnChange}
+                />
+                <TextInput
+                  required
+                  id='lastName'
+                  placeholder='Apellido'
+                  inputName='lastName'
+                  value={stateProfile.lastName}
+                  onChange={handleOnChange}
+                />
+                <Select
+                  name='country'
+                  id='country'
+                  placeholder='País'
+                  value={stateProfile.country}
+                  onChange={handleOnChange}
+                  options={['MX', 'COL']}
+                />
 
-      </MainViewProvider>
-    </NavbarProvider>
+                <TextInput
+                  required
+                  id='phone'
+                  placeholder='Teléfono'
+                  inputName='phone'
+                  value={stateProfile.phone}
+                  onChange={handleOnChange}
+                />
+                <Select
+                  name='gender'
+                  id='8'
+                  placeholder='Genero'
+                  value={stateProfile.gender}
+                  onChange={handleOnChange}
+                  options={['M', 'F', 'Other']}
+                />
+                <Datepicker
+                  placeholder='Fecha de nacimiento'
+                  name='birthDate'
+                  onChange={handleOnChange}
+                  value={stateProfile.birthDate}
+                />
+              </div>
+              <Button
+                form='user-form'
+                className='--is-for-submit'
+                onClick={() => null}
+                color='primary'
+                type='submit'
+              >
+                Guardar cambios
+              </Button>
+            </form>
+          </div>
+
+        </MainViewProvider>
+      </NavbarProvider>
+    </FeedbackProvider>
+
   );
 };
 

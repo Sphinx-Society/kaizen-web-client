@@ -20,7 +20,7 @@ import withAuth from '../../hocs/withAuth';
 import withUserData from '../../hocs/withUserData';
 
 import { setModalDialog } from '../../../redux/modalDialog/modalDialog.actions';
-import { listUsers } from '../../../redux/user/user.actions.requests';
+import { listUsers, deleUser } from '../../../redux/user/user.actions.requests';
 import { setEditingUser } from '../../../redux/user/user.actions';
 import { createUser } from '../../../routes/paths';
 
@@ -49,11 +49,11 @@ const UserManagement = (props) => {
   }));
 
   // Example
-  const fnDeleteUser = (id) => dispatch(setModalDialog({
+  const fnDeleteUser = (name, id) => dispatch(setModalDialog({
     modal: {
       type: 'delete',
-      message: `Desea eliminar al usuario ${id}`,
-      mainFn: () => alert('Usuario eliminado'),
+      message: `Desea eliminar al usuario ${name}`,
+      mainFn: () => { dispatch(deleUser(id)); },
     },
   }));
 
@@ -93,6 +93,10 @@ const UserManagement = (props) => {
   const handleEditUser = (editingUser) => () => {
     dispatch(setEditingUser({ editingUser }));
     gotToUserEditor();
+  };
+  const handleDeleteUser = (deletingUser) => () => {
+    fnDeleteUser(deletingUser.name, deletingUser._id);
+
   };
 
   useEffect(() => {
@@ -203,6 +207,7 @@ const UserManagement = (props) => {
                       <Button
                         className='--shadowed --spaced'
                         type='icon'
+                        onClick={handleDeleteUser(row)}
                         icon={<TrashIcon />}
                         iconMode='1'
                       />

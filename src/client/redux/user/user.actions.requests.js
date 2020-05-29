@@ -71,6 +71,124 @@ export const getUser = (data) => async (dispatch) => {
   }
 };
 
+export const createUser = (data) => async (dispatch) => {
+  const User = new UserService();
+  setIsLoading(dispatch, true);
+  const {
+    firstName,
+    lastName,
+    birthDate,
+    phoneNumber,
+    country,
+    gender,
+    role,
+    email,
+    documentId,
+  } = data;
+  const newUser = {
+    profile: {
+      firstName,
+      lastName,
+      birthDate,
+      phoneNumber,
+      avatar: '',
+      avatarMimeType: '',
+      gender,
+      country,
+      documentId,
+    },
+    auth: {
+      email,
+      role,
+    },
+  };
+  try {
+    await User.newUser(newUser);
+    await dispatch(listUsers());
+    dispatch(feedbackActions.setFeedback({
+      feedback: {
+        message: 'Usuario creado exitosamente',
+        type: 'success',
+      },
+    }));
+  } catch (error) {
+    dispatch(feedbackActions.setFeedback({
+      message: error.message,
+      type: 'error',
+    }));
+  } finally {
+    setIsLoading(dispatch, false);
+  }
+};
+
+export const updateUser = (data) => async (dispatch) => {
+  const User = new UserService();
+  setIsLoading(dispatch, true);
+  const {
+    firstName,
+    lastName,
+    birthDate,
+    phoneNumber,
+    country,
+    gender,
+    email,
+    id,
+  } = data;
+  const updatedUser = {
+    profile: {
+      firstName,
+      lastName,
+      birthDate,
+      phoneNumber,
+      avatar: '',
+      gender,
+      country,
+    },
+    auth: {
+      email,
+    },
+  };
+  try {
+    await User.updateUser(updatedUser, id);
+    await dispatch(listUsers());
+    dispatch(feedbackActions.setFeedback({
+      feedback: {
+        message: 'Usuario actualizado exitosamente',
+        type: 'success',
+      },
+    }));
+  } catch (error) {
+    dispatch(feedbackActions.setFeedback({
+      message: error.message,
+      type: 'error',
+    }));
+  } finally {
+    setIsLoading(dispatch, false);
+  }
+};
+
+export const deleUser = (id) => async (dispatch) => {
+  const User = new UserService();
+  setIsLoading(dispatch, true);
+  try {
+    await User.deleteUser(id);
+    await dispatch(listUsers());
+    dispatch(feedbackActions.setFeedback({
+      feedback: {
+        message: 'Usuario eliminado correctamente',
+        type: 'success',
+      },
+    }));
+  } catch (error) {
+    dispatch(feedbackActions.setFeedback({
+      message: error.message,
+      type: 'error',
+    }));
+  } finally {
+    setIsLoading(dispatch, false);
+  }
+};
+
 export const updateProfile = (data) => async (dispatch) => {
   const User = new UserService();
   setIsLoading(dispatch, true);
@@ -100,6 +218,12 @@ export const updateProfile = (data) => async (dispatch) => {
     await User.updateProfile(userProfile, id);
     const userUdtated = await User.getUser(id);
     dispatch(userActions.setUserProfile(userUdtated));
+    dispatch(feedbackActions.setFeedback({
+      feedback: {
+        message: 'Perfil actualizado',
+        type: 'success',
+      },
+    }));
   } catch (error) {
     dispatch(feedbackActions.setFeedback({
       message: error.message,
