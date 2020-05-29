@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import {
@@ -39,7 +39,7 @@ const Alert = (props) => {
 
   useOutsideClick(ref, onClose);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const timeout = setTimeout(onClose, closeTime);
     return () => clearTimeout(timeout);
   }, []);
