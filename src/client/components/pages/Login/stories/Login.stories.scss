@@ -1,7 +1,10 @@
 .preview-flex1 {
-	padding: none;
-	margin: 0 auto;
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
+	& div[scale='1'] {
+		height: 80vw;
+		padding: none;
+		margin: 0 auto;
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+	}
 }

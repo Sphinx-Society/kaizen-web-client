@@ -100,6 +100,17 @@ class User extends Request {
       });
   }
 
+  async login(data) {
+    const url = `${this.apiUrl}/users/login`;
+    return this.axios.post(url, data)
+      .then(({ data }) => {
+        return data.message;
+      })
+      .catch((error) => {
+        throw getErrorType(error);
+      });
+  }
+
 }
 
 export default User;

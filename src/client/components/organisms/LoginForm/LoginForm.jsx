@@ -1,24 +1,27 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../atoms/Button/Button';
 import TextInput from '../../atoms/TextInput/TextInput';
 import FormErrorMessage from '../../atoms/FormErrorMessage/FormErrorMessage';
-import { login } from '../../../redux/user/user.actions.requests';
-import useForm from '../../../hooks/useForm/useForm';
-
 import Logo from '../../../assets/images/Logo.png';
+
+import useForm from '../../../hooks/useForm/useForm';
+import { login } from '../../../redux/user/user.actions.requests';
+
 import './LoginForm.scss';
 
-const LoginForm = () => {
+const LoginForm = (props) => {
+  const { history: { push } } = props;
   const dispatch = useDispatch();
 
   const { isLoading, feedback } = useSelector((state) => state.feedback);
 
-  const isError = feedback.type === 'error';
-
-  const submitCallback = (data) => dispatch(login(data));
-
-  const initialFormState = { user: '', password: '' };
+  const initialFormState = { username: '', password: '' };
+  const submitCallback = (data) => {
+    dispatch(login(data))
+      .then(() => push('/'));
+  };
   const [state, handleOnChange, handleOnSubmit] = useForm(initialFormState, submitCallback);
 
   return (
@@ -30,16 +33,15 @@ const LoginForm = () => {
       <form
         data-test='login-form'
         className='login-form'
-        onSubmit={handleOnSubmit}
       >
         <div className='login-form__inputs-container'>
           <TextInput
             data-test='login-input-user'
             placeholder='Usuario'
-            id='first'
+            id='username'
             required={true}
-            inputName='user'
-            value={state.user}
+            inputName='username'
+            value={state.username}
             onChange={handleOnChange}
             disabled={isLoading}
           />
@@ -47,7 +49,7 @@ const LoginForm = () => {
             data-test='login-input-pass'
             placeholder='Contraseña'
             type='password'
-            id='second'
+            id='current-password'
             disabled={isLoading}
             required={true}
             inputName='password'
@@ -55,11 +57,10 @@ const LoginForm = () => {
             onChange={handleOnChange}
           />
         </div>
-        {isError && <FormErrorMessage>{feedback.message}</FormErrorMessage>}
         <Button
           data-test='login-form-button'
           disabled={isLoading}
-          onClick={() => null}
+          onClick={handleOnSubmit}
           color='primary'
           type='submit'
         >
@@ -70,4 +71,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default withRouter(LoginForm);
