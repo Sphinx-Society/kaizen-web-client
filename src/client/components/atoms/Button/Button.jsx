@@ -5,6 +5,7 @@ import clsx from 'clsx';
 
 import './Button.scss';
 
+const types = ['button', 'submit', 'reset', 'icon'];
 const colors = ['primary', 'secondary', 'warning', 'light'];
 const iconModes = ['circle-0', 'circle', '1', '2', '3', '4'];
 
@@ -13,11 +14,11 @@ const Button = (props) => {
     onClick,
     children,
     type,
+    color,
     icon,
     iconMode,
     iconRight,
     centered,
-    color,
     className,
     disabled,
     form,
@@ -79,7 +80,9 @@ Button.propTypes = {
   /** The text inside the button or another component */
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   /** Specify the type of the button */
-  type: PropTypes.oneOf(['button', 'submit', 'reset', 'icon']),
+  type: PropTypes.oneOf(types),
+  /** Boolean class to specify if the color button is primary, secondary or warning */
+  color: PropTypes.oneOf(colors),
   /** Element Icon type */
   icon: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
   /** Spacing modes for icon type */
@@ -88,8 +91,6 @@ Button.propTypes = {
   iconRight: PropTypes.bool,
   /** Icon and other elements will be centered. */
   centered: PropTypes.bool,
-  /** Boolean class to specify if the color button is primary, secondary or warning */
-  color: PropTypes.oneOf(colors),
   /** Class to overwrite the styles */
   className: PropTypes.string,
   /** Specify if the button is disabled or not */
@@ -99,17 +100,17 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
+  onClick: null,
+  children: null,
   type: 'button',
+  color: 'primary',
   icon: null,
   iconMode: null,
   iconRight: false,
   centered: false,
-  color: 'primary',
   className: '',
   disabled: false,
   form: '',
-  children: null,
-  onClick: null,
 };
 
 export default Button;
