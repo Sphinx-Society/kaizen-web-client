@@ -7,4 +7,4 @@ export const testsHistory = () => '/tests-history';
 export const settings = () => '/settings';
 export const userProfile = () => '/user';
 export const createUser = () => '/user-editor';
-
+export const main = () => '/';

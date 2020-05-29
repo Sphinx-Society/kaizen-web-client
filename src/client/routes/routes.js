@@ -7,6 +7,8 @@ import UsersManagement from '../components/pages/UsersManagement/UsersManagement
 import UserProfile from '../components/pages/UserProfile/UserProfile';
 import TestsHistory from '../components/pages/TestsHistory/TestsHistory';
 import Settings from '../components/pages/Settings/Settings';
+import Main from '../components/pages/Main/Main';
+
 import {
   login,
   templatesManagement,
@@ -16,6 +18,7 @@ import {
   testsHistory,
   settings,
   createUser,
+  main,
 } from './paths';
 
 export default [
@@ -60,10 +63,14 @@ export default [
     exact: true,
   },
   {
+    path: main(),
+    component: Main,
+    exact: true,
+  },
+  {
     path: null,
     component: NotFound,
     exact: false,
   },
-
 ];
 

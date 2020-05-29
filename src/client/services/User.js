@@ -4,8 +4,8 @@ import { getErrorType } from '../utils/error';
 import { parseJwt } from '../utils/parseJwt';
 
 class User extends Request {
-  constructor(token) {
-    super(token);
+  constructor() {
+    super();
     this.baseUrl = `${this.apiUrl}/users`;
   }
 
@@ -49,7 +49,7 @@ class User extends Request {
     return this.axios.get(`${this.baseUrl}/${id}`)
       .then(({ data: { message } }) => {
         const { tests, _id } = message;
-        const { email, username } = message.auth;
+        const { email, username, role } = message.auth;
         const {
           avatar,
           birthDate,
@@ -69,13 +69,13 @@ class User extends Request {
         return {
           email,
           username,
-          tests: tests.map((test) => ({
+          tests: tests ? tests.map((test) => ({
             ...test,
             id: test.testId,
             name: test.testName,
             status: test.status.toLowerCase(),
             statusLabel: statusLabels[test.status],
-          })),
+          })) : [],
           id: _id,
           avatar,
           birthDate,
@@ -86,6 +86,7 @@ class User extends Request {
           lastName,
           phone: phoneNumber,
           name: `${firstName} ${lastName}`,
+          role,
         };
       })
       .catch((error) => {
@@ -104,21 +105,6 @@ class User extends Request {
   async login(data) {
     const url = `${this.apiUrl}/users/login`;
     return this.axios.post(url, data)
-      .then(({ data }) => {
-        return data.message;
-      })
-      .catch((error) => {
-        throw getErrorType(error);
-      });
-  }
-
-  async getUser() {
-    const AuthStr = 'Bearer '.concat(document.cookie.substr(4));
-
-    const { userId } = parseJwt(document.cookie);
-    const url = `${this.apiUrl}/users/${userId}`;
-
-    return this.axios.get(url, { headers: { Authorization: AuthStr } })
       .then(({ data }) => {
         return data.message;
       })

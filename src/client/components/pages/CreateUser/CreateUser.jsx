@@ -10,7 +10,6 @@ import Select from '../../atoms/Select/Select';
 import { settings, userProfile } from '../../../routes/paths';
 
 import useForm from '../../../hooks/useForm/useForm';
-import { setUserProfile } from '../../../redux/user/user.actions.requests';
 
 import './UserProfile.scss';
 
@@ -28,12 +27,10 @@ const CreateUser = function (props) {
     email: '',
     phoneNumber: '',
   };
-  const submitCallback = (data) => dispatch(setUserProfile(data));
 
   const [stateProfile, handleOnChange] = useForm(newUserData);
   const handleOnSubmit = (event) => {
     event.preventDefault();
-    submitCallback(stateProfile);
     push(settings());
   };
   return (

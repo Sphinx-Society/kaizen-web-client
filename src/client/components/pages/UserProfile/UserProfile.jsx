@@ -23,12 +23,10 @@ const UserProfile = function (props) {
   const { history: { push } } = props;
   const goToSettingsView = () => push(settings());
   const { profile } = user || { profile: '', auth: '' };
-  const submitCallback = (data) => dispatch(setUserProfile(data));
 
   const [stateProfile, handleOnChange] = useForm(profile);
   const handleOnSubmit = (event) => {
     event.preventDefault();
-    submitCallback(stateProfile);
     push(settings());
   };
   useEffect(() => {

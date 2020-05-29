@@ -11,12 +11,20 @@ import Logo from '../../atoms/Logo/Logo';
 import NavbarProvider from '../../providers/NavbarProvider/NavbarProvider';
 import './Settings.scss';
 import { login, userProfile } from '../../../routes/paths';
+import withAuth from '../../hocs/withAuth';
+import withUserData from '../../hocs/withUserData';
+import { deleteCookie } from '../../../utils/cookie';
 
 const Settings = () => {
   const userId = useSelector((state) => state.user.user._id);
 
-  return (
+  const logout = () => {
+    deleteCookie('token');
+    deleteCookie('uid');
+    return login();
+  };
 
+  return (
     <NavbarProvider>
       <Surface>
         <div className='settings-container'>
@@ -30,7 +38,7 @@ const Settings = () => {
               <ProfileIcon size='1.5em' />
             </Link>
 
-            <Link id='logout' className='option-container logout' to={login()}>
+            <Link id='logout' className='option-container logout' to={logout}>
               <dd>Cerrar sesión</dd>
               <LogoutIcon size='1.5em' />
             </Link>
@@ -42,5 +50,5 @@ const Settings = () => {
   );
 };
 
-export default Settings;
+export default withUserData(withAuth(Settings));
 

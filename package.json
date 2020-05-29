@@ -5,7 +5,7 @@
   "main": "src/client/index.js",
   "scripts": {
     "build": "webpack --mode production --config ./webpack.dll.config.js && webpack --mode production --config ./webpack.config.js",
-    "dev": "webpack-dev-server --config ./webpack.dev.config.js",
+    "dev": "NODE_ENV=dev webpack-dev-server --config ./webpack.dev.config.js",
     "start": "node server",
     "lint": "eslint src/ --fix",
     "storybook": "start-storybook --docs -p 6006",
