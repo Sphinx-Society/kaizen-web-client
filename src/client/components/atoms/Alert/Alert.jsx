@@ -12,6 +12,8 @@ import useOutsideClick from '../../../hooks/useOutsideClick/useOutsideClick';
 
 import './Alert.scss';
 
+const types = ['error', 'warning', 'success'];
+
 const Alert = (props) => {
   const {
     type,
@@ -62,7 +64,7 @@ const Alert = (props) => {
 
 Alert.propTypes = {
   /** Type of the alert */
-  type: PropTypes.oneOf(['error', 'warning', 'success']),
+  type: PropTypes.oneOf(types),
   /** Message to show on the alert */
   message: PropTypes.string,
   /** Function to call when the alert is closed */
