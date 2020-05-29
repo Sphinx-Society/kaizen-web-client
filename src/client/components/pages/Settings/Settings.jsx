@@ -1,4 +1,6 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+
 import {
   AiOutlineUser as ProfileIcon,
   AiOutlineLogout as LogoutIcon } from 'react-icons/ai';
@@ -8,12 +10,21 @@ import Surface from '../../atoms/Surface/Surface';
 import Logo from '../../atoms/Logo/Logo';
 import NavbarProvider from '../../providers/NavbarProvider/NavbarProvider';
 import './Settings.scss';
-import { login } from '../../../routes/paths';
+import { login, userProfile } from '../../../routes/paths';
+import withAuth from '../../hocs/withAuth';
+import withUserData from '../../hocs/withUserData';
+import { deleteCookie } from '../../../utils/cookie';
 
 const Settings = () => {
+  const userId = useSelector((state) => state.user.user._id);
+
+  const logout = () => {
+    deleteCookie('token');
+    deleteCookie('uid');
+    return login();
+  };
 
   return (
-
     <NavbarProvider>
       <Surface>
         <div className='settings-container'>
@@ -22,12 +33,12 @@ const Settings = () => {
             <h2> Kaizen</h2>
           </div>
           <section className='settings-container__options'>
-            <Link id='profile-link' className='option-container' to='userProfile'>
+            <Link id='profile-link' className='option-container' to={userProfile(userId)}>
               <dd>Ver mi perfil</dd>
               <ProfileIcon size='1.5em' />
             </Link>
 
-            <Link id='logout' className='option-container logout' to={login()}>
+            <Link id='logout' className='option-container logout' to={logout}>
               <dd>Cerrar sesión</dd>
               <LogoutIcon size='1.5em' />
             </Link>
@@ -39,5 +50,5 @@ const Settings = () => {
   );
 };
 
-export default Settings;
+export default withUserData(withAuth(Settings));
 

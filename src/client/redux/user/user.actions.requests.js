@@ -7,10 +7,11 @@ import { setIsLoading } from '../feedback/feedback.utils';
 export const login = (data) => async (dispatch) => {
   const User = new UserService();
   setIsLoading(dispatch, true);
-
+  const cookieAge = 86400;
   try {
-    const authenticate = await User.login(data);
-    document.cookie = `token=${authenticate.jwt};max-age=43200`;
+    const { jwt, id } = await User.login(data);
+    document.cookie = `token=${jwt};max-age=${cookieAge};`;
+    document.cookie = `uid=${id};max-age=${cookieAge};`;
   } catch (error) {
     dispatch(feedbackActions.setFeedback({
       feedback: {
@@ -48,29 +49,27 @@ export const listUsers = (page = 1, documentId, role) => async (dispatch) => {
         type: 'error',
       },
     }));
-    setIsLoading(dispatch, false);
     throw error;
+  } finally {
+    setIsLoading(dispatch, false);
   }
-  setIsLoading(dispatch, false);
 };
 
-export const getUser = (id) => async (dispatch) => {
-  setIsLoading(dispatch, true);
+export const getUser = (data) => async (dispatch) => {
   const User = new UserService();
+  setIsLoading(dispatch, true);
   try {
-    const user = await User.getUser(id);
+    const user = await User.getUser(data);
+    console.log(user);
     dispatch(userActions.setUser({ user }));
   } catch (error) {
     dispatch(feedbackActions.setFeedback({
-      feedback: {
-        message: error.message,
-        type: 'error',
-      },
+      message: error.message,
+      type: 'error',
     }));
-    setIsLoading(dispatch, false);
-    throw error;
+  } finally {
+    setIsLoading(dispatch, true);
   }
-  setIsLoading(dispatch, false);
 };
 
 export const downloadTests = (id, testIds) => async (dispatch) => {
@@ -86,10 +85,10 @@ export const downloadTests = (id, testIds) => async (dispatch) => {
         type: 'error',
       },
     }));
-    setIsLoading(dispatch, false);
     throw error;
+  } finally {
+    setIsLoading(dispatch, false);
   }
-  setIsLoading(dispatch, false);
 };
 
 export default login;

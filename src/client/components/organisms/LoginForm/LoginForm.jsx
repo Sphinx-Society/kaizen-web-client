@@ -3,11 +3,11 @@ import { withRouter } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '../../atoms/Button/Button';
 import TextInput from '../../atoms/TextInput/TextInput';
-import FormErrorMessage from '../../atoms/FormErrorMessage/FormErrorMessage';
 import Logo from '../../../assets/images/Logo.png';
 
 import useForm from '../../../hooks/useForm/useForm';
 import { login } from '../../../redux/user/user.actions.requests';
+import { main } from '../../../routes/paths';
 
 import './LoginForm.scss';
 
@@ -15,12 +15,12 @@ const LoginForm = (props) => {
   const { history: { push } } = props;
   const dispatch = useDispatch();
 
-  const { isLoading, feedback } = useSelector((state) => state.feedback);
+  const { isLoading } = useSelector((state) => state.feedback);
 
   const initialFormState = { username: '', password: '' };
   const submitCallback = (data) => {
     dispatch(login(data))
-      .then(() => push('/'));
+      .then(() => push(main()));
   };
   const [state, handleOnChange, handleOnSubmit] = useForm(initialFormState, submitCallback);
 

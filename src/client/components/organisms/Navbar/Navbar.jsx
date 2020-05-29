@@ -1,17 +1,29 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { MdFindInPage as ExamsIcon } from 'react-icons/md';
 import { GoGear as SettingsIcon } from 'react-icons/go';
 import { AiFillHome as HomeIcon } from 'react-icons/ai';
 import Logo from '../../atoms/Logo/Logo';
 
-import { templatesManagement, usersManagement, settings } from '../../../routes/paths';
+import { templatesManagement, main, settings, usersManagement } from '../../../routes/paths';
 
 import './Navbar.scss';
 
-const Navbar = (props) => {
-  const { isAdmin } = props ;
+const Navbar = () => {
+  const { role } = useSelector((state) => state.user.user);
+  const isAdmin = role === 'admin';
+
+  const mainPath = () => {
+    switch (role) {
+      case 'admin': {
+        return usersManagement();
+      }
+      default: {
+        return main();
+      }
+    }
+  };
 
   return (
     <nav className='navbar'>
@@ -23,7 +35,8 @@ const Navbar = (props) => {
           <NavLink
             className='navbar__links__link--unselected'
             activeClassName='navbar__links__link--selected'
-            to={usersManagement()}
+            to={mainPath()}
+            exact
           >
             <HomeIcon />
           </NavLink>
@@ -35,6 +48,7 @@ const Navbar = (props) => {
               className='navbar__links__link--unselected'
               activeClassName='navbar__links__link--selected'
               to={templatesManagement()}
+              exact
             >
               <ExamsIcon />
             </NavLink>
@@ -46,6 +60,7 @@ const Navbar = (props) => {
             className='navbar__links__link--unselected'
             activeClassName='navbar__links__link--selected'
             to={settings()}
+            exact
           >
             <SettingsIcon />
           </NavLink>
@@ -54,15 +69,6 @@ const Navbar = (props) => {
       </div>
     </nav>
   );
-};
-
-Navbar.propTypes = {
-  /** It is the administrator who will see the information  */
-  isAdmin: PropTypes.bool,
-};
-
-Navbar.defaultProps = {
-  isAdmin: false,
 };
 
 export default Navbar;

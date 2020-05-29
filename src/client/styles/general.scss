@@ -35,6 +35,12 @@ $borderSolid2pxDarkGray: solid 2px $colorFontDarkGray;
   }
 }
 
+.central-flex-container {
+  min-width: 100vw;
+  min-height: 100vh;
+  @include flex();
+}
+
 .--surface-card {
   display: block;
   @include addSpaces(2);

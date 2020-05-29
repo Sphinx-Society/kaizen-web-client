@@ -1,10 +1,11 @@
 import Request from './Request';
 import { getStringFromDate } from '../utils/date';
 import { getErrorType } from '../utils/error';
+import { parseJwt } from '../utils/parseJwt';
 
 class User extends Request {
-  constructor(token) {
-    super(token);
+  constructor() {
+    super();
     this.baseUrl = `${this.apiUrl}/users`;
   }
 
@@ -48,7 +49,7 @@ class User extends Request {
     return this.axios.get(`${this.baseUrl}/${id}`)
       .then(({ data: { message } }) => {
         const { tests, _id } = message;
-        const { email, username } = message.auth;
+        const { email, username, role } = message.auth;
         const {
           avatar,
           birthDate,
@@ -68,13 +69,13 @@ class User extends Request {
         return {
           email,
           username,
-          tests: tests.map((test) => ({
+          tests: tests ? tests.map((test) => ({
             ...test,
             id: test.testId,
             name: test.testName,
             status: test.status.toLowerCase(),
             statusLabel: statusLabels[test.status],
-          })),
+          })) : [],
           id: _id,
           avatar,
           birthDate,
@@ -85,6 +86,7 @@ class User extends Request {
           lastName,
           phone: phoneNumber,
           name: `${firstName} ${lastName}`,
+          role,
         };
       })
       .catch((error) => {

@@ -7,7 +7,7 @@ const NavbarProvider = ({ children }) => {
     <div className='navbar-provider'>
       {children}
       <div className='navbar-provider__navbar'>
-        <Navbar isAdmin={true} />
+        <Navbar />
       </div>
     </div>
   );

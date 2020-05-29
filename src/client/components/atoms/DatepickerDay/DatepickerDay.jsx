@@ -6,6 +6,7 @@ import './DatepickerDay.scss';
 
 const DatepickerDay = (props) => {
   const {
+    name,
     selectedDay,
     isOtherMonth,
     onClick,
@@ -18,7 +19,14 @@ const DatepickerDay = (props) => {
     'datepicker-day__container--selected': day === selectedDay,
   });
 
-  const handleOnClick = () => onClick(day);
+  const handleOnClick = () => {
+    onClick({
+      target: {
+        value: day,
+        name,
+      },
+    });
+  };
 
   return (
     <td
