@@ -42,10 +42,7 @@
   &__text {
     align-self: center;
     padding: 0 getSpacing(3);
-
-    p {
-      word-break: break-word;
-    }
+    word-break: break-word;
   }
 
   &__close {
