@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Logo from '../atoms/Logo/Logo';
 import { getUser } from '../../redux/user/user.actions.requests';
-import { getCookie } from '../../utils/cookie';
-import Logo from '../atoms/Logo/Logo.jsx';
+import { getCookie, deleteCookie } from '../../utils/cookie';
+import { login } from '../../routes/paths';
 
 const mapStateToProps = ({ user: { user } }) => ({ user });
 const mapDispatchToProps = {
@@ -18,6 +19,11 @@ const withUserData = (Component) => connect(mapStateToProps, mapDispatchToProps)
 
     componentDidMount() {
       const { getUser, user } = this.props;
+      if (!this.uid) {
+        deleteCookie('token');
+        document.location = login();
+      }
+
       if (!user) {
         getUser(this.uid);
       }
