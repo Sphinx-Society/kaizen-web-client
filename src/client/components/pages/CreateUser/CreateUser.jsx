@@ -68,30 +68,12 @@ const CreateUser = function (props) {
                 value={stateProfile.lastName}
               />
               <TextInput
-
                 onChange={handleOnChange}
-
                 required
-                id='documentId'
-                placeholder='Identificación'
-                inputName='documentId'
-                value={stateProfile.documentId}
-              />
-              <Select
-                onChange={handleOnChange}
-
-                name='country'
-                id='country'
-                placeholder='País'
-                value={stateProfile.country}
-                options={['MX', 'COL']}
-              />
-              <Datepicker
-                onChange={handleOnChange}
-
-                placeholder='Fecha de nacimiento'
-                name='birthDate'
-                value={stateProfile.birthDate}
+                id='phoneNumber'
+                placeholder='Teléfono'
+                inputName='phoneNumber'
+                value={stateProfile.phoneNumber}
               />
               <Select
                 onChange={handleOnChange}
@@ -102,6 +84,23 @@ const CreateUser = function (props) {
                 value={stateProfile.gender}
                 options={['M', 'F', 'Other']}
               />
+              <Select
+                onChange={handleOnChange}
+
+                name='country'
+                id='country'
+                placeholder='País'
+                value={stateProfile.country}
+                options={['MX', 'COL']}
+              />
+              <TextInput
+                required
+                id='firstName'
+                placeholder='Nombre'
+                inputName='firstName'
+                value={stateProfile.firstName}
+                onChange={handleOnChange}
+              />
               <TextInput
                 onChange={handleOnChange}
 
@@ -111,14 +110,21 @@ const CreateUser = function (props) {
                 inputName='email'
                 value={stateProfile.email}
               />
-              <TextInput
+              <Select
                 onChange={handleOnChange}
 
-                required
-                id='phoneNumber'
-                placeholder='Teléfono'
-                inputName='phoneNumber'
-                value={stateProfile.phoneNumber}
+                name='country'
+                id='country'
+                placeholder='Rol'
+                value={stateProfile.country}
+                options={['Paciente', 'Administrador', 'Doctor', 'Bacteriologo']}
+              />
+              <Datepicker
+                onChange={handleOnChange}
+
+                placeholder='Fecha de nacimiento'
+                name='birthDate'
+                value={stateProfile.birthDate}
               />
             </div>
             <Button

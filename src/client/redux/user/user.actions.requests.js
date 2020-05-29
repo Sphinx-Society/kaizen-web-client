@@ -60,7 +60,6 @@ export const getUser = (data) => async (dispatch) => {
   setIsLoading(dispatch, true);
   try {
     const user = await User.getUser(data);
-    console.log(user);
     dispatch(userActions.setUser({ user }));
   } catch (error) {
     dispatch(feedbackActions.setFeedback({
@@ -68,8 +67,48 @@ export const getUser = (data) => async (dispatch) => {
       type: 'error',
     }));
   } finally {
-    setIsLoading(dispatch, true);
+    setIsLoading(dispatch, false);
   }
+};
+
+export const updateProfile = (data) => async (dispatch) => {
+  const User = new UserService();
+  setIsLoading(dispatch, true);
+  const {
+    firstName,
+    lastName,
+    birthDate,
+    phone,
+    avatar,
+    country,
+    id,
+    gender,
+  } = data;
+
+  const userProfile = {
+    profile: {
+      firstName,
+      lastName,
+      birthDate,
+      phoneNumber: phone,
+      avatar,
+      gender,
+      country,
+    },
+  };
+  try {
+    await User.updateProfile(userProfile, id);
+    const userUdtated = await User.getUser(id);
+    dispatch(userActions.setUserProfile(userUdtated));
+  } catch (error) {
+    dispatch(feedbackActions.setFeedback({
+      message: error.message,
+      type: 'error',
+    }));
+  } finally {
+    setIsLoading(dispatch, false);
+  }
+
 };
 
 export const downloadTests = (id, testIds) => async (dispatch) => {

@@ -7,37 +7,36 @@ import Button from '../../atoms/Button/Button';
 import TextInput from '../../atoms/TextInput/TextInput';
 import Datepicker from '../../organisms/Datepicker/Datepicker';
 import Select from '../../atoms/Select/Select';
-import { getUser } from '../../../redux/user/user.actions.requests';
-
-import { settings, userProfile } from '../../../routes/paths';
+import { getUser, updateProfile } from '../../../redux/user/user.actions.requests';
+import withAuth from '../../hocs/withAuth';
+import withUserData from '../../hocs/withUserData';
+import { settings } from '../../../routes/paths';
 
 import useForm from '../../../hooks/useForm/useForm';
 
 import './UserProfile.scss';
 
 const UserProfile = function (props) {
-
+  const { history } = props;
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
   // const { avatar } = user.profile;
-  const { history: { push } } = props;
-  const goToSettingsView = () => push(settings());
-  const { profile } = user || { profile: '', auth: '' };
-
-  const [stateProfile, handleOnChange] = useForm(profile);
+  const submitCallback = (data) => {
+    dispatch(updateProfile(data));
+  };
+  const [stateProfile, handleOnChange] = useForm(user, submitCallback);
   const handleOnSubmit = (event) => {
     event.preventDefault();
-    push(settings());
+    console.log(stateProfile);
+    submitCallback(stateProfile);
   };
-  useEffect(() => {
-    dispatch(getUser());
-  }, []);
   return (
     <NavbarProvider>
       <MainViewProvider
         showBackButton={true}
         onBackButtonClick={() => {
-          goToSettingsView();
+          debugger;
+          history.push(settings());
         }}
         title='Mi perfil'
         showBottomLine
@@ -51,7 +50,7 @@ const UserProfile = function (props) {
             onSubmit={handleOnSubmit}
           >
             <div className='user-form__inputs-container'>
-              {/* <TextInput
+              <TextInput
                 required
                 id='firstName'
                 placeholder='Nombre'
@@ -61,27 +60,27 @@ const UserProfile = function (props) {
               />
               <TextInput
                 required
-                id='1'
+                id='lastName'
                 placeholder='Apellido'
                 inputName='lastName'
                 value={stateProfile.lastName}
                 onChange={handleOnChange}
               />
-              <TextInput
-                required
-                id='3'
-                placeholder='Identificación'
-                inputName='documentId'
-                value={stateProfile.documentId}
+              <Select
+                name='country'
+                id='country'
+                placeholder='País'
+                value={stateProfile.country}
                 onChange={handleOnChange}
+                options={['MX', 'COL']}
               />
 
               <TextInput
                 required
-                id='6'
+                id='phone'
                 placeholder='Teléfono'
-                inputName='phoneNumber'
-                value={stateProfile.phoneNumber}
+                inputName='phone'
+                value={stateProfile.phone}
                 onChange={handleOnChange}
               />
               <Select
@@ -97,7 +96,7 @@ const UserProfile = function (props) {
                 name='birthDate'
                 onChange={handleOnChange}
                 value={stateProfile.birthDate}
-              /> */}
+              />
             </div>
             <Button
               form='user-form'
@@ -116,4 +115,4 @@ const UserProfile = function (props) {
   );
 };
 
-export default UserProfile;
+export default withUserData(withAuth(UserProfile));

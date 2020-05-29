@@ -16,7 +16,6 @@ import withUserData from '../../hocs/withUserData';
 import { deleteCookie } from '../../../utils/cookie';
 
 const Settings = () => {
-  const userId = useSelector((state) => state.user.user._id);
 
   const logout = () => {
     deleteCookie('token');
@@ -33,7 +32,7 @@ const Settings = () => {
             <h2> Kaizen</h2>
           </div>
           <section className='settings-container__options'>
-            <Link id='profile-link' className='option-container' to={userProfile(userId)}>
+            <Link id='profile-link' className='option-container' to={userProfile()}>
               <dd>Ver mi perfil</dd>
               <ProfileIcon size='1.5em' />
             </Link>

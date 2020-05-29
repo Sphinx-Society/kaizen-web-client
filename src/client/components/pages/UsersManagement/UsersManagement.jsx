@@ -16,8 +16,8 @@ import NavbarProvider from '../../providers/NavbarProvider/NavbarProvider';
 import MainViewProvider from '../../providers/MainViewProvider/MainViewProvider';
 import Table from '../../organisms/Table/Table';
 import Select from '../../atoms/Select/Select';
-import withAuth from '../../hocs/withAuth.jsx';
-import withUserData from '../../hocs/withUserData.jsx';
+import withAuth from '../../hocs/withAuth';
+import withUserData from '../../hocs/withUserData';
 
 import { setModalDialog } from '../../../redux/modalDialog/modalDialog.actions';
 import { listUsers } from '../../../redux/user/user.actions.requests';

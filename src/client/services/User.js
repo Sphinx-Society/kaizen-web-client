@@ -1,7 +1,6 @@
 import Request from './Request';
 import { getStringFromDate } from '../utils/date';
 import { getErrorType } from '../utils/error';
-import { parseJwt } from '../utils/parseJwt';
 
 class User extends Request {
   constructor() {
@@ -92,6 +91,10 @@ class User extends Request {
       .catch((error) => {
         throw error;
       });
+  }
+
+  async updateProfile(data, id) {
+    return this.axios.put(`${this.baseUrl}/${id}/profile`, data);
   }
 
   async downloadTests(id, testIds) {
