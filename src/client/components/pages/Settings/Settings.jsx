@@ -1,10 +1,10 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 
 import {
-  AiOutlineUser as ProfileIcon,
-  AiOutlineLogout as LogoutIcon } from 'react-icons/ai';
+  AiOutlineUser as ProfileIcon } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../../redux/user/user.actions';
 
 import Surface from '../../atoms/Surface/Surface';
 import Logo from '../../atoms/Logo/Logo';
@@ -14,13 +14,17 @@ import { login, userProfile } from '../../../routes/paths';
 import withAuth from '../../hocs/withAuth';
 import withUserData from '../../hocs/withUserData';
 import { deleteCookie } from '../../../utils/cookie';
+import Button from '../../atoms/Button/Button';
 
-const Settings = () => {
+const Settings = (props) => {
+  const dispatch = useDispatch();
 
+  const { history } = props;
   const logout = () => {
     deleteCookie('token');
     deleteCookie('uid');
-    return login();
+    dispatch(setUser({}));
+    history.push(login());
   };
 
   return (
@@ -36,11 +40,8 @@ const Settings = () => {
               <dd>Ver mi perfil</dd>
               <ProfileIcon size='1.5em' />
             </Link>
+            <Button onClick={logout}>Cerrar sesión</Button>
 
-            <Link id='logout' className='option-container logout' to={logout}>
-              <dd>Cerrar sesión</dd>
-              <LogoutIcon size='1.5em' />
-            </Link>
           </section>
         </div>
       </Surface>

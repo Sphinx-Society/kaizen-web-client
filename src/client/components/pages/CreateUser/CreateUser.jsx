@@ -7,40 +7,66 @@ import Button from '../../atoms/Button/Button';
 import TextInput from '../../atoms/TextInput/TextInput';
 import Datepicker from '../../organisms/Datepicker/Datepicker';
 import Select from '../../atoms/Select/Select';
-import { settings, userProfile } from '../../../routes/paths';
+import { usersManagement } from '../../../routes/paths';
+import { createUser, updateUser } from '../../../redux/user/user.actions.requests';
+import { setEditingUser } from '../../../redux/user/user.actions';
 
 import useForm from '../../../hooks/useForm/useForm';
 
 import './UserProfile.scss';
 
 const CreateUser = function (props) {
+  const editingUserStore = useSelector((state) => state.user.editingUser);
+
+  const setUserStore = (editingUserStore) => {
+    if (editingUserStore) {
+      const { profile: { firstName, lastName, birthDate, phoneNumber, avatar, gender, country, documentId }, auth: { email, role }, _id } = editingUserStore;
+      const editingUser = {
+        firstName, lastName, birthDate, phoneNumber, avatar, gender, country, documentId, email, role, id: _id,
+      };
+      return editingUser;
+    }
+    const newUserData = {
+      firstName: '',
+      lastName: '',
+      documentId: '',
+      country: '',
+      gender: '',
+      email: '',
+      phoneNumber: '',
+    };
+    return newUserData;
+  };
 
   const dispatch = useDispatch();
   const { history: { push } } = props;
-  const goToSettingsView = () => push(settings());
-  const newUserData = {
-    firstName: '',
-    lastName: '',
-    documentId: '',
-    country: '',
-    gender: '',
-    email: '',
-    phoneNumber: '',
-  };
 
-  const [stateProfile, handleOnChange] = useForm(newUserData);
+  const initialformState = setUserStore(editingUserStore);
+
+  const [stateProfile, handleOnChange] = useForm(initialformState);
+  const submitCallback = (data) => {
+    if (editingUserStore) {
+      dispatch(updateUser(data));
+
+    } else {
+      dispatch(createUser(data));
+    }
+  };
   const handleOnSubmit = (event) => {
     event.preventDefault();
-    push(settings());
+    submitCallback(stateProfile);
+    push(usersManagement());
   };
   return (
     <NavbarProvider>
       <MainViewProvider
         showBackButton={true}
         onBackButtonClick={() => {
-          goToSettingsView();
+          dispatch(setEditingUser({}));
+          push(usersManagement());
+
         }}
-        title='Crear usuario'
+        title={editingUserStore ? 'Editar usuario' : 'Crear usuario'}
         showBottomLine
         moveTitle
       >
@@ -77,7 +103,7 @@ const CreateUser = function (props) {
               />
               <Select
                 onChange={handleOnChange}
-
+                required
                 name='gender'
                 id='gender'
                 placeholder='Genero'
@@ -86,7 +112,7 @@ const CreateUser = function (props) {
               />
               <Select
                 onChange={handleOnChange}
-
+                required
                 name='country'
                 id='country'
                 placeholder='País'
@@ -95,15 +121,15 @@ const CreateUser = function (props) {
               />
               <TextInput
                 required
-                id='firstName'
-                placeholder='Nombre'
-                inputName='firstName'
-                value={stateProfile.firstName}
+                id='documentId'
+                placeholder='Identificación'
+                inputName='documentId'
+                value={stateProfile.documentId}
                 onChange={handleOnChange}
               />
               <TextInput
                 onChange={handleOnChange}
-
+                type='email'
                 required
                 id='email'
                 placeholder='Correo electrónico'
@@ -112,16 +138,16 @@ const CreateUser = function (props) {
               />
               <Select
                 onChange={handleOnChange}
-
-                name='country'
-                id='country'
+                required
+                name='role'
+                id='role'
                 placeholder='Rol'
-                value={stateProfile.country}
-                options={['Paciente', 'Administrador', 'Doctor', 'Bacteriologo']}
+                value={stateProfile.role}
+                options={['patient', 'doctor', 'lab', 'admin']}
               />
               <Datepicker
                 onChange={handleOnChange}
-
+                required
                 placeholder='Fecha de nacimiento'
                 name='birthDate'
                 value={stateProfile.birthDate}

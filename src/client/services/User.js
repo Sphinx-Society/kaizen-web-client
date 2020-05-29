@@ -97,6 +97,18 @@ class User extends Request {
     return this.axios.put(`${this.baseUrl}/${id}/profile`, data);
   }
 
+  async newUser(data) {
+    return this.axios.post(`${this.baseUrl}`, data);
+  }
+
+  async updateUser(data, id) {
+    return this.axios.put(`${this.baseUrl}/${id}`, data);
+  }
+
+  async deleteUser(id) {
+    return this.axios.delete(`${this.baseUrl}/${id}`);
+  }
+
   async downloadTests(id, testIds) {
     return this.axios.post(`${this.baseUrl}/${id}/tests/results/document`, { testIds })
       .then(({ data: { message } }) => message)
