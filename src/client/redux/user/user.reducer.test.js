@@ -10,8 +10,8 @@ describe('Login Reducer', () => {
     const userMock = { name: 'test' };
     const newState = reducer(initialState, {
       type: 'USER/SET_USER',
-      payload: { username: { name: 'test' } },
+      payload: { user: { name: 'test' } },
     });
-    expect(newState.username).toEqual(userMock);
+    expect(newState.user).toEqual(userMock);
   });
 });

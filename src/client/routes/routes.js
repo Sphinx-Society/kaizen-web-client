@@ -5,7 +5,7 @@ import TemplatesManagement from '../components/pages/TemplatesManagement/Templat
 import TemplateEditor from '../components/pages/TemplateEditor/TemplateEditor';
 import UsersManagement from '../components/pages/UsersManagement/UsersManagement';
 import UserProfile from '../components/pages/UserProfile/UserProfile';
-import ExamsHistory from '../components/pages/ExamsHistory/ExamsHistory';
+import TestsHistory from '../components/pages/TestsHistory/TestsHistory';
 import Settings from '../components/pages/Settings/Settings';
 import {
   login,
@@ -13,7 +13,7 @@ import {
   templateEditor,
   usersManagement,
   userProfile,
-  examsHistory,
+  testsHistory,
   settings,
   createUser,
 } from './paths';
@@ -40,8 +40,8 @@ export default [
     exact: true,
   },
   {
-    path: examsHistory(),
-    component: ExamsHistory,
+    path: testsHistory(),
+    component: TestsHistory,
     exact: true,
   },
   {

@@ -4,9 +4,13 @@ import { getErrorType } from '../utils/error';
 import { parseJwt } from '../utils/parseJwt';
 
 class User extends Request {
+  constructor(token) {
+    super(token);
+    this.baseUrl = `${this.apiUrl}/users`;
+  }
 
   async listUsers(page, documentId, role) {
-    let url = `${this.apiUrl}/users?page=${page}`;
+    let url = `${this.baseUrl}?page=${page}`;
 
     if (documentId) {
       url = `${url}&documentId=${documentId}`;
@@ -41,9 +45,57 @@ class User extends Request {
       });
   }
 
-  async listExams() {
-    return this.axios.get(`${this.apiUrl}/exams`)
-      .then(({ data }) => data)
+  async getUser(id) {
+    return this.axios.get(`${this.baseUrl}/${id}`)
+      .then(({ data: { message } }) => {
+        const { tests, _id } = message;
+        const { email, username } = message.auth;
+        const {
+          avatar,
+          birthDate,
+          country,
+          documentId,
+          firstName,
+          gender,
+          lastName,
+          phoneNumber,
+        } = message.profile;
+
+        const statusLabels = {
+          'DONE': 'Hecho',
+          'PENDING': 'Por realizar',
+        };
+
+        return {
+          email,
+          username,
+          tests: tests.map((test) => ({
+            ...test,
+            id: test.testId,
+            name: test.testName,
+            status: test.status.toLowerCase(),
+            statusLabel: statusLabels[test.status],
+          })),
+          id: _id,
+          avatar,
+          birthDate,
+          country,
+          document: documentId,
+          firstName,
+          gender,
+          lastName,
+          phone: phoneNumber,
+          name: `${firstName} ${lastName}`,
+        };
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  async downloadTests(id, testIds) {
+    return this.axios.post(`${this.baseUrl}/${id}/tests/results/document`, { testIds })
+      .then(({ data: { message } }) => message)
       .catch((error) => {
         throw error;
       });

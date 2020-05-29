@@ -21,3 +21,8 @@ export const setEditingUser = (payload) => ({
   payload,
 });
 
+export const setSelectedTests = (payload) => ({
+  type: 'USER/SET_SELECTED_TESTS',
+  payload,
+});
+

@@ -1,11 +1,11 @@
 export const initialState = {
-  username: null,
-  user: {},
+  user: null,
   users: [],
   currentPage: 1,
   totalUsers: 0,
   totalPages: 1,
   editingUser: null,
+  selectedTests: [],
 };
 
 export default (state = initialState, action) => {
@@ -13,7 +13,7 @@ export default (state = initialState, action) => {
     case 'USER/SET_USER': {
       return {
         ...state,
-        username: { ...action.payload.username },
+        user: { ...action.payload.user },
       };
     }
     case 'USER/GET_USER_PROFILE': {
@@ -35,6 +35,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         editingUser: action.payload.editingUser,
+      };
+    }
+    case 'USER/SET_SELECTED_TESTS': {
+      return {
+        ...state,
+        selectedTests: action.payload.selectedTests,
       };
     }
     default: {
