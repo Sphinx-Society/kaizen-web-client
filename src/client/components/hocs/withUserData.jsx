@@ -28,8 +28,6 @@ const withUserData = (Component) => connect(mapStateToProps, mapDispatchToProps)
         document.location = login();
       }
 
-      console.log(this.role);
-
       switch (this.role) {
         case 'admin': {
           if (!user || user.id !== this.uid) {
