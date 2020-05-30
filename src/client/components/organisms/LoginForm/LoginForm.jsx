@@ -33,6 +33,8 @@ const LoginForm = (props) => {
       <form
         data-test='login-form'
         className='login-form'
+        onSubmit={handleOnSubmit}
+        id='login-form'
       >
         <div className='login-form__inputs-container'>
           <TextInput
@@ -60,9 +62,9 @@ const LoginForm = (props) => {
         <Button
           data-test='login-form-button'
           disabled={isLoading}
-          onClick={handleOnSubmit}
           color='primary'
           type='submit'
+          form='login-form'
         >
           Iniciar sesión
         </Button>

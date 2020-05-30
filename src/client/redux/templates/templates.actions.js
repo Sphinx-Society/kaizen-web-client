@@ -18,8 +18,3 @@ export const setEditingTemplate = (payload) => ({
   payload,
 });
 
-export const setIsEditingTemplate = (payload) => ({
-  type: 'TEMPLATES/IS_EDITING_TEMPLATE',
-  payload,
-});
-

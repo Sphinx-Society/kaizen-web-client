@@ -17,6 +17,7 @@ import withAuth from '../../hocs/withAuth';
 import withUserData from '../../hocs/withUserData';
 import { listTemplates, deleteTemplate } from '../../../redux/templates/templates.actions.requests';
 import { setEditingTemplate } from '../../../redux/templates/templates.actions';
+import { setModalDialog } from '../../../redux/modalDialog/modalDialog.actions';
 
 import { templateEditor } from '../../../routes/paths';
 
@@ -65,7 +66,13 @@ const TemplatesManagement = (props) => {
     goToTemplateCreator();
   };
 
-  const handleDeleteTemplate = (id) => () => dispatch(deleteTemplate(id));
+  const handleDeleteTemplate = (id) => () => dispatch(setModalDialog({
+    modal: {
+      type: 'delete',
+      message: 'Desea eliminar la plantilla',
+      mainFn: () => dispatch(deleteTemplate(id)),
+    },
+  }));
 
   return (
     <ModalProvider>

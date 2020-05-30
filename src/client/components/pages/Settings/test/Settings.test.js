@@ -9,9 +9,10 @@ import Settings from '../Settings';
 configure({ adapter: new Adapter() });
 
 const setUp = () => {
-  const myStore = { user: { user: { role: 'admin' } } };
+  const myStore = { user: { user: { role: 'admin', id: '2' } } };
   document.cookie = 'token=1';
   document.cookie = 'uid=2';
+  document.cookie = 'role=admin';
 
   const componenttoRender = mount(
     shallow(

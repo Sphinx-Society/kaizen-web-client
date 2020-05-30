@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Modal from '../../organisms/Modal/Modal';
-import setModalDialog from '../../../redux/modalDialog/modalDialog.actions';
 import PortalProvider from '../PortalProvider/PortalProvider';
+import { setModalDialog } from '../../../redux/modalDialog/modalDialog.actions';
 import useOutsideClick from '../../../hooks/useOutsideClick/useOutsideClick';
 
 import './ModalProvider.scss';

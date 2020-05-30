@@ -13,14 +13,7 @@ export default (state = initialState, action) => {
     case 'USER/SET_USER': {
       return {
         ...state,
-        user: { ...action.payload.user },
-      };
-    }
-    case 'USER/SET_USER_PROFILE': {
-      return {
-        ...state,
-        user: { ...action.payload },
-
+        user: action.payload.user,
       };
     }
     case 'USER/SET_USERS': {
