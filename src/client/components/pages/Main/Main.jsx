@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import withAuth from '../../hocs/withAuth';
 import withUserData from '../../hocs/withUserData';
-import { usersManagement, login } from '../../../routes/paths';
+import { usersManagement, login, testsHistory } from '../../../routes/paths';
 import { deleteCookie } from '../../../utils/cookie';
 
 const Main = () => {
@@ -12,6 +12,9 @@ const Main = () => {
   switch (role) {
     case 'admin': {
       return <Redirect to={usersManagement()} />;
+    }
+    case 'patient': {
+      return <Redirect to={testsHistory()} />;
     }
     default: {
       deleteCookie('token');

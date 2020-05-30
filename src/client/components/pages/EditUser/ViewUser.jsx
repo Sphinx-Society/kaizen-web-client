@@ -6,7 +6,7 @@ import ListReadableFields from '../../molecules/ListReadableFields/ListReadableF
 import Button from '../../atoms/Button/Button';
 import userData from '../../../__mocks__/redux/userPrfoileMock';
 
-import './UserProfile.scss';
+import './ViewUser.scss';
 
 const ViewUser = function (props) {
   const {

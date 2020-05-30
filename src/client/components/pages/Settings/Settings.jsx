@@ -12,25 +12,35 @@ import Logo from '../../atoms/Logo/Logo';
 import withAuth from '../../hocs/withAuth';
 import withUserData from '../../hocs/withUserData';
 
+import useWindowDimensions from '../../../hooks/useWindowDimensions/useWindowDimensions';
+
 import { setUser } from '../../../redux/user/user.actions';
 import { login, userProfile } from '../../../routes/paths';
 import { deleteCookie } from '../../../utils/cookie';
 
-import './Settings.scss';
+import { breakpointMedium } from './Settings.scss';
 
 const Settings = (props) => {
   const { history } = props;
   const dispatch = useDispatch();
+
   const logout = () => {
     deleteCookie('token');
     deleteCookie('uid');
-    dispatch(setUser({}));
+    deleteCookie('role');
+    dispatch(setUser({ user: null }));
     history.push(login());
   };
 
+  const { width } = useWindowDimensions();
+  const isMobile = width < parseInt(breakpointMedium, 10);
+
   return (
     <NavbarProvider>
-      <Surface>
+      <Surface
+        disableSpacing={isMobile}
+        disableShadow={isMobile}
+      >
         <div className='settings-container'>
           <div className='settings-container__logo'>
             <Logo />

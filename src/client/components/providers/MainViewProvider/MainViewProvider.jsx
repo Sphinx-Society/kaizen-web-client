@@ -4,8 +4,10 @@ import clsx from 'clsx';
 import { TiArrowBack as BackIcon } from 'react-icons/ti';
 import UserCover from '../../atoms/UserCover/UserCover';
 import Button from '../../atoms/Button/Button';
+import Surface from '../../atoms/Surface/Surface';
+import useWindowDimensions from '../../../hooks/useWindowDimensions/useWindowDimensions';
 
-import './MainViewProvider.scss';
+import { breakpointMedium } from './MainViewProvider.scss';
 
 const MainViewProvider = (props) => {
   const {
@@ -19,6 +21,9 @@ const MainViewProvider = (props) => {
     avatar,
   } = props;
 
+  const { width } = useWindowDimensions();
+  const isMobile = width < parseInt(breakpointMedium, 10);
+
   const mainViewProviderClassName = clsx({
     'main-view-provider': true,
     'main-view-provider--title-moved': moveTitle && !showBackButton,
@@ -30,26 +35,31 @@ const MainViewProvider = (props) => {
   });
 
   return (
-    <div className={mainViewProviderClassName}>
-      {showBackButton && (
-        <Button
-          color='light'
-          icon={<BackIcon size='2em' />}
-          onClick={onBackButtonClick}
-        >
-          Volver
-        </Button>
-      )}
-      <div className={headClassName}>
-        {avatar && <UserCover avatar={avatar} /> }
+    <Surface
+      disableSpacing={isMobile}
+      disableShadow={isMobile}
+    >
+      <div className={mainViewProviderClassName}>
+        {showBackButton && (
+          <Button
+            color='light'
+            icon={<BackIcon size='2em' />}
+            onClick={onBackButtonClick}
+          >
+            Volver
+          </Button>
+        )}
+        <div className={headClassName}>
+          {avatar && <UserCover avatar={avatar} /> }
 
-        <h2>{title}</h2>
-        {menu}
+          <h2>{title}</h2>
+          {menu}
+        </div>
+        <main>
+          {children}
+        </main>
       </div>
-      <main>
-        {children}
-      </main>
-    </div>
+    </Surface>
   );
 };
 
