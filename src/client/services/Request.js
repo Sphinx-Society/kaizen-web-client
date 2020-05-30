@@ -1,15 +1,14 @@
 import axios from 'axios';
-import Auth from './Auth';
 import { getCookie, deleteCookie } from '../utils/cookie';
 import { getErrorType } from '../utils/error';
 import { login } from '../routes/paths';
 
-class Request extends Auth {
+class Request {
   constructor() {
-    super();
     this.apiUrl = `${process.env.API_URL}/${process.env.API_VERSION}`;
     this.token = getCookie('token');
     this.axios = axios;
+    this.cookieAge = 86400;
 
     this._initAxiosDefaults();
   }
@@ -31,14 +30,14 @@ class Request extends Auth {
     this.axios.interceptors.response.use(null, (error) => {
       const err = getErrorType(error);
       const status = err.statusCode || err.status;
-      // if (status === 401) {
-      //   deleteCookie('token');
-      //   deleteCookie('uid');
-      //   const { pathname } = document.location;
-      //   if (pathname !== login()) {
-      //     document.location = login();
-      //   }
-      // }
+      if (status === 401) {
+        deleteCookie('token');
+        deleteCookie('uid');
+        const { pathname } = document.location;
+        if (pathname !== login()) {
+          document.location = login();
+        }
+      }
       throw err;
     });
   }

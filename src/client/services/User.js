@@ -1,6 +1,7 @@
 import Request from './Request';
 import { getStringFromDate } from '../utils/date';
 import { getCookie } from '../utils/cookie';
+import { parseToken } from '../utils/auth';
 
 class User extends Request {
   constructor() {
@@ -187,7 +188,7 @@ class User extends Request {
     const url = `${this.apiUrl}/users/login`;
     return this.axios.post(url, data)
       .then(({ data: { message: { jwt } } }) => {
-        const { userId, role } = self.verifyToken(jwt);
+        const { userId, role } = parseToken(jwt);
         document.cookie = `token=${jwt};max-age=${self.cookieAge};`;
         document.cookie = `uid=${userId};max-age=${self.cookieAge};`;
         document.cookie = `role=${role};max-age=${self.cookieAge};`;

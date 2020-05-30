@@ -3,8 +3,8 @@ import { getStringFromDate } from '../utils/date';
 import { getErrorType } from '../utils/error';
 
 class Template extends Request {
-  constructor(token) {
-    super(token);
+  constructor() {
+    super();
     this.baseUrl = `${this.apiUrl}/templates`;
   }
 
