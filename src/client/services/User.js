@@ -93,16 +93,62 @@ class User extends Request {
       });
   }
 
-  async updateProfile(data, id) {
-    return this.axios.put(`${this.baseUrl}/${id}/profile`, data);
+  async updateProfile(data) {
+    const userProfile = {
+      profile: {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        birthDate: data.birthDate,
+        phoneNumber: data.phone,
+        avatar: data.avatar,
+        gender: data.gender,
+        country: data.country,
+        email: data.email,
+      },
+    };
+
+    return this.axios.put(`${this.baseUrl}/${data.id}/profile`, userProfile);
   }
 
   async newUser(data) {
-    return this.axios.post(`${this.baseUrl}`, data);
+    const newUser = {
+      profile: {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        birthDate: data.birthDate,
+        phoneNumber: data.phoneNumber,
+        avatar: '',
+        avatarMimeType: '',
+        gender: data.gender,
+        country: data.country,
+        documentId: data.documentId,
+      },
+      auth: {
+        email: data.email,
+        role: data.role,
+      },
+    };
+
+    return this.axios.post(`${this.baseUrl}`, newUser);
   }
 
-  async updateUser(data, id) {
-    return this.axios.put(`${this.baseUrl}/${id}`, data);
+  async updateUser(data) {
+    const updatedUser = {
+      profile: {
+        firstName: data.firstName,
+        lastName: data.lastName,
+        birthDate: data.birthDate,
+        phoneNumber: data.phoneNumber,
+        avatar: '',
+        gender: data.gender,
+        country: data.country,
+      },
+      auth: {
+        email: data.email,
+      },
+    };
+
+    return this.axios.put(`${this.baseUrl}/${data.id}`, updatedUser);
   }
 
   async deleteUser(id) {

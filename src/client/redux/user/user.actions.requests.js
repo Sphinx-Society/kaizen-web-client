@@ -74,36 +74,9 @@ export const getUser = (data) => async (dispatch) => {
 export const createUser = (data) => async (dispatch) => {
   const User = new UserService();
   setIsLoading(dispatch, true);
-  const {
-    firstName,
-    lastName,
-    birthDate,
-    phoneNumber,
-    country,
-    gender,
-    role,
-    email,
-    documentId,
-  } = data;
-  const newUser = {
-    profile: {
-      firstName,
-      lastName,
-      birthDate,
-      phoneNumber,
-      avatar: '',
-      avatarMimeType: '',
-      gender,
-      country,
-      documentId,
-    },
-    auth: {
-      email,
-      role,
-    },
-  };
+
   try {
-    await User.newUser(newUser);
+    await User.newUser(data);
     await dispatch(listUsers());
     dispatch(feedbackActions.setFeedback({
       feedback: {
@@ -124,32 +97,9 @@ export const createUser = (data) => async (dispatch) => {
 export const updateUser = (data) => async (dispatch) => {
   const User = new UserService();
   setIsLoading(dispatch, true);
-  const {
-    firstName,
-    lastName,
-    birthDate,
-    phoneNumber,
-    country,
-    gender,
-    email,
-    id,
-  } = data;
-  const updatedUser = {
-    profile: {
-      firstName,
-      lastName,
-      birthDate,
-      phoneNumber,
-      avatar: '',
-      gender,
-      country,
-    },
-    auth: {
-      email,
-    },
-  };
+
   try {
-    await User.updateUser(updatedUser, id);
+    await User.updateUser(data);
     await dispatch(listUsers());
     dispatch(feedbackActions.setFeedback({
       feedback: {
@@ -170,6 +120,7 @@ export const updateUser = (data) => async (dispatch) => {
 export const deleUser = (id) => async (dispatch) => {
   const User = new UserService();
   setIsLoading(dispatch, true);
+
   try {
     await User.deleteUser(id);
     await dispatch(listUsers());
@@ -192,32 +143,9 @@ export const deleUser = (id) => async (dispatch) => {
 export const updateProfile = (data) => async (dispatch) => {
   const User = new UserService();
   setIsLoading(dispatch, true);
-  const {
-    firstName,
-    lastName,
-    birthDate,
-    phone,
-    avatar,
-    country,
-    id,
-    gender,
-    email,
-  } = data;
 
-  const userProfile = {
-    profile: {
-      firstName,
-      lastName,
-      birthDate,
-      phoneNumber: phone,
-      avatar,
-      gender,
-      country,
-      email,
-    },
-  };
   try {
-    await User.updateProfile(userProfile, id);
+    await User.updateProfile(data);
     const userUdtated = await User.getUser(id);
     dispatch(userActions.setUserProfile(userUdtated));
     dispatch(feedbackActions.setFeedback({
@@ -240,6 +168,7 @@ export const updateProfile = (data) => async (dispatch) => {
 export const downloadTests = (id, testIds) => async (dispatch) => {
   setIsLoading(dispatch, true);
   const User = new UserService();
+
   try {
     const paths = await User.downloadTests(id, testIds);
     console.log(paths);
