@@ -94,7 +94,6 @@ const UserManagement = (props) => {
   };
   const handleDeleteUser = (deletingUser) => () => {
     fnDeleteUser(deletingUser.name, deletingUser._id);
-
   };
 
   useEffect(() => {

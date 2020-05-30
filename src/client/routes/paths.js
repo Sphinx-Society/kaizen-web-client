@@ -3,6 +3,7 @@ export const templatesManagement = () => '/templates-management';
 export const templateEditor = () => '/templates-management/editor';
 export const login = () => '/login';
 export const usersManagement = () => '/users-management';
+export const patientsManagement = () => '/patients-management';
 export const testsHistory = () => '/tests-history';
 export const settings = () => '/settings';
 export const userProfile = () => '/user';
