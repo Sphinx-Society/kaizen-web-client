@@ -7,11 +7,10 @@ import ProviderMock from '../../../../__mocks__/redux/ProviderMock';
 import Navbar from '../Navbar';
 
 configure({ adapter: new Adapter() });
-const setUp = () => {
+const setUp = (store) => {
   const componenttoRender = mount(
-
     <MemoryRouter>
-      <ProviderMock>
+      <ProviderMock store={store}>
         <Navbar />
       </ProviderMock>
     </MemoryRouter>
@@ -23,9 +22,10 @@ const setUp = () => {
 describe('Navbar organism', () => {
   let component;
   beforeEach(() => {
-    component = setUp();
-
+    const myStore = { user: { user: { role: 'admin' } } };
+    component = setUp(myStore);
   });
+
   test('Should render without errors', () => {
     expect(component.length).toEqual(1);
   });
@@ -36,6 +36,6 @@ describe('Navbar organism', () => {
 
   test('Should render only two icons when user is not admin', () => {
     const icon = component.find('.navbar__links__link');
-    expect(icon.length).toBe(2);
+    expect(icon.length).toBe(3);
   });
 });

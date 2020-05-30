@@ -1,11 +1,11 @@
 {
   "name": "kaizen-web-client",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Web client of Kaizen, an open source web application for clinical laboratory tests management",
   "main": "src/client/index.js",
   "scripts": {
     "build": "webpack --mode production --config ./webpack.dll.config.js && webpack --mode production --config ./webpack.config.js",
-    "dev": "webpack-dev-server --config ./webpack.dev.config.js",
+    "dev": "NODE_ENV=dev webpack-dev-server --config ./webpack.dev.config.js",
     "start": "node server",
     "lint": "eslint src/ --fix",
     "storybook": "start-storybook --docs -p 6006",
@@ -101,6 +101,7 @@
     "optimize-css-assets-webpack-plugin": "5.0.3",
     "postcss-loader": "3.0.0",
     "react-test-renderer": "16.13.1",
+    "redux-mock-store": "1.5.4",
     "sass": "1.26.5",
     "sass-loader": "8.0.2",
     "storybook-react-router": "1.0.8",

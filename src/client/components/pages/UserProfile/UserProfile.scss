@@ -1,0 +1,11 @@
+
+.user-profile-container {
+  margin-top: getSpacing(2);
+  width: 80%;
+  margin: getSpacing(2);
+}
+.user-form{
+  margin-top: getSpacing(2);
+  @include flex(column, '', flex-start)
+
+}

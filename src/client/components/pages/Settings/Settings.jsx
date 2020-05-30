@@ -1,43 +1,58 @@
 import React from 'react';
-import {
-  AiOutlineUser as ProfileIcon,
-  AiOutlineLogout as LogoutIcon } from 'react-icons/ai';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { AiOutlineUser as ProfileIcon } from 'react-icons/ai';
 
-import Surface from '../../atoms/Surface/Surface';
-import Logo from '../../atoms/Logo/Logo';
 import NavbarProvider from '../../providers/NavbarProvider/NavbarProvider';
-import './Settings.scss';
-import { login } from '../../../routes/paths';
+import Surface from '../../atoms/Surface/Surface';
+import Button from '../../atoms/Button/Button';
+import Logo from '../../atoms/Logo/Logo';
 
-const Settings = () => {
+import withAuth from '../../hocs/withAuth';
+import withUserData from '../../hocs/withUserData';
+
+import { setUser } from '../../../redux/user/user.actions';
+import { login, userProfile } from '../../../routes/paths';
+import { deleteCookie } from '../../../utils/cookie';
+
+import './Settings.scss';
+
+const Settings = (props) => {
+  const { history } = props;
+  const dispatch = useDispatch();
+  const logout = () => {
+    deleteCookie('token');
+    deleteCookie('uid');
+    dispatch(setUser({}));
+    history.push(login());
+  };
 
   return (
-
     <NavbarProvider>
       <Surface>
         <div className='settings-container'>
           <div className='settings-container__logo'>
             <Logo />
-            <h2> Kaizen</h2>
+            <h2>Kaizen</h2>
           </div>
           <section className='settings-container__options'>
-            <Link id='profile-link' className='option-container' to='userProfile'>
+            <Link id='profile-link' className='option-container' to={userProfile()}>
               <dd>Ver mi perfil</dd>
               <ProfileIcon size='1.5em' />
             </Link>
-
-            <Link id='logout' className='option-container logout' to={login()}>
-              <dd>Cerrar sesión</dd>
-              <LogoutIcon size='1.5em' />
-            </Link>
+            <Button onClick={logout}>Cerrar sesión</Button>
           </section>
         </div>
       </Surface>
     </NavbarProvider>
-
   );
 };
 
-export default Settings;
+Settings.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
+};
 
+export default withUserData(withAuth(Settings));

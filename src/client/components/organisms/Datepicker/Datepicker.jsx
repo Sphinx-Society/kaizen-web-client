@@ -15,6 +15,7 @@ import './Datepicker.scss';
 const Datepicker = (props) => {
   const {
     weekDays,
+    name,
     onChange,
     value,
     months,
@@ -82,6 +83,7 @@ const Datepicker = (props) => {
           readOnly
           onFocus={showCalendar}
           disabled={disabled}
+          name={name}
         />
         <label
           className={labelClass}
@@ -127,6 +129,7 @@ const Datepicker = (props) => {
                         key={day.value}
                         isOtherMonth={day.isOtherMonth}
                         onClick={onChange}
+                        name={name}
                         selectedDay={value}
                         day={day.value}
                         weekDay={day.weekDay}

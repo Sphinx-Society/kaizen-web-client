@@ -16,11 +16,13 @@ import NavbarProvider from '../../providers/NavbarProvider/NavbarProvider';
 import MainViewProvider from '../../providers/MainViewProvider/MainViewProvider';
 import Table from '../../organisms/Table/Table';
 import Select from '../../atoms/Select/Select';
+import withAuth from '../../hocs/withAuth';
+import withUserData from '../../hocs/withUserData';
 
 import { setModalDialog } from '../../../redux/modalDialog/modalDialog.actions';
-import { listUsers } from '../../../redux/user/user.actions.requests';
+import { listUsers, deleUser } from '../../../redux/user/user.actions.requests';
 import { setEditingUser } from '../../../redux/user/user.actions';
-import { userEditor } from '../../../routes/paths';
+import { createUser } from '../../../routes/paths';
 
 const UserManagement = (props) => {
   const { history: { push } } = props;
@@ -37,7 +39,6 @@ const UserManagement = (props) => {
 
   const { isLoading } = useSelector((state) => state.feedback);
 
-  // Example
   const fnImportUsers = () => dispatch(setModalDialog({
     modal: {
       type: 'download',
@@ -46,16 +47,15 @@ const UserManagement = (props) => {
     },
   }));
 
-  // Example
-  const fnDeleteUser = (id) => dispatch(setModalDialog({
+  const fnDeleteUser = (name, id) => dispatch(setModalDialog({
     modal: {
       type: 'delete',
-      message: `Desea eliminar al usuario ${id}`,
-      mainFn: () => alert('Usuario eliminado'),
+      message: `Desea eliminar al usuario ${name}`,
+      mainFn: () => { dispatch(deleUser(id)); },
     },
   }));
 
-  const gotToUserEditor = () => push(userEditor());
+  const gotToUserEditor = () => push(createUser());
 
   const handleNextPage = () => {
     const page = currentPage + 1;
@@ -91,6 +91,10 @@ const UserManagement = (props) => {
   const handleEditUser = (editingUser) => () => {
     dispatch(setEditingUser({ editingUser }));
     gotToUserEditor();
+  };
+  const handleDeleteUser = (deletingUser) => () => {
+    fnDeleteUser(deletingUser.name, deletingUser._id);
+
   };
 
   useEffect(() => {
@@ -131,8 +135,8 @@ const UserManagement = (props) => {
     <UserCard
       className='users-management__user-card--surface'
       isAdminWhoView={true}
-      onClickEdit={handleEditUser}
-      onClickDelete={() => fnDeleteUser(item.id)}
+      onClickEdit={handleEditUser(item)}
+      onClickDelete={handleDeleteUser(item)}
       data={[
         { title: 'Rol', description: item.role },
         { title: 'Nombre', description: item.name },
@@ -201,6 +205,7 @@ const UserManagement = (props) => {
                       <Button
                         className='--shadowed --spaced'
                         type='icon'
+                        onClick={handleDeleteUser(row)}
                         icon={<TrashIcon />}
                         iconMode='1'
                       />
@@ -232,4 +237,4 @@ UserManagement.propTypes = {
   }).isRequired,
 };
 
-export default UserManagement;
+export default withUserData(withAuth(UserManagement));
