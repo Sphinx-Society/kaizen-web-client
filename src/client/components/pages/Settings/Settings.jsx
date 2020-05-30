@@ -1,25 +1,26 @@
 import React from 'react';
-
-import {
-  AiOutlineUser as ProfileIcon } from 'react-icons/ai';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setUser } from '../../../redux/user/user.actions';
+import { AiOutlineUser as ProfileIcon } from 'react-icons/ai';
 
-import Surface from '../../atoms/Surface/Surface';
-import Logo from '../../atoms/Logo/Logo';
 import NavbarProvider from '../../providers/NavbarProvider/NavbarProvider';
-import './Settings.scss';
-import { login, userProfile } from '../../../routes/paths';
+import Surface from '../../atoms/Surface/Surface';
+import Button from '../../atoms/Button/Button';
+import Logo from '../../atoms/Logo/Logo';
+
 import withAuth from '../../hocs/withAuth';
 import withUserData from '../../hocs/withUserData';
+
+import { setUser } from '../../../redux/user/user.actions';
+import { login, userProfile } from '../../../routes/paths';
 import { deleteCookie } from '../../../utils/cookie';
-import Button from '../../atoms/Button/Button';
+
+import './Settings.scss';
 
 const Settings = (props) => {
-  const dispatch = useDispatch();
-
   const { history } = props;
+  const dispatch = useDispatch();
   const logout = () => {
     deleteCookie('token');
     deleteCookie('uid');
@@ -33,7 +34,7 @@ const Settings = (props) => {
         <div className='settings-container'>
           <div className='settings-container__logo'>
             <Logo />
-            <h2> Kaizen</h2>
+            <h2>Kaizen</h2>
           </div>
           <section className='settings-container__options'>
             <Link id='profile-link' className='option-container' to={userProfile()}>
@@ -46,6 +47,12 @@ const Settings = (props) => {
       </Surface>
     </NavbarProvider>
   );
+};
+
+Settings.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
 };
 
 export default withUserData(withAuth(Settings));

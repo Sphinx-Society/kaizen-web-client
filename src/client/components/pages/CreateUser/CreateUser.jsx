@@ -30,8 +30,8 @@ const CreateUser = function (props) {
       firstName: '',
       lastName: '',
       documentId: '',
-      country: '',
-      gender: '',
+      country: 'default',
+      gender: 'default',
       email: '',
       phoneNumber: '',
     };
@@ -127,7 +127,7 @@ const CreateUser = function (props) {
               />
               <TextInput
                 required
-                disabled={editingUserStore}
+                disabled={Boolean(editingUserStore)}
                 id='documentId'
                 placeholder='Identificación'
                 inputName='documentId'
