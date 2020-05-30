@@ -18,3 +18,7 @@ export const setSelectedTests = (payload) => ({
   payload,
 });
 
+export const setViewUserTests = (payload) => ({
+  type: 'USER/SET_VIEW_USER_TESTS',
+  payload,
+});

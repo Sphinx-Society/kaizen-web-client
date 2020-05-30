@@ -10,15 +10,20 @@ import MainViewProvider from '../../providers/MainViewProvider/MainViewProvider'
 import UserCard from '../../organisms/UserCard/UserCard';
 import Table from '../../organisms/Table/Table';
 import Button from '../../atoms/Button/Button';
+import withAuth from '../../hocs/withAuth';
+import withUserData from '../../hocs/withUserData';
 
 import { listUsers } from '../../../redux/user/user.actions.requests';
+import { setViewUserTests } from '../../../redux/user/user.actions';
 
-import { testsHistory } from '../../../routes/paths';
+import { getCookie } from '../../../utils/cookie';
+import {  } from '../../../routes/paths';
 
 const PatientsManagement = (props) => {
   const { history: { push } } = props;
   const dispatch = useDispatch();
-  const gotToUserTests = () => push(testsHistory());
+
+  const gotToUserTests = () => push(());
 
   const { isLoading } = useSelector((state) => state.feedback);
   const {
@@ -32,16 +37,18 @@ const PatientsManagement = (props) => {
     dispatch(listUsers(1, query));
   };
 
-  const handleViewUserTests = (viewUserTest) => () => {
-    // dispatch(setViewUserTest({ viewUserTest }));
-    gotToUserTests();
+  const handleViewUserTests = (viewUserTests) => () => {
+    const role = getCookie('role');
+    dispatch(setViewUserTests({ viewUserTests }));
+    gotToUserTests(role);
   };
 
   const mobileRow = (item) => (
     <UserCard
       className='patients-management__user-card--surface'
-      isAdminWhoView={true}
-      onClickEdit={handleViewUserTests}
+      isAdminWhoView={false}
+      onClickMain={handleViewUserTests(item)}
+      onClickMainIcon='view'
       data={[
         { title: 'Rol', description: item.role },
         { title: 'Nombre', description: item.name },
@@ -120,4 +127,4 @@ const PatientsManagement = (props) => {
 
 PatientsManagement.propTypes = {};
 
-export default PatientsManagement;
+export default withUserData(withAuth(PatientsManagement));
