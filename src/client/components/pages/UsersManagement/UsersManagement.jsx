@@ -39,7 +39,6 @@ const UserManagement = (props) => {
 
   const { isLoading } = useSelector((state) => state.feedback);
 
-  // Example
   const fnImportUsers = () => dispatch(setModalDialog({
     modal: {
       type: 'download',
@@ -48,7 +47,6 @@ const UserManagement = (props) => {
     },
   }));
 
-  // Example
   const fnDeleteUser = (name, id) => dispatch(setModalDialog({
     modal: {
       type: 'delete',
@@ -137,8 +135,8 @@ const UserManagement = (props) => {
     <UserCard
       className='users-management__user-card--surface'
       isAdminWhoView={true}
-      onClickEdit={handleEditUser}
-      onClickDelete={() => fnDeleteUser(item.id)}
+      onClickEdit={handleEditUser(item)}
+      onClickDelete={handleDeleteUser(item)}
       data={[
         { title: 'Rol', description: item.role },
         { title: 'Nombre', description: item.name },

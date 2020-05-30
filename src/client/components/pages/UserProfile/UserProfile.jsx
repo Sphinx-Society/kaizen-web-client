@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import NavbarProvider from '../../providers/NavbarProvider/NavbarProvider';
@@ -7,13 +7,15 @@ import Button from '../../atoms/Button/Button';
 import TextInput from '../../atoms/TextInput/TextInput';
 import Datepicker from '../../organisms/Datepicker/Datepicker';
 import Select from '../../atoms/Select/Select';
-import { getUser, updateProfile } from '../../../redux/user/user.actions.requests';
+import { updateProfile } from '../../../redux/user/user.actions.requests';
 import withAuth from '../../hocs/withAuth';
 import withUserData from '../../hocs/withUserData';
 import { settings } from '../../../routes/paths';
 import FeedbackProvider from '../../providers/FeedbackProvider/FeedbackProvider';
 import useForm from '../../../hooks/useForm/useForm';
-
+import ReadableField from '../../atoms/ReadableField/ReadableField';
+import { getStringFromDate } from '../../../utils/date';
+import ListReadableFields from '../../molecules/ListReadableFields/ListReadableFields';
 import './UserProfile.scss';
 
 const UserProfile = function (props) {
@@ -40,66 +42,65 @@ const UserProfile = function (props) {
           title='Mi perfil'
           showBottomLine
           moveTitle
-        // avatar={avatar}
         >
-          <div>
+          <div className='user-profile-container'>
+            <ListReadableFields>
+              <ReadableField
+                title='Nombres'
+                description={stateProfile.firstName}
+              />
+              <ReadableField
+                title='Apellidos'
+                description={stateProfile.lastName}
+              />
+              <ReadableField
+                title='Rol'
+                description={stateProfile.role}
+              />
+              <ReadableField
+                title='Usuario'
+                description={stateProfile.username}
+              />
+              <ReadableField
+                title='Identificación'
+                description={stateProfile.document}
+              />
+              <ReadableField
+                title='Fecha de nacimiento'
+                description={getStringFromDate(new Date(stateProfile.birthDate))}
+              />
+              <ReadableField
+                title='Género'
+                description={stateProfile.gender}
+              />
+            </ListReadableFields>
             <form
               id='user-form'
               className='user-form'
               onSubmit={handleOnSubmit}
             >
-              <div className='user-form__inputs-container'>
-                <TextInput
-                  required
-                  id='firstName'
-                  placeholder='Nombre'
-                  inputName='firstName'
-                  value={stateProfile.firstName}
-                  onChange={handleOnChange}
-                />
-                <TextInput
-                  required
-                  id='lastName'
-                  placeholder='Apellido'
-                  inputName='lastName'
-                  value={stateProfile.lastName}
-                  onChange={handleOnChange}
-                />
-                <Select
-                  name='country'
-                  id='country'
-                  placeholder='País'
-                  value={stateProfile.country}
-                  onChange={handleOnChange}
-                  options={['MX', 'COL']}
-                />
 
-                <TextInput
-                  required
-                  id='phone'
-                  placeholder='Teléfono'
-                  inputName='phone'
-                  value={stateProfile.phone}
-                  onChange={handleOnChange}
-                />
-                <Select
-                  name='gender'
-                  id='8'
-                  placeholder='Genero'
-                  value={stateProfile.gender}
-                  onChange={handleOnChange}
-                  options={['M', 'F', 'Other']}
-                />
-                <Datepicker
-                  placeholder='Fecha de nacimiento'
-                  name='birthDate'
-                  onChange={handleOnChange}
-                  value={stateProfile.birthDate}
-                />
-              </div>
+              {/* <div className='user-form__inputs-container'> */}
+
+              <TextInput
+                required
+                id='phone'
+                placeholder='Teléfono'
+                inputName='phone'
+                value={stateProfile.phone}
+                onChange={handleOnChange}
+              />
+              <TextInput
+                required
+                id='email'
+                placeholder='Correo electrónico'
+                inputName='email'
+                value={stateProfile.email}
+                onChange={handleOnChange}
+              />
+              {/* </div> */}
               <Button
                 form='user-form'
-                className='--is-for-submit'
                 onClick={() => null}
                 color='primary'
                 type='submit'

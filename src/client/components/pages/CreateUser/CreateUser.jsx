@@ -57,6 +57,12 @@ const CreateUser = function (props) {
     submitCallback(stateProfile);
     push(usersManagement());
   };
+  const profiles = [
+    { label: 'Médico', value: 'doctor' },
+    { label: 'Laboratorista', value: 'lab' },
+    { label: 'Administrador', value: 'admin' },
+    { label: 'Paciente', value: 'patient' },
+  ];
   return (
     <NavbarProvider>
       <MainViewProvider
@@ -121,6 +127,7 @@ const CreateUser = function (props) {
               />
               <TextInput
                 required
+                disabled={editingUserStore}
                 id='documentId'
                 placeholder='Identificación'
                 inputName='documentId'
@@ -143,7 +150,7 @@ const CreateUser = function (props) {
                 id='role'
                 placeholder='Rol'
                 value={stateProfile.role}
-                options={['patient', 'doctor', 'lab', 'admin']}
+                options={profiles}
               />
               <Datepicker
                 onChange={handleOnChange}

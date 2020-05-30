@@ -35,7 +35,7 @@ const UserCard = (props) => {
           <ReadableField
             title={item.title}
             description={item.description}
-            key={item.id}
+            key={item.title}
           />
         ))}
       </ListReadableFields>

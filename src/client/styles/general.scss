@@ -16,8 +16,8 @@ $borderSolid2pxDarkGray: solid 2px $colorFontDarkGray;
 
 .--is-for-submit {
   position: absolute;
-  bottom: $navbarHeight + 10px;
-  width: calc(100% - 40px);
+  bottom: $navbarHeight + getSpacing(1);
+  width: calc(100% - getSpacing(4));
 
   @include applyTo('m') {
     width: auto;

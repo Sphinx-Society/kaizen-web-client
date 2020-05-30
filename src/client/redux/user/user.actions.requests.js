@@ -104,10 +104,7 @@ export const createUser = (data) => async (dispatch) => {
   };
   try {
     await User.newUser(newUser);
-<<<<<<< HEAD
     await dispatch(listUsers());
-=======
->>>>>>> bf006446a1340175c0747d91df6cc924c9d59df1
     dispatch(feedbackActions.setFeedback({
       feedback: {
         message: 'Usuario creado exitosamente',
@@ -204,6 +201,7 @@ export const updateProfile = (data) => async (dispatch) => {
     country,
     id,
     gender,
+    email,
   } = data;
 
   const userProfile = {
@@ -215,6 +213,7 @@ export const updateProfile = (data) => async (dispatch) => {
       avatar,
       gender,
       country,
+      email,
     },
   };
   try {
