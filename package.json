@@ -117,6 +117,9 @@
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif)$": "<rootDir>/src/client/__mocks__/assets/fileMock.js",
       "\\.(scss|sass)$": "<rootDir>/src/client/__mocks__/styles/styleMock.js"
-    }
+    },
+    "setupFiles": [
+      "<rootDir>/jest.init.js"
+     ]
   }
 }

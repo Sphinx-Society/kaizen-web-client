@@ -1,12 +1,14 @@
 import axios from 'axios';
 import { getCookie, deleteCookie } from '../utils/cookie';
 import { getErrorType } from '../utils/error';
+import { login } from '../routes/paths';
 
 class Request {
   constructor() {
     this.apiUrl = `${process.env.API_URL}/${process.env.API_VERSION}`;
     this.token = getCookie('token');
     this.axios = axios;
+    this.cookieAge = 86400;
 
     this._initAxiosDefaults();
   }
@@ -31,8 +33,12 @@ class Request {
       if (status === 401) {
         deleteCookie('token');
         deleteCookie('uid');
-        document.location = '/login';
+        const { pathname } = document.location;
+        if (pathname !== login()) {
+          document.location = login();
+        }
       }
+      throw err;
     });
   }
 }

@@ -5,8 +5,6 @@ import NavbarProvider from '../../providers/NavbarProvider/NavbarProvider';
 import MainViewProvider from '../../providers/MainViewProvider/MainViewProvider';
 import Button from '../../atoms/Button/Button';
 import TextInput from '../../atoms/TextInput/TextInput';
-import Datepicker from '../../organisms/Datepicker/Datepicker';
-import Select from '../../atoms/Select/Select';
 import { updateProfile } from '../../../redux/user/user.actions.requests';
 import withAuth from '../../hocs/withAuth';
 import withUserData from '../../hocs/withUserData';
@@ -22,15 +20,19 @@ const UserProfile = function (props) {
   const { history } = props;
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
-  // const { avatar } = user.profile;
+  const isAdmin = user.role === 'admin';
+
   const submitCallback = (data) => {
     dispatch(updateProfile(data));
   };
+
   const [stateProfile, handleOnChange] = useForm(user, submitCallback);
+
   const handleOnSubmit = (event) => {
     event.preventDefault();
     submitCallback(stateProfile);
   };
+
   return (
     <FeedbackProvider>
       <NavbarProvider>
@@ -57,10 +59,12 @@ const UserProfile = function (props) {
                 title='Rol'
                 description={stateProfile.role}
               />
-              <ReadableField
-                title='Usuario'
-                description={stateProfile.username}
-              />
+              {isAdmin && (
+                <ReadableField
+                  title='Usuario'
+                  description={stateProfile.username}
+                />
+              )}
               <ReadableField
                 title='Identificación'
                 description={stateProfile.document}
@@ -74,40 +78,38 @@ const UserProfile = function (props) {
                 description={stateProfile.gender}
               />
             </ListReadableFields>
-            <form
-              id='user-form'
-              className='user-form'
-              onSubmit={handleOnSubmit}
-            >
-
-              {/* <div className='user-form__inputs-container'> */}
-
-              <TextInput
-                required
-                id='phone'
-                placeholder='Teléfono'
-                inputName='phone'
-                value={stateProfile.phone}
-                onChange={handleOnChange}
-              />
-              <TextInput
-                required
-                id='email'
-                placeholder='Correo electrónico'
-                inputName='email'
-                value={stateProfile.email}
-                onChange={handleOnChange}
-              />
-              {/* </div> */}
-              <Button
-                form='user-form'
-                onClick={() => null}
-                color='primary'
-                type='submit'
+            {isAdmin && (
+              <form
+                id='user-form'
+                className='user-form'
+                onSubmit={handleOnSubmit}
               >
-                Guardar cambios
-              </Button>
-            </form>
+                <TextInput
+                  required
+                  id='phone'
+                  placeholder='Teléfono'
+                  inputName='phone'
+                  value={stateProfile.phone}
+                  onChange={handleOnChange}
+                />
+                <TextInput
+                  required
+                  id='email'
+                  placeholder='Correo electrónico'
+                  inputName='email'
+                  value={stateProfile.email}
+                  onChange={handleOnChange}
+                />
+                <Button
+                  form='user-form'
+                  onClick={() => null}
+                  color='primary'
+                  type='submit'
+                >
+                  Guardar cambios
+                </Button>
+              </form>
+            )}
           </div>
 
         </MainViewProvider>

@@ -12,7 +12,9 @@ import Checkbox from '../../atoms/Checkbox/Checkbox';
 import MainViewProvider from '../../providers/MainViewProvider/MainViewProvider';
 import NavbarProvider from '../../providers/NavbarProvider/NavbarProvider';
 import FeedbackProvider from '../../providers/FeedbackProvider/FeedbackProvider';
-import { getUser } from '../../../redux/user/user.actions.requests';
+import withAuth from '../../hocs/withAuth';
+import withUserData from '../../hocs/withUserData';
+import { listTests } from '../../../redux/user/user.actions.requests';
 import { setSelectedTests } from '../../../redux/user/user.actions';
 
 const TestsHistory = () => {
@@ -46,7 +48,7 @@ const TestsHistory = () => {
   const editTe = () => {};
 
   useEffect(() => {
-    dispatch(getUser());
+    dispatch(listTests(user));
   }, []);
 
   useEffect(() => {
@@ -155,4 +157,4 @@ TestsHistory.propTypes = {
   }).isRequired,
 };
 
-export default TestsHistory;
+export default withUserData(withAuth(TestsHistory));

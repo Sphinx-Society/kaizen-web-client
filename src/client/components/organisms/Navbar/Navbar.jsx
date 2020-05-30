@@ -6,7 +6,13 @@ import { GoGear as SettingsIcon } from 'react-icons/go';
 import { AiFillHome as HomeIcon } from 'react-icons/ai';
 import Logo from '../../atoms/Logo/Logo';
 
-import { templatesManagement, main, settings, usersManagement } from '../../../routes/paths';
+import {
+  templatesManagement,
+  main,
+  settings,
+  usersManagement,
+  testsHistory,
+} from '../../../routes/paths';
 
 import './Navbar.scss';
 
@@ -18,6 +24,9 @@ const Navbar = () => {
     switch (role) {
       case 'admin': {
         return usersManagement();
+      }
+      case 'patient': {
+        return testsHistory();
       }
       default: {
         return main();
