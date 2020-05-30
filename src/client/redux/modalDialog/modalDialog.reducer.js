@@ -11,7 +11,7 @@ export default (state = initialState, action) => {
     case 'MODAL/SET_MODAL': {
       return {
         ...state,
-        modal: { ...action.payload.modal },
+        modal: action.payload.modal,
       };
     }
 

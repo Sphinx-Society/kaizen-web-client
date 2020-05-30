@@ -12,38 +12,30 @@ describe('MainViewProvider', () => {
   const ChildrenMock = () => <p>content</p>;
   const MenuMock = () => <button type='button'>menu button</button>;
 
-  const mainViewProviderShallow = shallow(
+  const mainViewProviderMount = mount(
     <MainViewProvider
       title={titleMock}
+      showBottomLine
       moveTitle
     >
       <ChildrenMock />
     </MainViewProvider>,
   );
 
-  const mainViewProviderMount = mount(
-    <MainViewProvider
-      title={titleMock}
-      showBottomLine
-    >
-      <ChildrenMock />
-    </MainViewProvider>,
-  );
-
   test('should have class ".main-view-provider":', () => {
-    expect(mainViewProviderShallow.hasClass('main-view-provider')).toBe(true);
+    expect(mainViewProviderMount.find('div').at(1).hasClass('main-view-provider')).toBe(true);
   });
 
   test('should have class ".main-view-provider--title-moved":', () => {
-    expect(mainViewProviderShallow.hasClass('main-view-provider--title-moved')).toBe(true);
+    expect(mainViewProviderMount.find('div').at(1).hasClass('main-view-provider--title-moved')).toBe(true);
   });
 
   test('head should have class ".main-view-provider__head":', () => {
-    expect(mainViewProviderMount.find('div').at(1).hasClass('main-view-provider__head')).toBe(true);
+    expect(mainViewProviderMount.find('div').at(2).hasClass('main-view-provider__head')).toBe(true);
   });
 
   test('head should have class ".main-view-provider__head--bottom-line":', () => {
-    expect(mainViewProviderMount.find('div').at(1).hasClass('main-view-provider__head--bottom-line')).toBe(true);
+    expect(mainViewProviderMount.find('div').at(2).hasClass('main-view-provider__head--bottom-line')).toBe(true);
   });
 
   test('default props":', () => {

@@ -138,7 +138,7 @@ export const updateProfile = (data) => async (dispatch) => {
   try {
     await User.updateProfile(data);
     const userUdtated = await User.getUser(id);
-    dispatch(userActions.setUserProfile(userUdtated));
+    dispatch(userActions.setUser(userUdtated));
     dispatch(feedbackActions.setFeedback({
       feedback: {
         message: 'Perfil actualizado',

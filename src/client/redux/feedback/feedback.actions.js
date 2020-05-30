@@ -3,11 +3,6 @@ export const setIsLoading = (payload) => ({
   payload,
 });
 
-export const setModal = (payload) => ({
-  type: 'FEEDBACK/SET_MODAL',
-  payload,
-});
-
 export const setFeedback = (payload) => ({
   type: 'FEEDBACK/SET_FEEDBACK',
   payload,
