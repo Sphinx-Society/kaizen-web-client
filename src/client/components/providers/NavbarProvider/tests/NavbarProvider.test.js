@@ -3,13 +3,15 @@ import { configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import { MemoryRouter } from 'react-router-dom';
 import NavbarProvider from '../NavbarProvider';
+import ProviderMock from '../../../../__mocks__/redux/ProviderMock';
 
 configure({ adapter: new Adapter() });
-const setUp = () => {
+const setUp = (store) => {
   const componenttoRender = mount(
-
     <MemoryRouter>
-      <NavbarProvider />
+      <ProviderMock store={store}>
+        <NavbarProvider />
+      </ProviderMock>
     </MemoryRouter>
     ,
   );
@@ -19,9 +21,10 @@ const setUp = () => {
 describe('Navbar organism', () => {
   let component;
   beforeEach(() => {
-    component = setUp();
-
+    const myStore = { user: { user: { role: 'admin' } } };
+    component = setUp(myStore);
   });
+
   test('Should render without errors', () => {
     expect(component.length).toEqual(1);
   });

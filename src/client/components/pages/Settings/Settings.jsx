@@ -41,14 +41,11 @@ const Settings = (props) => {
               <ProfileIcon size='1.5em' />
             </Link>
             <Button onClick={logout}>Cerrar sesión</Button>
-
           </section>
         </div>
       </Surface>
     </NavbarProvider>
-
   );
 };
 
 export default withUserData(withAuth(Settings));
-

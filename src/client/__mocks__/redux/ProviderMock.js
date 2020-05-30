@@ -1,12 +1,19 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import store from '../../redux/store';
+import configureStore from 'redux-mock-store';
 import '@babel/polyfill';
 
-const ProviderMock = (props) => (
-  <Provider store={store}>
-    {props.children}
-  </Provider>
-);
+import store from '../../redux/store';
+
+const ProviderMock = (props) => {
+  const mockStore = configureStore([]);
+  const customStore = props.store ? mockStore(props.store) : store;
+
+  return (
+    <Provider store={customStore}>
+      {props.children}
+    </Provider>
+  );
+};
 
 export default ProviderMock;
