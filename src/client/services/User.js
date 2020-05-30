@@ -1,6 +1,6 @@
 import Request from './Request';
 import { getStringFromDate } from '../utils/date';
-import { getErrorType } from '../utils/error';
+import { getCookie } from '../utils/cookie';
 
 class User extends Request {
   constructor() {
@@ -40,7 +40,7 @@ class User extends Request {
         };
       })
       .catch((error) => {
-        throw getErrorType(error);
+        throw error;
       });
   }
 
@@ -86,6 +86,25 @@ class User extends Request {
           phone: phoneNumber,
           name: `${firstName} ${lastName}`,
           role,
+        };
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  async getProfile(id) {
+    const role = getCookie('role');
+    return this.axios.get(`${this.baseUrl}/${id}/profile`)
+      .then(({ data: { message } }) => {
+        return {
+          ...message.profile,
+          id: message._id,
+          document: message.profile.documentId,
+          phone: message.phoneNumber,
+          name: `${message.firstName} ${message.lastName}`,
+          role,
+          tests: [],
         };
       })
       .catch((error) => {
@@ -164,13 +183,29 @@ class User extends Request {
   }
 
   async login(data) {
+    const self = this;
     const url = `${this.apiUrl}/users/login`;
     return this.axios.post(url, data)
-      .then(({ data }) => {
-        return data.message;
+      .then(({ data: { message: { jwt } } }) => {
+        const { userId, role } = self.verifyToken(jwt);
+        document.cookie = `token=${jwt};max-age=${self.cookieAge};`;
+        document.cookie = `uid=${userId};max-age=${self.cookieAge};`;
+        document.cookie = `role=${role};max-age=${self.cookieAge};`;
       })
       .catch((error) => {
-        throw getErrorType(error);
+        throw error;
+      });
+  }
+
+  async listTests(id) {
+    const url = `${this.baseUrl}/${id}/tests`;
+
+    return this.axios.get(url)
+      .then(({ data: { message: { tests } } }) => {
+        return tests;
+      })
+      .catch((error) => {
+        throw error;
       });
   }
 
