@@ -137,8 +137,8 @@ export const updateProfile = (data) => async (dispatch) => {
 
   try {
     await User.updateProfile(data);
-    const userUdtated = await User.getUser(id);
-    dispatch(userActions.setUser(userUdtated));
+    const userUpdate = await User.getUser(id);
+    dispatch(userActions.setUser(userUpdate));
     dispatch(feedbackActions.setFeedback({
       feedback: {
         message: 'Perfil actualizado',
@@ -174,7 +174,22 @@ export const listTests = (user) => async (dispatch) => {
 
   try {
     const tests = await User.listTests(user.id);
-    dispatch(userActions.setUser({ user: { ...user, tests } }));
+    dispatch(userActions.setPatientUser({ patientUser: { ...user, tests } }));
+  } catch (error) {
+    setErrorFeedback(dispatch, error);
+    throw error;
+  } finally {
+    setIsLoading(dispatch, false);
+  }
+};
+
+export const assingTest = (testName, testId, patientUser) => async (dispatch) => {
+  setIsLoading(dispatch, true);
+  const User = new UserService();
+
+  try {
+    await User.assingTest(testName, testId, patientUser.id);
+    dispatch(listTests(patientUser));
   } catch (error) {
     setErrorFeedback(dispatch, error);
     throw error;

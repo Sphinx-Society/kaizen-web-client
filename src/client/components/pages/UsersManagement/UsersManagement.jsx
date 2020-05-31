@@ -94,7 +94,6 @@ const UserManagement = (props) => {
   };
   const handleDeleteUser = (deletingUser) => () => {
     fnDeleteUser(deletingUser.name, deletingUser._id);
-
   };
 
   useEffect(() => {
@@ -135,7 +134,7 @@ const UserManagement = (props) => {
     <UserCard
       className='users-management__user-card--surface'
       isAdminWhoView={true}
-      onClickEdit={handleEditUser(item)}
+      onClickMain={handleEditUser(item)}
       onClickDelete={handleDeleteUser(item)}
       data={[
         { title: 'Rol', description: item.role },

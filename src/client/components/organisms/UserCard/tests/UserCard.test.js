@@ -15,7 +15,7 @@ function componentRender() {
         { title: 'Last Name', description: 'lastname' },
         { title: 'id', description: '1234' },
       ]}
-      onClickEdit={() => null}
+      onClickMain={() => null}
       onClickDelete={() => null}
     />,
   );
@@ -63,7 +63,7 @@ describe('UserCard organism', () => {
   });
 
   test('should excute the action buttons:', () => {
-    const onClickEditFn = jest.fn();
+    const onClickMainFn = jest.fn();
     const onClickDeleteFn = jest.fn();
     const userCard = mount(
       <UserCard
@@ -73,14 +73,14 @@ describe('UserCard organism', () => {
           { title: 'Last Name', description: 'lastname' },
           { title: 'id', description: '1234' },
         ]}
-        onClickEdit={onClickEditFn}
+        onClickMain={onClickMainFn}
         onClickDelete={onClickDeleteFn}
       />,
     );
 
     // Simulate other clicks null in the first buttons
     userCard.find('Button').at(0).simulate('click');
-    expect(onClickEditFn.mock.calls.length).toEqual(1);
+    expect(onClickMainFn.mock.calls.length).toEqual(1);
 
     userCard.find('Button').at(1).simulate('click');
     expect(onClickDeleteFn.mock.calls.length).toEqual(1);
