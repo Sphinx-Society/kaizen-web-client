@@ -1,4 +1,18 @@
 .users-management {
+  &__admin-menu {
+    display: flex;
+    flex-direction: column-reverse;
+    min-height: 200px;
+    justify-content: space-evenly;
+
+    @include applyTo('m') {
+      min-height: auto;
+      flex-direction: row-reverse;
+      width: 60%;
+      max-width: 700px;
+    }
+  }
+
   &__upload-csv-container {
     max-width: 300px;
     display: flex;

@@ -21,7 +21,7 @@ export const login = (data) => async (dispatch) => {
   }
 };
 
-export const listUsers = (page = 1, documentId, role) => async (dispatch) => {
+export const listUsers = (page = 1, query, role) => async (dispatch) => {
   setIsLoading(dispatch, true);
   const User = new UserService();
 
@@ -31,7 +31,7 @@ export const listUsers = (page = 1, documentId, role) => async (dispatch) => {
       currentPage,
       totalUsers,
       users,
-    } = await User.listUsers(page, documentId, role);
+    } = await User.listUsers(page, query, role);
     dispatch(userActions.setUsers({
       users,
       totalPages,
