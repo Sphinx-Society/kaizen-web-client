@@ -21,7 +21,7 @@ import withUserData from '../../hocs/withUserData';
 
 import { setPatientUser, setSelectedTests, setEditingTest } from '../../../redux/user/user.actions';
 import { listTests, assingTest } from '../../../redux/user/user.actions.requests';
-import { listTemplates } from '../../../redux/templates/templates.actions.requests';
+import { listTemplates, getTemplate } from '../../../redux/templates/templates.actions.requests';
 
 import { getStringFromDate } from '../../../utils/date';
 import { patientsManagement, fillTest } from '../../../routes/paths';
@@ -136,14 +136,17 @@ const PatientTest = (props) => {
     }));
   };
 
-  const handleTestField = ({ testId, patientId, templateId }) => () => {
+  const handleTestField = (editingTest) => () => {
     if (isRoleDoctor) {
       console.log('ver examen');
     }
 
     if (isRoleLab) {
-      dispatch(setEditingTest({ editingTest: { testId, patientId, templateId } }));
-      push(fillTest());
+      dispatch(setEditingTest({ editingTest }));
+      dispatch(getTemplate(editingTest.templateId))
+        .then(() => {
+          push(fillTest());
+        });
     };
   };
 

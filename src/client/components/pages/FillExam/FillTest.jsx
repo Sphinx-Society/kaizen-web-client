@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -99,35 +99,44 @@ const FillExam = (props) => {
   const { history: { push } } = props;
 
   const dispatch = useDispatch();
-  const { editingTest } = useSelector((state) => state.user);
+  const { editingTest, patientUser } = useSelector((state) => state.user);
   const { editingTemplate } = useSelector((state) => state.templates);
 
   const goToPatientTests = () => push(patientTests());
 
+  const getInitialResult = (fieldId) => editingTest.results.find(({ value, ...result }) => {
+    const id = JSON.stringify({
+      ...result,
+      min: result.min || '',
+      max: result.max || '',
+      unit: result.unit || '',
+    });
+
+    return id === fieldId;
+  });
+
   const initialFormState = () => {
     const initialForm = {};
 
-    editingTemplate.fields.forEach(({ id }) => {
+    editingTemplate && editingTemplate.fields.forEach(({ id }) => {
       initialForm[id] = '';
+      if (editingTest.results) {
+        const result = getInitialResult(id);
+        initialForm[id] = result ? result.value : '';
+      }
     });
 
     return initialForm;
   };
 
-  const [stateTest, handleOnChange] = useForm(editingTemplate ? initialFormState() : {});
+  const [stateTest, handleOnChange] = useForm(initialFormState());
 
   const handleOnSubmit = (event) => {
     event.preventDefault();
-    const { testId, patientId } = editingTest;
-    dispatch(submitTestResults(patientId, testId, stateTest))
+    const { testId } = editingTest;
+    dispatch(submitTestResults(patientUser.id, testId, stateTest))
       .then(() => goToPatientTests());
   };
-
-  useEffect(() => {
-    if (editingTest) {
-      dispatch(getTemplate(editingTest.templateId));
-    }
-  }, []);
 
   if (!editingTest) {
     return (
@@ -141,7 +150,7 @@ const FillExam = (props) => {
         <MainViewProvider
           showBackButton={true}
           onBackButtonClick={goToPatientTests}
-          title={editingTemplate ? editingTemplate.name : ''}
+          title={editingTemplate.name}
           showBottomLine
           moveTitle
         >

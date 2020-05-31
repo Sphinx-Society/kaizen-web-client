@@ -244,7 +244,7 @@ export const submitTestResults = (userId, testId, data) => async (dispatch) => {
     await User.submitTestResults(userId, testId, data);
     dispatch(feedbackActions.setFeedback({
       feedback: {
-        message: 'Resultados enviados correctamente',
+        message: 'Resultados guardados satisfactoriamente',
         type: 'success',
       },
     }));
