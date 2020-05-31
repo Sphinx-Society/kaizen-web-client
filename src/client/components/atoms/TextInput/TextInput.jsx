@@ -60,7 +60,7 @@ const TextInput = (props) => {
     'current-password': id === 'current-password',
     'new-password': id === 'new-password',
   });
-
+  
   return (
     <div className={textInputContainerClassName}>
       <input
