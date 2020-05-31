@@ -1,0 +1,24 @@
+.test-form {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  grid-template-columns: repeat( auto-fit, minmax(.5fr, 1fr));
+  grid-template-rows: auto 30%;
+  grid-gap: 1em;
+  .fields-container {
+    display: grid;
+  height: 100%;
+  width: 100%;
+  grid-template-columns: repeat( auto-fit, minmax(.5fr, 1fr));
+  }
+
+  .textarea {
+    color: $colorFontMain;
+    textarea {
+    margin-top: getSpacing(2);
+    padding: 1em;
+    width: 100%;
+    margin: 0 auto;
+    }
+  }
+}

@@ -120,6 +120,6 @@
     },
     "setupFiles": [
       "<rootDir>/jest.init.js"
-     ]
+    ]
   }
 }

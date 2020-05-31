@@ -8,7 +8,7 @@ import UserProfile from '../components/pages/UserProfile/UserProfile';
 import TestsHistory from '../components/pages/TestsHistory/TestsHistory';
 import Settings from '../components/pages/Settings/Settings';
 import Main from '../components/pages/Main/Main';
-import FillExam from '../components/pages/FillExam/FillExam';
+import FillTest from '../components/pages/FillExam/FillTest';
 
 
 import {
@@ -67,7 +67,7 @@ export default [
   },
   {
     path: fillExam(),
-    component: FillExam,
+    component: FillTest,
     exact: true,
   },
   {

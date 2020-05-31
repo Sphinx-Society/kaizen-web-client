@@ -8,4 +8,4 @@ export const settings = () => '/settings';
 export const userProfile = () => '/user';
 export const createUser = () => '/user-editor';
 export const main = () => '/';
-export const fillExam = () => '/fill-exam';
+export const fillExam = () => '/fill-test';
