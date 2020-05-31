@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { AiOutlineUser as ProfileIcon } from 'react-icons/ai';
 
 import NavbarProvider from '../../providers/NavbarProvider/NavbarProvider';
+import FeedbackProvider from '../../providers/FeedbackProvider/FeedbackProvider';
 import Surface from '../../atoms/Surface/Surface';
 import Button from '../../atoms/Button/Button';
 import Logo from '../../atoms/Logo/Logo';
@@ -36,26 +37,28 @@ const Settings = (props) => {
   const isMobile = width < parseInt(breakpointMedium, 10);
 
   return (
-    <NavbarProvider>
-      <Surface
-        disableSpacing={isMobile}
-        disableShadow={isMobile}
-      >
-        <div className='settings-container'>
-          <div className='settings-container__logo'>
-            <Logo />
-            <h2>Kaizen</h2>
+    <FeedbackProvider>
+      <NavbarProvider>
+        <Surface
+          disableSpacing={isMobile}
+          disableShadow={isMobile}
+        >
+          <div className='settings-container'>
+            <div className='settings-container__logo'>
+              <Logo />
+              <h2>Kaizen</h2>
+            </div>
+            <section className='settings-container__options'>
+              <Link id='profile-link' className='option-container' to={userProfile()}>
+                <dd>Ver mi perfil</dd>
+                <ProfileIcon size='1.5em' />
+              </Link>
+              <Button onClick={logout}>Cerrar sesión</Button>
+            </section>
           </div>
-          <section className='settings-container__options'>
-            <Link id='profile-link' className='option-container' to={userProfile()}>
-              <dd>Ver mi perfil</dd>
-              <ProfileIcon size='1.5em' />
-            </Link>
-            <Button onClick={logout}>Cerrar sesión</Button>
-          </section>
-        </div>
-      </Surface>
-    </NavbarProvider>
+        </Surface>
+      </NavbarProvider>
+    </FeedbackProvider>
   );
 };
 
