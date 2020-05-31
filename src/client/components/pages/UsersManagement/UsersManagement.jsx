@@ -72,7 +72,7 @@ const UsersManagement = (props) => {
 
   const { isLoading } = useSelector((state) => state.feedback);
 
-  const fnImportUsers = () => {
+  const handleAddMassiveUsers = () => {
     setShowCustomModal(true);
     dispatch(setModalDialog({
       modal: {
@@ -82,7 +82,7 @@ const UsersManagement = (props) => {
     }));
   };
 
-  const fnDeleteUser = (name, id) => {
+  const handleDeleteUser = ({ name, id }) => {
     setShowCustomModal(false);
     dispatch(setModalDialog({
       modal: {
@@ -130,9 +130,6 @@ const UsersManagement = (props) => {
     dispatch(setEditingUser({ editingUser }));
     gotToUserEditor();
   };
-  const handleDeleteUser = (deletingUser) => () => {
-    fnDeleteUser(deletingUser.name, deletingUser._id);
-  };
 
   useEffect(() => {
     if (!users.length) {
@@ -145,7 +142,7 @@ const UsersManagement = (props) => {
       <Button
         color='secondary'
         icon={<FileImport size='1.2em' />}
-        onClick={fnImportUsers}
+        onClick={handleAddMassiveUsers}
       >
         Importar .csv
       </Button>

@@ -229,4 +229,3 @@ export const assingTest = (testName, testId, patientUser) => async (dispatch) =>
   }
 };
 
-export default login;
