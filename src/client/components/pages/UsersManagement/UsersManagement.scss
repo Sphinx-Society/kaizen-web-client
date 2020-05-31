@@ -1,0 +1,19 @@
+.users-management {
+  &__upload-csv-container {
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    min-height: 220px;
+    justify-content: space-between;
+    padding: getSpacing(2);
+
+    &__download-button {
+      text-align: center;
+      margin: getSpacing(2) 0;
+    }
+
+    p {
+      text-align: center;
+    }
+  }
+}

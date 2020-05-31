@@ -18,3 +18,8 @@ export const setSelectedTests = (payload) => ({
   payload,
 });
 
+export const setFailedFilesLink = (payload) => ({
+  type: 'USER/SET_FAILED_FILES_LINK',
+  payload,
+});
+

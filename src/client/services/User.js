@@ -2,6 +2,7 @@ import Request from './Request';
 import { getStringFromDate } from '../utils/date';
 import { getCookie } from '../utils/cookie';
 import { parseToken } from '../utils/auth';
+import { getAnchorFromCsv } from '../utils/csv';
 
 class User extends Request {
   constructor() {
@@ -150,6 +151,18 @@ class User extends Request {
     };
 
     return this.axios.post(`${this.baseUrl}`, newUser);
+  }
+
+  async createUsers(data) {
+    return this.axios.post(`${this.baseUrl}/massive`, data)
+      .then((res) => {
+        console.log(res.data, 'res.data');
+        if (res.data) {
+          const anchor = getAnchorFromCsv(res.data, res.headers['content-type'], 'usuarios_fallidos.csv');
+          return anchor;
+        }
+        return null;
+      });
   }
 
   async updateUser(data) {
