@@ -203,7 +203,13 @@ class User extends Request {
 
     return this.axios.get(url)
       .then(({ data: { message: { tests } } }) => {
-        return tests;
+        return tests.map((test) => ({
+          ...test,
+          id: test.testId,
+          name: test.testName,
+          doctorName: `${test.requestBy.firstName} ${test.requestBy.lastName}`,
+          statusLabel: test.status,
+        }));
       })
       .catch((error) => {
         throw error;
