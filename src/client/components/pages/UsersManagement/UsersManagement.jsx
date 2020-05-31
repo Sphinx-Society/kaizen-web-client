@@ -82,7 +82,7 @@ const UsersManagement = (props) => {
     }));
   };
 
-  const handleDeleteUser = ({ name, id }) => {
+  const handleDeleteUser = ({ name, id }) => () => {
     setShowCustomModal(false);
     dispatch(setModalDialog({
       modal: {
@@ -95,17 +95,17 @@ const UsersManagement = (props) => {
 
   const gotToUserEditor = () => push(createUser());
 
-  const handleNextPage = () => {
+  const handleNextPage = (query) => {
     const page = currentPage + 1;
     if (page <= totalPages) {
-      dispatch(listUsers(page));
+      dispatch(listUsers(page, query, activeRole));
     }
   };
 
-  const handlePrevPage = () => {
+  const handlePrevPage = (query) => {
     const page = currentPage - 1;
     if (page >= 1) {
-      dispatch(listUsers(page));
+      dispatch(listUsers(page, query, activeRole));
     }
   };
 
@@ -132,13 +132,14 @@ const UsersManagement = (props) => {
   };
 
   useEffect(() => {
+    console.log(users);
     if (!users.length) {
       dispatch(listUsers());
     }
   }, []);
 
   const menu = () => (
-    <div className='btn-menuT'>
+    <div className='users-management__admin-menu'>
       <Button
         color='secondary'
         icon={<FileImport size='1.2em' />}
@@ -155,10 +156,9 @@ const UsersManagement = (props) => {
       </Button>
       <Select
         options={profiles}
-        defaultOption='Selecciona un rol'
         onChange={searchForRole}
         value={activeRole}
-        placeholder='Busca un rol...'
+        placeholder='Selecciona un rol'
         id='select-a-role-filter-select'
         name='role'
       />

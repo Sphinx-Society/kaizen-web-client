@@ -43,7 +43,8 @@ $borderSolid2pxDarkGray: solid 2px $colorFontDarkGray;
 
 .--surface-card {
   display: block;
-  @include addSpaces(2);
+  margin: getSpacing(2) auto;
+  padding: getSpacing(2);
   border-radius: getSpacing(2);
   box-shadow: 0px 0px 4px $colorBoxShadowLight;
 }

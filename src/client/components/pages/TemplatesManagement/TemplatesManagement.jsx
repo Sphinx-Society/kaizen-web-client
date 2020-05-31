@@ -45,17 +45,17 @@ const TemplatesManagement = (props) => {
     }
   }, []);
 
-  const handleNextPage = () => {
+  const handleNextPage = (query) => {
     const page = currentPage + 1;
     if (page <= totalPages) {
-      dispatch(listTemplates(page));
+      dispatch(listTemplates(page, query));
     }
   };
 
-  const handlePrevPage = () => {
+  const handlePrevPage = (query) => {
     const page = currentPage - 1;
     if (page >= 1) {
-      dispatch(listTemplates(page));
+      dispatch(listTemplates(page, query));
     }
   };
 
