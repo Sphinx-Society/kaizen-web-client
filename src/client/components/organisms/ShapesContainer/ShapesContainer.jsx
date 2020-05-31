@@ -15,7 +15,7 @@ const ShapesContainer = () => {
       <img className='login-shape login-shape--vector3' src={Vector1} alt='vectorform' />
       <div className='login-banner-container'>
         <h1>
-          Gestor de examenes
+          Gestor de exámenes
           <br />
           de Laboratorio
         </h1>
