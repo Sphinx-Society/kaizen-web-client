@@ -132,7 +132,6 @@ const UsersManagement = (props) => {
   };
 
   useEffect(() => {
-    console.log(users);
     if (!users.length) {
       dispatch(listUsers());
     }

@@ -10,11 +10,11 @@ class User extends Request {
     this.baseUrl = `${this.apiUrl}/users`;
   }
 
-  async listUsers(page, documentId, role) {
+  async listUsers(page, query, role) {
     let url = `${this.baseUrl}?page=${page}`;
 
-    if (documentId) {
-      url = `${url}&documentId=${documentId}`;
+    if (query) {
+      url = `${url}&q=${query}`;
     }
 
     if (role) {

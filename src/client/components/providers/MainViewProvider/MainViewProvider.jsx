@@ -38,6 +38,7 @@ const MainViewProvider = (props) => {
 
   return (
     <Surface
+      className='main-view-provider-surface-container'
       disableSpacing={isMobile}
       disableShadow={isMobile}
     >
