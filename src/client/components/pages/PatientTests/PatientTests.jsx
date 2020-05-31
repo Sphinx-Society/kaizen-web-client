@@ -20,7 +20,7 @@ import withAuth from '../../hocs/withAuth';
 import withUserData from '../../hocs/withUserData';
 
 import { setPatientUser, setSelectedTests, setEditingTest } from '../../../redux/user/user.actions';
-import { listTests, assingTest } from '../../../redux/user/user.actions.requests';
+import { listTests, assingTest, deleteTestPending } from '../../../redux/user/user.actions.requests';
 import { listTemplates } from '../../../redux/templates/templates.actions.requests';
 
 import { getStringFromDate } from '../../../utils/date';
@@ -147,6 +147,10 @@ const PatientTest = (props) => {
     };
   };
 
+  const handleDeleteTestPending = ({ testId }) => () => {
+    dispatch(deleteTestPending(testId, patientUser));
+  };
+
   const menu = () => (
     <Button
       color='primary'
@@ -261,15 +265,15 @@ const PatientTest = (props) => {
                         icon={<EyeIcon />}
                         onClick={handleTestField(row)}
                         iconMode='1'
-                        disabled={row.status !== 'done' && isRoleDoctor}
+                        disabled={row.status.toLowerCase() !== 'done' && isRoleDoctor}
                       />
-                      {(isRoleDoctor && row.status !== 'done') && (
+                      {(isRoleDoctor && row.status.toLowerCase() !== 'done') && (
                         <Button
                           className='--shadowed --spaced'
                           type='icon'
                           icon={<DeleteIcon />}
                           iconMode='1'
-                          onClick={() => console.log('eliminar test')}
+                          onClick={handleDeleteTestPending(row)}
                         />
                       )}
                     </div>

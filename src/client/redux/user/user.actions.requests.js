@@ -256,3 +256,17 @@ export const submitTestResults = (userId, testId, data) => async (dispatch) => {
   }
 };
 
+export const deleteTestPending = (testId, patientUser) => async (dispatch) => {
+  setIsLoading(dispatch, true);
+  const User = new UserService();
+
+  try {
+    await User.deleteTestPending(testId, patientUser.id);
+    dispatch(listTests(patientUser));
+  } catch (error) {
+    setErrorFeedback(dispatch, error);
+    throw error;
+  } finally {
+    setIsLoading(dispatch, false);
+  }
+};

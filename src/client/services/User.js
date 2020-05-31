@@ -279,6 +279,14 @@ class User extends Request {
       });
   }
 
+  async deleteTestPending(testId, patientId) {
+    return this.axios.delete(`${this.baseUrl}/${patientId}/tests/${testId}`)
+      .then(({ data: { message } }) => message)
+      .catch((error) => {
+        throw error;
+      });
+  }
+
 }
 
 export default User;
