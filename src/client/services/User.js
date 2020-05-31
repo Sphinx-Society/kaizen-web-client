@@ -62,11 +62,6 @@ class User extends Request {
           phoneNumber,
         } = message.profile;
 
-        const statusLabels = {
-          'DONE': 'Hecho',
-          'PENDING': 'Por realizar',
-        };
-
         return {
           email,
           username,
@@ -215,7 +210,21 @@ class User extends Request {
 
     return this.axios.get(url)
       .then(({ data: { message: { tests } } }) => {
-        return tests;
+
+        const statusLabels = {
+          'DONE': 'Hecho',
+          'PENDING': 'Publicación pendiente',
+        };
+
+        return tests.map((test) => ({
+          ...test,
+          id: test.testId,
+          name: test.testName,
+          status: test.status.toLowerCase(),
+          statusLabel: statusLabels[test.status],
+          requestedAt: getStringFromDate(new Date(test.requestedAt)),
+          doctorName: `${test.requestBy.firstName} ${test.requestBy.lastName}`,
+        }));
       })
       .catch((error) => {
         throw error;

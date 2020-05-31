@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaEye as ViewIcon } from 'react-icons/fa';
@@ -39,6 +39,20 @@ const PatientsManagement = (props) => {
     gotToPatientTests();
   };
 
+  const handleNextPage = (query) => {
+    const page = currentPage + 1;
+    if (page <= totalPages) {
+      dispatch(listUsers(page, query));
+    }
+  };
+
+  const handlePrevPage = (query) => {
+    const page = currentPage - 1;
+    if (page >= 1) {
+      dispatch(listUsers(page, query));
+    }
+  };
+
   const mobileRow = (item) => (
     <UserCard
       className='patients-management__user-card--surface'
@@ -56,14 +70,10 @@ const PatientsManagement = (props) => {
     />
   );
 
-  React.useEffect(() => {
-    dispatch(listUsers(1));
-    return () => dispatch(setUsers({
-      users: [],
-      currentPage: 1,
-      totalPages: 1,
-      totalUsers: 0,
-    }));
+  useEffect(() => {
+    if (!users.length) {
+      dispatch(listUsers());
+    }
   }, []);
 
   return (
@@ -120,8 +130,8 @@ const PatientsManagement = (props) => {
               isLoading={isLoading}
               mobileRow={mobileRow}
               totalPages={totalPages}
-              onNextPageClick={() => null}
-              onPrevPageClick={() => null}
+              onNextPageClick={handleNextPage}
+              onPrevPageClick={handlePrevPage}
               onSearch={searchForUsers}
             />
           </MainViewProvider>
@@ -131,6 +141,10 @@ const PatientsManagement = (props) => {
   );
 };
 
-PatientsManagement.propTypes = {};
+PatientsManagement.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
+};
 
 export default withUserData(withAuth(PatientsManagement));

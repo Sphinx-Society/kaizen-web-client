@@ -205,10 +205,15 @@ export const downloadTests = (id, testIds) => async (dispatch) => {
 export const listTests = (user) => async (dispatch) => {
   setIsLoading(dispatch, true);
   const User = new UserService();
+  const { role } = user;
 
   try {
     const tests = await User.listTests(user.id);
-    dispatch(userActions.setPatientUser({ patientUser: { ...user, tests } }));
+    if (role === 'patient') {
+      dispatch(userActions.setUser({ user: { ...user, tests } }));
+    } else {
+      dispatch(userActions.setPatientUser({ patientUser: { ...user, tests } }));
+    }
   } catch (error) {
     setErrorFeedback(dispatch, error);
     throw error;

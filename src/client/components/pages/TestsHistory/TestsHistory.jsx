@@ -45,8 +45,6 @@ const TestsHistory = () => {
     }
   };
 
-  const editTe = () => {};
-
   useEffect(() => {
     dispatch(listTests(user));
   }, []);

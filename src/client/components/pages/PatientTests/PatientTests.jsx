@@ -50,7 +50,6 @@ const PatientTest = (props) => {
   } = useSelector((state) => state.templates);
 
   const dispatch = useDispatch();
-  const isRolePatient = user.role === 'patient';
   const isRoleDoctor = user.role === 'doctor';
   const isRoleLab = user.role === 'lab';
 
@@ -93,16 +92,7 @@ const PatientTest = (props) => {
   // Update patient exams
   useEffect(() => {
     if (patientUser.tests) {
-      const basicDataTests = patientUser.tests.map((item) => ({
-        ...item,
-        testId: item.testId,
-        status: item.status,
-        requestedAt: getStringFromDate(new Date(item.requestedAt)),
-        testName: item.testName,
-        doctorName: `${item.requestBy.firstName} ${item.requestBy.lastName}`,
-        patientId: patientUser.id,
-      }));
-      setFilteredTests(basicDataTests);
+      setFilteredTests(patientUser.tests);
     }
   }, [patientUser.tests]);
 
@@ -157,34 +147,15 @@ const PatientTest = (props) => {
     };
   };
 
-  const menu = () => {
-    let btnToReturn = null;
-    if (isRoleDoctor) {
-      btnToReturn = (
-        <Button
-          color='primary'
-          icon={<PlusIcon size='1.2em' />}
-          onClick={() => setTemplateToAssingFromSelected(true)}
-        >
-          Asignar Examen
-        </Button>
-      );
-    }
-
-    if (isRolePatient) {
-      btnToReturn = (
-        <Button
-          color='primary'
-          icon={<DeleteIcon size='1.2em' />}
-          onClick={() => setTemplateToAssingFromSelected(true)}
-        >
-          Descargar selección
-        </Button>
-      );
-    }
-
-    return btnToReturn;
-  };
+  const menu = () => (
+    <Button
+      color='primary'
+      icon={<PlusIcon />}
+      onClick={() => setTemplateToAssingFromSelected(true)}
+    >
+      Asignar Examen
+    </Button>
+  );
 
   return (
     <ModalProvider>
@@ -192,16 +163,14 @@ const PatientTest = (props) => {
         <NavbarProvider>
           <MainViewProvider
             title={`Paciente: ${patientUser.firstName} ${patientUser.lastName}`}
-            showBackButton={!isRolePatient}
-            lowerMore={!isRolePatient}
+            showBackButton
+            lowerMore
             onBackButtonClick={() => {
-              if (!isRolePatient) {
-                dispatch(setPatientUser({}));
-                push(patientsManagement());
-              }
+              dispatch(setPatientUser({}));
+              push(patientsManagement());
             }}
             showBottomLine
-            menu={menu()}
+            menu={isRoleDoctor && menu()}
           >
             <div className='--surface-card'>
               <ListReadableFields>
@@ -248,23 +217,22 @@ const PatientTest = (props) => {
               isLoading={isLoading}
               columns={[
                 {
-                  header: '',
+                  header: isRoleLab ? 'Publicado' : '',
                   accessor: '',
-                  cell: ({ id, status }) => (
+                  cell: ({ id }) => (
                     <Checkbox
                       onChange={handleCheckboxOnChange(id)}
                       checked={selectedTests.includes(id)}
-                      disabled={!isRolePatient}
                       id={id}
                     />
                   ),
                   id: 0,
-                  width: '30px',
-                  collapse: true,
+                  width: isRoleDoctor ? '30px' : 'auto',
+                  collapse: isRoleDoctor,
                 },
                 {
                   header: 'Estado',
-                  accessor: 'status',
+                  accessor: 'statusLabel',
                   id: 1,
                 },
                 {
@@ -290,7 +258,7 @@ const PatientTest = (props) => {
                       <Button
                         className='--shadowed --spaced'
                         type='icon'
-                        icon={<EyeIcon size='1.8em' />}
+                        icon={<EyeIcon />}
                         onClick={handleTestField(row)}
                         iconMode='1'
                         disabled={row.status !== 'done' && isRoleDoctor}
@@ -299,7 +267,7 @@ const PatientTest = (props) => {
                         <Button
                           className='--shadowed --spaced'
                           type='icon'
-                          icon={<DeleteIcon size='1.8em' />}
+                          icon={<DeleteIcon />}
                           iconMode='1'
                           onClick={() => console.log('eliminar test')}
                         />
@@ -333,6 +301,10 @@ const PatientTest = (props) => {
   );
 };
 
-PatientTest.propTypes = {};
+PatientTest.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
+};
 
 export default withUserData(withAuth(PatientTest));

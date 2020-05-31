@@ -155,14 +155,16 @@ const FillExam = (props) => {
                 paintDynamicField(field, stateTest, handleOnChange)
               ))}
             </div>
-            <Button
-              data-test='login-form-button'
-              color='primary'
-              type='submit'
-              form='test-form'
-            >
-              Publicar resultados
-            </Button>
+            <div>
+              <Button
+                data-test='login-form-button'
+                color='primary'
+                type='submit'
+                form='test-form'
+              >
+                Guardar
+              </Button>
+            </div>
           </form>
         </MainViewProvider>
       </FeedbackProvider>

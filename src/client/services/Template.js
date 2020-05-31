@@ -104,6 +104,7 @@ class Template extends Request {
         ...formattedField,
         minLimit: Number(formattedField.minLimit),
         maxLimit: Number(formattedField.maxLimit),
+        options: formattedField.options ? formattedField.options.map(({ value }) => value) : [],
       };
     });
 
