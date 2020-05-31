@@ -58,7 +58,13 @@ class Template extends Request {
         ...formattedField,
         minLimit: Number(formattedField.minLimit),
         maxLimit: Number(formattedField.maxLimit),
-        id: `${formattedField.name}-${formattedField.type}`,
+        options: formattedField.options ? formattedField.options.map(({ value }) => value) : [],
+        id: JSON.stringify({
+          name: formattedField.name,
+          min: formattedField.minLimit,
+          max: formattedField.maxLimit,
+          unit: formattedField.unit,
+        }),
       };
     });
 

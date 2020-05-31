@@ -66,7 +66,6 @@ const PatientTest = (props) => {
   };
 
   useEffect(() => {
-    console.log(user.role);
     dispatch(setEditingTest({ editingTest: null }));
     dispatch(listTests(patientUser));
 

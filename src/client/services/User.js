@@ -156,7 +156,6 @@ class User extends Request {
   async createUsers(data) {
     return this.axios.post(`${this.baseUrl}/massive`, data)
       .then((res) => {
-        console.log(res.data, 'res.data');
         if (res.data) {
           const anchor = getAnchorFromCsv(res.data, res.headers['content-type'], 'usuarios_fallidos.csv');
           return anchor;
@@ -246,15 +245,30 @@ class User extends Request {
         throw error;
       });
   }
-  // async testResults(userId, testId, data) {
-  //   return this.axios.put(
-  //     `${this.baseUrl}/${userId}/tests/${testId}/results`,
-  //     { results: data },
-  //   )
-  //     .catch((error) => {
-  //       throw error;
-  //     });
-  // }
+
+  async submitTestResults(userId, testId, data) {
+    const results = [];
+    Object.keys(data).forEach((key) => {
+      const meta = JSON.parse(key);
+      const result = { value: data[key] };
+      Object.keys(meta).forEach((metaKey) => {
+        const metaData = meta[metaKey];
+        if (metaData) {
+          result[metaKey] = metaData;
+        }
+      });
+      results.push(result);
+    });
+
+    return this.axios.put(`${this.baseUrl}/${userId}/tests/${testId}/results`, { results })
+      .then(({ data: { message } }) => {
+        console.log(message);
+        return message;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
 
 }
 

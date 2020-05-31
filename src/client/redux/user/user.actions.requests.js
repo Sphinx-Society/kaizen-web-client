@@ -232,16 +232,22 @@ export const assingTest = (testName, testId, patientUser) => async (dispatch) =>
   }
 };
 
-// export const testResults = (userId, testId, data) => async (dispatch) => {
-//   setIsLoading(dispatch, true);
-//   const User = new UserService();
-//   try {
-//     const {} = await User.testResults(userId, testId, data);
-//   } catch (error) {
-//     setErrorFeedback(dispatch, error);
-//     throw error;
-//   } finally {
-//     setIsLoading(dispatch, false);
-//   }
-// };
+export const submitTestResults = (userId, testId, data) => async (dispatch) => {
+  setIsLoading(dispatch, true);
+  const User = new UserService();
+  try {
+    await User.submitTestResults(userId, testId, data);
+    dispatch(feedbackActions.setFeedback({
+      feedback: {
+        message: 'Resultados enviados correctamente',
+        type: 'success',
+      },
+    }));
+  } catch (error) {
+    setErrorFeedback(dispatch, error);
+    throw error;
+  } finally {
+    setIsLoading(dispatch, false);
+  }
+};
 

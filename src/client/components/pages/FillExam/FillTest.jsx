@@ -14,7 +14,7 @@ import Button from '../../atoms/Button/Button';
 import useForm from '../../../hooks/useForm/useForm';
 import { patientTests, patientsManagement } from '../../../routes/paths';
 import { getTemplate } from '../../../redux/templates/templates.actions.requests';
-import { setEditingTest } from '../../../redux/user/user.actions';
+import { submitTestResults } from '../../../redux/user/user.actions.requests';
 
 import './FillTest.scss';
 
@@ -32,6 +32,7 @@ const paintDynamicField = (field, state, handler) => {
     case 'string': {
       return (
         <TextInput
+          key={id}
           value={state[id]}
           inputName={id}
           onChange={handler}
@@ -44,6 +45,7 @@ const paintDynamicField = (field, state, handler) => {
     case 'number': {
       return (
         <TextInput
+          key={id}
           value={state[id]}
           inputName={id}
           onChange={handler}
@@ -56,9 +58,10 @@ const paintDynamicField = (field, state, handler) => {
         />
       );
     }
-    case 'options': {
+    case 'select': {
       return (
         <Select
+          key={id}
           options={field.options}
           value={state[id]}
           name={id}
@@ -71,7 +74,10 @@ const paintDynamicField = (field, state, handler) => {
     }
     case 'text': {
       return (
-        <div className='textarea'>
+        <div
+          key={id}
+          className='textarea'
+        >
           <label htmlFor={id}>{name}</label>
           <textarea
 
@@ -110,6 +116,13 @@ const FillExam = (props) => {
 
   const [stateTest, handleOnChange] = useForm(editingTemplate ? initialFormState() : {});
 
+  const handleOnSubmit = (event) => {
+    event.preventDefault();
+    const { testId, patientId } = editingTest;
+    dispatch(submitTestResults(patientId, testId, stateTest))
+      .then(() => goToPatientTests());
+  };
+
   useEffect(() => {
     if (editingTest) {
       dispatch(getTemplate(editingTest.templateId));
@@ -135,6 +148,7 @@ const FillExam = (props) => {
           <form
             id='test-form'
             className='test-form'
+            onSubmit={handleOnSubmit}
           >
             <div className='fields-container'>
               {editingTemplate && editingTemplate.fields.map((field) => (
