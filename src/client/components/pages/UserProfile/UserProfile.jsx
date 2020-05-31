@@ -45,7 +45,7 @@ const UserProfile = function (props) {
           showBottomLine
           moveTitle
         >
-          <div className='user-profile-container'>
+          <div className='--surface-card'>
             <ListReadableFields>
               <ReadableField
                 title='Nombres'

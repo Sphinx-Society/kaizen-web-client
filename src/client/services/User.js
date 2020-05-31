@@ -212,12 +212,23 @@ class User extends Request {
   }
 
   async listTests(id) {
-    const url = `${this.baseUrl}/${id}/tests`;
+    const url = `${this.baseUrl}/${id}/tests?`;
 
     return this.axios.get(url)
       .then(({ data: { message: { tests } } }) => {
         return tests;
       })
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  async assingTest(testName, templateId, userId) {
+    return this.axios.post(
+      `${this.baseUrl}/${userId}/tests/`,
+      { tests: { testName, templateId } },
+    )
+      .then(({ data: { message } }) => message)
       .catch((error) => {
         throw error;
       });

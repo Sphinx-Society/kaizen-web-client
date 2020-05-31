@@ -97,7 +97,7 @@ Modal.propTypes = {
   /** Type of the dialog */
   type: PropTypes.string.isRequired,
   /** Text to present to the user */
-  message: PropTypes.string.isRequired,
+  message: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
   /** Function that executes the main action of the process */
   mainFn: PropTypes.func.isRequired,
   /** Function that close the process  */
