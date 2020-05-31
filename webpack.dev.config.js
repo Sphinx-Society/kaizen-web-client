@@ -2,7 +2,6 @@ const { resolve } = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const autoprefixer = require('autoprefixer');
-require('dotenv').config();
 
 module.exports = {
   entry: ['@babel/polyfill', './src/client/index.js'],
@@ -66,6 +65,9 @@ module.exports = {
         ],
       },
     }),
-    new webpack.EnvironmentPlugin([...Object.keys(process.env)]),
+    new webpack.EnvironmentPlugin({
+      API_URL: 'http://127.0.0.1:8008/api',
+      API_VERSION: 'v1',
+    }),
   ],
 };

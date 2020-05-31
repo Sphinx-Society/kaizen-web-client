@@ -6,7 +6,6 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const webpack = require('webpack');
-require('dotenv').config();
 
 module.exports = {
   entry: ['@babel/polyfill', './src/client/index.js'],
@@ -84,8 +83,8 @@ module.exports = {
       cleanOnceBeforeBuildPatterns: ['**/app.*'],
     }),
     new webpack.EnvironmentPlugin({
-      REACT_APP_API_URL: JSON.stringify(process.env.REACT_APP_API_URL),
-      REACT_APP_API_VERSION: JSON.stringify(process.env.REACT_APP_API_VERSION),
+      API_URL: 'https://kaizen-medical.herokuapp.com/api',
+      API_VERSION: 'v1',
     }),
   ],
 };

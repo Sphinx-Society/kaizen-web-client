@@ -5,7 +5,7 @@ import { login } from '../routes/paths';
 
 class Request {
   constructor() {
-    this.apiUrl = `${process.env.REACT_APP_API_URL}/${process.env.REACT_APP_API_VERSION}`;
+    this.apiUrl = `${process.env.API_URL}/${process.env.API_VERSION}`;
     this.token = getCookie('token');
     this.axios = axios;
     this.cookieAge = 86400;
