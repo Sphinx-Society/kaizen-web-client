@@ -232,26 +232,6 @@ export const assingTest = (testName, testId, patientUser) => async (dispatch) =>
   }
 };
 
-export const getMedicalTestTemplate = (patientUserId, testId) => async (dispatch) => {
-  setIsLoading(dispatch, true);
-  const User = new UserService();
-  const Template = new TemplateService();
-
-  try {
-    const { tests } = await User.getMedicalTest(patientUserId, testId);
-    const { templateId } = tests[0];
-    const template = await Template.getTemplate(templateId);
-    dispatch(userActions.setPatientTestTemplate({ editingTemplate: template }));
-
-    return template[0];
-  } catch (error) {
-    setErrorFeedback(dispatch, error);
-    throw error;
-  } finally {
-    setIsLoading(dispatch, false);
-  }
-};
-
 // export const testResults = (userId, testId, data) => async (dispatch) => {
 //   setIsLoading(dispatch, true);
 //   const User = new UserService();

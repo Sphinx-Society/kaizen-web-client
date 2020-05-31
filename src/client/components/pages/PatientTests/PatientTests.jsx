@@ -66,8 +66,13 @@ const PatientTest = (props) => {
   };
 
   useEffect(() => {
+    console.log(user.role);
+    dispatch(setEditingTest({ editingTest: null }));
     dispatch(listTests(patientUser));
-    if (isRoleDoctor) dispatch(listTemplates());
+
+    if (isRoleDoctor) {
+      dispatch(listTemplates());
+    }
   }, []);
 
   // Load the list of templates to assign one to the patient by the role doctor
@@ -90,6 +95,7 @@ const PatientTest = (props) => {
   useEffect(() => {
     if (patientUser.tests) {
       const basicDataTests = patientUser.tests.map((item) => ({
+        ...item,
         testId: item.testId,
         status: item.status,
         requestedAt: getStringFromDate(new Date(item.requestedAt)),
@@ -139,6 +145,17 @@ const PatientTest = (props) => {
         ),
       },
     }));
+  };
+
+  const handleTestField = ({ testId, patientId, templateId }) => () => {
+    if (isRoleDoctor) {
+      console.log('ver examen');
+    }
+
+    if (isRoleLab) {
+      dispatch(setEditingTest({ editingTest: { testId, patientId, templateId } }));
+      push(fillTest());
+    };
   };
 
   const menu = () => {
@@ -275,13 +292,7 @@ const PatientTest = (props) => {
                         className='--shadowed --spaced'
                         type='icon'
                         icon={<EyeIcon size='1.8em' />}
-                        onClick={() => {
-                          if (isRoleDoctor) console.log('ver examen');
-                          if (isRoleLab) {
-                            dispatch(setEditingTest({ editingTest: { testId: row.testId, patientId: row.patientId } }));
-                            push(fillTest());
-                          };
-                        }}
+                        onClick={handleTestField(row)}
                         iconMode='1'
                         disabled={row.status !== 'done' && isRoleDoctor}
                       />

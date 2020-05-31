@@ -238,7 +238,10 @@ class User extends Request {
     return this.axios.get(
       `${this.baseUrl}/${patientUserId}/tests/${testId}`,
     )
-      .then(({ data: { message } }) => message)
+      .then(({ data: { message } }) => {
+        console.log(message);
+        return message;
+      })
       .catch((error) => {
         throw error;
       });

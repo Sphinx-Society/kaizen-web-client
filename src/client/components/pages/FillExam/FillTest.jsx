@@ -12,25 +12,13 @@ import withUserData from '../../hocs/withUserData';
 import withAuth from '../../hocs/withAuth';
 import Button from '../../atoms/Button/Button';
 import useForm from '../../../hooks/useForm/useForm';
-import { patientsManagement } from '../../../routes/paths';
+import { patientTests, patientsManagement } from '../../../routes/paths';
 import { getTemplate } from '../../../redux/templates/templates.actions.requests';
-import { getMedicalTestTemplate } from '../../../redux/user/user.actions.requests';
+import { setEditingTest } from '../../../redux/user/user.actions';
 
 import './FillTest.scss';
 
-const initialForm = {};
-
-const initialFormState = () => {
-
-  template.fields.forEach(({ id }) => {
-    initialForm[id] = '';
-  });
-};
-
-initialFormState();
-const RenderFields = (field) => {
-
-  const [stateTest, handleOnChange] = useForm(initialForm);
+const paintDynamicField = (field, state, handler) => {
   const {
     type,
     id,
@@ -44,9 +32,9 @@ const RenderFields = (field) => {
     case 'string': {
       return (
         <TextInput
-          value={stateTest[id]}
+          value={state[id]}
           inputName={id}
-          onChange={handleOnChange}
+          onChange={handler}
           required={required}
           placeholder={name}
           id={id}
@@ -56,9 +44,9 @@ const RenderFields = (field) => {
     case 'number': {
       return (
         <TextInput
-          value={stateTest[id]}
+          value={state[id]}
           inputName={id}
-          onChange={handleOnChange}
+          onChange={handler}
           required={required}
           min={minLimit}
           max={maxLimit}
@@ -72,9 +60,9 @@ const RenderFields = (field) => {
       return (
         <Select
           options={field.options}
-          value={stateTest[id]}
+          value={state[id]}
           name={id}
-          onChange={handleOnChange}
+          onChange={handler}
           required={required}
           placeholder={name}
           id={id}
@@ -87,9 +75,9 @@ const RenderFields = (field) => {
           <label htmlFor={id}>{name}</label>
           <textarea
 
-            value={stateTest[id]}
+            value={state[id]}
             name={id}
-            onChange={handleOnChange}
+            onChange={handler}
             required={required}
             placeholder={name}
             id={id}
@@ -100,27 +88,47 @@ const RenderFields = (field) => {
     default: return null;
   }
 };
-const FillExam = (props) => {
-  const dispatch = useDispatch();
-  const { testId, patientId } = useSelector((state) => state.user.editingTest);
-  const template = useSelector((state) => state.user.editingTemplate);
 
-  if (!testId || !patientId) {
+const FillExam = (props) => {
+  const { history: { push } } = props;
+
+  const dispatch = useDispatch();
+  const { editingTest } = useSelector((state) => state.user);
+  const { editingTemplate } = useSelector((state) => state.templates);
+
+  const goToPatientTests = () => push(patientTests());
+
+  const initialFormState = () => {
+    const initialForm = {};
+
+    editingTemplate.fields.forEach(({ id }) => {
+      initialForm[id] = '';
+    });
+
+    return initialForm;
+  };
+
+  const [stateTest, handleOnChange] = useForm(editingTemplate ? initialFormState() : {});
+
+  useEffect(() => {
+    if (editingTest) {
+      dispatch(getTemplate(editingTest.templateId));
+    }
+  }, []);
+
+  if (!editingTest) {
     return (
       <Redirect to={patientsManagement()} />
     );
   }
-  useEffect(() => {
-    dispatch(getMedicalTestTemplate(patientId, testId));
-  }, []);
-  const { history: { push } } = props;
+
   return (
     <NavbarProvider>
       <FeedbackProvider>
         <MainViewProvider
           showBackButton={true}
-          onBackButtonClick={() => push(patientsManagement())}
-          title={template.name}
+          onBackButtonClick={goToPatientTests}
+          title={editingTemplate ? editingTemplate.name : ''}
           showBottomLine
           moveTitle
         >
@@ -129,7 +137,9 @@ const FillExam = (props) => {
             className='test-form'
           >
             <div className='fields-container'>
-              {template && template.fields.map((field) => <RenderFields key={field.id} {...field} />)}
+              {editingTemplate && editingTemplate.fields.map((field) => (
+                paintDynamicField(field, stateTest, handleOnChange)
+              ))}
             </div>
             <Button
               data-test='login-form-button'

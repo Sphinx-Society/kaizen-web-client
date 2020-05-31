@@ -37,7 +37,11 @@ class Template extends Request {
 
     return this.axios.get(url)
       .then(({ data: { message } }) => {
-        return message;
+        const [template] = message;
+        return {
+          ...template,
+          id: template._id,
+        };
       })
       .catch((error) => {
         throw getErrorType(error);
