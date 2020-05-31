@@ -83,6 +83,9 @@ module.exports = {
     new CleanWebpackPlugin({
       cleanOnceBeforeBuildPatterns: ['**/app.*'],
     }),
-    new webpack.EnvironmentPlugin([...Object.keys(process.env)]),
+    new webpack.EnvironmentPlugin({
+      REACT_APP_API_URL: JSON.stringify(process.env.REACT_APP_API_URL),
+      REACT_APP_API_VERSION: JSON.stringify(process.env.REACT_APP_API_VERSION),
+    }),
   ],
 };
