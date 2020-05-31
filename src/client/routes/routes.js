@@ -25,7 +25,7 @@ import {
   settings,
   createUser,
   main,
-  fillExam,
+  fillTest,
 } from './paths';
 
 export default [
@@ -80,7 +80,7 @@ export default [
     exact: true,
   },
   {
-    path: fillExam(),
+    path: fillTest(),
     component: FillTest,
     exact: true,
   },

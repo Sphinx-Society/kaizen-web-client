@@ -23,7 +23,7 @@ import { listTests, assingTest } from '../../../redux/user/user.actions.requests
 import { listTemplates } from '../../../redux/templates/templates.actions.requests';
 
 import { getStringFromDate } from '../../../utils/date';
-import { patientsManagement } from '../../../routes/paths';
+import { patientsManagement, fillTest } from '../../../routes/paths';
 
 const PatientTest = (props) => {
   const { history: { push } } = props;
@@ -270,7 +270,7 @@ const PatientTest = (props) => {
                           if (isRoleDoctor) console.log('ver examen');
                           if (isRoleLab) {
                             dispatch(setEditingTest({ editingTest: { testId: row.testId, patientId: row.patientId } }));
-                            
+                            push(fillTest());
                           };
                         }}
                         iconMode='1'
