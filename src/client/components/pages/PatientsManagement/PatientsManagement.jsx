@@ -14,14 +14,12 @@ import withAuth from '../../hocs/withAuth';
 import withUserData from '../../hocs/withUserData';
 
 import { listUsers } from '../../../redux/user/user.actions.requests';
-import { setPatientUser } from '../../../redux/user/user.actions';
+import { setPatientUser, setUsers } from '../../../redux/user/user.actions';
 
 import { patientTests } from '../../../routes/paths';
 
 const PatientsManagement = (props) => {
   const { history: { push } } = props;
-  const dispatch = useDispatch();
-  const gotToPatientTests = () => push(patientTests());
 
   const { isLoading } = useSelector((state) => state.feedback);
   const {
@@ -31,11 +29,12 @@ const PatientsManagement = (props) => {
     totalUsers,
   } = useSelector((state) => state.user);
 
-  const searchForUsers = (query) => {
-    dispatch(listUsers(1, query));
-  };
+  const dispatch = useDispatch();
+  const gotToPatientTests = () => push(patientTests());
 
-  const handleViewPatients = (patient) => () => {
+  const searchForUsers = (query) => dispatch(listUsers(1, query));
+
+  const handleViewPatient = (patient) => () => {
     dispatch(setPatientUser({ patientUser: { ...patient.profile, id: patient.id } }));
     gotToPatientTests();
   };
@@ -44,7 +43,7 @@ const PatientsManagement = (props) => {
     <UserCard
       className='patients-management__user-card--surface'
       isAdminWhoView={false}
-      onClickMain={handleViewPatients(item)}
+      onClickMain={handleViewPatient(item)}
       onClickMainIcon='view'
       data={[
         { title: 'Rol', description: item.role },
@@ -56,6 +55,15 @@ const PatientsManagement = (props) => {
       ]}
     />
   );
+
+  React.useEffect(() => {
+    return () => dispatch(setUsers({
+      users: [],
+      currentPage: 1,
+      totalPages: 1,
+      totalUsers: 0,
+    }));
+  }, []);
 
   return (
     <ModalProvider>
@@ -98,7 +106,7 @@ const PatientsManagement = (props) => {
                         type='icon'
                         icon={<ViewIcon />}
                         iconMode='1'
-                        onClick={handleViewPatients(row)}
+                        onClick={handleViewPatient(row)}
                       />
                     </div>
                   ),

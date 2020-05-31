@@ -22,3 +22,8 @@ export const setPatientUser = (payload) => ({
   type: 'USER/SET_PATIENT_USER',
   payload,
 });
+
+export const setEditingTest = (payload) => ({
+  type: 'USER/SET_EDITING_TEST',
+  payload,
+});

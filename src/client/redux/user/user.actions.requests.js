@@ -183,12 +183,13 @@ export const listTests = (user) => async (dispatch) => {
   }
 };
 
-export const assingTest = (testName, testId, userId) => async (dispatch) => {
+export const assingTest = (testName, testId, patientUser) => async (dispatch) => {
   setIsLoading(dispatch, true);
   const User = new UserService();
 
   try {
-    const test = await User.assingTest(testName, testId, userId);
+    await User.assingTest(testName, testId, patientUser.id);
+    dispatch(listTests(patientUser));
   } catch (error) {
     setErrorFeedback(dispatch, error);
     throw error;
