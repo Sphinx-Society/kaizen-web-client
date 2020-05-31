@@ -18,7 +18,7 @@ export const setSelectedTests = (payload) => ({
   payload,
 });
 
-export const setViewUserTests = (payload) => ({
-  type: 'USER/SET_VIEW_USER_TESTS',
+export const setPatientUser = (payload) => ({
+  type: 'USER/SET_PATIENT_USER',
   payload,
 });

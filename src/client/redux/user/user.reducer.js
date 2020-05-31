@@ -5,7 +5,7 @@ export const initialState = {
   totalUsers: 0,
   totalPages: 1,
   editingUser: null,
-  viewUserTests: null,
+  patientUser: null,
   selectedTests: [],
 };
 
@@ -38,10 +38,10 @@ export default (state = initialState, action) => {
         selectedTests: action.payload.selectedTests,
       };
     }
-    case 'USER/SET_VIEW_USER_TESTS': {
+    case 'USER/SET_PATIENT_USER': {
       return {
         ...state,
-        viewUserTests: action.payload.viewUserTests,
+        patientUser: action.payload.patientUser,
       };
     }
     default: {

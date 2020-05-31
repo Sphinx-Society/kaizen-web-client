@@ -14,16 +14,14 @@ import withAuth from '../../hocs/withAuth';
 import withUserData from '../../hocs/withUserData';
 
 import { listUsers } from '../../../redux/user/user.actions.requests';
-import { setViewUserTests } from '../../../redux/user/user.actions';
+import { setPatientUser } from '../../../redux/user/user.actions';
 
-import { getCookie } from '../../../utils/cookie';
-import {  } from '../../../routes/paths';
+import { patientTests } from '../../../routes/paths';
 
 const PatientsManagement = (props) => {
   const { history: { push } } = props;
   const dispatch = useDispatch();
-
-  const gotToUserTests = () => push(());
+  const gotToPatientTests = () => push(patientTests());
 
   const { isLoading } = useSelector((state) => state.feedback);
   const {
@@ -37,17 +35,16 @@ const PatientsManagement = (props) => {
     dispatch(listUsers(1, query));
   };
 
-  const handleViewUserTests = (viewUserTests) => () => {
-    const role = getCookie('role');
-    dispatch(setViewUserTests({ viewUserTests }));
-    gotToUserTests(role);
+  const handleViewPatients = (patient) => () => {
+    dispatch(setPatientUser({ patientUser: { ...patient.profile, id: patient.id } }));
+    gotToPatientTests();
   };
 
   const mobileRow = (item) => (
     <UserCard
       className='patients-management__user-card--surface'
       isAdminWhoView={false}
-      onClickMain={handleViewUserTests(item)}
+      onClickMain={handleViewPatients(item)}
       onClickMainIcon='view'
       data={[
         { title: 'Rol', description: item.role },
@@ -101,7 +98,7 @@ const PatientsManagement = (props) => {
                         type='icon'
                         icon={<ViewIcon />}
                         iconMode='1'
-                        onClick={handleViewUserTests(row)}
+                        onClick={handleViewPatients(row)}
                       />
                     </div>
                   ),

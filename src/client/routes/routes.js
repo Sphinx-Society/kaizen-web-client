@@ -5,6 +5,7 @@ import TemplatesManagement from '../components/pages/TemplatesManagement/Templat
 import TemplateEditor from '../components/pages/TemplateEditor/TemplateEditor';
 import UsersManagement from '../components/pages/UsersManagement/UsersManagement';
 import PatientsManagement from '../components/pages/PatientsManagement/PatientsManagement';
+import PatientTests from '../components/pages/PatientTests/PatientTests';
 import UserProfile from '../components/pages/UserProfile/UserProfile';
 import TestsHistory from '../components/pages/TestsHistory/TestsHistory';
 import Settings from '../components/pages/Settings/Settings';
@@ -16,6 +17,7 @@ import {
   templateEditor,
   usersManagement,
   patientsManagement,
+  patientTests,
   testsHistory,
   userProfile,
   settings,
@@ -47,6 +49,11 @@ export default [
   {
     path: patientsManagement(),
     component: PatientsManagement,
+    exact: true,
+  },
+  {
+    path: patientTests(),
+    component: PatientTests,
     exact: true,
   },
   {
