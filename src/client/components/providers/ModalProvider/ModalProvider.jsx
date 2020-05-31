@@ -10,7 +10,7 @@ import useOutsideClick from '../../../hooks/useOutsideClick/useOutsideClick';
 import './ModalProvider.scss';
 
 const ModalProvider = (props) => {
-  const { children } = props;
+  const { children, customModal, showCustomModal } = props;
   const ref = useRef(null);
   const dispatch = useDispatch();
   const { type, message, mainFn } = useSelector((state) => state.modalDialog.modal);
@@ -34,12 +34,14 @@ const ModalProvider = (props) => {
               useOutsideClick(ref, closeDialog);
               return (
                 <dialog className='modal-dialog' open={Boolean(type)} ref={ref}>
-                  <Modal
-                    type={type}
-                    message={message}
-                    mainFn={onClick}
-                    onClose={closeDialog}
-                  />
+                  {(customModal && showCustomModal) ? customModal : (
+                    <Modal
+                      type={type}
+                      message={message}
+                      mainFn={onClick}
+                      onClose={closeDialog}
+                    />
+                  )}
                 </dialog>
               );
             }}
@@ -52,6 +54,15 @@ const ModalProvider = (props) => {
 ModalProvider.propTypes = {
   /** Children to render inside the provider */
   children: PropTypes.node.isRequired,
+  /** Custom modal to render */
+  customModal: PropTypes.node,
+  /** Tells if the custom modal should be used in case it was defined */
+  showCustomModal: PropTypes.bool,
+};
+
+ModalProvider.defaultProps = {
+  customModal: null,
+  showCustomModal: false,
 };
 
 export default ModalProvider;

@@ -90,6 +90,37 @@ export const createUser = (data) => async (dispatch) => {
   }
 };
 
+export const createUsers = (csv) => async (dispatch) => {
+  const User = new UserService();
+  setIsLoading(dispatch, true);
+
+  try {
+    const link = await User.createUsers(csv);
+    if (!link) {
+      dispatch(feedbackActions.setFeedback({
+        feedback: {
+          message: 'Usuario creado exitosamente',
+          type: 'success',
+        },
+      }));
+    } else {
+      dispatch(feedbackActions.setFeedback({
+        feedback: {
+          message: 'Algunos usuarios no pudieron ser creados',
+          type: 'warning',
+        },
+      }));
+      dispatch(userActions.setFailedFilesLink({ failedFilesLink: link }));
+    }
+    dispatch(listUsers());
+  } catch (error) {
+    setErrorFeedback(dispatch, error);
+    throw error;
+  } finally {
+    setIsLoading(dispatch, false);
+  }
+};
+
 export const updateUser = (data) => async (dispatch) => {
   const User = new UserService();
   setIsLoading(dispatch, true);
@@ -137,8 +168,8 @@ export const updateProfile = (data) => async (dispatch) => {
 
   try {
     await User.updateProfile(data);
-    const userUdtated = await User.getUser(id);
-    dispatch(userActions.setUser(userUdtated));
+    const userUpdate = await User.getUser(id);
+    dispatch(userActions.setUser(userUpdate));
     dispatch(feedbackActions.setFeedback({
       feedback: {
         message: 'Perfil actualizado',
@@ -174,7 +205,22 @@ export const listTests = (user) => async (dispatch) => {
 
   try {
     const tests = await User.listTests(user.id);
-    dispatch(userActions.setUser({ user: { ...user, tests } }));
+    dispatch(userActions.setPatientUser({ patientUser: { ...user, tests } }));
+  } catch (error) {
+    setErrorFeedback(dispatch, error);
+    throw error;
+  } finally {
+    setIsLoading(dispatch, false);
+  }
+};
+
+export const assingTest = (testName, testId, patientUser) => async (dispatch) => {
+  setIsLoading(dispatch, true);
+  const User = new UserService();
+
+  try {
+    await User.assingTest(testName, testId, patientUser.id);
+    dispatch(listTests(patientUser));
   } catch (error) {
     setErrorFeedback(dispatch, error);
     throw error;

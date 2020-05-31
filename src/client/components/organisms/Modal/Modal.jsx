@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import {
   FaTrashAlt as DeleteIcon,
   FaSave as SaveIcon,
-  FaFileDownload as DownloadIcon,
+  FaFileUpload as UploadIcon,
   FaRegTimesCircle as CloseIcon,
   FaRegCheckCircle as OkIcon,
 } from 'react-icons/fa';
@@ -41,10 +41,10 @@ const Modal = (props) => {
       icon: <SaveIcon size='1.2em' />,
       className: '',
     },
-    download: {
-      message: 'Descargar',
+    upload: {
+      message: 'Subir',
       color: 'secondary',
-      icon: <DownloadIcon size='1.2em' />,
+      icon: <UploadIcon size='1.2em' />,
       className: 'modal__actions-btn--download',
     },
   };
@@ -97,7 +97,7 @@ Modal.propTypes = {
   /** Type of the dialog */
   type: PropTypes.string.isRequired,
   /** Text to present to the user */
-  message: PropTypes.string.isRequired,
+  message: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
   /** Function that executes the main action of the process */
   mainFn: PropTypes.func.isRequired,
   /** Function that close the process  */
