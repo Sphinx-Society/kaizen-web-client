@@ -11,7 +11,7 @@ describe('Request service', () => {
     const RequestService = new Request();
     expect(RequestService.token).toEqual('1');
     expect(RequestService.cookieAge).toEqual(86400);
-    expect(RequestService.apiUrl).toEqual(`${process.env.REACT_APP_API_URL}/${process.env.REACT_APP_API_VERSION}`);
+    expect(RequestService.apiUrl).toEqual(`${process.env.API_URL}/${process.env.API_VERSION}`);
     expect(RequestService.axios.defaults.headers.Authorization).toEqual('Bearer 1');
   });
 
