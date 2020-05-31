@@ -1,5 +1,6 @@
 import * as feedbackActions from '../feedback/feedback.actions';
 import * as templateActions from './templates.actions';
+import * as userActions from '../user/user.actions';
 import TemplateService from '../../services/Template';
 
 import { setIsLoading } from '../feedback/feedback.utils';
@@ -19,6 +20,26 @@ export const listTemplates = (page = 1, query) => async (dispatch) => {
       currentPage,
       totalTemplates,
       totalPages,
+    }));
+  } catch (error) {
+    dispatch(feedbackActions.setFeedback({
+      feedback: {
+        message: error.message,
+        type: 'error',
+      },
+    }));
+    setIsLoading(dispatch, false);
+    throw error;
+  }
+  setIsLoading(dispatch, false);
+};
+export const getTemplate = (id) => async (dispatch) => {
+  setIsLoading(dispatch, true);
+  const Template = new TemplateService();
+  try {
+    const template = await Template.getTemplate(id);
+    dispatch(userActions.setEditingTest({
+      template,
     }));
   } catch (error) {
     dispatch(feedbackActions.setFeedback({

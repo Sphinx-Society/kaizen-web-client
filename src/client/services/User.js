@@ -234,6 +234,25 @@ class User extends Request {
       });
   }
 
+  async getMedicalTest(patientUserId, testId) {
+    return this.axios.get(
+      `${this.baseUrl}/${patientUserId}/tests/${testId}`,
+    )
+      .then(({ data: { message } }) => message)
+      .catch((error) => {
+        throw error;
+      });
+  }
+  // async testResults(userId, testId, data) {
+  //   return this.axios.put(
+  //     `${this.baseUrl}/${userId}/tests/${testId}/results`,
+  //     { results: data },
+  //   )
+  //     .catch((error) => {
+  //       throw error;
+  //     });
+  // }
+
 }
 
 export default User;

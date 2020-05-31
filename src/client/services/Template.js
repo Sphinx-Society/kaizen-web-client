@@ -32,6 +32,18 @@ class Template extends Request {
       });
   }
 
+  async getTemplate(id) {
+    const url = `${this.baseUrl}/${id}`;
+
+    return this.axios.get(url)
+      .then(({ data: { message } }) => {
+        return message;
+      })
+      .catch((error) => {
+        throw getErrorType(error);
+      });
+  }
+
   async createTemplate(template) {
     const data = { ...template };
 

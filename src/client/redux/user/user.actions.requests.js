@@ -1,6 +1,9 @@
 import * as userActions from './user.actions';
+import * as templateActionsRequest from '../templates/templates.actions.requests';
+
 import * as feedbackActions from '../feedback/feedback.actions';
 import UserService from '../../services/User';
+import TemplateService from '../../services/Template';
 
 import { setIsLoading, setErrorFeedback } from '../feedback/feedback.utils';
 
@@ -228,4 +231,37 @@ export const assingTest = (testName, testId, patientUser) => async (dispatch) =>
     setIsLoading(dispatch, false);
   }
 };
+
+export const getMedicalTestTemplate = (patientUserId, testId) => async (dispatch) => {
+  setIsLoading(dispatch, true);
+  const User = new UserService();
+  const Template = new TemplateService();
+
+  try {
+    const { tests } = await User.getMedicalTest(patientUserId, testId);
+    const { templateId } = tests[0];
+    const template = await Template.getTemplate(templateId);
+    dispatch(userActions.setPatientTestTemplate({ editingTemplate: template }));
+
+    return template[0];
+  } catch (error) {
+    setErrorFeedback(dispatch, error);
+    throw error;
+  } finally {
+    setIsLoading(dispatch, false);
+  }
+};
+
+// export const testResults = (userId, testId, data) => async (dispatch) => {
+//   setIsLoading(dispatch, true);
+//   const User = new UserService();
+//   try {
+//     const {} = await User.testResults(userId, testId, data);
+//   } catch (error) {
+//     setErrorFeedback(dispatch, error);
+//     throw error;
+//   } finally {
+//     setIsLoading(dispatch, false);
+//   }
+// };
 
