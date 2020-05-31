@@ -1,5 +1,5 @@
 import CreateUser from '../components/pages/CreateUser/CreateUser';
-import NotFound from '../components/pages/NotFound';
+import NotFound from '../components/pages/NotFound/NotFound';
 import Login from '../components/pages/Login/Login';
 import TemplatesManagement from '../components/pages/TemplatesManagement/TemplatesManagement';
 import TemplateEditor from '../components/pages/TemplateEditor/TemplateEditor';
