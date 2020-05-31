@@ -39,7 +39,7 @@ const UserManagement = (props) => {
 
   const { isLoading } = useSelector((state) => state.feedback);
 
-  const fnImportUsers = () => dispatch(setModalDialog({
+  const handleAddMassiveUsers = () => dispatch(setModalDialog({
     modal: {
       type: 'download',
       message: 'Desea importar archivos, en realidad sería un <Link />',
@@ -47,7 +47,7 @@ const UserManagement = (props) => {
     },
   }));
 
-  const fnDeleteUser = (name, id) => dispatch(setModalDialog({
+  const handleDeleteUser = ({ name, id }) => () => dispatch(setModalDialog({
     modal: {
       type: 'delete',
       message: `Desea eliminar al usuario ${name}`,
@@ -92,10 +92,6 @@ const UserManagement = (props) => {
     dispatch(setEditingUser({ editingUser }));
     gotToUserEditor();
   };
-  const handleDeleteUser = (deletingUser) => () => {
-    fnDeleteUser(deletingUser.name, deletingUser._id);
-
-  };
 
   useEffect(() => {
     if (!users.length) {
@@ -108,7 +104,7 @@ const UserManagement = (props) => {
       <Button
         color='secondary'
         icon={<FileImport size='1.2em' />}
-        onClick={fnImportUsers}
+        onClick={handleAddMassiveUsers}
       >
         Importar .csv
       </Button>

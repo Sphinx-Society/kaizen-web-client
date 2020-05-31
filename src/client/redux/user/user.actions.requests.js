@@ -183,4 +183,3 @@ export const listTests = (user) => async (dispatch) => {
   }
 };
 
-export default login;
