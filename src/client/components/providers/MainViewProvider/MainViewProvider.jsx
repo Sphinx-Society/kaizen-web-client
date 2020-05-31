@@ -19,6 +19,7 @@ const MainViewProvider = (props) => {
     moveTitle,
     onBackButtonClick,
     avatar,
+    lowerMore,
   } = props;
 
   const { width } = useWindowDimensions();
@@ -27,6 +28,7 @@ const MainViewProvider = (props) => {
   const mainViewProviderClassName = clsx({
     'main-view-provider': true,
     'main-view-provider--title-moved': moveTitle && !showBackButton,
+    'main-view-provider--title-moved-x2': lowerMore,
   });
 
   const headClassName = clsx({
@@ -80,6 +82,8 @@ MainViewProvider.propTypes = {
   moveTitle: PropTypes.bool,
   /** Function to call when the back button is clicked, required if showBackButton is true */
   onBackButtonClick: PropTypes.func,
+  /** Add more top spacing */
+  lowerMore: PropTypes.bool,
 };
 
 MainViewProvider.defaultProps = {
@@ -88,6 +92,7 @@ MainViewProvider.defaultProps = {
   showBackButton: false,
   showBottomLine: false,
   moveTitle: false,
+  lowerMore: false,
 };
 
 export default MainViewProvider;

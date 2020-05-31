@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import {
   FaPen as EditIcon,
   FaTrashAlt as DeleteIcon,
+  FaEye as ViewIcon,
 } from 'react-icons/fa';
 
 import ListReadableFields from '../../molecules/ListReadableFields/ListReadableFields';
@@ -16,7 +17,8 @@ const UserCard = (props) => {
   const {
     data,
     isAdminWhoView,
-    onClickEdit,
+    onClickMain,
+    onClickMainIcon,
     onClickDelete,
     sizeIcons,
     className,
@@ -42,10 +44,12 @@ const UserCard = (props) => {
 
       <div className='user-card__actions'>
         <Button
-          icon={<EditIcon size={sizeIcons} />}
+          icon={onClickMainIcon === 'edit'
+            ? <EditIcon size={sizeIcons} />
+            : <ViewIcon size={sizeIcons} />}
           type='icon'
           iconMode='2'
-          onClick={() => onClickEdit(data)}
+          onClick={() => onClickMain(data)}
           className='--boxShadow'
         />
         {isAdminWhoView && (
@@ -73,7 +77,9 @@ UserCard.propTypes = {
   /** It is the administrator who will see the information  */
   isAdminWhoView: PropTypes.bool,
   /** Path to edit user details */
-  onClickEdit: PropTypes.func.isRequired,
+  onClickMain: PropTypes.func.isRequired,
+  /** Icon */
+  onClickMainIcon: PropTypes.string,
   /** Action to delete specific source */
   onClickDelete: PropTypes.func,
   /** Size of action icons */
@@ -84,6 +90,7 @@ UserCard.propTypes = {
 
 UserCard.defaultProps = {
   isAdminWhoView: false,
+  onClickMainIcon: 'edit',
   onClickDelete: null,
   sizeIcons: '2.5em',
   className: '',
