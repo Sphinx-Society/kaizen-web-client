@@ -12,7 +12,6 @@ import Settings from '../components/pages/Settings/Settings';
 import Main from '../components/pages/Main/Main';
 import FillTest from '../components/pages/FillExam/FillTest';
 
-
 import {
   login,
   templatesManagement,

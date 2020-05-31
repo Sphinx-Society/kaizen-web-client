@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { FaEye as EyeIcon, FaTrashAlt as DeleteIcon, FaPlus as PlusIcon } from 'react-icons/fa';
 
 import FeedbackProvider from '../../providers/FeedbackProvider/FeedbackProvider';
@@ -35,6 +36,13 @@ const PatientTest = (props) => {
 
   const { isLoading } = useSelector((state) => state.feedback);
   const { user, patientUser, selectedTests } = useSelector((state) => state.user);
+
+  if (!patientUser) {
+    return (
+      <Redirect to={patientsManagement()} />
+    );
+  }
+
   const {
     templates,
     currentPage: currentPageTemplate,
@@ -114,8 +122,8 @@ const PatientTest = (props) => {
       modal: {
         type: 'confirm',
         mainFn: () => dispatch(assingTest(testName, templateId, patientUser)),
-        message:
-          (<span>
+        message: (
+          <span>
             Asignar examen:
             <br />
             <i>{testName}</i>
@@ -127,7 +135,8 @@ const PatientTest = (props) => {
               {' '}
               {patientUser.lastName}
             </i>
-          </span>),
+          </span>
+        ),
       },
     }));
   };
