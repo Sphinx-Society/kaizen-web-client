@@ -57,6 +57,7 @@ const PatientsManagement = (props) => {
   );
 
   React.useEffect(() => {
+    dispatch(listUsers(1));
     return () => dispatch(setUsers({
       users: [],
       currentPage: 1,
