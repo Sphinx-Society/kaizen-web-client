@@ -90,6 +90,37 @@ export const createUser = (data) => async (dispatch) => {
   }
 };
 
+export const createUsers = (csv) => async (dispatch) => {
+  const User = new UserService();
+  setIsLoading(dispatch, true);
+
+  try {
+    const link = await User.createUsers(csv);
+    if (!link) {
+      dispatch(feedbackActions.setFeedback({
+        feedback: {
+          message: 'Usuario creado exitosamente',
+          type: 'success',
+        },
+      }));
+    } else {
+      dispatch(feedbackActions.setFeedback({
+        feedback: {
+          message: 'Algunos usuarios no pudieron ser creados',
+          type: 'warning',
+        },
+      }));
+      dispatch(userActions.setFailedFilesLink({ failedFilesLink: link }));
+    }
+    dispatch(listUsers());
+  } catch (error) {
+    setErrorFeedback(dispatch, error);
+    throw error;
+  } finally {
+    setIsLoading(dispatch, false);
+  }
+};
+
 export const updateUser = (data) => async (dispatch) => {
   const User = new UserService();
   setIsLoading(dispatch, true);
