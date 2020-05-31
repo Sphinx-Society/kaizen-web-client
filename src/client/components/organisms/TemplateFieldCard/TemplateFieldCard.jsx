@@ -66,7 +66,6 @@ const TemplateFieldCard = (props) => {
     { label: 'Número', value: 'number' },
     { label: 'Opciones', value: 'options' },
     { label: 'Párrafo', value: 'text' },
-    { label: 'Archivo', value: 'file' },
   ];
 
   const handleOptionValue = (value, id) => setOptions((prevState) => {

@@ -1,10 +1,9 @@
-/* eslint-disable array-callback-return */
 import React from 'react';
 
 import NavbarProvider from '../../providers/NavbarProvider/NavbarProvider';
 import MainViewProvider from '../../providers/MainViewProvider/MainViewProvider';
 import FeedbackProvider from '../../providers/FeedbackProvider/FeedbackProvider';
-import Button from '../../atoms/Button/Button';
+import Select from '../../atoms/Select/Select';
 import TextInput from '../../atoms/TextInput/TextInput';
 import withUserData from '../../hocs/withUserData';
 import withAuth from '../../hocs/withAuth';
@@ -13,57 +12,127 @@ import useForm from '../../../hooks/useForm/useForm';
 
 import './CreateUser.scss';
 
-const FillExam = function (props) {
-  const template = {
-    _id: '5ecde051a79af923e27fa635',
-    name: 'GLUCOSA EN SANGRE',
-    type: 'EXAMEN DE LABORATORIO',
-    fields: [
-      {
-        id: '0001',
-        name: 'Nivel de glucosa',
-        type: 'number',
-        minLimit: 126.5,
-        maxLimit: 150.8,
-        unit: 'ml',
-        options: [],
-        required: false,
-      },
-      {
-        id: '0002',
-        name: 'Nivel de amor',
-        type: 'number',
-        minLimit: 126.5,
-        maxLimit: 150.8,
-        unit: 'ml',
-        options: [],
-        required: false,
-      },
-    ],
-    active: true,
-    insertedAt: 1590550609518,
-  };
+const template = {
+  _id: '5ecde051a79af923e27fa635',
+  name: 'GLUCOSA EN SANGRE',
+  type: 'EXAMEN DE LABORATORIO',
+  fields: [
+    {
+      id: '0001',
+      name: 'Nivel de glucosa',
+      type: 'string',
+      options: [],
+      required: false,
+    },
+    {
+      id: '0002',
+      name: 'Nivel de amor',
+      type: 'number',
+      minLimit: 126.5,
+      maxLimit: 150.8,
+      unit: 'ml',
+      options: [],
+      required: false,
+    },
+    {
+      id: '0003',
+      name: 'Tipo de sangre',
+      type: 'options',
+      options: ['Camp1', 'Camp2'],
+      required: true,
+    },
+    {
+      id: '0004',
+      name: 'Recomendaciones',
+      type: 'text',
+      options: [],
+      required: true,
+    },
+  ],
+  active: true,
+  insertedAt: 1590550609518,
+};
 
-  const initialformState = {};
-  const setInitialState = (initialformState) => {
-    template.fields.map(({ id }) => Object.assign(initialformState, { [id]: '' }));
-  };
-  setInitialState(initialformState);
-  const [stateProfile, handleOnChange] = useForm(initialformState);
-  console.log(stateProfile);
-  console.log(Object.entries(stateProfile)[0][1]);
+const initialForm = {};
 
-  const RenderInputs = (field) => {
-    console.log(field);
-    if (field.type === 'number') {
+const initialFormState = () => {
+  template.fields.forEach(({ id }) => {
+    initialForm[id] = '';
+  });
+};
+
+initialFormState();
+
+const RenderFields = (field) => {
+  const [stateTest, handleOnChange] = useForm(initialForm);
+
+  const {
+    type,
+    id,
+    required,
+    minLimit,
+    maxLimit,
+    name,
+  } = field;
+
+  switch (type) {
+    case 'string': {
       return (
         <TextInput
-          placeholder={field.name.concat(` ${field.minLimit} - ${field.maxLimit} (${field.unit})`)}
+          value={stateTest[id]}
+          inputName={id}
+          onChange={handleOnChange}
+          required={required}
+          placeholder={name}
+          id={id}
         />
       );
     }
-    return <p> es otro</p>;
-  };
+    case 'number': {
+      return (
+        <TextInput
+          value={stateTest[id]}
+          inputName={id}
+          onChange={handleOnChange}
+          required={required}
+          min={minLimit}
+          max={maxLimit}
+          type='number'
+          placeholder={name}
+          id={id}
+        />
+      );
+    }
+    case 'options': {
+      return (
+        <Select
+          options={field.options}
+          value={stateTest[id]}
+          name={id}
+          onChange={handleOnChange}
+          required={required}
+          placeholder={name}
+          id={id}
+        />
+      );
+    }
+    case 'text': {
+      return (
+        <textarea
+          value={stateTest[id]}
+          name={id}
+          onChange={handleOnChange}
+          required={required}
+          placeholder={name}
+          id={id}
+        />
+      );
+    }
+    default: return null;
+  }
+};
+
+const FillExam = () => {
   return (
     <NavbarProvider>
       <FeedbackProvider>
@@ -74,11 +143,10 @@ const FillExam = function (props) {
           showBottomLine
           moveTitle
         >
-          <div>
-            {template.fields.map((field) => <RenderInputs {...field} />)}
-
-          </div>
-
+          <form onSubmit={(event) => event.preventDefault()}>
+            {template.fields.map((field) => <RenderFields key={field.id} {...field} />)}
+            <button type='submit'>submit</button>
+          </form>
         </MainViewProvider>
       </FeedbackProvider>
     </NavbarProvider>
