@@ -10,9 +10,9 @@ Is a frontend project in React for managing clinical laboratory tests.
 ## Take a look
   ### Deploy
   View in real time [here](https://kaizen-web-client.herokuapp.com/ "here")
-  
+
   ### Prototypes
-- [Admin Destock](https://www.figma.com/proto/xRZYYfOfWSGVr0J1IDDZsC/Kaizen?node-id=541%3A5739&scaling=min-zoom)
+- [Admin Desktop](https://www.figma.com/proto/xRZYYfOfWSGVr0J1IDDZsC/Kaizen?node-id=541%3A5739&scaling=min-zoom)
 - [Admin Mobile](https://www.figma.com/proto/xRZYYfOfWSGVr0J1IDDZsC/Kaizen?node-id=215%3A622&scaling=min-zoom)
 
 ------------
@@ -55,7 +55,7 @@ npm test
 ```
 ## Documentation
 
-You can find the Kaizen Web Client documentation [on Notion](https://www.notion.so/Web-Client-c1c5c84b90c14994805e1a54e4e7de7d).  
+You can find the Kaizen Web Client documentation [on Notion](https://www.notion.so/Web-Client-c1c5c84b90c14994805e1a54e4e7de7d).
 
 The documentation is divided into several sections:
 

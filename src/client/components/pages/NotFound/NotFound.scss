@@ -1,0 +1,5 @@
+.not-found {
+  @include flex();
+  height: 100%;
+  flex-direction: column;
+}
