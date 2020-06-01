@@ -51,7 +51,7 @@ npm test
 ```
 ## Documentation
 
-You can find the Kaizen Web Client documentation [on Notion](https://www.notion.so/Web-Client-c1c5c84b90c14994805e1a54e4e7de7d).  
+You can find the Kaizen Web Client documentation [on Notion](https://www.notion.so/Web-Client-c1c5c84b90c14994805e1a54e4e7de7d).
 
 The documentation is divided into several sections:
 

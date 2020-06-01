@@ -4,6 +4,7 @@ import FeedbackProvider from '../../providers/FeedbackProvider/FeedbackProvider'
 import Surface from '../../atoms/Surface/Surface';
 import Logo from '../../atoms/Logo/Logo';
 import withAuth from '../../hocs/withAuth';
+import withUserData from '../../hocs/withUserData';
 
 import useWindowDimensions from '../../../hooks/useWindowDimensions/useWindowDimensions';
 
@@ -30,4 +31,4 @@ const NotFound = () => {
   );
 };
 
-export default withAuth(NotFound);
+export default withUserData(withAuth(NotFound));
