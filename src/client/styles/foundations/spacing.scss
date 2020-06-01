@@ -5,6 +5,7 @@ $spacingUnit: 10px;
 }
 
 $navbarHeight: getSpacing(5);
+$searchTableHeightMobile: getSpacing(8);
 
 @mixin flex ($direction: rows, $horizontal: center, $vertical: center) {
   display: flex;

@@ -16,15 +16,18 @@ import NavbarProvider from '../../providers/NavbarProvider/NavbarProvider';
 import MainViewProvider from '../../providers/MainViewProvider/MainViewProvider';
 import Table from '../../organisms/Table/Table';
 import Select from '../../atoms/Select/Select';
+import FileInput from '../../atoms/FileInput/FileInput';
 import withAuth from '../../hocs/withAuth';
 import withUserData from '../../hocs/withUserData';
 
 import { setModalDialog } from '../../../redux/modalDialog/modalDialog.actions';
-import { listUsers, deleUser } from '../../../redux/user/user.actions.requests';
-import { setEditingUser } from '../../../redux/user/user.actions';
+import { listUsers, deleUser, createUsers } from '../../../redux/user/user.actions.requests';
+import { setEditingUser, setFailedFilesLink } from '../../../redux/user/user.actions';
 import { createUser } from '../../../routes/paths';
 
-const UserManagement = (props) => {
+import './UsersManagement.scss';
+
+const UsersManagement = (props) => {
   const { history: { push } } = props;
 
   const {
@@ -32,42 +35,77 @@ const UserManagement = (props) => {
     totalPages,
     currentPage,
     totalUsers,
+    failedFilesLink,
   } = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
   const [activeRole, setActiveRole] = useState('');
 
-  const { isLoading } = useSelector((state) => state.feedback);
+  const [csvFileName, setCsvFileName] = useState('');
+  const [csvFile, setCsvFile] = useState(null);
 
-  const fnImportUsers = () => dispatch(setModalDialog({
-    modal: {
-      type: 'download',
-      message: 'Desea importar archivos, en realidad sería un <Link />',
-      mainFn: () => alert('Bajando archivo'),
-    },
-  }));
+  const downloadFailedFiles = () => {
+    failedFilesLink.click();
+    dispatch(setFailedFilesLink({ failedFilesLink: null }));
+    document.body.removeChild(failedFilesLink);
+  };
 
-  const fnDeleteUser = (name, id) => dispatch(setModalDialog({
-    modal: {
-      type: 'delete',
-      message: `Desea eliminar al usuario ${name}`,
-      mainFn: () => { dispatch(deleUser(id)); },
-    },
-  }));
+  const handleFileInputOnChange = (event) => {
+    const { files } = event.target;
+    const file = files[0];
 
-  const gotToUserEditor = () => push(createUser());
-
-  const handleNextPage = () => {
-    const page = currentPage + 1;
-    if (page <= totalPages) {
-      dispatch(listUsers(page));
+    if (file) {
+      const fileName = file.name.replace(/\.[^/.]+$/, '');
+      setCsvFileName(fileName);
+      setCsvFile(file);
     }
   };
 
-  const handlePrevPage = () => {
+  const handleFileFormSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append('users', csvFile);
+    dispatch(createUsers(formData));
+  };
+
+  const [showCustomModal, setShowCustomModal] = useState(false);
+
+  const { isLoading } = useSelector((state) => state.feedback);
+
+  const handleAddMassiveUsers = () => {
+    setShowCustomModal(true);
+    dispatch(setModalDialog({
+      modal: {
+        type: 'upload',
+        message: 'show modal',
+      },
+    }));
+  };
+
+  const handleDeleteUser = ({ name, id }) => () => {
+    setShowCustomModal(false);
+    dispatch(setModalDialog({
+      modal: {
+        type: 'delete',
+        message: `Desea eliminar al usuario ${name}`,
+        mainFn: () => { dispatch(deleUser(id)); },
+      },
+    }));
+  };
+
+  const gotToUserEditor = () => push(createUser());
+
+  const handleNextPage = (query) => {
+    const page = currentPage + 1;
+    if (page <= totalPages) {
+      dispatch(listUsers(page, query, activeRole));
+    }
+  };
+
+  const handlePrevPage = (query) => {
     const page = currentPage - 1;
     if (page >= 1) {
-      dispatch(listUsers(page));
+      dispatch(listUsers(page, query, activeRole));
     }
   };
 
@@ -92,10 +130,6 @@ const UserManagement = (props) => {
     dispatch(setEditingUser({ editingUser }));
     gotToUserEditor();
   };
-  const handleDeleteUser = (deletingUser) => () => {
-    fnDeleteUser(deletingUser.name, deletingUser._id);
-
-  };
 
   useEffect(() => {
     if (!users.length) {
@@ -104,11 +138,11 @@ const UserManagement = (props) => {
   }, []);
 
   const menu = () => (
-    <div className='btn-menuT'>
+    <div className='users-management__admin-menu'>
       <Button
         color='secondary'
         icon={<FileImport size='1.2em' />}
-        onClick={fnImportUsers}
+        onClick={handleAddMassiveUsers}
       >
         Importar .csv
       </Button>
@@ -121,10 +155,9 @@ const UserManagement = (props) => {
       </Button>
       <Select
         options={profiles}
-        defaultOption='Selecciona un rol'
         onChange={searchForRole}
         value={activeRole}
-        placeholder='Busca un rol...'
+        placeholder='Selecciona un rol'
         id='select-a-role-filter-select'
         name='role'
       />
@@ -135,7 +168,7 @@ const UserManagement = (props) => {
     <UserCard
       className='users-management__user-card--surface'
       isAdminWhoView={true}
-      onClickEdit={handleEditUser(item)}
+      onClickMain={handleEditUser(item)}
       onClickDelete={handleDeleteUser(item)}
       data={[
         { title: 'Rol', description: item.role },
@@ -148,8 +181,46 @@ const UserManagement = (props) => {
     />
   );
 
+  const fileInput = () => (
+    <form
+      className='users-management__upload-csv-container'
+      onSubmit={handleFileFormSubmit}
+      id='users-management__upload-csv-form'
+    >
+      <p>
+        Para crear usuarios masivamente
+        es neceario un archivo .csv que contenga la información necesaria
+      </p>
+      <FileInput
+        id='file-input-csv-users'
+        onChange={handleFileInputOnChange}
+        fileName={csvFileName}
+        required
+      />
+      {failedFilesLink && (
+        <div className='users-management__upload-csv-container__download-button'>
+          <Button
+            color='warning'
+            onClick={downloadFailedFiles}
+          >
+            Descargar CSV con usuarios fallidos
+          </Button>
+        </div>
+      )}
+      <Button
+        type='submit'
+        form='users-management__upload-csv-form'
+      >
+        Subir
+      </Button>
+    </form>
+  );
+
   return (
-    <ModalProvider>
+    <ModalProvider
+      customModal={fileInput()}
+      showCustomModal={showCustomModal}
+    >
       <FeedbackProvider>
         <NavbarProvider>
           <MainViewProvider
@@ -231,10 +302,10 @@ const UserManagement = (props) => {
   );
 };
 
-UserManagement.propTypes = {
+UsersManagement.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func,
   }).isRequired,
 };
 
-export default withUserData(withAuth(UserManagement));
+export default withUserData(withAuth(UsersManagement));

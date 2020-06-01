@@ -76,7 +76,7 @@ Alert.propTypes = {
 Alert.defaultProps = {
   type: 'success',
   message: '',
-  closeTime: 6000,
+  closeTime: 20000,
 };
 
 export default Alert;

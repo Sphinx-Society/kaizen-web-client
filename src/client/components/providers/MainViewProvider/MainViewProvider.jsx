@@ -19,6 +19,7 @@ const MainViewProvider = (props) => {
     moveTitle,
     onBackButtonClick,
     avatar,
+    lowerMore,
   } = props;
 
   const { width } = useWindowDimensions();
@@ -27,6 +28,7 @@ const MainViewProvider = (props) => {
   const mainViewProviderClassName = clsx({
     'main-view-provider': true,
     'main-view-provider--title-moved': moveTitle && !showBackButton,
+    'main-view-provider--title-moved-x2': isMobile && lowerMore,
   });
 
   const headClassName = clsx({
@@ -36,6 +38,7 @@ const MainViewProvider = (props) => {
 
   return (
     <Surface
+      className='main-view-provider-surface-container'
       disableSpacing={isMobile}
       disableShadow={isMobile}
     >
@@ -68,8 +71,6 @@ MainViewProvider.propTypes = {
   children: PropTypes.node.isRequired,
   /** Title to show inside the provider */
   title: PropTypes.string.isRequired,
-  /** Function to call when the back button is clicked, required if showBackButton is true */
-  userCover: PropTypes.string,
   /** Menu to render inside the provider */
   menu: PropTypes.node,
   /** It decide if the back button should be shown */
@@ -80,6 +81,8 @@ MainViewProvider.propTypes = {
   moveTitle: PropTypes.bool,
   /** Function to call when the back button is clicked, required if showBackButton is true */
   onBackButtonClick: PropTypes.func,
+  /** Add more top spacing */
+  lowerMore: PropTypes.bool,
 };
 
 MainViewProvider.defaultProps = {
@@ -88,6 +91,7 @@ MainViewProvider.defaultProps = {
   showBackButton: false,
   showBottomLine: false,
   moveTitle: false,
+  lowerMore: false,
 };
 
 export default MainViewProvider;

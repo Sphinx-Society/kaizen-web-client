@@ -12,6 +12,7 @@ import {
   settings,
   usersManagement,
   testsHistory,
+  patientsManagement,
 } from '../../../routes/paths';
 
 import './Navbar.scss';
@@ -27,6 +28,10 @@ const Navbar = () => {
       }
       case 'patient': {
         return testsHistory();
+      }
+      case 'lab':
+      case 'doctor': {
+        return patientsManagement();
       }
       default: {
         return main();

@@ -2,6 +2,7 @@ import Request from './Request';
 import { getStringFromDate } from '../utils/date';
 import { getCookie } from '../utils/cookie';
 import { parseToken } from '../utils/auth';
+import { getAnchorFromCsv } from '../utils/csv';
 
 class User extends Request {
   constructor() {
@@ -9,11 +10,11 @@ class User extends Request {
     this.baseUrl = `${this.apiUrl}/users`;
   }
 
-  async listUsers(page, documentId, role) {
+  async listUsers(page, query, role) {
     let url = `${this.baseUrl}?page=${page}`;
 
-    if (documentId) {
-      url = `${url}&documentId=${documentId}`;
+    if (query) {
+      url = `${url}&q=${query}`;
     }
 
     if (role) {
@@ -60,11 +61,6 @@ class User extends Request {
           lastName,
           phoneNumber,
         } = message.profile;
-
-        const statusLabels = {
-          'DONE': 'Hecho',
-          'PENDING': 'Por realizar',
-        };
 
         return {
           email,
@@ -152,6 +148,17 @@ class User extends Request {
     return this.axios.post(`${this.baseUrl}`, newUser);
   }
 
+  async createUsers(data) {
+    return this.axios.post(`${this.baseUrl}/massive`, data)
+      .then((res) => {
+        if (res.data) {
+          const anchor = getAnchorFromCsv(res.data, res.headers['content-type'], 'usuarios_fallidos.csv');
+          return anchor;
+        }
+        return null;
+      });
+  }
+
   async updateUser(data) {
     const updatedUser = {
       profile: {
@@ -199,18 +206,92 @@ class User extends Request {
   }
 
   async listTests(id) {
-    const url = `${this.baseUrl}/${id}/tests`;
+    const url = `${this.baseUrl}/${id}/tests?`;
 
     return this.axios.get(url)
       .then(({ data: { message: { tests } } }) => {
+
+        const statusLabels = {
+          'DONE': 'Hecho',
+          'PENDING': 'Publicación pendiente',
+        };
+
         return tests.map((test) => ({
           ...test,
           id: test.testId,
           name: test.testName,
+          statusLabel: statusLabels[test.status],
+          requestedAt: getStringFromDate(new Date(test.requestedAt)),
           doctorName: `${test.requestBy.firstName} ${test.requestBy.lastName}`,
-          statusLabel: test.status,
         }));
       })
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  async assignTest(testName, templateId, userId) {
+    return this.axios.post(
+      `${this.baseUrl}/${userId}/tests/`,
+      { tests: { testName, templateId } },
+    )
+      .then(({ data: { message } }) => message)
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  async getMedicalTest(patientUserId, testId) {
+    return this.axios.get(
+      `${this.baseUrl}/${patientUserId}/tests/${testId}`,
+    )
+      .then(({ data: { message } }) => {
+        console.log(message);
+        return message;
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  async submitTestResults(userId, testId, data) {
+    const results = [];
+    Object.keys(data).forEach((key) => {
+      const meta = JSON.parse(key);
+      const result = { value: data[key] };
+      Object.keys(meta).forEach((metaKey) => {
+        const metaData = meta[metaKey];
+        if (metaData) {
+          result[metaKey] = metaData;
+        }
+      });
+      results.push(result);
+    });
+
+    return this.axios.put(`${this.baseUrl}/${userId}/tests/${testId}/results`, { results })
+      .then(({ data: { message } }) => message)
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  async deleteTestPending(testId, patientId) {
+    return this.axios.delete(`${this.baseUrl}/${patientId}/tests/${testId}`)
+      .then(({ data: { message } }) => message)
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  async publishTest(userId, test) {
+    return this.axios.put(
+      `${this.baseUrl}/${userId}/tests/${test.id}/results`,
+      {
+        status: 'DONE',
+        results: [...test.results],
+      },
+    )
+      .then(({ data: { message } }) => message)
       .catch((error) => {
         throw error;
       });

@@ -1,4 +1,5 @@
 import * as userActions from './user.actions';
+
 import * as feedbackActions from '../feedback/feedback.actions';
 import UserService from '../../services/User';
 
@@ -18,7 +19,7 @@ export const login = (data) => async (dispatch) => {
   }
 };
 
-export const listUsers = (page = 1, documentId, role) => async (dispatch) => {
+export const listUsers = (page = 1, query, role) => async (dispatch) => {
   setIsLoading(dispatch, true);
   const User = new UserService();
 
@@ -28,7 +29,7 @@ export const listUsers = (page = 1, documentId, role) => async (dispatch) => {
       currentPage,
       totalUsers,
       users,
-    } = await User.listUsers(page, documentId, role);
+    } = await User.listUsers(page, query, role);
     dispatch(userActions.setUsers({
       users,
       totalPages,
@@ -90,6 +91,37 @@ export const createUser = (data) => async (dispatch) => {
   }
 };
 
+export const createUsers = (csv) => async (dispatch) => {
+  const User = new UserService();
+  setIsLoading(dispatch, true);
+
+  try {
+    const link = await User.createUsers(csv);
+    if (!link) {
+      dispatch(feedbackActions.setFeedback({
+        feedback: {
+          message: 'Usuario creado exitosamente',
+          type: 'success',
+        },
+      }));
+    } else {
+      dispatch(feedbackActions.setFeedback({
+        feedback: {
+          message: 'Algunos usuarios no pudieron ser creados',
+          type: 'warning',
+        },
+      }));
+      dispatch(userActions.setFailedFilesLink({ failedFilesLink: link }));
+    }
+    dispatch(listUsers());
+  } catch (error) {
+    setErrorFeedback(dispatch, error);
+    throw error;
+  } finally {
+    setIsLoading(dispatch, false);
+  }
+};
+
 export const updateUser = (data) => async (dispatch) => {
   const User = new UserService();
   setIsLoading(dispatch, true);
@@ -137,8 +169,8 @@ export const updateProfile = (data) => async (dispatch) => {
 
   try {
     await User.updateProfile(data);
-    const userUdtated = await User.getUser(id);
-    dispatch(userActions.setUser(userUdtated));
+    const userUpdate = await User.getUser(id);
+    dispatch(userActions.setUser(userUpdate));
     dispatch(feedbackActions.setFeedback({
       feedback: {
         message: 'Perfil actualizado',
@@ -171,10 +203,15 @@ export const downloadTests = (id, testIds) => async (dispatch) => {
 export const listTests = (user) => async (dispatch) => {
   setIsLoading(dispatch, true);
   const User = new UserService();
+  const { role } = user;
 
   try {
     const tests = await User.listTests(user.id);
-    dispatch(userActions.setUser({ user: { ...user, tests } }));
+    if (role === 'patient') {
+      dispatch(userActions.setUser({ user: { ...user, tests } }));
+    } else {
+      dispatch(userActions.setPatientUser({ patientUser: { ...user, tests } }));
+    }
   } catch (error) {
     setErrorFeedback(dispatch, error);
     throw error;
@@ -183,4 +220,72 @@ export const listTests = (user) => async (dispatch) => {
   }
 };
 
-export default login;
+export const assignTest = (testName, testId, patientUser) => async (dispatch) => {
+  setIsLoading(dispatch, true);
+  const User = new UserService();
+
+  try {
+    await User.assignTest(testName, testId, patientUser.id);
+    dispatch(listTests(patientUser));
+  } catch (error) {
+    setErrorFeedback(dispatch, error);
+    throw error;
+  } finally {
+    setIsLoading(dispatch, false);
+  }
+};
+
+export const submitTestResults = (patient, testId, data) => async (dispatch) => {
+  setIsLoading(dispatch, true);
+  const User = new UserService();
+  try {
+    await User.submitTestResults(patient.id, testId, data);
+    await dispatch(listTests(patient));
+    dispatch(feedbackActions.setFeedback({
+      feedback: {
+        message: 'Resultados guardados satisfactoriamente',
+        type: 'success',
+      },
+    }));
+  } catch (error) {
+    setErrorFeedback(dispatch, error);
+    throw error;
+  } finally {
+    setIsLoading(dispatch, false);
+  }
+};
+
+export const publishTest = (test, patient) => async (dispatch) => {
+  setIsLoading(dispatch, true);
+  const User = new UserService();
+  try {
+    await User.publishTest(patient.id, test);
+    await dispatch(listTests(patient));
+    dispatch(feedbackActions.setFeedback({
+      feedback: {
+        message: 'Examen publicado satisfactoriamente',
+        type: 'success',
+      },
+    }));
+  } catch (error) {
+    setErrorFeedback(dispatch, error);
+    throw error;
+  } finally {
+    setIsLoading(dispatch, false);
+  }
+};
+
+export const deleteTestPending = (testId, patientUser) => async (dispatch) => {
+  setIsLoading(dispatch, true);
+  const User = new UserService();
+
+  try {
+    await User.deleteTestPending(testId, patientUser.id);
+    dispatch(listTests(patientUser));
+  } catch (error) {
+    setErrorFeedback(dispatch, error);
+    throw error;
+  } finally {
+    setIsLoading(dispatch, false);
+  }
+};

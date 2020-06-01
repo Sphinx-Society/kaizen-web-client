@@ -1,9 +1,18 @@
+.main-view-provider-surface-container {
+  height: calc(100vh - 20px);
+  overflow-y: scroll;
+}
+
 .main-view-provider {
+  padding-bottom: getSpacing(13);
+
   &--title-moved {
     padding-top: getSpacing(8);
   }
 
-  padding-bottom: getSpacing(13);
+  &--title-moved-x2 {
+    margin-top: getSpacing(8);
+  }
 
   @include applyTo('m') {
     padding: getSpacing(3);

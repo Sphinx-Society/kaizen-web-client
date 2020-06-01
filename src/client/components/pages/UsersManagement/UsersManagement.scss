@@ -1,0 +1,33 @@
+.users-management {
+  &__admin-menu {
+    display: flex;
+    flex-direction: column-reverse;
+    min-height: 200px;
+    justify-content: space-evenly;
+
+    @include applyTo('m') {
+      min-height: auto;
+      flex-direction: row-reverse;
+      width: 60%;
+      max-width: 700px;
+    }
+  }
+
+  &__upload-csv-container {
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    min-height: 220px;
+    justify-content: space-between;
+    padding: getSpacing(2);
+
+    &__download-button {
+      text-align: center;
+      margin: getSpacing(2) 0;
+    }
+
+    p {
+      text-align: center;
+    }
+  }
+}
