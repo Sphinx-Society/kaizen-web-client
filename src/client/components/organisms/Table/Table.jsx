@@ -34,6 +34,10 @@ const Table = (props) => {
 
   const handleOnSearch = () => onSearch(tableQuery);
 
+  const handleOnNextPageClick = () => onNextPageClick(tableQuery);
+
+  const handleOnPrevPageClick = () => onPrevPageClick(tableQuery);
+
   const { width } = useWindowDimensions();
   const isMobile = width < parseInt(breakpointMedium, 10);
 
@@ -74,8 +78,8 @@ const Table = (props) => {
           rows={rows}
           totalRows={totalRows}
           page={page}
-          onNextPageClick={onNextPageClick}
-          onPrevPageClick={onPrevPageClick}
+          onNextPageClick={handleOnNextPageClick}
+          onPrevPageClick={handleOnPrevPageClick}
           totalPages={totalPages}
         />
       )}

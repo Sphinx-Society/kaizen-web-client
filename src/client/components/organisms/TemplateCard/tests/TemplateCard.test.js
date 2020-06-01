@@ -1,40 +1,39 @@
 import React from 'react';
-import { configure, mount, render } from 'enzyme';
+import { configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import TemplateCard from '../TemplateCard';
 
 configure({ adapter: new Adapter() });
 
-describe('TemplateCard', () => {
-  describe('Default Classes', () => {
-    const nameMock = 'Blood test';
-    const categoryMock = 'Laboratory';
-    const creationDateMock = 1234568512;
+const nameMock = 'Blood test';
+const categoryMock = 'Laboratory';
+const creationDateMock = '1234568512';
 
+function componentRender(onViewMock, onDeleteMock) {
+  return mount(
+    <TemplateCard
+      name={nameMock}
+      category={categoryMock}
+      creationDate={creationDateMock}
+      onView={onViewMock || (() => null)}
+      onDelete={onDeleteMock || (() => null)}
+    />,
+  );
+}
+
+describe('TemplateCard', () => {
+  describe('Default props', () => {
     test('Should have a class ".template-card"', () => {
-      const templateCard = render(
-        <TemplateCard
-          name={nameMock}
-          category={categoryMock}
-          creationDate={creationDateMock}
-        />,
-      );
-      expect(templateCard.hasClass('template-card')).toBe(true);
+      const templateCard = componentRender();
+      expect(templateCard.find('Surface').hasClass('template-card')).toBe(true);
     });
 
-    test('TemplateCard props', () => {
-      const templateCard = mount(
-        <TemplateCard
-          name={nameMock}
-          category={categoryMock}
-          creationDate={creationDateMock}
-        />,
-      );
+    test('TemplateCard props name, category and creationDate', () => {
       const {
         name,
         category,
         creationDate,
-      } = templateCard.find('TemplateCard').props();
+      } = componentRender().find('TemplateCard').props();
 
       expect(name).toBe(nameMock);
       expect(category).toBe(categoryMock);
