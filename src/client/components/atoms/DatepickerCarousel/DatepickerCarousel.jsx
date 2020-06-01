@@ -61,7 +61,7 @@ DatepickerCarousel.propTypes = {
 
 DatepickerCarousel.defaultProps = {
   isYearly: false,
-  onInputChange: () => null,
+  onInputChange: null,
 };
 
 export default DatepickerCarousel;

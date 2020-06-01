@@ -4,6 +4,7 @@ import { FaPen as PencilIcon } from 'react-icons/fa';
 
 import Button from '../../components/atoms/Button/Button';
 import Select from '../../components/atoms/Select/Select';
+import Surface from '../../components/atoms/Surface/Surface';
 
 const rows = [
   {
@@ -64,37 +65,40 @@ const rows = [
 
 const columns = [
   {
+    id: 0,
     header: 'Name',
     accessor: 'name',
-    id: 1,
     minWidth: '140px',
   },
   {
+    id: 1,
     header: 'Role',
     accessor: 'role',
-    id: 3,
   },
   {
+    id: 2,
     header: 'Country',
     accessor: 'country',
-    id: 4,
     filter: (col) => <Select options={['Mexico', 'Colombia']} />,
     minWidth: '150px',
   },
   {
+    id: 3,
     header: 'Document',
     accessor: 'document',
-    id: 5,
   },
   {
+    id: 4,
     header: 'Creation date',
     accessor: 'createdAt',
-    id: 6,
     minWidth: '150px',
   },
   {
+    id: 5,
     header: '',
     accessor: '',
+    noFilter: true,
+    collapse: true,
     cell: (row) => {
       return (
         <div className='table__stories__buttons__container'>
@@ -122,11 +126,10 @@ const columns = [
         </div>
       );
     },
-    id: 7,
-    noFilter: true,
-    collapse: true,
   },
 ];
+
+export const mobileRow = (row) => (<Surface>{row.name}</Surface>);
 
 const data = { rows, columns };
 

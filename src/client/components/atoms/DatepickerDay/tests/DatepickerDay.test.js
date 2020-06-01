@@ -71,4 +71,24 @@ describe('DatepickerDay', () => {
     expect(day).toBe(15);
   });
 
+  test('should throw onClick event:', () => {
+    const onClickMock = jest.fn();
+    const dtP = mount(
+      <table>
+        <tbody>
+          <tr>
+            <DatepickerDay
+              onClick={onClickMock}
+              isOtherMonth={true}
+              selectedDay={15}
+              day={15}
+            />
+          </tr>
+        </tbody>
+      </table>,
+    );
+    dtP.find('td').simulate('click');
+    dtP.find('td').simulate('click');
+    expect(onClickMock.mock.calls.length).toBe(2);
+  });
 });
