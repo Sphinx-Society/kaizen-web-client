@@ -10,3 +10,4 @@ export const settings = () => '/settings';
 export const userProfile = () => '/user';
 export const createUser = () => '/user-editor';
 export const main = () => '/';
+export const fillTest = () => '/fill-test';

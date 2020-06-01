@@ -64,9 +64,8 @@ const TemplateFieldCard = (props) => {
   const types = [
     { label: 'Texto', value: 'string' },
     { label: 'Número', value: 'number' },
-    { label: 'Opciones', value: 'options' },
+    { label: 'Opciones', value: 'select' },
     { label: 'Párrafo', value: 'text' },
-    { label: 'Archivo', value: 'file' },
   ];
 
   const handleOptionValue = (value, id) => setOptions((prevState) => {
@@ -102,7 +101,7 @@ const TemplateFieldCard = (props) => {
   };
 
   const ButtonWrapper = () => {
-    if (type === 'options') {
+    if (type === 'select') {
       return (
         <div className='horizontal-flex-container'>
           <Button onClick={addOption}>Agregar opción</Button>
@@ -174,7 +173,7 @@ const TemplateFieldCard = (props) => {
                   />
                 </>
               )}
-              {type === 'options' && (
+              {type === 'select' && (
                 options.map(({ id, value }) => (
                   <div
                     className='horizontal-flex-container horizontal-flex-container--no-margin'

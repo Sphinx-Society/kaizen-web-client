@@ -33,6 +33,25 @@ export const listTemplates = (page = 1, query) => async (dispatch) => {
   setIsLoading(dispatch, false);
 };
 
+export const getTemplate = (id) => async (dispatch) => {
+  setIsLoading(dispatch, true);
+  const Template = new TemplateService();
+  try {
+    const editingTemplate = await Template.getTemplate(id);
+    dispatch(templateActions.setEditingTemplate({ editingTemplate }));
+  } catch (error) {
+    dispatch(feedbackActions.setFeedback({
+      feedback: {
+        message: error.message,
+        type: 'error',
+      },
+    }));
+    setIsLoading(dispatch, false);
+    throw error;
+  }
+  setIsLoading(dispatch, false);
+};
+
 export const createTemplate = (template) => async (dispatch) => {
   setIsLoading(dispatch, true);
   const Template = new TemplateService();

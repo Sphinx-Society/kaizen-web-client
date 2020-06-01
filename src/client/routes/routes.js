@@ -10,6 +10,7 @@ import UserProfile from '../components/pages/UserProfile/UserProfile';
 import TestsHistory from '../components/pages/TestsHistory/TestsHistory';
 import Settings from '../components/pages/Settings/Settings';
 import Main from '../components/pages/Main/Main';
+import FillTest from '../components/pages/FillExam/FillTest';
 
 import {
   login,
@@ -23,6 +24,7 @@ import {
   settings,
   createUser,
   main,
+  fillTest,
 } from './paths';
 
 export default [
@@ -74,6 +76,11 @@ export default [
   {
     path: createUser(),
     component: CreateUser,
+    exact: true,
+  },
+  {
+    path: fillTest(),
+    component: FillTest,
     exact: true,
   },
   {

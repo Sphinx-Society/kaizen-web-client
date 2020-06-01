@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { FaEye as EyeIcon, FaTrashAlt as DeleteIcon, FaPlus as PlusIcon } from 'react-icons/fa';
 
 import FeedbackProvider from '../../providers/FeedbackProvider/FeedbackProvider';
@@ -18,12 +19,12 @@ import { setModalDialog } from '../../../redux/modalDialog/modalDialog.actions';
 import withAuth from '../../hocs/withAuth';
 import withUserData from '../../hocs/withUserData';
 
-import { setPatientUser, setSelectedTests, setEditingTest } from '../../../redux/user/user.actions';
-import { listTests, assingTest } from '../../../redux/user/user.actions.requests';
-import { listTemplates } from '../../../redux/templates/templates.actions.requests';
+import { setPatientUser, setEditingTest } from '../../../redux/user/user.actions';
+import { listTests, assignTest, deleteTestPending, publishTest } from '../../../redux/user/user.actions.requests';
+import { listTemplates, getTemplate } from '../../../redux/templates/templates.actions.requests';
 
 import { getStringFromDate } from '../../../utils/date';
-import { patientsManagement } from '../../../routes/paths';
+import { patientsManagement, fillTest } from '../../../routes/paths';
 
 const PatientTest = (props) => {
   const { history: { push } } = props;
@@ -35,6 +36,13 @@ const PatientTest = (props) => {
 
   const { isLoading } = useSelector((state) => state.feedback);
   const { user, patientUser, selectedTests } = useSelector((state) => state.user);
+
+  if (!patientUser) {
+    return (
+      <Redirect to={patientsManagement()} />
+    );
+  }
+
   const {
     templates,
     currentPage: currentPageTemplate,
@@ -42,24 +50,16 @@ const PatientTest = (props) => {
   } = useSelector((state) => state.templates);
 
   const dispatch = useDispatch();
-  const isRolePatient = user.role === 'patient';
   const isRoleDoctor = user.role === 'doctor';
   const isRoleLab = user.role === 'lab';
 
-  const handleCheckboxOnChange = (id) => (event) => {
-    const { checked } = event.target;
-    if (checked) {
-      dispatch(setSelectedTests({ selectedTests: [...selectedTests, id] }));
-    } else {
-      dispatch(setSelectedTests({
-        selectedTests: selectedTests.filter((testId) => testId !== id),
-      }));
-    }
-  };
-
   useEffect(() => {
+    dispatch(setEditingTest({ editingTest: null }));
     dispatch(listTests(patientUser));
-    if (isRoleDoctor) dispatch(listTemplates());
+
+    if (isRoleDoctor) {
+      dispatch(listTemplates());
+    }
   }, []);
 
   // Load the list of templates to assign one to the patient by the role doctor
@@ -81,15 +81,7 @@ const PatientTest = (props) => {
   // Update patient exams
   useEffect(() => {
     if (patientUser.tests) {
-      const basicDataTests = patientUser.tests.map((item) => ({
-        testId: item.testId,
-        status: item.status,
-        requestedAt: getStringFromDate(new Date(item.requestedAt)),
-        testName: item.testName,
-        doctorName: `${item.requestBy.firstName} ${item.requestBy.lastName}`,
-        patientId: patientUser.id,
-      }));
-      setFilteredTests(basicDataTests);
+      setFilteredTests(patientUser.tests);
     }
   }, [patientUser.tests]);
 
@@ -113,9 +105,9 @@ const PatientTest = (props) => {
     dispatch(setModalDialog({
       modal: {
         type: 'confirm',
-        mainFn: () => dispatch(assingTest(testName, templateId, patientUser)),
-        message:
-          (<span>
+        mainFn: () => dispatch(assignTest(testName, templateId, patientUser)),
+        message: (
+          <span>
             Asignar examen:
             <br />
             <i>{testName}</i>
@@ -127,39 +119,48 @@ const PatientTest = (props) => {
               {' '}
               {patientUser.lastName}
             </i>
-          </span>),
+          </span>
+        ),
       },
     }));
   };
 
-  const menu = () => {
-    let btnToReturn = null;
+  const handleTestField = (editingTest) => () => {
     if (isRoleDoctor) {
-      btnToReturn = (
-        <Button
-          color='primary'
-          icon={<PlusIcon size='1.2em' />}
-          onClick={() => setTemplateToAssingFromSelected(true)}
-        >
-          Asignar Examen
-        </Button>
-      );
+      console.log('ver examen');
     }
 
-    if (isRolePatient) {
-      btnToReturn = (
-        <Button
-          color='primary'
-          icon={<DeleteIcon size='1.2em' />}
-          onClick={() => setTemplateToAssingFromSelected(true)}
-        >
-          Descargar selección
-        </Button>
-      );
-    }
-
-    return btnToReturn;
+    if (isRoleLab) {
+      dispatch(setEditingTest({ editingTest }));
+      dispatch(getTemplate(editingTest.templateId))
+        .then(() => {
+          push(fillTest());
+        });
+    };
   };
+
+  const handlePublishTest = (test) => () => {
+    dispatch(setModalDialog({ modal: {
+      type: 'confirm',
+      message: '¿Desea publicar el resultado?',
+      mainFn: () => dispatch(publishTest(test, patientUser)),
+    },
+    }));
+  };
+
+  const handleDeleteTestPending = ({ testId }) => () => {
+    dispatch(deleteTestPending(testId, patientUser));
+  };
+
+  const menu = () => (
+    <Button
+      color='primary'
+      icon={<PlusIcon />}
+      onClick={() => setTemplateToAssingFromSelected(true)}
+    >
+      Asignar Examen
+    </Button>
+  );
 
   return (
     <ModalProvider>
@@ -167,16 +168,14 @@ const PatientTest = (props) => {
         <NavbarProvider>
           <MainViewProvider
             title={`Paciente: ${patientUser.firstName} ${patientUser.lastName}`}
-            showBackButton={!isRolePatient}
-            lowerMore={!isRolePatient}
+            showBackButton
+            lowerMore
             onBackButtonClick={() => {
-              if (!isRolePatient) {
-                dispatch(setPatientUser({}));
-                push(patientsManagement());
-              }
+              dispatch(setPatientUser({}));
+              push(patientsManagement());
             }}
             showBottomLine
-            menu={menu()}
+            menu={isRoleDoctor && menu()}
           >
             <div className='--surface-card'>
               <ListReadableFields>
@@ -223,23 +222,23 @@ const PatientTest = (props) => {
               isLoading={isLoading}
               columns={[
                 {
-                  header: '',
+                  header: isRoleLab ? 'Publicado' : '',
                   accessor: '',
-                  cell: ({ id, status }) => (
+                  cell: (row) => isRoleLab && (
                     <Checkbox
-                      onChange={handleCheckboxOnChange(id)}
-                      checked={selectedTests.includes(id)}
-                      disabled={!isRolePatient}
-                      id={id}
+                      checked={row.status === 'DONE'}
+                      disabled={row.status === 'DONE'}
+                      id={row.id}
+                      onChange={handlePublishTest(row)}
                     />
                   ),
                   id: 0,
-                  width: '30px',
-                  collapse: true,
+                  width: 'auto',
+                  collapse: isRoleDoctor,
                 },
                 {
                   header: 'Estado',
-                  accessor: 'status',
+                  accessor: 'statusLabel',
                   id: 1,
                 },
                 {
@@ -265,24 +264,18 @@ const PatientTest = (props) => {
                       <Button
                         className='--shadowed --spaced'
                         type='icon'
-                        icon={<EyeIcon size='1.8em' />}
-                        onClick={() => {
-                          if (isRoleDoctor) console.log('ver examen');
-                          if (isRoleLab) {
-                            dispatch(setEditingTest({ editingTest: { testId: row.testId, patientId: row.patientId } }));
-                            
-                          };
-                        }}
+                        icon={<EyeIcon />}
+                        onClick={handleTestField(row)}
                         iconMode='1'
-                        disabled={row.status !== 'done' && isRoleDoctor}
+                        disabled={(isRoleDoctor && row.status !== 'DONE') || (isRoleLab && row.status === 'DONE')}
                       />
-                      {(isRoleDoctor && row.status !== 'done') && (
+                      {(isRoleDoctor && row.status !== 'DONE') && (
                         <Button
                           className='--shadowed --spaced'
                           type='icon'
-                          icon={<DeleteIcon size='1.8em' />}
+                          icon={<DeleteIcon />}
                           iconMode='1'
-                          onClick={() => console.log('eliminar test')}
+                          onClick={handleDeleteTestPending(row)}
                         />
                       )}
                     </div>
@@ -298,8 +291,15 @@ const PatientTest = (props) => {
                 <TestCard
                   key={row.id}
                   name={row.name}
-                  onCheckboxChange={handleCheckboxOnChange(row.id)}
-                  selected={selectedTests.includes(row.id)}
+                  onCheckboxChange={handlePublishTest(row)}
+                  selectedCheckbox={row.status === 'DONE'}
+                  hideDownloadButton
+                  hideDeleteButton={!isRoleDoctor || (isRoleDoctor && row.status !== 'DONE')}
+                  onView={handleTestField(row)}
+                  onDelete={handleDeleteTestPending(row)}
+                  hideCheckbox={isRoleDoctor}
+                  disabledCheckbox={row.status === 'DONE'}
+                  disabledView={(isRoleDoctor && row.status !== 'DONE') || (isRoleLab && row.status === 'DONE')}
                   {...row}
                 />
               )}
@@ -314,6 +314,10 @@ const PatientTest = (props) => {
   );
 };
 
-PatientTest.propTypes = {};
+PatientTest.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
+};
 
 export default withUserData(withAuth(PatientTest));

@@ -33,6 +33,7 @@ class Request {
       if (status === 401) {
         deleteCookie('token');
         deleteCookie('uid');
+        deleteCookie('role');
         const { pathname } = document.location;
         if (pathname !== login()) {
           document.location = login();
