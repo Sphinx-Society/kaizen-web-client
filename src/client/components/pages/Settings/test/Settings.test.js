@@ -18,7 +18,7 @@ const setUp = () => {
     shallow(
       <MemoryRouter>
         <ProviderMock store={myStore}>
-          <Settings />
+          <Settings history={{}} />
         </ProviderMock>
       </MemoryRouter>,
     ).get(0),
