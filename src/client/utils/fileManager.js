@@ -1,5 +1,5 @@
-export const getAnchorFromCsv = (csv, contentType, name) => {
-  const blob = new Blob([csv], { type: contentType });
+export const getFileAnchor = (file, contentType, name) => {
+  const blob = new Blob([file], { type: contentType });
   const anchor = document.createElement('a');
   anchor.setAttribute('href', window.URL.createObjectURL(blob, { type: 'text/plain' }));
   anchor.setAttribute('download', name);
@@ -7,4 +7,4 @@ export const getAnchorFromCsv = (csv, contentType, name) => {
   return anchor;
 };
 
-export default getAnchorFromCsv;
+export default getFileAnchor;

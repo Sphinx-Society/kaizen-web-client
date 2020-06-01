@@ -190,8 +190,7 @@ export const downloadTests = (id, testIds) => async (dispatch) => {
   const User = new UserService();
 
   try {
-    const paths = await User.downloadTests(id, testIds);
-    console.log(paths);
+    await User.downloadTests(id, testIds);
   } catch (error) {
     setErrorFeedback(dispatch, error);
     throw error;
