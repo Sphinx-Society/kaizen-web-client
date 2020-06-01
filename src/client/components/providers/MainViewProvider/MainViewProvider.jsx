@@ -28,7 +28,7 @@ const MainViewProvider = (props) => {
   const mainViewProviderClassName = clsx({
     'main-view-provider': true,
     'main-view-provider--title-moved': moveTitle && !showBackButton,
-    'main-view-provider--title-moved-x2': lowerMore,
+    'main-view-provider--title-moved-x2': isMobile && lowerMore,
   });
 
   const headClassName = clsx({
@@ -71,8 +71,6 @@ MainViewProvider.propTypes = {
   children: PropTypes.node.isRequired,
   /** Title to show inside the provider */
   title: PropTypes.string.isRequired,
-  /** Function to call when the back button is clicked, required if showBackButton is true */
-  userCover: PropTypes.string,
   /** Menu to render inside the provider */
   menu: PropTypes.node,
   /** It decide if the back button should be shown */

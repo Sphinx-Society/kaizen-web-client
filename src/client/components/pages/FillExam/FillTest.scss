@@ -1,0 +1,17 @@
+.test-form {
+  padding: getSpacing(2);
+
+  .fields-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__textarea {
+    color: $colorFontMain;
+    padding: 1em;
+    width: calc(100% - 1em);
+    margin: getSpacing(1) auto;
+    resize: none;
+    border-radius: getSpacing(0.5);
+  }
+}

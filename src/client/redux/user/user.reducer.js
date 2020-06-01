@@ -7,6 +7,7 @@ export const initialState = {
   editingUser: null,
   patientUser: null,
   editingTest: null,
+  editingTemplate: null,
   selectedTests: [],
   failedFilesLink: null,
 };
@@ -56,6 +57,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         editingTest: action.payload.editingTest,
+      };
+    }
+    case 'USER/SET_PATIENT_TEST_TEMPLATE': {
+      return {
+        ...state,
+        editingTemplate: action.payload.editingTemplate,
       };
     }
     default: {

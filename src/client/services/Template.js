@@ -32,6 +32,22 @@ class Template extends Request {
       });
   }
 
+  async getTemplate(id) {
+    const url = `${this.baseUrl}/${id}`;
+
+    return this.axios.get(url)
+      .then(({ data: { message } }) => {
+        const [template] = message;
+        return {
+          ...template,
+          id: template._id,
+        };
+      })
+      .catch((error) => {
+        throw getErrorType(error);
+      });
+  }
+
   async createTemplate(template) {
     const data = { ...template };
 
@@ -42,7 +58,13 @@ class Template extends Request {
         ...formattedField,
         minLimit: Number(formattedField.minLimit),
         maxLimit: Number(formattedField.maxLimit),
-        id: `${formattedField.name}-${formattedField.type}`,
+        options: formattedField.options ? formattedField.options.map(({ value }) => value) : [],
+        id: JSON.stringify({
+          name: formattedField.name,
+          min: formattedField.minLimit,
+          max: formattedField.maxLimit,
+          unit: formattedField.unit,
+        }),
       };
     });
 
@@ -82,6 +104,7 @@ class Template extends Request {
         ...formattedField,
         minLimit: Number(formattedField.minLimit),
         maxLimit: Number(formattedField.maxLimit),
+        options: formattedField.options ? formattedField.options.map(({ value }) => value) : [],
       };
     });
 
