@@ -13,7 +13,6 @@ import withAuth from '../../hocs/withAuth';
 import Button from '../../atoms/Button/Button';
 import useForm from '../../../hooks/useForm/useForm';
 import { patientTests, patientsManagement } from '../../../routes/paths';
-import { getTemplate } from '../../../redux/templates/templates.actions.requests';
 import { submitTestResults } from '../../../redux/user/user.actions.requests';
 
 import './FillTest.scss';

@@ -14,10 +14,12 @@ import NavbarProvider from '../../providers/NavbarProvider/NavbarProvider';
 import FeedbackProvider from '../../providers/FeedbackProvider/FeedbackProvider';
 import withAuth from '../../hocs/withAuth';
 import withUserData from '../../hocs/withUserData';
-import { listTests } from '../../../redux/user/user.actions.requests';
-import { setSelectedTests } from '../../../redux/user/user.actions';
+import { listTests, downloadTests } from '../../../redux/user/user.actions.requests';
+import { setSelectedTests, setEditingTest } from '../../../redux/user/user.actions';
+import { viewTest } from '../../../routes/paths';
 
-const TestsHistory = () => {
+const TestsHistory = (props) => {
+  const { history: { push } } = props;
   const dispatch = useDispatch();
   const { user, selectedTests } = useSelector((state) => state.user);
   const { isLoading } = useSelector((state) => state.feedback);
@@ -45,6 +47,17 @@ const TestsHistory = () => {
     }
   };
 
+  const handleDownload = (tests) => () => {
+    if (tests.length) {
+      dispatch(downloadTests(user.id, tests));
+    }
+  };
+
+  const handleViewTest = (editingTest) => () => {
+    dispatch(setEditingTest({ editingTest }));
+    push(viewTest());
+  };
+
   useEffect(() => {
     dispatch(listTests(user));
   }, []);
@@ -64,8 +77,18 @@ const TestsHistory = () => {
           moveTitle
           menu={(
             <>
-              <Button className='--shadowed --spaced'>Descargar todo</Button>
-              <Button className='--shadowed --spaced'>Descargar selección</Button>
+              <Button
+                className='--shadowed --spaced'
+                onClick={handleDownload(user.tests.map(({ id }) => id))}
+              >
+                Descargar todo
+              </Button>
+              <Button
+                className='--shadowed --spaced'
+                onClick={handleDownload(selectedTests)}
+              >
+                Descargar selección
+              </Button>
             </>
           )}
         >
@@ -113,6 +136,7 @@ const TestsHistory = () => {
                       icon={<EyeIcon />}
                       iconMode='1'
                       disabled={row.status !== 'DONE'}
+                      onClick={handleViewTest(row)}
                     />
                     <Button
                       className='--shadowed --spaced'
@@ -120,6 +144,7 @@ const TestsHistory = () => {
                       icon={<DownloadIcon />}
                       iconMode='1'
                       disabled={row.status !== 'DONE'}
+                      onClick={handleDownload([row.id])}
                     />
                   </div>
                 ),
@@ -134,8 +159,13 @@ const TestsHistory = () => {
               <TestCard
                 key={row.id}
                 onCheckboxChange={handleCheckboxOnChange(row.id)}
-                selected={selectedTests.includes(row.id)}
-                disabled={row.status !== 'DONE'}
+                selectedCheckbox={selectedTests.includes(row.id)}
+                hideDeleteButton
+                onView={handleViewTest(row)}
+                disabledView={row.status !== 'DONE'}
+                disabledDownload={row.status !== 'DONE'}
+                disabledCheckbox={row.status !== 'DONE'}
+                onDownload={handleDownload([row.id])}
                 {...row}
               />
             )}

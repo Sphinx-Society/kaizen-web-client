@@ -2,7 +2,7 @@ import Request from './Request';
 import { getStringFromDate } from '../utils/date';
 import { getCookie } from '../utils/cookie';
 import { parseToken } from '../utils/auth';
-import { getAnchorFromCsv } from '../utils/csv';
+import { getFileAnchor } from '../utils/fileManager';
 
 class User extends Request {
   constructor() {
@@ -152,7 +152,7 @@ class User extends Request {
     return this.axios.post(`${this.baseUrl}/massive`, data)
       .then((res) => {
         if (res.data) {
-          const anchor = getAnchorFromCsv(res.data, res.headers['content-type'], 'usuarios_fallidos.csv');
+          const anchor = getFileAnchor(res.data, res.headers['content-type'], 'usuarios_fallidos.csv');
           return anchor;
         }
         return null;
@@ -182,9 +182,18 @@ class User extends Request {
     return this.axios.delete(`${this.baseUrl}/${id}`);
   }
 
-  async downloadTests(id, testIds) {
-    return this.axios.post(`${this.baseUrl}/${id}/tests/results/document`, { testIds })
-      .then(({ data: { message } }) => message)
+  async downloadTests(id, testsIds) {
+    return this.axios.post(
+      `${this.baseUrl}/${id}/tests/results/document`,
+      { testsIds }, {
+        responseType: 'blob',
+      },
+    )
+      .then((res) => {
+        const anchor = getFileAnchor(res.data, res.headers['content-type'], 'resultados.pdf');
+        anchor.click();
+        document.body.removeChild(anchor);
+      })
       .catch((error) => {
         throw error;
       });
@@ -268,7 +277,7 @@ class User extends Request {
       results.push(result);
     });
 
-    return this.axios.put(`${this.baseUrl}/${userId}/tests/${testId}/results`, { results })
+    return this.axios.put(`${this.baseUrl}/${userId}/tests/${testId}/results`, { results, status: 'PENDING' })
       .then(({ data: { message } }) => message)
       .catch((error) => {
         throw error;

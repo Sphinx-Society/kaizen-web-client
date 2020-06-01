@@ -1,0 +1,9 @@
+.view-test {
+  &__list {
+    display: flex;
+    flex-direction: column;
+    padding: getSpacing(2);
+    justify-content: space-between;
+    min-height: 60vh;
+  }
+}
