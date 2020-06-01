@@ -10,19 +10,35 @@ import withUserData from '../../hocs/withUserData';
 import withAuth from '../../hocs/withAuth';
 import ReadableField from '../../atoms/ReadableField/ReadableField';
 import ListReadableFields from '../../molecules/ListReadableFields/ListReadableFields';
-import { testsHistory } from '../../../routes/paths';
+import { testsHistory, patientTests } from '../../../routes/paths';
 
 import './ViewTest.scss';
 
 const ViewTest = (props) => {
   const { history: { push } } = props;
-  const { editingTest } = useSelector((state) => state.user);
+  const { editingTest, user } = useSelector((state) => state.user);
 
-  const goToPatientTests = () => push(testsHistory());
+  const isDoctor = user.role === 'doctor';
+
+  const goToLastView = () => {
+    if (isDoctor) {
+      push(patientTests());
+    } else {
+      push(testsHistory());
+    }
+  };
 
   if (!editingTest) {
+    let path = '';
+
+    if (isDoctor) {
+      path = patientTests();
+    } else {
+      path = testsHistory();
+    }
+
     return (
-      <Redirect to={testsHistory()} />
+      <Redirect to={path} />
     );
   }
 
@@ -31,7 +47,7 @@ const ViewTest = (props) => {
       <FeedbackProvider>
         <MainViewProvider
           showBackButton={true}
-          onBackButtonClick={goToPatientTests}
+          onBackButtonClick={goToLastView}
           title={editingTest.name}
           showBottomLine
           moveTitle
