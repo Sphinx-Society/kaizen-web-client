@@ -8,18 +8,22 @@ Is a frontend project in React for managing clinical laboratory tests.
 
 
 ## Take a look
-- [Admin destock](https://www.figma.com/proto/xRZYYfOfWSGVr0J1IDDZsC/Kaizen?node-id=541%3A5739&scaling=min-zoom)
-- [Admin mobile](https://www.figma.com/proto/xRZYYfOfWSGVr0J1IDDZsC/Kaizen?node-id=215%3A622&scaling=min-zoom)
+  ### Deploy
+  View in real time [here](https://kaizen-web-client.herokuapp.com/ "here")
+  
+  ### Prototypes
+- [Admin Destock](https://www.figma.com/proto/xRZYYfOfWSGVr0J1IDDZsC/Kaizen?node-id=541%3A5739&scaling=min-zoom)
+- [Admin Mobile](https://www.figma.com/proto/xRZYYfOfWSGVr0J1IDDZsC/Kaizen?node-id=215%3A622&scaling=min-zoom)
 
 ------------
 
-- [Bacteriologist destock](https://www.figma.com/proto/xRZYYfOfWSGVr0J1IDDZsC/Kaizen?node-id=710%3A1&scaling=min-zoom)
-- [Bacteriologist mobile](https://www.figma.com/proto/xRZYYfOfWSGVr0J1IDDZsC/Kaizen?node-id=444%3A3724&scaling=min-zoom)
+- [Bacteriologist Desktop](https://www.figma.com/proto/xRZYYfOfWSGVr0J1IDDZsC/Kaizen?node-id=710%3A1&scaling=min-zoom)
+- [Bacteriologist Mobile](https://www.figma.com/proto/xRZYYfOfWSGVr0J1IDDZsC/Kaizen?node-id=444%3A3724&scaling=min-zoom)
 ------------
-- [Doctor destock](https://www.figma.com/proto/xRZYYfOfWSGVr0J1IDDZsC/Kaizen?node-id=763%3A9244&scaling=min-zoom)
-- [Doctor mobile](https://www.figma.com/proto/xRZYYfOfWSGVr0J1IDDZsC/Kaizen?node-id=551%3A20976&scaling=min-zoom)
+- [Doctor Desktop](https://www.figma.com/proto/xRZYYfOfWSGVr0J1IDDZsC/Kaizen?node-id=763%3A9244&scaling=min-zoom)
+- [Doctor Mobile](https://www.figma.com/proto/xRZYYfOfWSGVr0J1IDDZsC/Kaizen?node-id=551%3A20976&scaling=min-zoom)
 ------------
-- [Patient destock](https://www.figma.com/proto/xRZYYfOfWSGVr0J1IDDZsC/Kaizen?node-id=773%3A7920&scaling=min-zoom)
+- [Patient Desktop](https://www.figma.com/proto/xRZYYfOfWSGVr0J1IDDZsC/Kaizen?node-id=773%3A7920&scaling=min-zoom)
 - [Patient mobile](https://www.figma.com/proto/xRZYYfOfWSGVr0J1IDDZsC/Kaizen?node-id=773%3A7421&scaling=min-zoom)
 
 
@@ -55,9 +59,23 @@ You can find the Kaizen Web Client documentation [on Notion](https://www.notion.
 
 The documentation is divided into several sections:
 
-* [Design system](https://www.notion.so/Design-System-c2b6a84e07064f138b4a3d97a331b980)
-* [File structure](https://www.notion.so/File-structure-e68a15a61efb443e98eba8b6ae766fb1)
+* [User Manuals](https://www.notion.so/User-Manuals-a896bafc9fbc4fad95154f80e1a638ea)
+* [Design System](https://www.notion.so/Design-System-c2b6a84e07064f138b4a3d97a331b980)
+* [File Structure](https://www.notion.so/File-structure-e68a15a61efb443e98eba8b6ae766fb1)
 * [Storybook](https://sphinx-society.github.io/kaizen-web-client)
+
+## Credits
+
+### Backend Authors
+
+* [Alejandro Cortez](https://www.linkedin.com/in/alejandro-cortez/)
+* [Arantxa Rosas](http://aryrosvall.com)
+
+### Frontend Authors
+
+* [Andrés Santana](https://www.linkedin.com/in/andr%C3%A9s-santana-lizcano-a4b960191/)
+* [Jorge Nemogá](https://www.linkedin.com/in/jhnemogap/)
+* [Omar Flores](https://twitter.com/omarefg)
 
 ## Contributing
 
