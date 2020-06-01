@@ -1,9 +1,7 @@
 import * as userActions from './user.actions';
-import * as templateActionsRequest from '../templates/templates.actions.requests';
 
 import * as feedbackActions from '../feedback/feedback.actions';
 import UserService from '../../services/User';
-import TemplateService from '../../services/Template';
 
 import { setIsLoading, setErrorFeedback } from '../feedback/feedback.utils';
 
@@ -222,12 +220,12 @@ export const listTests = (user) => async (dispatch) => {
   }
 };
 
-export const assingTest = (testName, testId, patientUser) => async (dispatch) => {
+export const assignTest = (testName, testId, patientUser) => async (dispatch) => {
   setIsLoading(dispatch, true);
   const User = new UserService();
 
   try {
-    await User.assingTest(testName, testId, patientUser.id);
+    await User.assignTest(testName, testId, patientUser.id);
     dispatch(listTests(patientUser));
   } catch (error) {
     setErrorFeedback(dispatch, error);
@@ -237,11 +235,12 @@ export const assingTest = (testName, testId, patientUser) => async (dispatch) =>
   }
 };
 
-export const submitTestResults = (userId, testId, data) => async (dispatch) => {
+export const submitTestResults = (patient, testId, data) => async (dispatch) => {
   setIsLoading(dispatch, true);
   const User = new UserService();
   try {
-    await User.submitTestResults(userId, testId, data);
+    await User.submitTestResults(patient.id, testId, data);
+    await dispatch(listTests(patient));
     dispatch(feedbackActions.setFeedback({
       feedback: {
         message: 'Resultados guardados satisfactoriamente',
@@ -256,3 +255,37 @@ export const submitTestResults = (userId, testId, data) => async (dispatch) => {
   }
 };
 
+export const publishTest = (test, patient) => async (dispatch) => {
+  setIsLoading(dispatch, true);
+  const User = new UserService();
+  try {
+    await User.publishTest(patient.id, test);
+    await dispatch(listTests(patient));
+    dispatch(feedbackActions.setFeedback({
+      feedback: {
+        message: 'Examen publicado satisfactoriamente',
+        type: 'success',
+      },
+    }));
+  } catch (error) {
+    setErrorFeedback(dispatch, error);
+    throw error;
+  } finally {
+    setIsLoading(dispatch, false);
+  }
+};
+
+export const deleteTestPending = (testId, patientUser) => async (dispatch) => {
+  setIsLoading(dispatch, true);
+  const User = new UserService();
+
+  try {
+    await User.deleteTestPending(testId, patientUser.id);
+    dispatch(listTests(patientUser));
+  } catch (error) {
+    setErrorFeedback(dispatch, error);
+    throw error;
+  } finally {
+    setIsLoading(dispatch, false);
+  }
+};

@@ -231,7 +231,7 @@ class User extends Request {
       });
   }
 
-  async assingTest(testName, templateId, userId) {
+  async assignTest(testName, templateId, userId) {
     return this.axios.post(
       `${this.baseUrl}/${userId}/tests/`,
       { tests: { testName, templateId } },
@@ -270,10 +270,26 @@ class User extends Request {
     });
 
     return this.axios.put(`${this.baseUrl}/${userId}/tests/${testId}/results`, { results })
-      .then(({ data: { message } }) => {
-        console.log(message);
-        return message;
-      })
+      .then(({ data: { message } }) => message)
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  async deleteTestPending(testId, patientId) {
+    return this.axios.delete(`${this.baseUrl}/${patientId}/tests/${testId}`)
+      .then(({ data: { message } }) => message)
+      .catch((error) => {
+        throw error;
+      });
+  }
+
+  async publishTest(userId, test) {
+    return this.axios.put(
+      `${this.baseUrl}/${userId}/tests/${test.id}/results`,
+      { ...test, status: 'DONE' },
+    )
+      .then(({ data: { message } }) => message)
       .catch((error) => {
         throw error;
       });

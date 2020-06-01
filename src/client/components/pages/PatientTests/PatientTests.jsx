@@ -20,7 +20,7 @@ import withAuth from '../../hocs/withAuth';
 import withUserData from '../../hocs/withUserData';
 
 import { setPatientUser, setSelectedTests, setEditingTest } from '../../../redux/user/user.actions';
-import { listTests, assingTest } from '../../../redux/user/user.actions.requests';
+import { listTests, assignTest, deleteTestPending, publishTest } from '../../../redux/user/user.actions.requests';
 import { listTemplates, getTemplate } from '../../../redux/templates/templates.actions.requests';
 
 import { getStringFromDate } from '../../../utils/date';
@@ -52,17 +52,6 @@ const PatientTest = (props) => {
   const dispatch = useDispatch();
   const isRoleDoctor = user.role === 'doctor';
   const isRoleLab = user.role === 'lab';
-
-  const handleCheckboxOnChange = (id) => (event) => {
-    const { checked } = event.target;
-    if (checked) {
-      dispatch(setSelectedTests({ selectedTests: [...selectedTests, id] }));
-    } else {
-      dispatch(setSelectedTests({
-        selectedTests: selectedTests.filter((testId) => testId !== id),
-      }));
-    }
-  };
 
   useEffect(() => {
     dispatch(setEditingTest({ editingTest: null }));
@@ -116,7 +105,7 @@ const PatientTest = (props) => {
     dispatch(setModalDialog({
       modal: {
         type: 'confirm',
-        mainFn: () => dispatch(assingTest(testName, templateId, patientUser)),
+        mainFn: () => dispatch(assignTest(testName, templateId, patientUser)),
         message: (
           <span>
             Asignar examen:
@@ -148,6 +137,19 @@ const PatientTest = (props) => {
           push(fillTest());
         });
     };
+  };
+
+  const handlePublishTest = (test) => () => {
+    dispatch(setModalDialog({ modal: {
+      type: 'confirm',
+      message: '¿Desea publicar el resultado?',
+      mainFn: () => dispatch(publishTest(test, patientUser)),
+    },
+    }));
+  };
+
+  const handleDeleteTestPending = ({ testId }) => () => {
+    dispatch(deleteTestPending(testId, patientUser));
   };
 
   const menu = () => (
@@ -222,15 +224,15 @@ const PatientTest = (props) => {
                 {
                   header: isRoleLab ? 'Publicado' : '',
                   accessor: '',
-                  cell: ({ id }) => (
+                  cell: (row) => isRoleLab && (
                     <Checkbox
-                      onChange={handleCheckboxOnChange(id)}
-                      checked={selectedTests.includes(id)}
-                      id={id}
+                      checked={selectedTests.includes(row.id)}
+                      id={row.id}
+                      onChange={handlePublishTest(row)}
                     />
                   ),
                   id: 0,
-                  width: isRoleDoctor ? '30px' : 'auto',
+                  width: 'auto',
                   collapse: isRoleDoctor,
                 },
                 {
@@ -264,15 +266,15 @@ const PatientTest = (props) => {
                         icon={<EyeIcon />}
                         onClick={handleTestField(row)}
                         iconMode='1'
-                        disabled={row.status !== 'done' && isRoleDoctor}
+                        disabled={row.status.toLowerCase() !== 'done' && isRoleDoctor}
                       />
-                      {(isRoleDoctor && row.status !== 'done') && (
+                      {(isRoleDoctor && row.status.toLowerCase() !== 'done') && (
                         <Button
                           className='--shadowed --spaced'
                           type='icon'
                           icon={<DeleteIcon />}
                           iconMode='1'
-                          onClick={() => console.log('eliminar test')}
+                          onClick={handleDeleteTestPending(row)}
                         />
                       )}
                     </div>
@@ -288,7 +290,7 @@ const PatientTest = (props) => {
                 <TestCard
                   key={row.id}
                   name={row.name}
-                  onCheckboxChange={handleCheckboxOnChange(row.id)}
+                  onCheckboxChange={handlePublishTest(row)}
                   selected={selectedTests.includes(row.id)}
                   {...row}
                 />

@@ -134,7 +134,7 @@ const FillExam = (props) => {
   const handleOnSubmit = (event) => {
     event.preventDefault();
     const { testId } = editingTest;
-    dispatch(submitTestResults(patientUser.id, testId, stateTest))
+    dispatch(submitTestResults(patientUser, testId, stateTest))
       .then(() => goToPatientTests());
   };
 
