@@ -24,7 +24,7 @@ import { listTests, assignTest, deleteTestPending, publishTest } from '../../../
 import { listTemplates, getTemplate } from '../../../redux/templates/templates.actions.requests';
 
 import { getStringFromDate } from '../../../utils/date';
-import { patientsManagement, fillTest } from '../../../routes/paths';
+import { patientsManagement, fillTest, viewTest } from '../../../routes/paths';
 
 const PatientTest = (props) => {
   const { history: { push } } = props;
@@ -35,7 +35,7 @@ const PatientTest = (props) => {
   const [selectedExam, setSelectedExam] = useState('');
 
   const { isLoading } = useSelector((state) => state.feedback);
-  const { user, patientUser, selectedTests } = useSelector((state) => state.user);
+  const { user, patientUser } = useSelector((state) => state.user);
 
   if (!patientUser) {
     return (
@@ -127,7 +127,8 @@ const PatientTest = (props) => {
 
   const handleTestField = (editingTest) => () => {
     if (isRoleDoctor) {
-      console.log('ver examen');
+      dispatch(setEditingTest({ editingTest }));
+      push(viewTest());
     }
 
     if (isRoleLab) {
