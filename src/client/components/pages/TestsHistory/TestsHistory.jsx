@@ -79,7 +79,7 @@ const TestsHistory = () => {
                   <Checkbox
                     onChange={handleCheckboxOnChange(id)}
                     checked={selectedTests.includes(id)}
-                    disabled={status !== 'done'}
+                    disabled={status !== 'DONE'}
                     id={id}
                   />
                 ),
@@ -112,14 +112,14 @@ const TestsHistory = () => {
                       type='icon'
                       icon={<EyeIcon />}
                       iconMode='1'
-                      disabled={row.status !== 'done'}
+                      disabled={row.status !== 'DONE'}
                     />
                     <Button
                       className='--shadowed --spaced'
                       type='icon'
                       icon={<DownloadIcon />}
                       iconMode='1'
-                      disabled={row.status !== 'done'}
+                      disabled={row.status !== 'DONE'}
                     />
                   </div>
                 ),
@@ -135,7 +135,7 @@ const TestsHistory = () => {
                 key={row.id}
                 onCheckboxChange={handleCheckboxOnChange(row.id)}
                 selected={selectedTests.includes(row.id)}
-                disabled={row.status !== 'done'}
+                disabled={row.status !== 'DONE'}
                 {...row}
               />
             )}

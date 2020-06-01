@@ -220,7 +220,6 @@ class User extends Request {
           ...test,
           id: test.testId,
           name: test.testName,
-          status: test.status.toLowerCase(),
           statusLabel: statusLabels[test.status],
           requestedAt: getStringFromDate(new Date(test.requestedAt)),
           doctorName: `${test.requestBy.firstName} ${test.requestBy.lastName}`,
@@ -287,7 +286,10 @@ class User extends Request {
   async publishTest(userId, test) {
     return this.axios.put(
       `${this.baseUrl}/${userId}/tests/${test.id}/results`,
-      { ...test, status: 'DONE' },
+      {
+        status: 'DONE',
+        results: [...test.results],
+      },
     )
       .then(({ data: { message } }) => message)
       .catch((error) => {

@@ -19,7 +19,7 @@ import { setModalDialog } from '../../../redux/modalDialog/modalDialog.actions';
 import withAuth from '../../hocs/withAuth';
 import withUserData from '../../hocs/withUserData';
 
-import { setPatientUser, setSelectedTests, setEditingTest } from '../../../redux/user/user.actions';
+import { setPatientUser, setEditingTest } from '../../../redux/user/user.actions';
 import { listTests, assignTest, deleteTestPending, publishTest } from '../../../redux/user/user.actions.requests';
 import { listTemplates, getTemplate } from '../../../redux/templates/templates.actions.requests';
 
@@ -226,7 +226,8 @@ const PatientTest = (props) => {
                   accessor: '',
                   cell: (row) => isRoleLab && (
                     <Checkbox
-                      checked={selectedTests.includes(row.id)}
+                      checked={row.status === 'DONE'}
+                      disabled={row.status === 'DONE'}
                       id={row.id}
                       onChange={handlePublishTest(row)}
                     />
@@ -266,9 +267,9 @@ const PatientTest = (props) => {
                         icon={<EyeIcon />}
                         onClick={handleTestField(row)}
                         iconMode='1'
-                        disabled={row.status.toLowerCase() !== 'done' && isRoleDoctor}
+                        disabled={(isRoleDoctor && row.status !== 'DONE') || (isRoleLab && row.status === 'DONE')}
                       />
-                      {(isRoleDoctor && row.status.toLowerCase() !== 'done') && (
+                      {(isRoleDoctor && row.status !== 'DONE') && (
                         <Button
                           className='--shadowed --spaced'
                           type='icon'
@@ -291,7 +292,14 @@ const PatientTest = (props) => {
                   key={row.id}
                   name={row.name}
                   onCheckboxChange={handlePublishTest(row)}
-                  selected={selectedTests.includes(row.id)}
+                  selectedCheckbox={row.status === 'DONE'}
+                  hideDownloadButton
+                  hideDeleteButton={!isRoleDoctor || (isRoleDoctor && row.status !== 'DONE')}
+                  onView={handleTestField(row)}
+                  onDelete={handleDeleteTestPending(row)}
+                  hideCheckbox={isRoleDoctor}
+                  disabledCheckbox={row.status === 'DONE'}
+                  disabledView={(isRoleDoctor && row.status !== 'DONE') || (isRoleLab && row.status === 'DONE')}
                   {...row}
                 />
               )}
