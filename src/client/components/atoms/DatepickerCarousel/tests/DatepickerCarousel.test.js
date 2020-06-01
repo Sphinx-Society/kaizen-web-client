@@ -16,6 +16,7 @@ describe('DatepickerCarousel', () => {
         onPrevClick={onPrevClickMock}
         onNextClick={onNextClickMock}
         value={15}
+        onInputChange={() => null}
       />,
     );
     expect(datepickerCarousel.hasClass('datepicker-carousel__container')).toBe(true);
@@ -27,6 +28,7 @@ describe('DatepickerCarousel', () => {
         onPrevClick={onPrevClickMock}
         onNextClick={onNextClickMock}
         value={15}
+        onInputChange={() => null}
       />,
     );
     const {
@@ -50,7 +52,7 @@ describe('DatepickerCarousel', () => {
         onNextClick={onNextClickMock}
         value='January'
         isYearly
-        onInputChange={onInputChangeMock}
+        onInputChange={() => null}
       />,
     );
     const {
@@ -58,13 +60,52 @@ describe('DatepickerCarousel', () => {
       onNextClick,
       value,
       isYearly,
-      onInputChange,
     } = datepickerCarousel.props();
     expect(onPrevClick).toBe(onPrevClickMock);
     expect(onNextClick).toBe(onNextClickMock);
     expect(value).toBe('January');
     expect(isYearly).toBe(true);
-    expect(onInputChange).toBe(onInputChangeMock);
   });
 
+  test('should throw onInputChange event:', () => {
+    const datepickerCarousel = mount(
+      <DatepickerCarousel
+        onPrevClick={() => null}
+        onNextClick={() => null}
+        value='January'
+        isYearly
+        onInputChange={onInputChangeMock}
+      />,
+    );
+    datepickerCarousel.find('.datepicker-carousel__input').simulate('change');
+    expect(onInputChangeMock.mock.calls.length).toBe(1);
+  });
+
+  test('should throw onPrevClick event:', () => {
+    const datepickerCarousel = mount(
+      <DatepickerCarousel
+        onPrevClick={onPrevClickMock}
+        onNextClick={() => null}
+        value='January'
+        isYearly
+        onInputChange={() => null}
+      />,
+    );
+    datepickerCarousel.find('button').at(0).simulate('click');
+    expect(onPrevClickMock.mock.calls.length).toBe(1);
+  });
+
+  test('should throw onNextClick event:', () => {
+    const datepickerCarousel = mount(
+      <DatepickerCarousel
+        onPrevClick={() => {}}
+        onNextClick={onNextClickMock}
+        value='January'
+        isYearly
+        onInputChange={() => null}
+      />,
+    );
+    datepickerCarousel.find('button').at(1).simulate('click');
+    expect(onNextClickMock.mock.calls.length).toBe(1);
+  });
 });
