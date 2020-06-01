@@ -74,21 +74,16 @@ const paintDynamicField = (field, state, handler) => {
     }
     case 'text': {
       return (
-        <div
+        <textarea
+          className='test-form__textarea'
           key={id}
-          className='textarea'
-        >
-          <label htmlFor={id}>{name}</label>
-          <textarea
-
-            value={state[id]}
-            name={id}
-            onChange={handler}
-            required={required}
-            placeholder={name}
-            id={id}
-          />
-        </div>
+          value={state[id]}
+          name={id}
+          onChange={handler}
+          required={required}
+          placeholder={name}
+          id={id}
+        />
       );
     }
     default: return null;
@@ -170,6 +165,7 @@ const FillExam = (props) => {
                 color='primary'
                 type='submit'
                 form='test-form'
+                className='--is-for-submit'
               >
                 Guardar
               </Button>
