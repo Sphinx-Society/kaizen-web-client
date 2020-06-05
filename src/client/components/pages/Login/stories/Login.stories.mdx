@@ -1,5 +1,7 @@
 import { Meta, Props, Preview } from '@storybook/addon-docs/blocks'
 import ProviderMock from '../../../../__mocks__/redux/ProviderMock'
+import { MemoryRouter } from 'react-router-dom';
+
 import Login from '../Login'
 
 import './Login.stories.scss'
@@ -14,7 +16,9 @@ Allow to access to aplicaction
 
 <Preview className='preview-flex1'>
   <ProviderMock>
-    <Login />
+    <MemoryRouter>
+      <Login />
+    </MemoryRouter>
   </ProviderMock>
 </Preview>
 
