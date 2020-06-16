@@ -21,7 +21,7 @@ Please read [the full text](/CODE_OF_CONDUCT.md) so that you can understand what
 
 ### Issues naming standard
 
-[Organization acronym][Project first letter][Team first letter] [Issue name]
+[School acronym][Project first letter][Issue name]
 
 #### Example
 
@@ -29,27 +29,25 @@ Please read [the full text](/CODE_OF_CONDUCT.md) so that you can understand what
 SSKB Contribution Guideline
 ```
 
-- SS = Organization acronym / Sphinx Society
-- K = Project first letter / Kaizen
-- B = Team first letter / Backend
+- DS = School acronym / Data science
+- I = Project first letter / Introduction to Computational Thinking
 - Contribution Guideline = Issue name
 
 ## Branches
 
 ### Branches naming standard
 
-[Organization acronym][Project first letter][Team first letter]-[Issue ID]
+[School acronym][Project first letter]-[Issue ID]
 
 ### Example
 
 ```bash
-git checkout -b SSKB-1
-git checkout -b SSKW-1
+git checkout -b DSI-1
+git checkout -b DSI-1
 ```
 
-- SS = Organization acronym / Sphinx Society
-- K = Project first letter / Kaizen
-- B = Team firts letter / Backend
+- DS = School acronym / Data sciense 
+- K = Project first letter / Introduction to Computational Thinking
 - 1 = Issue ID
 
 ## Commits
@@ -61,11 +59,10 @@ git checkout -b SSKW-1
 ### Example
 
 ```bash
-git commit -m 'SSKB-1 Added logger class to use a logger service'
-git commit -m 'SSKB-1 Added logger class to use a logger service'
+git commit -m 'DSI-1 Added logger class to use a logger service'
 ```
 
-- Branch Name - SSKB-1
+- Branch Name - DSI-1
 - Verb - Added
 - Substantive - logger class
 - What for - to use a logger service
@@ -74,7 +71,7 @@ git commit -m 'SSKB-1 Added logger class to use a logger service'
 
 ### Before creating a pull request please
 
-- Make sure you created an [Issue](https://www.github.com/sphinx-society/kaizen-web-client/issues) related to it and you're following the [issues section](#Issues) recommendations 
+- Make sure you created an [Issue](url) related to it and you're following the [issues section](#Issues) recommendations 
 - Make sure you're following the [branches section](#Branches) recommendations
 - Make sure you're following the [commits section](#Commits) recommendations
 
