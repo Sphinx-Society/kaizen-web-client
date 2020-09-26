@@ -1,5 +1,6 @@
 import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
 import StoryRouter from 'storybook-react-router';
+import ProviderMock from '../../../../__mocks__/redux/ProviderMock'
 import Navbar from '../Navbar';
 import Surface from '../../../atoms/Surface/Surface'
 
@@ -14,9 +15,11 @@ This body is used to show the main actions of each role, in this case we're look
 
 <Preview>
     <Story name='is Administrator who view info' decorators={[StoryRouter()]}>
-      <Surface>
-        <Navbar isAdmin={true}/>
-      </Surface>
+      <ProviderMock store={{ user: { user: { role: 'admin' } } }}>
+        <Surface>
+          <Navbar isAdmin={true}/>
+        </Surface>
+      </ProviderMock>
     </Story>
 </Preview>
 
@@ -24,9 +27,11 @@ In this other case we're looking no admin role.
 
 <Preview>
     <Story name='is User who view info' decorators={[StoryRouter()]}>
-      <Surface>
-        <Navbar />
-      </Surface>
+      <ProviderMock store={{ user: { user: { role: 'patient' } } }}>
+        <Surface>
+          <Navbar />
+        </Surface>
+      </ProviderMock>
     </Story>
 </Preview>
 

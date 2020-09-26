@@ -1,4 +1,6 @@
 import { Meta, Props, Preview } from '@storybook/addon-docs/blocks'
+import { MemoryRouter } from 'react-router-dom';
+
 import LoginForm from '../LoginForm'
 import ProviderMock from '../../../../__mocks__/redux/ProviderMock'
 
@@ -14,7 +16,9 @@ Allow application authentication by user role
 
 <Preview>
   <ProviderMock>
-    <LoginForm />
+    <MemoryRouter>
+      <LoginForm />
+    </MemoryRouter>
   </ProviderMock>
 </Preview>
 
